@@ -1,0 +1,74 @@
+* {
+	margin: 0;
+	font-family: 'Inter', 'Arial', sans-serif";
+
+}
+
+.navbar {
+	background-color: #363841;
+	color: #FFFFFF;
+	display: flex;
+	flex-direction: column;
+	letter-spacing: 1px;
+}
+
+.nav_content_container {
+	margin: 10px 10vw;
+}
+
+.uppernav {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-bottom: 15px;
+}
+
+.left * {
+	padding-right: 5vw;
+	font-size: 1.1rem;
+	font-weight: 500;
+}
+
+.subnav h6 {
+	font-size: 1rem;
+	font-weight: 500;
+	margin-right: 50px;
+}
+
+.left,
+.right {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-end;
+}
+
+.subnav {
+	display: flex;
+	flex-direction: row;
+	align-items: stretch;
+}
+
+#logo {
+	font-size: 2rem;
+	font-family: 'Inria sans', sans-serif;
+	font-weight: 500;
+}
+
+.right button {
+	color: #FFF;
+	border-radius: 10px;
+	width: 110px;
+	height: 35px;
+	font-size: 0.8rem;
+}
+
+#register-btn {
+	background-color: #363841;
+	border: solid 1px #FFF;
+}
+
+#login-btn {
+	background-color: #4AA587;
+	border: none;
+	margin-left: 25px;
+}
