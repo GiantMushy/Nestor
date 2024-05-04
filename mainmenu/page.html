@@ -22,9 +22,7 @@
 					</div>
 					<div class="logged-in">
 						<h6 id="username">Sævar Reynisson</h6>
-						<svg class="chevron" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M3 6L10 13L17 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-						</svg>
+						<span class="chevron"></span>
 					</div>
 				</div>
 				<div class="subnav">
@@ -36,7 +34,43 @@
 			</div>
 		</nav> 
 		<main>
+			<form class="searchbar">
+				<h1 id="searchbar-title">Search for your dream job</h1>
+				<div class="searchbar-filters">
+					<div class="search-container">
+						<input id="filter-category" type="text" placeholder=" Pick category">
+						<span class="chevron"></span>
+					</div>
+					<div class="search-container">
+						<input id="filter-company" type="text" placeholder=" Pick company">
+						<span class="chevron"></span>
+					</div>
+					<div class="search-container">
+						<input id="filter-location" type="text" placeholder=" Pick location">
+						<span class="chevron"></span>
+					</div>
+				</div>
+				<div class="searchbar-search">
+					<div id="job-search-container">
+						<input id="search-jobname" type="text" placeholder=" Enter job title here...">
+						<img src="./public/searchicon.svg" alt="search icon">
+					</div>
+					<button id="search-btn">Search</button>
+				</div>
+				<div class="searchbar-extras">
+					<label id="checkbox-container" for="checkbox-applied">Show applied jobs
+						<input id="checkbox-applied" type="checkbox">
+						<span class="checkmark"></span>
+					</label>
+					<div id="sort-btn-container">
+						<button id="sort-btn">Sort by</button>
+						<span id="sort-chevron"class="chevron"></span>
+					</div>
+				</div>
+			</form>
+			<div class="main-content">
 
+			</div>
 		</main>
 		<footer>
 
