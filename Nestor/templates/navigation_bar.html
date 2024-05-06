@@ -1,0 +1,25 @@
+<nav class="navbar">
+    <div class="nav_content_container">
+        <div class="uppernav">
+            <div class="left">
+                <a href="{% url 'job_index' %}"><h2 id="logo">Nestor</h2></a>
+                <a href="{% url 'job_index' %}"><h4>Jobs</h4></a>
+                <a href="{% url 'company_index' %}"><h4>Companies</h4></a>
+            </div>
+            <div class="right">
+                <button id="register-btn">Register</button>
+                <button id="login-btn">Log in</button>
+            </div>
+            <div class="logged-in">
+                <h6 id="username">Sævar Reynisson</h6>
+                <span class="chevron"></span>
+            </div>
+        </div>
+        <div class="subnav">
+            <h6>All jobs</h6>
+            <h6>Favorite jobs</h6>
+            <h6>Applied jobs</h6>
+        </div>
+    </div>
+</nav>
+

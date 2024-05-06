@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    
+    <div class="all_jobs">
+        {% for job in jobs %}
+            {% include 'job/single_job.html' with job=job %}
+        {% endfor %}
+    </div>
+{% endblock %}

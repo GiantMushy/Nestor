@@ -1,0 +1,60 @@
+body {
+    background-color: #F5F5F2;
+}
+
+.all_jobs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+@media (max-width: 930px) {
+.all_jobs {
+    grid-template-columns: repeat(2, 1fr);
+}
+}
+
+@media (max-width: 590px) {
+.all_jobs {
+    grid-template-columns: repeat(1, 1fr);
+}
+}
+
+.job_card {
+    border-radius: 10px;
+    background-color: white;
+    display: grid;
+    grid-template-rows: 100px 20px 20px;
+    gap: 10px;
+    padding: 15px;
+}
+
+.job_container_row {
+    display: grid;
+    grid-template-columns: 75% 25%;
+}
+
+.job_container_row p{
+    margin: 0px;
+}
+
+.company_image_container {
+    display: flex;
+    align-items: center;
+}
+
+.job_container_right_column {
+    display: flex;
+    justify-content: end;
+}
+
+.company_image {
+    width: 170px;
+}
+
+.heart_image {
+    width: 30px;
+    height: 30px;
+}
