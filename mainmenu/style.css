@@ -9,6 +9,9 @@
 	color: #FFFFFF;
 	display: flex;
 	flex-direction: column;
+	position: fixed;
+	z-index: 50;
+	width: 100%;
 }
 
 .nav_content_container {
@@ -27,6 +30,11 @@
 	font-size: 1.1rem;
 	font-weight: 600;
 }
+
+.searchbar {
+	margin-top: 90px;
+}
+
 
 .subnav h6 {
 	font-size: 1rem;
@@ -73,6 +81,33 @@
 	margin-left: 25px;
 }
 
+.profile-dropdown {
+	background: #FFF;
+	border-radius: 10px;
+	width: 170px;
+	position: fixed;
+	top: 60px;
+	right: 140px;
+	z-index: 100;
+	display: flex;
+	flex-direction: column;
+	padding: 5px 0px;
+}
+
+.profile-dropdown a {
+	font-weight: 500;
+	height: 25px;
+	margin: 0px 7px;
+	color: #363841;
+	border-bottom: #74788B solid 0.01px;
+	padding-top: 3px;
+	font-size: 0.9rem;
+}
+
+.profile-dropdown :last-child {
+	border: none;
+}
+
 /*If user is logged in,
 then make .logged-in display not none,
 and make .right display none
@@ -99,6 +134,7 @@ And favorite and applied jobs none??
 main {
 	background-color: #F5F5F2;
 	padding: 35px 10vw;
+	height: 100vh;
 }
 
 #searchbar-title {
