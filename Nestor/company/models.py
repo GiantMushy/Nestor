@@ -2,10 +2,10 @@ from django.db import models
 
 class Company(models.Model):
     name = models.CharField(max_length=100)
-    number_of_employees = models.IntegerField()
     address = models.CharField(max_length=100)
+    number_of_employees = models.IntegerField()
     description = models.TextField(max_length=1000)
-    SSN = models.IntegerField(max_length=10)
+    SSN = models.IntegerField()
     link = models.URLField(max_length=1000)
 
     def __str__(self):
