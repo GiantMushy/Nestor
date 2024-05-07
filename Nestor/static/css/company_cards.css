@@ -1,30 +1,28 @@
 body {
-    background-color: #F5F5F2;
+    background-color: lightblue;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
-.all_jobs {
+.all_companies {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-top: 20px;
-    margin-bottom: 20px;
 }
 
-@media (max-width: 930px) {
-.all_jobs {
+@media (max-width: 1540px) {
+.all_companies {
     grid-template-columns: repeat(2, 1fr);
 }
 }
 
-@media (max-width: 590px) {
-.all_jobs {
+@media (max-width: 1000px) {
+.all_companies {
     grid-template-columns: repeat(1, 1fr);
 }
 }
 
-.job_card {
+.company_card {
     border-radius: 10px;
     background-color: white;
     display: grid;
@@ -33,12 +31,12 @@ body {
     padding: 15px;
 }
 
-.job_container_row {
+.company_container_row {
     display: grid;
-    grid-template-columns: 75% 25%;
+    grid-template-columns: 40% 60%;
 }
 
-.job_container_row p{
+.company_container_row p{
     margin: 0px;
 }
 
@@ -47,13 +45,29 @@ body {
     align-items: center;
 }
 
-.job_container_right_column {
+.like_button {
     display: flex;
     justify-content: end;
 }
 
+.company_container_right_column {
+    display: flex;
+    justify-content: start;
+}
+
 .company_image {
     width: 170px;
+}
+
+.info_container {
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    gap: 10px;
+    justify-content: start;
+}
+
+.info_container img {
+    width: 20px;
 }
 
 .heart_image {
