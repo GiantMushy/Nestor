@@ -2,9 +2,14 @@ from django.db import models
 from user.models import User
 from common.models import Skills
 
+class Applicant(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.user.name
+    
 class Experience(models.Model):
-    applicant = models.ForeignKey(User, on_delete=models.CASCADE)
+    applicant = models.ForeignKey(Applicant, on_delete=models.CASCADE)
     workplace_name = models.CharField(max_length=255)
     role = models.CharField(max_length=255)
     start_date = models.DateField()
@@ -23,7 +28,7 @@ class EducationLevel(models.Model):
 
 
 class Education(models.Model):
-    applicant = models.ForeignKey(User, on_delete=models.CASCADE)
+    applicant = models.ForeignKey(Applicant, on_delete=models.CASCADE)
     school_name = models.CharField(max_length=255)
     degree = models.CharField(max_length=255)
     level = models.ForeignKey(EducationLevel, on_delete=models.SET_NULL, null=True)
