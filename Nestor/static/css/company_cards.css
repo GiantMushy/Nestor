@@ -1,0 +1,76 @@
+body {
+    background-color: lightblue;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.all_companies {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+@media (max-width: 1540px) {
+.all_companies {
+    grid-template-columns: repeat(2, 1fr);
+}
+}
+
+@media (max-width: 1000px) {
+.all_companies {
+    grid-template-columns: repeat(1, 1fr);
+}
+}
+
+.company_card {
+    border-radius: 10px;
+    background-color: white;
+    display: grid;
+    grid-template-rows: 100px 20px 20px;
+    gap: 10px;
+    padding: 15px;
+}
+
+.company_container_row {
+    display: grid;
+    grid-template-columns: 40% 60%;
+}
+
+.company_container_row p{
+    margin: 0px;
+}
+
+.company_image_container {
+    display: flex;
+    align-items: center;
+}
+
+.like_button {
+    display: flex;
+    justify-content: end;
+}
+
+.company_container_right_column {
+    display: flex;
+    justify-content: start;
+}
+
+.company_image {
+    width: 170px;
+}
+
+.info_container {
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    gap: 10px;
+    justify-content: start;
+}
+
+.info_container img {
+    width: 20px;
+}
+
+.heart_image {
+    width: 30px;
+    height: 30px;
+}

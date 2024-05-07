@@ -20,3 +20,17 @@
         </main>
     </body>
 </html>
+=======
+<head>
+    <meta charset="UTF-8">
+    <title>Nestor</title>
+    <link rel="stylesheet" href="{% static 'css/nav_bar.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/job_cards.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/company_cards.css' %}" />
+</head>
+<body>
+    {% include 'navigation_bar.html' %}
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
