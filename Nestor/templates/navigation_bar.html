@@ -6,14 +6,19 @@
                 <a href="{% url 'job_index' %}"><h4>Jobs</h4></a>
                 <a href="{% url 'company_index' %}"><h4>Companies</h4></a>
             </div>
-            <div class="right">
-                <button id="register-btn">Register</button>
-                <button id="login-btn">Log in</button>
-            </div>
+            {% if user.is_authenticated %}
             <div class="logged-in">
                 <h6 id="username">Sævar Reynisson</h6>
+                <a href={% url 'logout' %}>Log out blessbless</a>
+                <a href={% url 'profile' %}>Profile</a>
                 <span class="chevron"></span>
             </div>
+            {% else %}
+            <div class="right">
+                <a id="register-btn"  href={% url 'register' %}>Register</a>
+                <button id="login-btn">Log in</button>
+            </div>
+            {% endif %}
         </div>
         <div class="subnav">
             <h6>All jobs</h6>
