@@ -5,7 +5,6 @@ class Company(models.Model):
     address = models.CharField(max_length=100)
     number_of_employees = models.IntegerField()
     description = models.TextField(max_length=1000)
-    SSN = models.IntegerField()
     link = models.URLField(max_length=1000)
 
     def __str__(self):

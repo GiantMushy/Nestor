@@ -1,0 +1,33 @@
+main {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 75vh;
+}
+
+.login-container {
+	width: 40vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#applicant-view {
+	display: flex;
+	flex-direction: column;
+}
+
+#login-buttons-container {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+#login-buttons-container button {
+	width: 40%;
+}
+
+#top-inputs label {
+	width: 40%;
+	display: flex;
+}
