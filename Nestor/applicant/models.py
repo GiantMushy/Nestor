@@ -1,5 +1,6 @@
 from django.db import models
 from user.models import User
+from common.models import Skills
 
 
 class Experience(models.Model):
@@ -34,8 +35,4 @@ class References(models.Model):
     role = models.CharField(max_length=255)
     is_contactable = models.BooleanField()
 
-
-class Skills(models.Model):
-    genre = models.CharField(max_length=255)
-    name = models.CharField(max_length=255)
 

@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'job.apps.JobConfig',
     'company.apps.CompanyConfig',
     'applicant.apps.ApplicantConfig',
-    'user.apps.UserConfig'
+    'user.apps.UserConfig',
+    'common.apps.CommonConfig'
 ]
 
 MIDDLEWARE = [
