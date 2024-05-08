@@ -10,5 +10,6 @@ class Profile(models.Model):
     phone = models.CharField(max_length=7)
     zipcode = models.ForeignKey(ZipCode, on_delete=models.SET_NULL, null=True)
     address = models.CharField(max_length=120)
-
-
+    
+    def __str__(self):
+        return str(self.user)
