@@ -13,14 +13,15 @@ class JobType(models.Model):  #summer/internship/part-time/fulltime
 
 class Job(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    zipcode = models.ForeignKey(ZipCode, on_delete=models.SET_NULL, null=True)
+    job_type = models.ForeignKey(JobType, on_delete=models.SET_NULL, null=True)
+    address = models.CharField(max_length=100)
     job_image = models.CharField(max_length=9999)
     name = models.CharField(max_length=255)
-    address = models.ForeignKey(ZipCode, on_delete=models.SET_NULL, null=True)
     description = models.TextField(max_length=1000)
     date_of_offering = models.DateField()
     application_due_date = models.DateField()
     starting_date = models.DateField()
-    job_type = models.ForeignKey(JobType, on_delete=models.SET_NULL, null=True)
     percentage = models.IntegerField()
     num_of_applicants = 0
     is_available = models.BooleanField(default=True)
