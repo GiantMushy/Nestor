@@ -16,6 +16,9 @@ class CVSkills(models.Model):
     applicant = models.ForeignKey(Applicant, on_delete=models.CASCADE)
     skill = models.ForeignKey(Skills, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return str(self.applicant.name) + ": " + str(self.skill.name) 
+    
 
 class Experience(models.Model):
     workplace_name = models.CharField(max_length=255)
