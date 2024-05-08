@@ -1,5 +1,5 @@
 from django.db import models
-from user.models import Profile 
+from django.contrib.auth.models import User
 from common.models import ZipCode
 
 
@@ -18,8 +18,8 @@ class Company(models.Model):
         return self.name
 
 
-class Employees(models.Model):
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+class Employee(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
 
     def __str__(self):

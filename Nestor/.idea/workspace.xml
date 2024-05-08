@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f178713c-272d-4fb1-901f-08a5ee9808ce" name="Changes" comment="" />
+    <list default="true" id="f178713c-272d-4fb1-901f-08a5ee9808ce" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/applicant/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/applicant/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/user/models.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,7 +31,7 @@
     "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.pycharm.django.structure.promotion.once.per.project": "true",
-    "git-widget-placeholder": "searchbar",
+    "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -47,6 +51,7 @@
         <env name="DJANGO_SETTINGS_MODULE" value="Nestor.settings" />
       </envs>
       <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.9" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -81,6 +86,7 @@
       <updated>1714986836758</updated>
       <workItem from="1714986859430" duration="1543000" />
       <workItem from="1715162395371" duration="117000" />
+      <workItem from="1715191137176" duration="708000" />
     </task>
     <servers />
   </component>

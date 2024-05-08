@@ -1,15 +1,19 @@
 from django.db import models
-from user.models import Profile 
-from common.models import Skills
+from django.contrib.auth.models import User
+from common.models import Skills, ZipCode
 
 
 class Applicant(models.Model):
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile_image = models.CharField(max_length=9999)
+    email = models.EmailField()
+    phone = models.CharField(max_length=7)
+    zipcode = models.ForeignKey(ZipCode, on_delete=models.SET_NULL, null=True)
+    address = models.CharField(max_length=120)
     bio = models.CharField(max_length=400, null=True)
-    phone = models.CharField(max_length=20)
 
-    def __str__(self):
-        return str(self.user.user.username)
+    # def __str__(self):
+    #     return str(self.user.user.username)
 
 
 class CVSkills(models.Model):
@@ -17,7 +21,7 @@ class CVSkills(models.Model):
     skill = models.ForeignKey(Skills, on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.applicant.user.user.username) + ": " + str(self.skill.name) 
+        return str(self.applicant) + ": " + str(self.skill.name) 
     
 
 class Experience(models.Model):
