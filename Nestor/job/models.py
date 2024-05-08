@@ -1,6 +1,6 @@
 from django.db import models
 from company.models import Company
-from common.models import ZipCode, Skills
+from common.models import ZipCode, Skills, JobCategory
 from applicant.models import Applicant, Experience, Education, References
 
 
@@ -15,8 +15,9 @@ class Job(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     zipcode = models.ForeignKey(ZipCode, on_delete=models.SET_NULL, null=True)
     job_type = models.ForeignKey(JobType, on_delete=models.SET_NULL, null=True)
+    job_category = models.ForeignKey(JobCategory, on_delete=models.SET_NULL, null=True)
     address = models.CharField(max_length=100)
-    job_image = models.CharField(max_length=9999)
+    job_image = models.CharField(max_length=9999, blank=True, null=True)
     name = models.CharField(max_length=255)
     description = models.TextField(max_length=1000)
     date_of_offering = models.DateField()
