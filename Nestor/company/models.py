@@ -6,11 +6,8 @@ class Company(models.Model):
     number_of_employees = models.IntegerField()
     description = models.TextField(max_length=1000)
     link = models.URLField(max_length=1000)
+    image = models.CharField(max_length=9999)
 
     def __str__(self):
         return self.name
-
-class CompanyImage(models.Model):
-    image = models.CharField(max_length=9999)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
 
