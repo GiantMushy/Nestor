@@ -9,7 +9,7 @@ class Applicant(models.Model):
     phone = models.CharField(max_length=20)
 
     def __str__(self):
-        return self.user.name
+        return str(self.user.user.username)
 
 
 class CVSkills(models.Model):
@@ -17,7 +17,7 @@ class CVSkills(models.Model):
     skill = models.ForeignKey(Skills, on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.applicant.name) + ": " + str(self.skill.name) 
+        return str(self.applicant.user.user.username) + ": " + str(self.skill.name) 
     
 
 class Experience(models.Model):
