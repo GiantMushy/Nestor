@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
+    <div id="edit-profile">
     <h1>Profile</h1>
     <form class="form form-horizontal" method="post">
         {% csrf_token %}
         {{ form }}
         <input type="submit" class="btn btn-primary" value="Update" />
     </form>
+    </div>
 
 {% endblock %}

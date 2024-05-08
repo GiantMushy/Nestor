@@ -7,8 +7,6 @@ from applicant.forms.applicant_form import ApplicantForm
 
 # Create your views here.
 
-def index(request):
-    return render(request,'applicant/index.html')
 
 def applicant(request):
     applicant = Applicant.objects.filter(user=request.user).first()
@@ -20,5 +18,9 @@ def applicant(request):
             applicant.save()
             return redirect('applicant')
     return render(request, 'applicant/applicant.html', {
-                  'form': ApplicantForm(instance=applicant) 
+        'form': ApplicantForm(instance=applicant) 
     })
+
+def index(request):
+    applicant = Applicant.objects.filter(user=request.user).first()
+    return render(request,'applicant/index.html', {'applicant': applicant})

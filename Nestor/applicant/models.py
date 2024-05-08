@@ -5,6 +5,7 @@ from common.models import Skills, ZipCode
 
 class Applicant(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    full_name = models.CharField(max_length=70)
     profile_image = models.CharField(max_length=9999)
     email = models.EmailField()
     phone = models.CharField(max_length=7)
