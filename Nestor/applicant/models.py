@@ -23,7 +23,7 @@ class Experience(models.Model):
     description = models.CharField(max_length=9999, blank=True, null=True)
 
     def __str__(self):
-        return self.workplace_name
+        return str(self.workplace_name) + " " + str(self.role) + " " + str(self.start_date)
 
 class CVExperience(models.Model):
     experience = models.ForeignKey(Experience, on_delete=models.CASCADE)
@@ -44,7 +44,7 @@ class Education(models.Model):
     description = models.CharField(max_length=9999, blank=True, null=True)
 
     def __str__(self):
-        return self.school_name
+        return str(self.school_name) + " " + str(self.degree) + " " + str(self.level) + " " + str(self.start_date)
 
 
 class CVEducation(models.Model):
@@ -60,7 +60,7 @@ class References(models.Model):
     is_contactable = models.BooleanField()
 
     def __str__(self):
-        return self.name
+        return str(self.name) + " " + str(self.role)
 
 class CVReferences(models.Model):
     reference = models.ForeignKey(References, on_delete=models.CASCADE)
