@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block additionalStyles %}
+        <link rel="stylesheet" href="{% static 'css/job_cards.css' %}" />
+{% endblock %}
 {% block content %}
     <!-- {% include 'job/login.html' %} -->
     {% include 'job/searchbar.html' %}    

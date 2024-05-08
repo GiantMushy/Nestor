@@ -18,7 +18,8 @@ def applicant(request):
             applicant.save()
             return redirect('applicant')
     return render(request, 'applicant/applicant.html', {
-        'form': ApplicantForm(instance=applicant) 
+        'form': ApplicantForm(instance=applicant),
+        'applicant': applicant
     })
 
 def index(request):

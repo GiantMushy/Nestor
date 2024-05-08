@@ -315,3 +315,34 @@ main {
 	-ms-transform: rotate(45deg);
 	transform: rotate(45deg);
 }
+
+#profile-dropdown {
+	background: #FFF;
+	border-radius: 10px;
+	width: 170px;
+	position: fixed;
+	top: 60px;
+	right: 140px;
+	z-index: 100;
+	display: flex;
+	flex-direction: column;
+	padding: 5px 0px;
+}
+
+#profile-dropdown a {
+	font-weight: 500;
+	height: 25px;
+	margin: 0px 7px;
+	color: #363841;
+	border-bottom: #74788B solid 0.01px;
+	padding-top: 3px;
+	font-size: 0.9rem;
+}
+
+#profile-dropdown :last-child {
+	border: none;
+}
+
+.hidden {
+	display: none;
+}

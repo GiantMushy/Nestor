@@ -1,12 +1,30 @@
 {% extends "base.html" %}
+{% load static %}
+{% block additionalStyles %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}" /> 
+<script type="text/javascript" src="{% static 'js/profile.js' %}"></script>
+{% endblock additionalStyles %}
 {% block content %}
-    <div id="edit-profile">
-    <h1>Profile</h1>
-    <form class="form form-horizontal" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" class="btn btn-primary" value="Update" />
-    </form>
+    <div id="view-profile">
+        <h2>Welcome {{ applicant.full_name }} </h2>
+        <ul>
+            <li><span class="applicant-attribute">Full name: </span>{{ applicant.full_name }}</li>
+            <li><span class="applicant-attribute">Profile image: </span><img src="{{ applicant.profile_image }}" width="200" height="200"/></li>
+            <li><span class="applicant-attribute">Email: </span>{{ applicant.email }}</li>
+            <li><span class="applicant-attribute">Phone: </span>{{ applicant.phone }}</li>
+            <li><span class="applicant-attribute">Zipcode: </span>{{ applicant.zipcode }}</li>
+            <li><span class="applicant-attribute">Address: </span>{{ applicant.address }}</li>
+            <li><span class="applicant-attribute">Bio: </span>{{ applicant.bio }}</li>
+        </ul>
+        <button onclick="toggleEditMode()">Edit profile</button>
+    </div>
+    <div id="edit-profile" class="hidden">
+        <h1>{{ applicant.bio }}</h1>
+        <form class="form form-horizontal" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" class="btn btn-primary" value="Update" />
+        </form>
     </div>
 
 {% endblock %}
