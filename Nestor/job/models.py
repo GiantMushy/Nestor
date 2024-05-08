@@ -7,6 +7,7 @@ from applicant.models import Applicant, Experience, Education, References
 class JobType(models.Model):  #summer/internship/part-time/fulltime
     type = models.CharField(max_length=100)
 
+
 class Job(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     job_image = models.CharField(max_length=9999)
@@ -24,21 +25,26 @@ class Job(models.Model):
     def __str__(self):
         return str(self.name) + ", " + self.company.name
 
+
 class Application(models.Model):
     applicant = models.ForeignKey(Applicant, on_delete=models.CASCADE)
     job = models.ForeignKey(Job, on_delete=models.CASCADE)
+
 
 class hasSkills(models.Model):
     application = models.ForeignKey(Application, on_delete=models.CASCADE)
     skill = models.ForeignKey(Skills, on_delete=models.CASCADE)
 
+
 class hasExperience(models.Model):
     application = models.ForeignKey(Application, on_delete=models.CASCADE)
     experience = models.ForeignKey(Experience, on_delete=models.CASCADE)
 
+
 class hasEducation(models.Model):
     application = models.ForeignKey(Application, on_delete=models.CASCADE)
     education = models.ForeignKey(Education, on_delete=models.CASCADE)
+
 
 class hasReferences(models.Model):
     application = models.ForeignKey(Application, on_delete=models.CASCADE)

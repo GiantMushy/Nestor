@@ -2,18 +2,20 @@ from django.db import models
 from user.models import Profile 
 from common.models import Skills
 
+
 class Applicant(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
     bio = models.CharField(max_length=400, null=True)
     phone = models.CharField(max_length=20)
 
-
     def __str__(self):
         return self.user.name
-    
+
+
 class CVSkills(models.Model):
     applicant = models.ForeignKey(Applicant, on_delete=models.CASCADE)
     skill = models.ForeignKey(Skills, on_delete=models.CASCADE)
+
 
 class Experience(models.Model):
     workplace_name = models.CharField(max_length=255)
@@ -25,15 +27,18 @@ class Experience(models.Model):
     def __str__(self):
         return str(self.workplace_name) + " " + str(self.role) + " " + str(self.start_date)
 
+
 class CVExperience(models.Model):
     experience = models.ForeignKey(Experience, on_delete=models.CASCADE)
     applicant = models.ForeignKey(Applicant, on_delete=models.CASCADE)
+
 
 class EducationLevel(models.Model):
     level = models.CharField(max_length=255)
 
     def __str__(self):
         return self.level
+
 
 class Education(models.Model):
     school_name = models.CharField(max_length=255)
@@ -51,6 +56,7 @@ class CVEducation(models.Model):
     education = models.ForeignKey(Education, on_delete=models.CASCADE)
     applicant = models.ForeignKey(Applicant, on_delete=models.CASCADE)
 
+
 class References(models.Model):
     name = models.CharField(max_length=255)
     email = models.EmailField(max_length=255)
@@ -61,6 +67,7 @@ class References(models.Model):
 
     def __str__(self):
         return str(self.name) + " " + str(self.role)
+
 
 class CVReferences(models.Model):
     reference = models.ForeignKey(References, on_delete=models.CASCADE)

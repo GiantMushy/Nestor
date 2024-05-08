@@ -1,6 +1,7 @@
 from django.db import models
 from user.models import Profile 
 
+
 class Company(models.Model):
     name = models.CharField(max_length=100)
     address = models.CharField(max_length=100)
@@ -14,6 +15,7 @@ class Company(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Employees(models.Model):
     user =  models.ForeignKey(Profile, on_delete=models.CASCADE)
