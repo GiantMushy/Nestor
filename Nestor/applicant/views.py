@@ -19,6 +19,6 @@ def applicant(request):
             applicant.user = request.user
             applicant.save()
             return redirect('applicant')
-    return render(request, 'user/applicant.html', {
+    return render(request, 'applicant/applicant.html', {
                   'form': ApplicantForm(instance=applicant) 
     })
