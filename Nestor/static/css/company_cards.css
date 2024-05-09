@@ -1,5 +1,11 @@
 
 
+p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .all_companies {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
