@@ -1,3 +1,8 @@
+{% load static %}
+{% block additionalStyles %}
+        <link rel="stylesheet" href="{% static 'css/searchbar.css' %}" />
+{% endblock additionalStyles %}
+
 <form class="searchbar">
     <h1 id="searchbar-title">Search for your dream job</h1>
     <div class="searchbar-filters">
