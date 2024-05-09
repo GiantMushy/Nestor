@@ -7,18 +7,141 @@
 {% endblock additionalStyles %}
 
 {% block content %}
+    <h1>{{ applicant.full_name }}'s Virtual CV </h1><br>
     <div id="view-profile">
-        <h2>Welcome {{ applicant.full_name }} </h2>
-        <ul>
-            <li><span class="applicant-attribute">Full name: </span>{{ applicant.full_name }}</li>
-            <li><span class="applicant-attribute">Profile image: </span><img src="{{ applicant.profile_image }}" width="200" height="200"/></li>
-            <li><span class="applicant-attribute">Email: </span>{{ applicant.email }}</li>
-            <li><span class="applicant-attribute">Phone: </span>{{ applicant.phone }}</li>
-            <li><span class="applicant-attribute">Zipcode: </span>{{ applicant.zipcode }}</li>
-            <li><span class="applicant-attribute">Address: </span>{{ applicant.address }}</li>
-            <li><span class="applicant-attribute">Bio: </span>{{ applicant.bio }}</li>
-        </ul>
-        <button onclick="toggleEditMode()">Edit profile</button>
+
+        <img src="{{ applicant.profile_image }}" class="profile-image"/>
+        <div class="contact-info">
+            <h3 style="display: inline-block">Contact Information</h3>
+            <button onclick="toggleEditMode()" class="edit-button">edit</button>
+            <br>
+            <div class="profile-data-block" style="margin-right: 10%">
+                <p class="profile-data-label">Full name</p>
+                <p class="profile-data">{{ applicant.full_name }}</p>
+            </div>
+            <div class="profile-data-block">
+                <p class="profile-data-label">Country</p>
+                <p class="profile-data">{{ applicant.zipcode.city.country}}</p>
+            </div>
+
+            <div class="profile-data-block" style="margin-right: 10%">
+                <p class="profile-data-label">Email</p>
+                <p class="profile-data">{{ applicant.email }}</p>
+            </div>
+            <div class="profile-data-block">
+                <p class="profile-data-label">City, zipcode</p>
+                <p class="profile-data">{{ applicant.zipcode }}</p>
+            </div>
+
+            <div class="profile-data-block" style="margin-right: 10%">
+                <p class="profile-data-label">Phone number</p>
+                <p class="profile-data">{{ applicant.phone }}</p>
+            </div>
+            <div class="profile-data-block">
+                <p class="profile-data-label">Address</p>
+                <p class="profile-data">{{ applicant.address }}</p>
+            </div>
+
+            <div style="overflow: hidden">
+                <p class="profile-data-label">Bio</p>
+                <br>
+                <p class="profile-data bio">{{ applicant.bio }}</p>
+            </div>
+        </div>
+
+        <h2 class="CV-block-title">Experience</h2>
+        <div class="contact-info CV-block">
+            <button onclick="toggleEditMode()" class="edit-button add">add</button>
+            <button onclick="toggleEditMode()" class="edit-button">edit</button>
+            <br>
+            <div class="profile-data-block" style="margin-right: 5%; width: 25%">
+                <p class="profile-data-label">Company</p>
+                <p class="profile-data">{{ applicant.full_name }}</p>
+            </div>
+            <div class="profile-data-block" style="margin-right: 5%; width: 25%">
+                <p class="profile-data-label">Role</p>
+                <p class="profile-data">{{ applicant.full_name}}</p>
+            </div>
+            <div class="profile-data-block" style="margin-right: 5%; width: 15%">
+                <p class="profile-data-label">Start date</p>
+                <p class="profile-data">{{ applicant.full_name }}</p>
+            </div>
+            <div class="profile-data-block" style="width: 15%">
+                <p class="profile-data-label">End date</p>
+                <p class="profile-data">{{ applicant.full_name }}</p>
+            </div>
+
+            <div style="overflow: hidden">
+                <p class="profile-data-label">Job description</p>
+                <br>
+                <p class="profile-data bio">{{ applicant.bio }}</p>
+            </div>
+        </div>
+
+        <h2 class="CV-block-title">Education</h2>
+        <div class="contact-info CV-block">
+            <button onclick="toggleEditMode()" class="edit-button add">add</button>
+            <button onclick="toggleEditMode()" class="edit-button">edit</button>
+            <br>
+            <div class="profile-data-block" style="margin-right: 5%; width: 25%">
+                <p class="profile-data-label">School</p>
+                <p class="profile-data">{{ applicant.full_name }}</p>
+            </div>
+            <div class="profile-data-block" style="margin-right: 5%; width: 25%">
+                <p class="profile-data-label">Degree</p>
+                <p class="profile-data">{{ applicant.full_name}}</p>
+            </div>
+            <div class="profile-data-block" style="margin-right: 5%; width: 15%">
+                <p class="profile-data-label">Level</p>
+                <p class="profile-data">{{ applicant.full_name }}</p>
+            </div>
+            <div class="profile-data-block" style="margin-right: 5%; width: 15%">
+                <p class="profile-data-label">Start date</p>
+                <p class="profile-data">{{ applicant.full_name }}</p>
+            </div>
+            <div class="profile-data-block" style="width: 15%">
+                <p class="profile-data-label">End date</p>
+                <p class="profile-data">{{ applicant.full_name }}</p>
+            </div>
+
+            <div style="overflow: hidden">
+                <p class="profile-data-label">Degree description</p>
+                <br>
+                <p class="profile-data bio">{{ applicant.bio }}</p>
+            </div>
+        </div>
+
+        <h2 class="CV-block-title">References</h2>
+        <div class="contact-info CV-block">
+            <button onclick="toggleEditMode()" class="edit-button add">add</button>
+            <button onclick="toggleEditMode()" class="edit-button">edit</button>
+            <br>
+            <div class="profile-data-block" style="margin-right: 5%; width: 25%">
+                <p class="profile-data-label">Full name</p>
+                <p class="profile-data">{{ applicant.full_name }}</p>
+            </div>
+            <div class="profile-data-block" style="margin-right: 5%; width: 25%">
+                <p class="profile-data-label">Company</p>
+                <p class="profile-data">{{ applicant.full_name}}</p>
+            </div>
+            <div class="profile-data-block" style="width: 25%">
+                <p class="profile-data-label">Role</p>
+                <p class="profile-data">{{ applicant.full_name }}</p>
+            </div>
+            <div class="profile-data-block" style="margin-right: 5%; width: 25%">
+                <p class="profile-data-label">Email</p>
+                <p class="profile-data">{{ applicant.full_name }}</p>
+            </div>
+            <div class="profile-data-block" style="margin-right: 2%; width: 20%">
+                <p class="profile-data-label">Phone</p>
+                <p class="profile-data">{{ applicant.full_name }}</p>
+            </div>
+            <div class="profile-data-block">
+                <input type="checkbox" id="contactable">
+                <p style="display: inline-block">Ask me before contacting</p>
+            </div>
+        </div>
+
     </div>
     <div id="edit-profile" class="hidden">
         <h1>{{ applicant.bio }}</h1>
