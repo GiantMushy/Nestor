@@ -1,16 +1,27 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
+from company.forms.company_form import CompanyCreateForm
 from company.models import Company
-
-# Create your views here.
-
-
-# companies = [
-#     { 'id': 3, 'name': 'Marel', 'number_of_employees': 750, 'address': 'Austurhraun 9', 'description': 'We make stuff for fish', 'link': 'http://marel.com',
-#       'logo': 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcompanieslogo.com%2Fimg%2Forig%2FMAREL.AS_BIG-13790959.png%3Ft%3D1604428470&f=1&nofb=1&ipt=c563754f591d10cbb1cefa26a2fc6ec61185972e69c8aca57d637fb055e64959&ipo=images',
-#       'email': 'marel@marel.com', 'phone': '5638000', 'zipcode_id': 13},
-# ]
-
 
 
 def index(request):
-    return render(request, 'company/index.html', context={'companies': Company.objects.all()})
+    context = {'companies': Company.objects.all().order_by('name')}
+    return render(request, 'company/index.html', context)
+
+
+def get_company_by_id(request, id):
+    return render(request, 'company/company_page.html', {
+        'company': get_object_or_404(Company, pk=id)
+    })
+
+
+def create_company(request):
+    if request.method == 'POST':
+        form = CompanyCreateForm(data=request.POST)
+        if form.is_valid():
+            company = form.save()
+            return redirect('company_index')
+    else:
+        form = CompanyCreateForm()
+    return render(request, 'company/create_company.html', {
+        'form': form
+    })
