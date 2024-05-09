@@ -1,8 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from job.forms.job_form import JobCreateForm
 from job.models import Job
-from django.utils import timezone
-
 
 
 def add_days_left(job):
