@@ -13,8 +13,8 @@ class Applicant(models.Model):
     address = models.CharField(max_length=120)
     bio = models.CharField(max_length=400, null=True)
 
-    # def __str__(self):
-    #     return str(self.user.user.username)
+    def __str__(self):
+        return str(self.full_name)
 
 
 class CVSkills(models.Model):
