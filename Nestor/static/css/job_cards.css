@@ -2,6 +2,12 @@ body {
 	background-color: #F5F5F2;
 }
 
+p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .all_jobs {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -34,6 +40,7 @@ body {
 .job_container_row {
 	display: grid;
 	grid-template-columns: 75% 25%;
+	overflow: hidden;
 }
 
 .job_container_row p {
