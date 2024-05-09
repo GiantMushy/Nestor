@@ -14,7 +14,7 @@ class Applicant(models.Model):
     bio = models.CharField(max_length=400, null=True)
 
     def __str__(self):
-        return str(self.full_name)
+        return str(self.user.get_full_name())
 
 
 class CVSkills(models.Model):

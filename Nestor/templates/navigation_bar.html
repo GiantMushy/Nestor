@@ -13,11 +13,9 @@
                 <a href="{% url 'company_index' %}"><h4>Companies</h4></a>
             </div>
             {% if user.is_authenticated %}
-            <div class="logged-in">
-                <h6 id="username">Sævar Reynisson</h6>
-                <!-- <a href={% url 'logout' %}>Log out</a> -->
-                <!-- <a href={% url 'applicant' %}>Profile</a> -->
-                <span onclick="toggleDropdown()" class="chevron"></span>
+            <div class="logged-in" onclick="toggleDropdown()" >
+                <h6 id="username">{{ user.get_full_name }}</h6>
+                <span id="chevron-profile" class="chevron"></span>
             </div>
             {% else %}
             <div class="right">
@@ -35,7 +33,7 @@
     </div>
 </nav>
 {% if user.is_authenticated %}
-<div id="profile-dropdown" class="hidden">
+<div id="profile-dropdown" class="profile-dropdown ">
     <a href={% url 'applicant' %}>My profile</a>
     <a>Settings</a>
     <a>blabla</a>

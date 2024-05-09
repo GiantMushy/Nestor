@@ -41,6 +41,15 @@
 	align-items: flex-end;
 }
 
+#username {
+	padding-right: 30px;
+	font-size: 0.9rem;
+}
+
+.logged-in {
+	position: relative;
+}
+
 .subnav {
 	display: flex;
 	flex-direction: row;
@@ -132,7 +141,7 @@
 }
 
 
-#profile-dropdown {
+.profile-dropdown {
 	background: #FFF;
 	border-radius: 10px;
 	width: 170px;
@@ -143,9 +152,10 @@
 	display: flex;
 	flex-direction: column;
 	padding: 5px 0px;
+	visibility: hidden;
 }
 
-#profile-dropdown a {
+.profile-dropdown a {
 	font-weight: 500;
 	height: 25px;
 	margin: 0px 7px;
@@ -155,6 +165,34 @@
 	font-size: 0.9rem;
 }
 
-#profile-dropdown :last-child {
+.profile-dropdown :last-child {
 	border: none;
+}
+
+.hidden {
+	display: none;
+}
+
+@keyframes expandDown {
+	from {
+		max-height: 0;
+		opacity: 0.2;
+		visibility: hidden;
+	}
+
+	to {
+		max-height: 300px;
+		/* Adjust as needed */
+		opacity: 1;
+		visibility: visible;
+	}
+}
+
+.expand-down {
+	animation: expandDown 0.7s ease-out forwards;
+	/* Customize duration and easing */
+	opacity: 0;
+	/* Start with invisible content */
+	visibility: hidden;
+	/* Start with invisible content */
 }
