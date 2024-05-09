@@ -12,9 +12,16 @@ p {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
-    margin: 20px 5%;
-  
 }
+
+.all_jobs a {
+	text-decoration: none;
+	cursor: pointer;
+	color: inherit;
+}
+
+
+
 
 @media (max-width: 930px) {
 	.all_jobs {
