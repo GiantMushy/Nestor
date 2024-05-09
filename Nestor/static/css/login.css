@@ -1,9 +1,9 @@
-/* main { */
-/* 	display: flex; */
-/* 	align-items: center; */
-/* 	justify-content: center; */
-/* 	height: 75vh; */
-/* } */
+main {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 75vh;
+}
 
 .login-container {
 	width: 40vw;
