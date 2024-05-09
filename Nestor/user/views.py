@@ -12,6 +12,8 @@ def register(request):
         if form.is_valid():
             form.save()
             return redirect('login')
+        else:
+            messages.error(request, 'BITCH BOI')
     return render(request, 'user/register.html', {
         'form': UserForm()
     })
