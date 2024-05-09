@@ -1,15 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from job.forms.job_form import JobCreateForm
 from job.models import Job
+from datetime import timedelta
 
-
-# Create your views here.
-
-#jobs = [
-#    { 'name': 'Software Engineer', 'company.name': 'Marel', 'percentage': '100', 'application_due_date': '12'},
-#    { 'name': 'Bank Engineer', 'company.name': 'Arion', 'percentage': '90', 'application_due_date': '123'},
-#    { 'name': 'Cunt Engineer', 'company.name': 'Islandsbanki', 'percentage': '25', 'application_due_date': '1'}
-#]
 
 
 def index(request):
