@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block additionalStyles %}
+{% endblock %}
+{% block content %}
+<div>
+    <div>
+        <img src="{{ company.logo }}" class="logo-img"/>
+    </div>
+    <div>
+        <h1>{{ company.name }}</h1>
+        <h3>Employees: {{ company.number_of_employees }}</h3>
+        <p>{{ company.description }}</p>
+    </div>
+</div>
+{% endblock %}
