@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block additionalStyles %}
+<link rel="stylesheet" href="{% static 'css/company_cards.css' %}" />
+{% endblock additionalStyles %}
+
 {% block content %}
     <div class="all_companies">
         {% for company in companies %}
