@@ -3,7 +3,8 @@
 	color: #FFFFFF;
 	display: flex;
 	flex-direction: column;
-	position: fixed;
+	position: sticky;
+	top: 0px;
 	z-index: 50;
 	width: 100%;
 }
