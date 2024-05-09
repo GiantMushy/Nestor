@@ -3,5 +3,14 @@
 {% block additionalStyles %}
 {% endblock %}
 {% block content %}
-    <p>Welcome to the page for job {{ job.name }}</p>
+<div>
+    <div>
+        <img src="{{ job.job_image }}" class="job-img"/>
+    </div>
+    <div>
+        <h1>{{ job.name }}</h1>
+        <h3>{{ job.company.name }}</h3>
+        <p>{{ job.description }}</p>
+    </div>
+</div>
 {% endblock %}
