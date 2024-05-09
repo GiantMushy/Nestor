@@ -1,13 +1,19 @@
 #searchbar-title {
 	color: #363841;
 	font-size: 2rem;
-
 }
 
 .searchbar-filters {
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-start;
+}
 
+.searchbar-filters div {
+	margin-right: 5%;
+}
+
+.searchbar-filters div:last-child {
+	margin-right: 0px;
 }
 
 .searchbar input {
@@ -38,11 +44,10 @@
 	font-weight: 500;
 }
 
-
 #search-btn {
 	color: #F5F5F2;
 	border-radius: 10px;
-	width: 110px;
+	border: none;
 	height: 35px;
 	font-size: 0.8rem;
 	background-color: #4AA587;
@@ -50,16 +55,27 @@
 }
 
 #job-search-container {
-	width: 60%;
+	width: 65%;
 	display: flex;
 	position: relative;
 }
 
 .searchbar-search {
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-start;
 	margin: 20px 0px;
 }
+
+.searchbar-search div {
+	margin-right: 5%;
+}
+
+.searchbar-search button{
+	margin-right: 0px;
+	background-color: blue;
+}
+
+
 
 #search-jobname {
 	width: 100%;

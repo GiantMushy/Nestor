@@ -1,0 +1,39 @@
+{% load static %}
+{% block additionalStyles %}
+        <link rel="stylesheet" href="{% static 'css/searchbar.css' %}" />
+{% endblock additionalStyles %}
+
+<form class="searchbar">
+    <h1 id="searchbar-title">Search for your dream job</h1>
+    <div class="searchbar-filters">
+        <div class="search-container">
+            <input id="filter-category" type="text" placeholder=" Pick category">
+            <span class="chevron"></span>
+        </div>
+<!--        <div class="search-container">-->
+<!--            <input id="filter-company" type="text" placeholder=" Pick company">-->
+<!--            <span class="chevron"></span>-->
+<!--        </div>-->
+        <div class="search-container">
+            <input id="filter-location" type="text" placeholder=" Pick location">
+            <span class="chevron"></span>
+        </div>
+    </div>
+    <div class="searchbar-search">
+        <div id="job-search-container">
+            <input id="search-jobname" type="text" placeholder=" Enter job title here...">
+            <img src="../static/images/searchicon.svg" alt="search icon">
+        </div>
+        <button id="search-btn">Search</button>
+    </div>
+    <div class="searchbar-extras">
+        <label id="checkbox-container" for="checkbox-applied">Show applied jobs
+            <input id="checkbox-applied" type="checkbox">
+            <span class="checkmark"></span>
+        </label>
+        <div id="sort-btn-container">
+            <button id="sort-btn">Sort by</button>
+        <span id="sort-chevron"class="chevron"></span>
+        </div>
+    </div>
+</form>
