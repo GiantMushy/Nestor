@@ -14,14 +14,6 @@ p {
     gap: 10px;
 }
 
-.all_jobs a {
-	text-decoration: none;
-	cursor: pointer;
-	color: inherit;
-}
-
-
-
 
 @media (max-width: 930px) {
 	.all_jobs {
@@ -33,6 +25,12 @@ p {
 	.all_jobs {
 		grid-template-columns: repeat(1, 1fr);
 	}
+}
+
+.all_jobs a {
+	text-decoration: none;
+	cursor: pointer;
+	color: inherit;
 }
 
 .job_card {
