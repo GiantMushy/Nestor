@@ -14,6 +14,15 @@ p {
     gap: 10px;
 }
 
+.all_jobs a {
+	text-decoration: none;
+	cursor: pointer;
+	color: inherit;
+}
+
+
+
+
 @media (max-width: 930px) {
 	.all_jobs {
 		grid-template-columns: repeat(2, 1fr);
