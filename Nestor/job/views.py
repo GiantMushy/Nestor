@@ -9,6 +9,11 @@ def add_days_left(job):
     job.days_left = str(days_left).split()[0]
     return job
 
+def add_days_left(job):
+    days_left = job.application_due_date - timezone.now().date()
+    job.days_left = str(days_left).split()[0]
+    return job
+
 def index(request):
     all_jobs = Job.objects.all()
     jobs_with_days_left = [add_days_left(job) for job in all_jobs]
