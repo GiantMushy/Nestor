@@ -1,22 +1,14 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from job.forms.job_form import JobCreateForm
 from job.models import Job
 from datetime import timedelta
 
 
-# Create your views here.
-
-# jobs = [
-#     { 'title': 'Software Engineer', 'company': 'Marel', 'percentage': '100', 'days': '12'},
-#     { 'title': 'Bank Engineer', 'company': 'Arion', 'percentage': '90', 'days': '123'},
-#     { 'title': 'Cunt Engineer', 'company': 'Islandsbanki', 'percentage': '25', 'days': '1'}
-# ]
 
 def index(request):
-    context = {
-        'job_data': Job.objects.all(),
-    }
-    return render(request, 'job/index.html', context={'jobs': Job.objects.all()})
+    context = {'jobs': Job.objects.all().order_by('name')}
+    return render(request, 'job/index.html', context)
+
 
 def get_job_by_id(request, id):
     return render(request, 'job/job_page.html', {
@@ -26,7 +18,10 @@ def get_job_by_id(request, id):
 
 def create_job(request):
     if request.method == 'POST':
-        print(1)
+        form = JobCreateForm(data=request.POST)
+        if form.is_valid():
+            job = form.save()
+            return redirect('job_index')
     else:
         form = JobCreateForm()
     return render(request, 'job/create_job.html', {

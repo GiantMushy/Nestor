@@ -1,7 +1,10 @@
 {% load static %}
+{% block additionalStyles %}
+    <link rel="stylesheet" href="{% static 'css/job_cards.css' %}" />
+{% endblock additionalStyles %}
 <div class="job_card">
     <div class="job_container_row">
-        <div class="company_image_container"><img class="company_image" src="{{ job.company.logo }}" alt=""></div>
+        <div class="company_image_container"><img src="{{ job.company.logo }}"/></div>
         <div class="job_container_right_column">
             <div><img class="heart_image" src="{% static 'images/heartoutline_110866.png'%}" alt=""></div>
         </div>
