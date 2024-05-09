@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
+
 {% block additionalStyles %}
 <link rel="stylesheet" href="{% static 'css/profile.css' %}" /> 
 <script type="text/javascript" src="{% static 'js/profile.js' %}"></script>
 {% endblock additionalStyles %}
+
 {% block content %}
     <div id="view-profile">
         <h2>Welcome {{ applicant.full_name }} </h2>
