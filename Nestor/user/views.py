@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
-# from user.forms.profile_form import ProfileForm
+from django.contrib import messages
 from user.forms.user_form import UserForm
 
 def register(request):
+    messages.success(request, 'This is a success message.')
+    messages.error(request, 'This is an error message.')
+    messages.warning(request, 'This is a warning message.')
+    messages.info(request, 'This is an informational message.')
     if request.method =='POST':
         form = UserForm(data=request.POST)
         if form.is_valid():
