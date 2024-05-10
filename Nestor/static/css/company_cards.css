@@ -12,6 +12,8 @@ p {
     gap: 10px;
 }
 
+.a
+
 @media (max-width: 1540px) {
 .all_companies {
     grid-template-columns: repeat(2, 1fr);
@@ -22,6 +24,12 @@ p {
 .all_companies {
     grid-template-columns: repeat(1, 1fr);
 }
+}
+
+.all_companies a {
+	text-decoration: none;
+	cursor: pointer;
+	color: inherit;
 }
 
 .company_card {

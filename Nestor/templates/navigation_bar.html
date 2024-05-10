@@ -9,8 +9,9 @@
         <div class="uppernav">
             <div class="left">
                 <a href="{% url 'job_index' %}"><h2 id="logo">Nestor</h2></a>
-                <a href="{% url 'job_index' %}"><h4>Jobs</h4></a>
-                <a href="{% url 'company_index' %}"><h4>Companies</h4></a>
+                <a href="{% url 'job_index' %}" class="{% if request.path == '/jobs/' %}active{% endif %}"><h4>Jobs</h4></a>
+                <a href="{% url 'company_index' %}" class="{% if request.path == '/companies/' %}active{% endif %}"><h4>Companies</h4></a>
+
             </div>
             {% if user.is_authenticated %}
             <div class="logged-in" onclick="toggleDropdown()" >
