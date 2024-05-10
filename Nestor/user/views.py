@@ -3,19 +3,22 @@ from django.contrib import messages
 from user.forms.user_form import UserForm
 
 def register(request):
-    messages.success(request, 'This is a success message.')
-    messages.error(request, 'This is an error message.')
-    messages.warning(request, 'This is a warning message.')
-    messages.info(request, 'This is an informational message.')
+
+    # for message in messages:
+    #     # Do something with each message, e.g., print or process
+    #     print(message)
     if request.method =='POST':
         form = UserForm(data=request.POST)
         if form.is_valid():
             form.save()
             return redirect('login')
         else:
-            messages.error(request, 'BITCH BOI')
+
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f'{field}: {error}')
     return render(request, 'user/register.html', {
-        'form': UserForm()
+        'form': UserForm(),
     })
 
 # def profile(request):
