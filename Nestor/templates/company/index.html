@@ -5,6 +5,7 @@
 {% endblock additionalStyles %}
 
 {% block content %}
+    {% include 'company/searchbar.html' %}
     <div class="all_companies">
         {% for company in companies %}
             {% include 'company/single_company.html' with companies=companies %}

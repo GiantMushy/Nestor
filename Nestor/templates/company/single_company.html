@@ -1,17 +1,19 @@
 {% load static %}
-<div class="company_card">
-    <div class="company_container_row">
-        <div class="company_image_container"><img class="company_image" src="{{ company.logo }}" alt=""></div>
-        <div class="like_button">
-            <div><img class="heart_image" src="{% static 'images/heartoutline_110866.png'%}" alt=""></div>
+<a href="/companies/{{ company.id }}">
+    <div class="company_card">
+        <div class="company_container_row">
+            <div class="company_image_container"><img class="company_image" src="{{ company.logo }}" alt=""></div>
+            <div class="like_button">
+                <div><img class="heart_image" src="{% static 'images/heartoutline_110866.png'%}" alt=""></div>
+            </div>
+        </div>
+        <div class="company_container_row">
+            <p>{{ company.name }}</p>
+            <div class="info_container"><img src="{% static 'images/phone_icon.png'%}" alt=""><p>{{ company.phone }}</p></div>
+        </div>
+        <div class="company_container_row">
+            <p>{{ company.address }}</p>
+            <div class="info_container"><img src="{% static 'images/mail_icon.png'%}" alt=""><p>{{ company.email }}</p></div>
         </div>
     </div>
-    <div class="company_container_row">
-        <p>{{ company.name }}</p>
-        <div class="info_container"><img src="{% static 'images/phone_icon.png'%}" alt=""><p>{{ company.phone }}</p></div>
-    </div>
-    <div class="company_container_row">
-        <p>{{ company.address }}</p>
-        <div class="info_container"><img src="{% static 'images/mail_icon.png'%}" alt=""><p>{{ company.email }}</p></div>
-    </div>
-</div>
+</a>

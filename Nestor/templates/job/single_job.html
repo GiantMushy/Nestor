@@ -2,23 +2,25 @@
 {% block additionalStyles %}
     <link rel="stylesheet" href="{% static 'css/job_cards.css' %}" />
 {% endblock additionalStyles %}
-<div class="job_card">
-    <div class="job_container_row">
-        <div class="company_image_container"><img src="{{ job.company.logo }}"/></div>
-        <div class="job_container_right_column">
-            <div><img class="heart_image" src="{% static 'images/heartoutline_110866.png'%}" alt=""></div>
+<a href="/jobs/{{ job.id }}">
+    <div class="job_card">
+        <div class="job_container_row">
+            <div class="company_image_container"><img src="{{ job.company.logo }}"/></div>
+            <div class="job_container_right_column">
+                <div><img class="heart_image" src="{% static 'images/heartoutline_110866.png'%}" alt=""></div>
+            </div>
+        </div>
+        <div class="job_container_row">
+            <p>{{ job.name }}</p>
+            <div class="job_container_right_column"><p>{{ job.percentage }}%</p></div>
+        </div>
+        <div class="job_container_row">
+            <p>{{ job.company }}</p>
+            {% if job.days_left == '1' %}
+            <div class="job_container_right_column"><p>{{ job.days_left }} day</p></div>
+            {% else %}
+            <div class="job_container_right_column"><p>{{ job.days_left }} days</p></div>
+            {% endif %}
         </div>
     </div>
-    <div class="job_container_row">
-        <p>{{ job.name }}</p>
-        <div class="job_container_right_column"><p>{{ job.percentage }}%</p></div>
-    </div>
-    <div class="job_container_row">
-        <p>{{ job.company }}</p>
-        {% if job.days_left == '1' %}
-        <div class="job_container_right_column"><p>{{ job.days_left }} day</p></div>
-        {% else %}
-        <div class="job_container_right_column"><p>{{ job.days_left }} days</p></div>
-        {% endif %}
-    </div>
-</div>
+</a>
