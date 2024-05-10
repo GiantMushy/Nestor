@@ -1,7 +1,7 @@
 {% load static %}
     {% block additionalStyles %}
     <link rel="stylesheet" href="{% static 'css/searchbar.css' %}" />
-    <script type="text/javascript" src="{% static 'js/searchbar.js' %}"></script>
+{#    <script type="text/javascript" src="{% static 'js/searchbar.js' %}"></script>#}
     {% endblock additionalStyles %}
 
     <form class="searchbar">
@@ -11,10 +11,9 @@
                 <input id="filter-category" onclick="search('filter-category')" class="with-dropdown searchbar-input" type="text" placeholder="Pick category"  autocomplete="off">
                 <div id="categories-list" class="dropdown-list search-dropdown hidden">
                     {% for item in categories %}
-                    <div id="{{ item.name }}-category-item" class="dropdown-item in-dropdown" >
+                    <div id="{{ item.name }}-category-item" class="dropdown-item in-dropdown" >
                         <label class="in-dropdown" for="category-{{ item.id }}">{{ item.name }}</label>
                         <input class="dropdown-checkbox in-dropdown" type="checkbox" id="category-{{ item.id }}" value="{{ item.id }}" >
-                        </input>
                     </div>
                     {% endfor %}
                 </div>
@@ -27,7 +26,6 @@
                     <div id="{{ item.name }}-company-item" class="dropdown-item in-dropdown">
                         <label class="in-dropdown" for="company-{{ item.id }}">{{ item.name }}</label>
                         <input class="dropdown-checkbox in-dropdown" type="checkbox" id="company-{{ item.id }}" value="{{ item.id }}" >
-                        </input>
                     </div>
                     {% endfor %}
                 </div>
@@ -40,7 +38,6 @@
                     <div id="{{ item.name }}-country-item" class="dropdown-item in-dropdown" >
                         <label class="in-dropdown" for="country-{{ item.id }}">{{ item.name }}</label>
                         <input class="dropdown-checkbox in-dropdown" type="checkbox" id="country-{{ item.id }}" value="{{ item.id }}" >
-                        </input>
                     </div>
                     {% endfor %}
                 </div>
@@ -65,3 +62,5 @@
             </div>
         </div>
     </form>
+
+    <script type="text/javascript" src="{% static 'js/searchbar.js' %}"></script>
