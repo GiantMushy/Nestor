@@ -169,7 +169,7 @@
                     <p class="profile-data-label">City, zipcode</p><br>
                     <select name="zipcode" class="profile-data-select" required id="id_zipcode">
                         {% for option in zip_options %}
-                            <option value="{{ option.id }}">{{ option.name }}</option>
+                            <option value="{{ option.city }}">{{ option.zip }}</option>
                         {% endfor %}
                     </select>
                 </div>
