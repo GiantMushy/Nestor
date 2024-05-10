@@ -5,41 +5,26 @@
 .black_block {
 	position: relative;
 	border: 1px solid #363841;
-	display: inline-block;
 	background-color: #363841;
 	color: #F5F5F2;
 	border-radius: 0.5rem;
 	padding: 1rem 2rem;
+	margin: 0.0rem 2rem 2rem 2rem;
+	width: 90%;
 }
 
 .contact-info {
 	@extend black-block;
+	display: inline-block;
+	margin: 0.0rem;
 	width: 62%;
-}
-
-.experience {
-	@extend black-block;
-	margin: 0.0rem 2rem 2rem 2rem;
-	width: 90%;
-}
-
-.education {
-	@extend black-block;
-	margin: 0.0rem 2rem 2rem 2rem;
-	width: 90%;
-}
-
-.references {
-	@extend black-block;
-	margin: 0.0rem 2rem 2rem 2rem;
-	width: 90%;
 }
 
 
 .CV-block-title {
 	margin-top: 2rem;
-	margin-bottom: 0.1rem;
-	margin-left: 5%;
+	margin-bottom: 0.4rem;
+	margin-left: 7%;
 	display: inline-block;
 }
 
@@ -51,7 +36,7 @@
 }
 
 .edit-button {
-	border: 1px solid #363841;
+	border: none;
 	background-color: #4AA587;
 	color: #F5F5F2;
 	border-radius: 1rem;
@@ -62,9 +47,12 @@
 
 .add {
 	@extend .edit-button;
-	right: 13%;
-	margin-top: 2rem;
-	margin-bottom: 0.4rem;
+	display: inline-block;
+	right: 85%;
+	padding: 0.0rem 0.3rem 0.1rem 0.3rem;
+	font-size: 1rem;
+	font-weight: bold;
+	margin-top: 2.2rem;
 }
 
 .profile-data-block {

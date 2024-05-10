@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 # from django.contrib.auth.forms import UserCreationForm
-from applicant.models import Applicant
+from applicant.models import Applicant, CVEducation, CVExperience, CVReferences
 from applicant.forms.applicant_form import ApplicantForm
 from common.models import ZipCode
 
@@ -14,10 +14,16 @@ def applicant(request):
             applicant.user = request.user
             applicant.save()
             return redirect('applicant')
+    experience = CVExperience.objects.filter(applicant=applicant).all()
+    education = CVEducation.objects.filter(applicant=applicant).all()
+    references = CVReferences.objects.filter(applicant=applicant).all()
     return render(request, 'applicant/applicant.html', {
         'form': ApplicantForm(instance=applicant),
         'applicant': applicant,
-        'zip_options': ZipCode.objects.all()
+        'zip_options': ZipCode.objects.all(),
+        'experiences': experience,
+        'educations': education,
+        'references': references
     })
 
 
