@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from job.forms.job_form import JobCreateForm
 from job.models import Job
 from django.utils import timezone
+from common.models import JobCategory, City
+from company.models import Company
 
 
 def add_days_left(job):
@@ -10,10 +12,15 @@ def add_days_left(job):
     return job
 
 def index(request):
-    all_jobs = Job.objects.all()
+    all_jobs = Job.objects.all().order_by('name')
     jobs_with_days_left = [add_days_left(job) for job in all_jobs]
 
-    return render(request, 'job/index.html', context={'jobs': jobs_with_days_left})
+    context = {'companies': Company.objects.all().order_by('name'),
+               'categories': JobCategory.objects.all().order_by('name'),
+               'countries': City.objects.all().order_by('name'),
+               'jobs': jobs_with_days_left
+               }
+    return render(request, 'job/index.html', context)
 
 def get_job_by_id(request, id):
     return render(request, 'job/job_page.html', {
