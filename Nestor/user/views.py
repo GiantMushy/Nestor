@@ -1,16 +1,24 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
-# from user.forms.profile_form import ProfileForm
+from django.contrib import messages
 from user.forms.user_form import UserForm
 
 def register(request):
+
+    # for message in messages:
+    #     # Do something with each message, e.g., print or process
+    #     print(message)
     if request.method =='POST':
         form = UserForm(data=request.POST)
         if form.is_valid():
             form.save()
             return redirect('login')
+        else:
+
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f'{field}: {error}')
     return render(request, 'user/register.html', {
-        'form': UserForm()
+        'form': UserForm(),
     })
 
 # def profile(request):

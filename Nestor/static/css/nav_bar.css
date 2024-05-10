@@ -66,11 +66,12 @@
 	font-weight: 500;
 }
 
-.right button {
+.right a {
 	color: #FFF;
 	border-radius: 10px;
-	width: 110px;
-	height: 35px;
+	/* width: 110px; */
+	/* height: 35px; */
+	padding: 8px 40px;
 	font-size: 0.8rem;
 }
 
