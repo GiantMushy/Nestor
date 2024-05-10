@@ -144,12 +144,51 @@
 
     </div>
     <div id="edit-profile" class="hidden">
-        <h1>{{ applicant.bio }}</h1>
-        <form class="form form-horizontal" method="post">
-            {% csrf_token %}
-            {{ form }}
-            <input type="submit" class="btn btn-primary" value="Update" />
-        </form>
+
+        <img src="{{ applicant.profile_image }}" class="profile-image"/>
+        <div class="contact-info">
+            <form class="form form-horizontal" method="post">
+                {% csrf_token %}
+                <h3 style="display: inline-block">Contact Information</h3>
+                <input type="submit" class="edit-button" value="Update" />
+                <br>
+                <div class="profile-data-block" style="margin-right: 10%">
+                    <p class="profile-data-label">Full name</p><br>
+                    <input type="text" name="full_name" class="profile-data-input" value="{{ applicant.full_name }}" required id="id_full_name">
+                </div>
+                <div class="profile-data-block">
+                    <p class="profile-data-label">Profile Picture</p><br>
+                    <input type="text" name="profile_image" class="profile-data-input form-control" value="{{ applicant.profile_image }}" required id="id_profile_image">
+                </div>
+
+                <div class="profile-data-block" style="margin-right: 10%">
+                    <p class="profile-data-label">Email</p><br>
+                    <input type="text" name="email" class="profile-data-input" value="{{ applicant.email }}" required id="id_email">
+                </div>
+                <div class="profile-data-block">
+                    <p class="profile-data-label">City, zipcode</p><br>
+                    <select name="zipcode" class="profile-data-select" required id="id_zipcode">
+                        {% for option in zip_options %}
+                            <option value="{{ option.id }}">{{ option.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="profile-data-block" style="margin-right: 10%">
+                    <p class="profile-data-label">Phone number</p><br>
+                    <input type="text" name="phone" class="profile-data-input" value="{{ applicant.phone }}" required id="id_phone">
+                </div>
+                <div class="profile-data-block">
+                    <p class="profile-data-label">Address</p><br>
+                    <input type="text" name="address" class="profile-data-input" value="{{ applicant.address }}" required id="id_address">
+                </div>
+
+                <div style="overflow: hidden">
+                    <p class="profile-data-label">Bio</p><br>
+                    <input type="text" name="bio" class="profile-data-input bio-input" value="{{ applicant.bio }}" required id="id_bio">
+                </div>
+            </form>
+        </div>
     </div>
 
 {% endblock %}
