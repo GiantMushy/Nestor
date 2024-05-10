@@ -10,203 +10,45 @@
     <h1>{{ applicant.full_name }}'s Virtual CV </h1><br>
     
     <img src="{{ applicant.profile_image }}" class="profile-image"/>
-    <div class="black_block contact-info" id="contact-info-view">
-        <h3 style="display: inline-block">Contact Information</h3>
-        <button onclick="toggleEditContactInfo()" class="edit-button">edit</button>
-        <br>
-        <div class="profile-data-block" style="margin-right: 10%">
-            <p class="profile-data-label">Full name</p>
-            <p class="profile-data">{{ applicant.full_name }}</p>
-        </div>
-        <div class="profile-data-block">
-            <p class="profile-data-label">Country</p>
-            <p class="profile-data">{{ applicant.zipcode.city.country}}</p>
-        </div>
-
-        <div class="profile-data-block" style="margin-right: 10%">
-            <p class="profile-data-label">Email</p>
-            <p class="profile-data">{{ applicant.email }}</p>
-        </div>
-        <div class="profile-data-block">
-            <p class="profile-data-label">City, zipcode</p>
-            <p class="profile-data">{{ applicant.zipcode }}</p>
-        </div>
-
-        <div class="profile-data-block" style="margin-right: 10%">
-            <p class="profile-data-label">Phone number</p>
-            <p class="profile-data">{{ applicant.phone }}</p>
-        </div>
-        <div class="profile-data-block">
-            <p class="profile-data-label">Address</p>
-            <p class="profile-data">{{ applicant.address }}</p>
-        </div>
-
-        <div style="overflow: hidden">
-            <p class="profile-data-label">Bio</p>
-            <br>
-            <p class="profile-data bio">{{ applicant.bio }}</p>
-        </div>
-    </div>
-    <div class="black_block contact-info hidden" id="contact-info-edit">
-        <form class="form form-horizontal" method="post">
-            {% csrf_token %}
-            <h3 style="display: inline-block">Contact Information</h3>
-            <input type="submit" class="edit-button" value="Update" />
-            <br>
-            <div class="profile-data-block" style="margin-right: 10%">
-                <p class="profile-data-label">Full name</p><br>
-                <input type="text" name="full_name" class="profile-data-input" value="{{ applicant.full_name }}" required id="id_full_name">
-            </div>
-            <div class="profile-data-block">
-                <p class="profile-data-label">Profile Picture</p><br>
-                <input type="text" name="profile_image" class="profile-data-input form-control" value="{{ applicant.profile_image }}" required id="id_profile_image">
-            </div>
-
-            <div class="profile-data-block" style="margin-right: 10%">
-                <p class="profile-data-label">Email</p><br>
-                <input type="text" name="email" class="profile-data-input" value="{{ applicant.email }}" required id="id_email">
-            </div>
-            <div class="profile-data-block">
-                <p class="profile-data-label">City, zipcode</p><br>
-                <select name="zipcode" class="profile-data-select" required id="id_zipcode">
-                    {% for option in zip_options %}
-                        <option value="{{ option.id }}">{{ option }}</option>
-                    {% endfor %}
-                    <option value="{{ applicant.zipcode.id  }}" selected>{{ applicant.zipcode }}</option>
-                </select>
-            </div>
-
-            <div class="profile-data-block" style="margin-right: 10%">
-                <p class="profile-data-label">Phone number</p><br>
-                <input type="text" name="phone" class="profile-data-input" value="{{ applicant.phone }}" required id="id_phone">
-            </div>
-            <div class="profile-data-block">
-                <p class="profile-data-label">Address</p><br>
-                <input type="text" name="address" class="profile-data-input" value="{{ applicant.address }}" required id="id_address">
-            </div>
-
-            <div style="overflow: hidden">
-                <p class="profile-data-label">Bio</p><br>
-                <textarea name="bio" required id="id_bio" class="profile-data-input bio-input">{{ applicant.bio }}</textarea>
-            </div>
-        </form>
-    </div>
-    
+    {% include 'applicant/VirtualCV/contact_info_view.html' %}
+    {% include 'applicant/VirtualCV/contact_info_edit.html' %}
     
     <h2 class="CV-block-title">Experience</h2>
-    <button onclick="toggleEditMode()" class="edit-button add">+</button>
+    <button onclick="toggleEditContactInfo()" class="edit-button add">+</button>
     {% if not experiences %}
         <div class="black_block">
             <h3>No registered experience history</h3>
         </div>
     {% else %}
         {% for experience in experiences %}
-            <div class="black_block" id="experience-view">
-                <button onclick="toggleEditMode()" class="edit-button">edit</button><br>
-                <div class="profile-data-block" style="margin-right: 5%; width: 25%">
-                    <p class="profile-data-label">Company</p>
-                    <p class="profile-data">{{ experience.experience.workplace_name }}</p>
-                </div>
-                <div class="profile-data-block" style="margin-right: 5%; width: 25%">
-                    <p class="profile-data-label">Role</p>
-                    <p class="profile-data">{{ experience.experience.role }}</p>
-                </div>
-                <div class="profile-data-block" style="margin-right: 5%; width: 15%">
-                    <p class="profile-data-label">Start date</p>
-                    <p class="profile-data">{{ experience.experience.start_date }}</p>
-                </div>
-                <div class="profile-data-block" style="width: 15%">
-                    <p class="profile-data-label">End date</p>
-                    <p class="profile-data">{{ experience.experience.end_date }}</p>
-                </div>
-        
-                <div style="overflow: hidden">
-                    <p class="profile-data-label">Job description</p>
-                    <br>
-                    <p class="profile-data bio">{{ experience.experience.description }}</p>
-                </div>
-            </div>
+            {% include 'applicant/VirtualCV/experience_view.html' %}
+            {% include 'applicant/VirtualCV/experience_edit.html' %}
         {% endfor %}
     {% endif %}
 
     <h2 class="CV-block-title">Education</h2>
-    <button onclick="toggleEditMode()" class="edit-button add">+</button>
+    <button onclick="toggleEditContactInfo()" class="edit-button add">+</button>
     {% if not educations %}
         <div class="black_block">
             <h3>No registered education history</h3>
         </div>
     {% else %} 
         {% for education in educations %}
-            <div class="black_block" id="education-view">
-                <button onclick="toggleEditMode()" class="edit-button">edit</button>
-                <br>
-                <div class="profile-data-block" style="margin-right: 5%; width: 25%">
-                    <p class="profile-data-label">School</p>
-                    <p class="profile-data">{{ education.education.school_name }}</p>
-                </div>
-                <div class="profile-data-block" style="margin-right: 5%; width: 25%">
-                    <p class="profile-data-label">Degree</p>
-                    <p class="profile-data">{{ education.education.degree }}</p>
-                </div>
-                <div class="profile-data-block" style="margin-right: 5%; width: 15%">
-                    <p class="profile-data-label">Level</p>
-                    <p class="profile-data">{{ education.education.level }}</p>
-                </div>
-                <div class="profile-data-block" style="margin-right: 5%; width: 15%">
-                    <p class="profile-data-label">Start date</p>
-                    <p class="profile-data">{{ education.education.start_date }}</p>
-                </div>
-                <div class="profile-data-block" style="width: 15%">
-                    <p class="profile-data-label">End date</p>
-                    <p class="profile-data">{{ education.education.end_date }}</p>
-                </div>
-        
-                <div style="overflow: hidden">
-                    <p class="profile-data-label">Degree description</p>
-                    <br>
-                    <p class="profile-data bio">{{ education.education.description }}</p>
-                </div>
-            </div>
+            {% include 'applicant/VirtualCV/education_view.html' %}
+            {% include 'applicant/VirtualCV/education_edit.html' %}
         {% endfor %}
     {% endif %}
     
-
     <h2 class="CV-block-title">References</h2>
-    <button onclick="toggleEditMode()" class="edit-button add">+</button>
+    <button onclick="toggleEditContactInfo()" class="edit-button add">+</button>
     {% if not references %}
         <div class="black_block">
             <h3>No registered references</h3>
         </div>
     {% else %}
         {% for reference in references %}
-            <div class="black_block"  id="references-view">
-                <button onclick="toggleEditMode()" class="edit-button">edit</button>
-                <br>
-                <div class="profile-data-block" style="margin-right: 5%; width: 25%">
-                    <p class="profile-data-label">Full name</p>
-                    <p class="profile-data">{{ reference.reference.name }}</p>
-                </div>
-                <div class="profile-data-block" style="margin-right: 5%; width: 25%">
-                    <p class="profile-data-label">Company</p>
-                    <p class="profile-data">{{ reference.reference.workplace_name }}</p>
-                </div>
-                <div class="profile-data-block" style="width: 25%">
-                    <p class="profile-data-label">Role</p>
-                    <p class="profile-data">{{ reference.reference.role }}</p>
-                </div>
-                <div class="profile-data-block" style="margin-right: 5%; width: 25%">
-                    <p class="profile-data-label">Email</p>
-                    <p class="profile-data">{{ reference.reference.email }}</p>
-                </div>
-                <div class="profile-data-block" style="margin-right: 2%; width: 20%">
-                    <p class="profile-data-label">Phone</p>
-                    <p class="profile-data">{{ reference.reference.phone }}</p>
-                </div>
-                <div class="profile-data-block">
-                    <input type="checkbox" id="contactable" checked>
-                    <p style="display: inline-block">Ask me before contacting</p>
-                </div>
-            </div>
+            {% include 'applicant/VirtualCV/reference_view.html' %}
+            {% include 'applicant/VirtualCV/reference_edit.html' %}
         {% endfor %}
     {% endif %}
     

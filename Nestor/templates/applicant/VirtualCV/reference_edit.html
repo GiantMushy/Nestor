@@ -1,0 +1,8 @@
+{% load static %}
+<div class="black_block contact-info hidden" id="reference-edit">
+    <form class="form form-horizontal" action="{% url 'applicant' %}" method="post">
+        <input type="submit" class="edit-button" value="Update" />
+        {% csrf_token %}
+        {{ reference_forms.get(reference) }}
+    </form>
+</div>

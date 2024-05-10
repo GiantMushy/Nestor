@@ -1,0 +1,35 @@
+{% load static %}
+<div class="black_block hidden" id="experience-edit">
+    <form class="form form-horizontal" method="post">
+        {% csrf_token %}
+        <input type="submit" class="edit-button" value="Update" />
+        <br>
+        <div class="profile-data-block" style="margin-right: 10%">
+            <p class="profile-data-label">Company</p><br>
+            <input type="text" name="full_name" class="profile-data-input" value="{{ applicant.full_name }}" required id="id_full_name">
+        </div>
+        <div class="profile-data-block">
+            <p class="profile-data-label">Role</p><br>
+            <input type="text" name="profile_image" class="profile-data-input form-control" value="{{ applicant.profile_image }}" required id="id_profile_image">
+        </div>
+
+        <div class="profile-data-block" style="margin-right: 10%">
+            <p class="profile-data-label">Start Date</p><br>
+            <input type="text" name="email" class="profile-data-input" value="{{ applicant.email }}" required id="id_email">
+        </div>
+        <div class="profile-data-block">
+            <p class="profile-data-label">End Date</p><br>
+            <select name="zipcode" class="profile-data-select" required id="id_zipcode">
+                {% for option in zip_options %}
+                    <option value="{{ option.id }}">{{ option }}</option>
+                {% endfor %}
+                <option value="{{ applicant.zipcode.id  }}" selected>{{ applicant.zipcode }}</option>
+            </select>
+        </div>
+
+        <div style="overflow: hidden">
+            <p class="profile-data-label">Description</p><br>
+            <textarea name="bio" required id="id_bio" class="profile-data-input bio-input">{{ applicant.bio }}</textarea>
+        </div>
+    </form>
+</div>

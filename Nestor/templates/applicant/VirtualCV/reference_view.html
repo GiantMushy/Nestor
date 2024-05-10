@@ -1,0 +1,27 @@
+<div class="black_block" id="reference-view">
+    <button onclick="toggleEditReference()" class="edit-button">edit</button><br>
+    <div class="profile-data-block" style="margin-right: 5%; width: 25%">
+        <p class="profile-data-label">Full name</p>
+        <p class="profile-data">{{ reference.reference.name }}</p>
+    </div>
+    <div class="profile-data-block" style="margin-right: 5%; width: 25%">
+        <p class="profile-data-label">Company</p>
+        <p class="profile-data">{{ reference.reference.workplace_name }}</p>
+    </div>
+    <div class="profile-data-block" style="width: 25%">
+        <p class="profile-data-label">Role</p>
+        <p class="profile-data">{{ reference.reference.role }}</p>
+    </div>
+    <div class="profile-data-block" style="margin-right: 5%; width: 25%">
+        <p class="profile-data-label">Email</p>
+        <p class="profile-data">{{ reference.reference.email }}</p>
+    </div>
+    <div class="profile-data-block" style="margin-right: 2%; width: 20%">
+        <p class="profile-data-label">Phone</p>
+        <p class="profile-data">{{ reference.reference.phone }}</p>
+    </div>
+    <div class="profile-data-block">
+        <input type="checkbox" id="contactable" checked>
+        <p style="display: inline-block">Ask me before contacting</p>
+    </div>
+</div>
