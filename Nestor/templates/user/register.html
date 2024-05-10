@@ -4,14 +4,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}"/>
 {% endblock additionalStyles %}
 {% block content %}
-{% if messages %}  
-<ul>   
-    <h2>ERROR BITCH</h2>
-    {% for message in messages %}  
-    <li>{{ message }}</li>  
-    {% endfor %}  
-    </ul>   
-{% endif %}  
+</div>
 <div id="form-container">
     <h1>Register a new user</h1>
     <form id="register-form" class="form form-horizontal" method="post">
@@ -33,5 +26,14 @@
         </div>
     </form>
 </div>
+{% if messages %}  
+<div class="error-msg">
+    <p>We encountered an error while processing your registration request. This might be due to several reasons, such as: </p>
+    <ul>
+        {% for message in messages %}  
+        <li>{{ message}}</li>  
+        {% endfor %}  
+    </ul>
+{% endif %}  
 {% endblock %}
 
