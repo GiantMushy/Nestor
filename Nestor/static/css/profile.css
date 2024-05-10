@@ -68,12 +68,32 @@
 	padding-bottom: 0.2rem;
 }
 
+.profile-data-input {
+	color: #363841;
+	border-radius: 0.3rem;
+	padding: 0.4rem 0.0rem 0.4rem 0.4rem;
+}
+
+.profile-data-select {
+	color: #363841;
+	border-radius: 0.3rem;
+	padding: 0.4rem 0.0rem 0.4rem 0.4rem;
+}
+
 #contactable {
 	display: inline-block;
 }
 
 .bio{
 	@extend .profile-data;
+	width: 100%;
+	height: 4rem;
+	overflow: auto;
+}
+
+
+.bio-input{
+	@extend .profile-data-input;
 	width: 100%;
 	height: 4rem;
 	overflow: auto;

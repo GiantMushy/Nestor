@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 # from django.contrib.auth.forms import UserCreationForm
 from applicant.models import Applicant
 from applicant.forms.applicant_form import ApplicantForm
+from common.models import ZipCode
 
 
 
@@ -25,3 +26,8 @@ def applicant(request):
 def index(request):
     applicant = Applicant.objects.filter(user=request.user).first()
     return render(request,'applicant/index.html', {'applicant': applicant})
+
+
+def zipcode_dropdown(request):
+    zip_options = ZipCode.objects.all()
+    return render(request, 'applicant/applicant.html', {'zip_options': zip_options})

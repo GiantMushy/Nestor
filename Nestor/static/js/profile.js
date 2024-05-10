@@ -4,3 +4,4 @@ const toggleEditMode = () => {
 	const edit = document.getElementById("edit-profile");
 	edit.classList.remove("hidden");
 }
+
