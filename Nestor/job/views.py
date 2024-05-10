@@ -4,10 +4,6 @@ from job.models import Job
 from django.utils import timezone
 
 
-def add_days_left(job):
-    days_left = job.application_due_date - timezone.now().date()
-    job.days_left = str(days_left).split()[0]
-    return job
 
 def add_days_left(job):
     days_left = job.application_due_date - timezone.now().date()
