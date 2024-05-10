@@ -200,3 +200,7 @@
 	visibility: hidden;
 	/* Start with invisible content */
 }
+
+.left a.active {
+  text-decoration: underline; /* Apply underline for active link */
+}

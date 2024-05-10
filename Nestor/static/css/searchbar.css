@@ -72,7 +72,6 @@
 
 .searchbar-search button{
 	margin-right: 0px;
-	background-color: blue;
 }
 
 
@@ -184,6 +183,24 @@
 	-webkit-transform: rotate(45deg);
 	-ms-transform: rotate(45deg);
 	transform: rotate(45deg);
+}
+
+.create-job-btn {
+	color: #F5F5F2;
+	border-radius: 10px;
+	border: none;
+	height: 35px;
+	font-size: 0.8rem;
+	background-color: #4AA587;
+	width: 20%;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	line-height: 35px;
+}
+
+.create-job-btn:active {
+  background-color: #297554;
 }
 
 .hidden {
