@@ -33,12 +33,15 @@ class Experience(models.Model):
     description = models.CharField(max_length=9999, blank=True, null=True)
 
     def __str__(self):
-        return str(self.workplace_name) + " " + str(self.role) + " " + str(self.start_date)
+        return str(self.workplace_name) + " - " + str(self.role) + " - " + str(self.start_date)
 
 
 class CVExperience(models.Model):
     experience = models.ForeignKey(Experience, on_delete=models.CASCADE)
     applicant = models.ForeignKey(Applicant, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.applicant.full_name) + " - " + str(self.experience.workplace_name)
 
 
 class EducationLevel(models.Model):
@@ -64,6 +67,8 @@ class CVEducation(models.Model):
     education = models.ForeignKey(Education, on_delete=models.CASCADE)
     applicant = models.ForeignKey(Applicant, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return str(self.applicant.full_name) + ' - ' + str(self.education.degree) + ' - ' + str(self.education.level)
 
 class References(models.Model):
     name = models.CharField(max_length=255)
@@ -80,3 +85,6 @@ class References(models.Model):
 class CVReferences(models.Model):
     reference = models.ForeignKey(References, on_delete=models.CASCADE)
     applicant = models.ForeignKey(Applicant, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.applicant.full_name) + ' - ' + str(self.reference.name)

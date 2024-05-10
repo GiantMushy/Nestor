@@ -1,10 +1,14 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from company.forms.company_form import CompanyCreateForm
 from company.models import Company
+from common.models import JobCategory, City
 
 
 def index(request):
-    context = {'companies': Company.objects.all().order_by('name')}
+    context = {'companies': Company.objects.all().order_by('name'),
+               'categories': JobCategory.objects.all().order_by('name'),
+               'countries': City.objects.all().order_by('name')
+               }
     return render(request, 'company/index.html', context)
 
 
