@@ -10,13 +10,16 @@
             <input id="filter-category" type="text" placeholder=" Pick category">
             <span class="chevron"></span>
         </div>
-<!--        <div class="search-container">-->
-<!--            <input id="filter-company" type="text" placeholder=" Pick company">-->
-<!--            <span class="chevron"></span>-->
-<!--        </div>-->
         <div class="search-container">
-            <input id="filter-location" type="text" placeholder=" Pick location">
-            <span class="chevron"></span>
+{#            <input id="filter-location" type="text" placeholder=" Pick location">#}
+{#            <span class="chevron"></span>#}
+                <input type="text" placeholder="Pick location" class="search-input">
+                <ul class="dropdown-menu">
+                    {% for category in categories %}
+                        <li><a href="#">{{ category.name}}</a></li>
+                    {% endfor %}
+                <!-- Add more options here -->
+                </ul>
         </div>
     </div>
     <div class="searchbar-search">

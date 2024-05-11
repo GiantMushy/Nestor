@@ -9,8 +9,8 @@
         <div class="uppernav">
             <div class="left">
                 <a href="{% url 'job_index' %}"><h2 id="logo">Nestor</h2></a>
-                <a href="{% url 'job_index' %}" class="{% if request.path == '/jobs/' %}active{% endif %}"><h4>Jobs</h4></a>
-                <a href="{% url 'company_index' %}" class="{% if request.path == '/companies/' %}active{% endif %}"><h4>Companies</h4></a>
+                <a href="{% url 'job_index' %}" class="{% if active_section == 'jobs' %}active{% endif %}"><h4>Jobs</h4></a>
+                <a href="{% url 'company_index' %}" class="{% if active_section == 'companies' %}active{% endif %}"><h4>Companies</h4></a>
 
             </div>
             {% if user.is_authenticated %}
@@ -27,9 +27,13 @@
             {% endif %}
         </div>
         <div class="subnav">
-            <h6>All jobs</h6>
-            <h6>Favorite jobs</h6>
-            <h6>Applied jobs</h6>
+            {% if active_section == 'jobs' %}
+            <a href="{% url 'job_index' %}" class="{% if request.path == '/jobs/' %}active{% endif %}"><h6>All jobs</h6></a>
+            <a href="{% url 'favorite_jobs' %}" class="{% if request.path == '/jobs/favorite_jobs' %}active{% endif %}"><h6>Favorite jobs</h6></a>
+            <a href="{% url 'applied_jobs' %}" class="{% if request.path == '/jobs/applied_jobs' %}active{% endif %}"><h6>Applied jobs</h6></a>
+            {% else %}
+            <a href="{% url 'job_index' %}" class="{% if request.path == '/companies/' %}active{% endif %}"><h6>All companies</h6></a>
+            {% endif %}
         </div>
     </div>
 </nav>

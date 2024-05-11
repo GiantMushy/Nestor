@@ -42,4 +42,3 @@ const toggleAddReference = () => {
 	const view = document.getElementById("reference-new");
 	if (view.classList.contains("hidden")) {view.classList.remove("hidden")}
 	else {view.classList.add("hidden")}
-}
