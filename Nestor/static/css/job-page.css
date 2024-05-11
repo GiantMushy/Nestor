@@ -46,6 +46,7 @@
 }
 
 .apply-btn {
+	text-decoration: none;
 	align-self: flex-start;
 	padding: 8px 40px;
 	font-size: 0.8rem;
