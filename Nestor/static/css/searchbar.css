@@ -45,7 +45,7 @@
 	font-weight: 500;
 }
 
-#search-btn {
+#search-btn-job, #search-btn-company  {
 	color: #F5F5F2;
 	border-radius: 10px;
 	border: none;

@@ -6,20 +6,29 @@ from django.http import JsonResponse
 
 
 def index(request):
+    companies_qs = Company.objects.all().order_by('name')
 
-    active_section = get_active_section(request)
+    # Getting the query parameters
+    com_params = request.GET.get('com')
+    cou_params = request.GET.getlist('cou')
+    location = list(cou_params)
 
-    if 'cpn' in request.GET:
-        cpn = request.GET['cpn']
-        companies = list(Company.objects.filter(name__icontains=cpn).values())
-        return JsonResponse({'companies': companies})
+    if com_params:
+        companies_qs = companies_qs.filter(name__icontains=com_params)
 
-    context = {'companies': Company.objects.all().order_by('name'),
-               'categories': JobCategory.objects.all().order_by('name'),
-               'countries': City.objects.all().order_by('name'),
-               'active_section': active_section
-               }
-    
+    if cou_params:
+        companies_qs = companies_qs.filter(zipcode__city_id__in=location)
+
+    # Collecting all data into the context
+    context = { "companies": list(companies_qs.values()),
+                "active_section": get_active_section(request),
+                "countries": City.objects.all().order_by('name'),
+                "categories": JobCategory.objects.all().order_by('name'),
+                "countries_checked": [int(param_id) for param_id in cou_params],
+                "countries_placeholder": ', '.join([city.name for city in City.objects.filter(id__in=location).order_by('name')]),
+                "cpn_value": com_params or ""
+                }
+
     return render(request, 'company/index.html', context)
 
 
