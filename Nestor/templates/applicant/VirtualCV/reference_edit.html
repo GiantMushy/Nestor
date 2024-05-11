@@ -1,6 +1,6 @@
 {% load static %}
-<div class="black_block contact-info hidden" id="reference-edit">
-    <form class="form form-horizontal" method="PUT">
+<div class="black_block hidden" id="reference-edit">
+    <form class="form form-horizontal" method="POST">
         {% csrf_token %}
         <input type="submit" class="edit-button" value="Update" /><br>
         <div class="profile-data-block" style="margin-right: 10%">
@@ -16,7 +16,7 @@
             <p class="profile-data-label">Role</p><br>
             <input type="text" name="role" class="profile-data-input" value="{{ reference.reference.role }}" required id="id_role">
         </div>
-        <div class="profile-data-block" style="margin-right: 10%">
+        <div class="profile-data-block">
             <p class="profile-data-label">Email</p><br>
             <input type="text" name="email" class="profile-data-input" value="{{ reference.reference.email }}" required id="id_email">
         </div>
