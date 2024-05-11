@@ -8,6 +8,7 @@
 
 {% block content %}
     <h1>{{ applicant.full_name }}'s Virtual CV </h1><br>
+    
     <img src="{{ applicant.profile_image }}" class="profile-image"/>
     {% include 'applicant/VirtualCV/contact_info_view.html' %}
     {% include 'applicant/VirtualCV/contact_info_edit.html' %}
