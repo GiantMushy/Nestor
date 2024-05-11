@@ -1,4 +1,4 @@
-const active = document.body.addEventListener("click", (elem) => {
+document.body.addEventListener("click", (elem) => {
 	if (!elem.target.classList.contains("search-dropdown") && !elem.target.classList.contains("in-dropdown")) {
 		const active_elements = document.getElementsByClassName("with-dropdown");
 		//Make sure everything that is supposed to be hidden, is hidden
@@ -37,12 +37,12 @@ const search = (id) => {
 
 	//get items in dropdown
 	const item_list = searchbar.nextElementSibling;
-	const trackSearch = searchbar.addEventListener("keyup", (event) => {
+	searchbar.addEventListener("keyup", (event) => {
 		Array.from(item_list.childNodes).forEach((item) => {
 			if (item.nodeType === Node.ELEMENT_NODE) {
 				console.log(item);
-				const searchterm = item.id.toLowerCase()
-				if (!searchterm.startsWith(event.target.value.toLowerCase())) {
+				const search_term = item.id.toLowerCase()
+				if (!search_term.startsWith(event.target.value.toLowerCase())) {
 					item.style.display = "none";
 				} else {
 					item.style.display = "flex";
@@ -52,3 +52,53 @@ const search = (id) => {
 
 	});
 }
+
+const categories_list = document.getElementById('categories-list')
+const countries_list = document.getElementById('countries-list')
+const companies_list = document.getElementById('companies-list')
+const job_search = document.getElementById('search-job')
+const company_search = document.getElementById('search-company')
+
+const get_selected_items = (dropdown_list) => {
+	let selected_items = []
+	// Selecting all checkboxes in the category list
+	let checkboxes = dropdown_list.querySelectorAll('input[type="checkbox"]')
+	checkboxes.forEach((checkbox) => {
+		if (checkbox.checked) {
+			selected_items.push(checkbox.value)
+		}
+	})
+	return selected_items
+}
+
+const search_for_companies = () => {
+	const selected_categories = get_selected_items(categories_list)
+	const selected_countries = get_selected_items(countries_list)
+
+	console.log(selected_categories)
+	console.log(selected_countries)
+	console.log(company_search.value)
+}
+
+
+const search_for_jobs = () => {
+	const selected_categories = get_selected_items(categories_list)
+	const selected_companies = get_selected_items(companies_list)
+	const selected_countries = get_selected_items(countries_list)
+
+	console.log(selected_categories)
+	console.log(selected_companies)
+	console.log(selected_countries)
+	console.log(job_search.value)
+}
+
+const search_btn_company= document.getElementById('search-btn')
+
+search_btn_company.addEventListener('click', (elem) => {
+	if (elem.target.className === 'search-btn-company') {
+		search_for_companies()
+	} else {
+		search_for_jobs()
+	}
+});
+
