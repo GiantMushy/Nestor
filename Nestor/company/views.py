@@ -2,15 +2,24 @@ from django.shortcuts import render, get_object_or_404, redirect
 from company.forms.company_form import CompanyCreateForm
 from company.models import Company
 from common.models import JobCategory, City
+from django.http import JsonResponse
 
 
 def index(request):
+
     active_section = get_active_section(request)
+
+    if 'cpn' in request.GET:
+        cpn = request.GET['cpn']
+        companies = list(Company.objects.filter(name__icontains=cpn).values())
+        return JsonResponse({'companies': companies})
+
     context = {'companies': Company.objects.all().order_by('name'),
                'categories': JobCategory.objects.all().order_by('name'),
                'countries': City.objects.all().order_by('name'),
                'active_section': active_section
                }
+    
     return render(request, 'company/index.html', context)
 
 
