@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load static %}
+{% block additionalStyles %}
+    <link rel="stylesheet" href="{% static 'css/job_cards.css' %}" />
+    <script>const allCards = {{ jobs }}</script>
+{% endblock additionalStyles %}
+{% block content %}
+    <h1>These are your applied jobs</h1>
+    <p>Not implemented yet</p>
+{% endblock %}

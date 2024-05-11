@@ -106,7 +106,7 @@
 }
 
 
-.bio-input{
+.bio-input {
 	@extend .profile-data-input;
 	width: 99%;
 	height: 4rem;

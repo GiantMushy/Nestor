@@ -1,10 +1,39 @@
 {% extends "base.html" %}
+{% load static %}
+    {% block additionalStyles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}"/>
+{% endblock additionalStyles %}
 {% block content %}
-    <h1>Sign up now!</h1>
-    <form class="form form-horizontal" method="post">
+</div>
+<div id="form-container">
+    <h1>Register a new user</h1>
+    <form id="register-form" class="form form-horizontal" method="post">
         {% csrf_token %}
-        {{ form }}
-        <input type="submit" class="btn btn-primary" value="Sign up" />
+        <label for="id_username">Username:</label>
+        {{ form.username }}
+        <label for="id_first_name">First Name:</label>
+        {{ form.first_name }}
+        <label for="id_last_name">Last Name:</label>
+        {{ form.last_name }}
+        <label for="id_email">Email:</label>
+        {{ form.email }}
+        <label for="password1">Password: </label>
+        {{ form.password1 }}
+        <label for="password2">Password again: </label>
+        {{ form.password2 }}
+        <div id="register-form-btn-container">
+            <input id="register-form-btn" type="submit" class="btn btn-primary" value="Sign up" />
+        </div>
     </form>
+</div>
+{% if messages %}  
+<div class="error-msg">
+    <p>We encountered an error while processing your registration request. This might be due to several reasons, such as: </p>
+    <ul>
+        {% for message in messages %}  
+        <li>{{ message}}</li>  
+        {% endfor %}  
+    </ul>
+{% endif %}  
 {% endblock %}
-    
+
