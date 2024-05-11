@@ -9,7 +9,7 @@
 	color: #F5F5F2;
 	border-radius: 0.5rem;
 	padding: 1rem 2rem;
-	margin: 0.0rem 2rem 2rem 2rem;
+	margin: 0.0rem 2rem 1rem 2rem;
 	width: 90%;
 }
 
@@ -46,7 +46,11 @@
 }
 
 .add {
-	@extend .edit-button;
+	border: none;
+	background-color: #4AA587;
+	color: #F5F5F2;
+	border-radius: 50%;
+	position: absolute;
 	display: inline-block;
 	right: 85%;
 	padding: 0.0rem 0.3rem 0.1rem 0.3rem;
