@@ -37,6 +37,11 @@
 	margin-right: 50px;
 }
 
+.subnav a {
+	color: inherit;
+	text-decoration: none;
+}
+
 .left,
 .logged-in,
 .right {
@@ -203,5 +208,9 @@
 }
 
 .left a.active {
+  text-decoration: underline; /* Apply underline for active link */
+}
+
+.subnav a.active {
   text-decoration: underline; /* Apply underline for active link */
 }
