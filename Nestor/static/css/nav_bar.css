@@ -166,6 +166,7 @@
 }
 
 .profile-dropdown a {
+	text-decoration: none;
 	font-weight: 500;
 	height: 25px;
 	margin: 0px 7px;
@@ -208,9 +209,11 @@
 }
 
 .left a.active {
-  text-decoration: underline; /* Apply underline for active link */
+	text-decoration: underline;
+	/* Apply underline for active link */
 }
 
 .subnav a.active {
-  text-decoration: underline; /* Apply underline for active link */
+	text-decoration: underline;
+	/* Apply underline for active link */
 }

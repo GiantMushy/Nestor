@@ -1,16 +1,39 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block additionalStyles %}
-{% endblock %}
-{% block content %}
-<div>
-    <div>
-        <img src="{{ job.job_image }}" class="job-img"/>
+    {% block additionalStyles %}
+    <link rel="stylesheet" href="{% static 'css/job-page.css' %}"/>
+    {% endblock %}
+    {% block content %}
+    <div class="job-page-container">
+        <div class="job-page-content">
+            <div class="left-job-view">
+                <img class="job-image" src="{{ job.job_image }}" class="job-img"/>
+                <div class="left-job-info">
+                    <h5>Due Date</h5>
+                    <p>{{ job.application_due_date }}</p>
+                    <h5>Category</h5>
+                    <p>{{ job.job_category.name }}</p>
+                    <h5>Job percentage</h5>
+                    <p>{{ job.percentage }}%</p>
+                </div>
+            </div>
+            <div class="middle-job-view">
+                <div class="title-and-btn">
+                    <h2 class="job-title">{{ job.name }}</h2>
+                    <a class="apply-btn" href="" >Apply</a>
+                </div>
+                <h5>Job description</h5>
+                <p>{{ job.description }}</p>
+            </div>
+            <div class="right-job-view">
+                <img class="company-logo" src="{{ job.company.logo }}" />
+                <h3 class="company-title">{{ job.company.name }}</h3>
+                <h5>About us</h5>
+                <p class="company-description">{{ job.company.description }}</p>
+                <h5>Employees</h5>
+                <p>{{ job.company.number_of_employees }}</p>
+
+            </div>
+        </div>
     </div>
-    <div>
-        <h1>{{ job.name }}</h1>
-        <h3>{{ job.company.name }}</h3>
-        <p>{{ job.description }}</p>
-    </div>
-</div>
-{% endblock %}
+    {% endblock %}
