@@ -13,7 +13,8 @@
     {% include 'applicant/VirtualCV/contact_info_edit.html' %}
     
     <h2 class="CV-block-title">Experience</h2>
-    <button onclick="toggleEditContactInfo()" class="edit-button add">+</button>
+    <button onclick="toggleAddExperience()" class="add">+</button>
+    {% include 'applicant/VirtualCV/experience_new.html' %}
     {% if not experiences %}
         <div class="black_block">
             <h3>No registered experience history</h3>
@@ -26,7 +27,8 @@
     {% endif %}
 
     <h2 class="CV-block-title">Education</h2>
-    <button onclick="toggleEditContactInfo()" class="edit-button add">+</button>
+    <button onclick="toggleAddEducation()" class="edit-button add">+</button>
+    {% include 'applicant/VirtualCV/education_new.html' %}
     {% if not educations %}
         <div class="black_block">
             <h3>No registered education history</h3>
@@ -39,7 +41,8 @@
     {% endif %}
     
     <h2 class="CV-block-title">References</h2>
-    <button onclick="toggleEditContactInfo()" class="edit-button add">+</button>
+    <button onclick="toggleAddReference()" class="edit-button add">+</button>
+    {% include 'applicant/VirtualCV/reference_new.html' %}
     {% if not references %}
         <div class="black_block">
             <h3>No registered references</h3>

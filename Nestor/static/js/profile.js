@@ -5,19 +5,17 @@ const toggleEditContactInfo = () => {
 	edit.classList.remove("hidden");
 }
 
+
 const toggleEditExperience = () => {
 	const view = document.getElementById("experience-view");
 	view.classList.add("hidden");
 	const edit = document.getElementById("experience-edit");
 	edit.classList.remove("hidden");
 }
-
-const toggleCreateExperience = () => {
+const toggleAddExperience = () => {
 	const view = document.getElementById("experience-new");
 	if (view.classList.contains("hidden")) {view.classList.remove("hidden")}
-	else {view.classList.remove("hidden")}
-
-
+	else {view.classList.add("hidden")}
 }
 
 
@@ -27,10 +25,10 @@ const toggleEditEducation = () => {
 	const edit = document.getElementById("education-edit");
 	edit.classList.remove("hidden");
 }
-const toggleCreateEducation = () => {
+const toggleAddEducation = () => {
 	const view = document.getElementById("education-new");
 	if (view.classList.contains("hidden")) {view.classList.remove("hidden")}
-	else {view.classList.remove("hidden")}
+	else {view.classList.add("hidden")}
 }
 
 
@@ -40,8 +38,8 @@ const toggleEditReference = () => {
 	const edit = document.getElementById("reference-edit");
 	edit.classList.remove("hidden");
 }
-const toggleCreateReference = () => {
+const toggleAddReference = () => {
 	const view = document.getElementById("reference-new");
 	if (view.classList.contains("hidden")) {view.classList.remove("hidden")}
-	else {view.classList.remove("hidden")}
+	else {view.classList.add("hidden")}
 }

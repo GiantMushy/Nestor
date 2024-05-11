@@ -1,5 +1,5 @@
 from django.forms import ModelForm, widgets
-from applicant.models import Applicant, Experience, Education, References
+from applicant.models import *
 
 
 class ApplicantForm(ModelForm):
@@ -24,6 +24,12 @@ class ExperienceForm(ModelForm):
         }
 
 
+class CVExperienceForm(ModelForm):
+    class Meta:
+        model = CVExperience
+        fields = ['applicant', 'experience']
+
+
 class EducationForm(ModelForm):
     class Meta:
         model = Education
@@ -38,6 +44,12 @@ class EducationForm(ModelForm):
         }
 
 
+class CVEducationForm(ModelForm):
+    class Meta:
+        model = CVEducation
+        fields = ['applicant', 'education']
+
+
 class ReferenceForm(ModelForm):
     class Meta:
         model = References
@@ -50,3 +62,9 @@ class ReferenceForm(ModelForm):
             'role': widgets.TextInput(attrs={'class': 'form-control'}),
             'is_contactable': widgets.CheckboxInput(attrs={'class': 'checkbox'})
         }
+
+
+class CVReferenceForm(ModelForm):
+    class Meta:
+        model = CVReferences
+        fields = ['applicant', 'reference']
