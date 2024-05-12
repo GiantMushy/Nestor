@@ -112,7 +112,6 @@ def applied_jobs(request):
     return render(request, 'job/applied_jobs.html', context)
 
 
-
 def get_active_section(request):
     active_section = None
     if request.path.startswith('/jobs/'):
