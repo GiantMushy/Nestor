@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from job.forms.job_form import JobCreateForm
-from job.models import Job, Application
+from job.models import Job, Application, FavoriteJob
 from django.utils import timezone
 from common.models import JobCategory, City
 from company.models import Company, Employee
@@ -14,6 +14,7 @@ def add_days_left(job):
 
 def index(request):
     all_jobs = Job.objects.all().order_by('name')
+    fav_jobs = FavoriteJob.objects.filter(applicant__user_id=request.user.id).all()
 
     # Getting the query parameters
     job_param = request.GET.get('job')
@@ -44,7 +45,8 @@ def index(request):
                'companies_checked': [int(param_id) for param_id in com_params],
                'companies_placeholder':
                    ', '.join([com.name for com in Company.objects.filter(id__in=com_params).order_by('name')]),
-               'job_value': job_param or ""
+               'job_value': job_param or "",
+               'fav_jobs': [job.job.id for job in fav_jobs],
                }
 
     return render(request, 'job/index.html', context)
@@ -78,8 +80,19 @@ def create_job(request):
 
 
 def favorite_jobs(request):
-    active_section = get_active_section(request)
-    return render(request, 'job/favorite_jobs.html', context={'active_section': active_section})
+    fav_jobs = FavoriteJob.objects.filter(applicant__user_id=request.user.id).all()
+    job_ids = [app.job_id for app in fav_jobs]
+
+    all_jobs = Job.objects.filter(id__in=job_ids)
+
+    context = {'companies': Company.objects.all().order_by('name'),
+               'categories': JobCategory.objects.all().order_by('name'),
+               'countries': City.objects.all().order_by('name'),
+               'jobs': [add_days_left(job) for job in all_jobs],
+               'active_section': get_active_section(request),
+               'fav_jobs': [job.job.id for job in fav_jobs],
+               }
+    return render(request, 'job/favorite_jobs.html', context)
 
 
 def applied_jobs(request):
@@ -97,6 +110,7 @@ def applied_jobs(request):
                'active_section': get_active_section(request)
                }
     return render(request, 'job/applied_jobs.html', context)
+
 
 
 def get_active_section(request):
