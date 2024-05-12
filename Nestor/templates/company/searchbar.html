@@ -3,7 +3,6 @@
     <link rel="stylesheet" href="{% static 'css/searchbar.css' %}" />
 {#    <script type="text/javascript" src="{% static 'js/searchbar.js' %}"></script>#}
     {% endblock additionalStyles %}
-    <!-- Kúkakomment -->
     <h1 id="searchbar-title">Search for your dream job</h1>
     <div class="searchbar-filters ">
         <div class="search-container">
@@ -39,7 +38,9 @@
         <button class="search-btn-company" id="search-btn-company" type="button">Search</button>
     </div>
     <div class="searchbar-extras">
+        {% if employee %}
         <a href="{% url 'create_job' %}" class="create-job-btn">Create Job</a>
+        {% endif %}
         <label id="checkbox-container" for="checkbox-applied">Show applied jobs
             <input id="checkbox-applied" type="checkbox">
             <span class="checkmark"></span>

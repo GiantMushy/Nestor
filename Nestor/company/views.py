@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from company.forms.company_form import CompanyCreateForm
-from company.models import Company
+from company.models import Company, Employee
 from common.models import JobCategory, City
 from django.http import JsonResponse
 
@@ -16,7 +16,7 @@ def index(request):
         companies_qs = companies_qs.filter(name__icontains=com_param)
     if cou_params:
         companies_qs = companies_qs.filter(zipcode__city_id__in=cou_params)
-
+    employee = Employee.objects.filter(user=request.user).first()
     # Collecting all data into the context
     context = { "companies": list(companies_qs.values()),
                 "active_section": get_active_section(request),
@@ -24,7 +24,8 @@ def index(request):
                 "categories": JobCategory.objects.all().order_by('name'),
                 "countries_checked": [int(param_id) for param_id in cou_params],
                 "countries_placeholder": ', '.join([city.name for city in City.objects.filter(id__in=cou_params).order_by('name')]),
-                "cpn_value": com_param or ""
+                "cpn_value": com_param or "",
+                "employee": employee
                 }
 
     return render(request, 'company/index.html', context)
