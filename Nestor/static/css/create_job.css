@@ -33,8 +33,9 @@
 	width: 25%;
 }
 
-#job-image {
-	max-width: 200px;
+#id_job_image {
+	width: 50%;
+	height: 50%;
 }
 
 .form-upper input,
