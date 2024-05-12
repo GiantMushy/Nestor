@@ -1,0 +1,28 @@
+.create-job-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.form-upper {
+	display: flex;
+}
+
+.middle-upper-form,
+.right-upper-form {
+	display: flex;
+	flex-direction: column;
+}
+
+.create-job-container input {
+	margin-bottom: 20px;
+	border: solid 1px #363841;
+	border-radius: 8px;
+	min-height: 30px;
+}
+
+.create-job-container label {
+	font-size: 0.9rem;
+	font-weight: 600;
+	color: #363841;
+}

@@ -2,6 +2,7 @@ from django.db import models
 from company.models import Company
 from common.models import ZipCode, Skills, JobCategory
 from applicant.models import Applicant, Experience, Education, References
+from django.utils import timezone
 
 
 class JobType(models.Model):  #summer/internship/part-time/fulltime
@@ -20,11 +21,11 @@ class Job(models.Model):
     job_image = models.CharField(max_length=9999, blank=True, null=True)
     name = models.CharField(max_length=255)
     description = models.TextField(max_length=1000)
-    date_of_offering = models.DateField()
+    date_of_offering = models.DateField(default=timezone.now)
     application_due_date = models.DateField()
     starting_date = models.DateField()
     percentage = models.IntegerField()
-    num_of_applicants = 0
+    num_of_applicants = models.IntegerField(default=0)
     is_available = models.BooleanField(default=True)
 
     def __str__(self):

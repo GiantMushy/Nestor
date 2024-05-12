@@ -1,0 +1,30 @@
+{% load static %}
+<div class="black_block hidden" id="experience-new">
+    <form class="form form-horizontal" method="post">
+        {% csrf_token %}
+        <input type="submit" class="edit-button" value="Add" />
+        <br>
+        <div class="profile-data-block" style="margin-right: 5%; width: 25%">
+            <p class="profile-data-label">Company</p><br>
+            <input type="text" name="workplace_name" class="profile-data-input form-control" required id="id_workplace_name">
+        </div>
+        <div class="profile-data-block" style="margin-right: 5%; width: 25%">
+            <p class="profile-data-label">Role</p><br>
+            <input type="text" name="role" class="profile-data-input form-control" required id="id_role">
+        </div>
+
+        <div class="profile-data-block" style="margin-right: 5%; width: 15%">
+            <p class="profile-data-label">Start Date</p><br>
+            <input type="date" name="start_date" class="profile-data-input form-control" required id="id_start_date">
+        </div>
+        <div class="profile-data-block" style="width: 15%">
+            <p class="profile-data-label">End Date</p><br>
+            <input type="date" name="end_date" class="profile-data-input form-control" id="id_end_date">
+        </div>
+
+        <div style="overflow: hidden">
+            <p class="profile-data-label">Description</p><br>
+            <textarea name="description" id="id_description" class="profile-data-input bio-input form-control"></textarea>
+        </div>
+    </form>
+</div>
