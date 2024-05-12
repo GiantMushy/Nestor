@@ -14,8 +14,8 @@ const toggleEditExperience = () => {
 }
 const toggleAddExperience = () => {
 	const view = document.getElementById("experience-new");
-	if (view.classList.contains("hidden")) {view.classList.remove("hidden")}
-	else {view.classList.add("hidden")}
+	if (view.classList.contains("hidden")) { view.classList.remove("hidden") }
+	else { view.classList.add("hidden") }
 }
 
 
@@ -27,8 +27,8 @@ const toggleEditEducation = () => {
 }
 const toggleAddEducation = () => {
 	const view = document.getElementById("education-new");
-	if (view.classList.contains("hidden")) {view.classList.remove("hidden")}
-	else {view.classList.add("hidden")}
+	if (view.classList.contains("hidden")) { view.classList.remove("hidden") }
+	else { view.classList.add("hidden") }
 }
 
 
@@ -40,6 +40,6 @@ const toggleEditReference = () => {
 }
 const toggleAddReference = () => {
 	const view = document.getElementById("reference-new");
-	if (view.classList.contains("hidden")) {view.classList.remove("hidden")}
-	else {view.classList.add("hidden")}
+	if (view.classList.contains("hidden")) { view.classList.remove("hidden") }
+	else { view.classList.add("hidden") }
 }

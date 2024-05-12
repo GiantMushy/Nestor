@@ -2,25 +2,25 @@ from django import forms
 # import ModelForm, widgets
 from job.models import Job
 from django.utils import timezone
+from company.models import Employee, Company
+from common.models import Country, ZipCode, City
 
 
 class JobCreateForm(forms.ModelForm):
-    # date_of_offering = forms.DateField(initial=timezone.now().date())
 
     class Meta:
         model = Job
-        exclude = ['id', 'date_of_offering', 'num_of_applicants']
+        exclude = ['id', 'date_of_offering', 'num_of_applicants', 'company']
         widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'description': forms.TextInput(attrs={'class': 'form-control'}),
-            'zipcode': forms.Select(attrs={'class': 'form-control'}),
-            'job_type': forms.Select(attrs={'class': 'form-control'}),
-            'job-category': forms.Select(attrs={'class': 'form-control'}),
-            'address': forms.TextInput(attrs={'class': 'form-control'}),
-            'job_image': forms.TextInput(attrs={'class': 'form-control'}),
-            # 'date_of_offering': forms.DateInput(attrs={'class': 'form-control'}),
-            'application_due_date': forms.DateInput(attrs={'class': 'form-control'}),
-            'start_date': forms.DateInput(attrs={'class': 'form-control'}),
-            'percentage': forms.NumberInput(attrs={'class': 'form-control'}),
-            'is_available': forms.CheckboxInput(attrs={'class': 'checkbox'})
+            'application_due_date': forms.DateInput(attrs={'type':'date', 'format': 'dd-mm-yyyy'}), 
+            'starting_date': forms.DateInput(attrs={'type':'date', 'format': 'dd-mm-yyyy'}),
+            'name': forms.TextInput(attrs={'placeholder': 'Enter job name'}),
+            'description': forms.Textarea(attrs={'placeholder': 'Write a description for the job', 'col' : '50'}),
+            # 'zipcode': forms.ChoiceField(attrs={'empty_label' : 'Select a zipcode'}),
+            'job_type': forms.Select(attrs={'placeholder': 'Select a job type'}),
+            'job-category': forms.Select(attrs={'placeholder': 'Select a job category'}),
+            'address': forms.TextInput(attrs={'placeholder': 'Enter the job address'}),
+            'job_image': forms.TextInput(attrs={'placeholder': 'Enter a valid image link'}),
+            'percentage': forms.NumberInput(attrs={'placeholder': 'Enter job percentage'}),
+            # 'is_available': forms.CheckboxInput(attrs={'class': 'checkbox'})
         }

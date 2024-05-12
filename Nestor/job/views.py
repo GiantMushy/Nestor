@@ -3,7 +3,7 @@ from job.forms.job_form import JobCreateForm
 from job.models import Job, Application, FavoriteJob
 from django.utils import timezone
 from common.models import JobCategory, City
-from company.models import Company
+from company.models import Company, Employee
 
 
 def add_days_left(job):
@@ -61,16 +61,20 @@ def get_job_by_id(request, id):
 
 
 def create_job(request):
+    employee = Employee.objects.filter(user=request.user).first()
     active_section = get_active_section(request)
     if request.method == 'POST':
-        form = JobCreateForm(data=request.POST)
+        form = JobCreateForm(data=request.POST, initial= {'company': employee.company})
         if form.is_valid():
-            job = form.save()
+            job = form.save(commit=False)
+            job.company= employee.company
+            job.save()
             return redirect('job_index')
     else:
         form = JobCreateForm()
     return render(request, 'job/create_job.html', {
-        'form': form,
+        'form': JobCreateForm(data=request.POST),
+        'employee': employee,
         'active_section': active_section
     })
 
