@@ -57,6 +57,23 @@
 	margin-right: 20px;
 }
 
+.favorite-btn {
+    text-decoration: none;
+    font-size: 0.8rem;
+    color: #363841;
+	padding: 2px 5px;
+    border-radius: 10px;
+    font-weight: bold;
+    border: 2px solid #4AA587;
+    display: inline-flex;
+    align-items: center;
+}
+
+.favorite-btn p,
+.favorite-btn img {
+    margin: 0;
+}
+
 .job-title {
 	font-size: 1.5rem;
 	margin-bottom: 20px;
@@ -67,6 +84,11 @@
 .company-title {
 	font-size: 1.2rem;
 	margin: 10px 0px;
+}
+
+.heart-image {
+	width: 25px;
+	height: 25px;
 }
 
 

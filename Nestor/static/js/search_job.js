@@ -1,35 +1,16 @@
 
-
 const categories_list = document.getElementById('categories-list')
-const countries_list = document.getElementById('countries-list')
+const countries_list_job = document.getElementById('countries-list')
 const companies_list = document.getElementById('companies-list')
 const job_search = document.getElementById('search-job')
 
 const search_btn_job= document.getElementById('search-btn-job')
 
-
-const get_selected_items = (dropdown_list) => {
-	let selected_items = []
-	// Selecting all checkboxes in the category list
-	let checkboxes = dropdown_list.querySelectorAll('input[type="checkbox"]')
-	checkboxes.forEach((checkbox) => {
-		if (checkbox.checked) {
-			selected_items.push(checkbox.value)
-		}
-	})
-	return selected_items
-}
 const search_for_jobs = () => {
 	const selected_categories = get_selected_items(categories_list)
 	const selected_companies = get_selected_items(companies_list)
-	const selected_countries = get_selected_items(countries_list)
+	const selected_countries = get_selected_items(countries_list_job)
 
-	console.log(selected_categories)
-	console.log(selected_companies)
-	console.log(selected_countries)
-	console.log(job_search.value)
-
-	// TODO: LAGA HER
 	let param_added = false
 	let parameters = ""
 	if (job_search.value) {
@@ -56,5 +37,33 @@ const search_for_jobs = () => {
 
 search_btn_job.addEventListener('click', (elem) => {
 	search_for_jobs()
-	console.log('sindreh')
+});
+
+countries_list_job.addEventListener("change", (event) => {
+    if (event.target.matches("input[type='checkbox']")) {
+		const all_items = countries_list_job.querySelectorAll(".dropdown-item")
+		const new_placeholder = get_updated_placeholder(all_items)
+		const country_dropdown_list = document.getElementById("filter-location")
+		update_placeholder(new_placeholder, country_dropdown_list)
+    }
+});
+
+// Checking whenever there is a change in checked checkboxes in category-dropdown
+categories_list.addEventListener("change", (event) => {
+    if (event.target.matches("input[type='checkbox']")) {
+		const all_items = categories_list.querySelectorAll(".dropdown-item")
+		const new_placeholder = get_updated_placeholder(all_items)
+		const category_dropdown_list = document.getElementById("filter-category")
+		update_placeholder(new_placeholder, category_dropdown_list)
+    }
+});
+
+// Checking whenever there is a change in checked checkboxes in company-dropdown
+companies_list.addEventListener("change", (event) => {
+    if (event.target.matches("input[type='checkbox']")) {
+		const all_items = companies_list.querySelectorAll(".dropdown-item")
+		const new_placeholder = get_updated_placeholder(all_items)
+		const company_dropdown_list = document.getElementById("filter-company")
+		update_placeholder(new_placeholder, company_dropdown_list)
+    }
 });
