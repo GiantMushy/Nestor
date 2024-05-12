@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
     {% block additionalStyles %}
-    <link rel="stylesheet" href="{% static 'css/job-page.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/job_page.css' %}"/>
     {% endblock %}
     {% block content %}
     <div class="job-page-container">
@@ -32,7 +32,6 @@
                 <p class="company-description">{{ job.company.description }}</p>
                 <h5>Employees</h5>
                 <p>{{ job.company.number_of_employees }}</p>
-
             </div>
         </div>
     </div>
