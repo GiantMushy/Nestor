@@ -8,6 +8,8 @@ const company_search = document.getElementById('search-company')
 const search_btn_company = document.getElementById('search-btn-company')
 
 
+
+
 const get_selected_items = (dropdown_list) => {
 	let selected_items = []
 	// Selecting all checkboxes in the category list
@@ -20,7 +22,6 @@ const get_selected_items = (dropdown_list) => {
 	return selected_items
 }
 const search_for_companies = () => {
-
     const selected_categories = get_selected_items(categories_list)
     const selected_countries = get_selected_items(countries_list)
 
@@ -30,10 +31,10 @@ const search_for_companies = () => {
 		parameters += "&com=" + company_search.value
 		param_added = true
 	}
-	if (param_added) {
-		parameters += '&'
+	if (selected_countries) {
+		if (param_added) { parameters += '&' }
+		parameters += selected_countries.map((country_id) => `cou=${country_id}`).join('&');
 	}
-	parameters += selected_countries.map((country_id) => `cou=${country_id}`).join('&');
 
 	window.location.href = '/companies/?' + parameters
 	}
