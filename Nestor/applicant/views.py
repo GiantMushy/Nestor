@@ -18,7 +18,7 @@ def applicant(request):
     education = CVEducation.objects.filter(applicant=applicant).all()
     references = CVReferences.objects.filter(applicant=applicant).all()
     return render(request, 'applicant/applicant.html', {
-        'form': ApplicantForm(instance=applicant),
+        'form': ApplicantForm(instance=applicant, initial={'company': 1}),
         'applicant': applicant,
         'zip_options': ZipCode.objects.all(),
         'experiences': experience,
