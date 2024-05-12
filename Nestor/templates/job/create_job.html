@@ -12,8 +12,14 @@
             <div class="form-upper">
                 <!-- <label for="id-job_image">Job image: </label> -->
                 <div class="job-image-container">
-                    {{ form.job_image }}
+                    <img id="job-image" src="{% static 'images/empty_img.png' %}" />                
+                    <div id="image-input" class="image-input">
+                        {{ form.job_image }}
+                        <button id="update-image" class="submit-btn" onclick="update_image()">Update</button>
+                    </div>
+                    <p id="error-msg-image" class="error-msg hidden">Image URL not valid, please try again.</p>
                 </div>
+
                 <div class="middle-upper-form">
                     <label for="id_name">Job name: </label>
                     {{ form.name }}
