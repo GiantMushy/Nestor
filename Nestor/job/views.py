@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from job.forms.job_form import JobCreateForm
-from job.models import Job
+from job.models import Job, Application
 from django.utils import timezone
 from common.models import JobCategory, City
 from company.models import Company, Employee
@@ -57,8 +57,20 @@ def favorite_jobs(request):
 
 
 def applied_jobs(request):
-    active_section = get_active_section(request)
-    return render(request, 'job/applied_jobs.html', context={'active_section': active_section})
+    applications = Application.objects.filter(applicant__user_id=request.user.id).all()
+    job_ids = [app.job_id for app in applications]
+
+    all_jobs = Job.objects.filter(id__in=job_ids)
+
+    print(applications)
+
+    context = {'companies': Company.objects.all().order_by('name'),
+               'categories': JobCategory.objects.all().order_by('name'),
+               'countries': City.objects.all().order_by('name'),
+               'jobs': [add_days_left(job) for job in all_jobs],
+               'active_section': get_active_section(request)
+               }
+    return render(request, 'job/applied_jobs.html', context)
 
 
 def get_active_section(request):
