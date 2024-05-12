@@ -2,7 +2,6 @@
 {% load static %}
 {% block additionalStyles %}
         <link rel="stylesheet" href="{% static 'css/job_cards.css' %}" />
-        <script>const allCards = {{ jobs }}</script>
 {% endblock additionalStyles %}
 {% block content %}
     {% include 'job/searchbar.html' %}    

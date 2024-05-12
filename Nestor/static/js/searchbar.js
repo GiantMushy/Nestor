@@ -1,4 +1,5 @@
-const active = document.body.addEventListener("click", (elem) => {
+
+document.body.addEventListener("click", (elem) => {
 	if (!elem.target.classList.contains("search-dropdown") && !elem.target.classList.contains("in-dropdown")) {
 		const active_elements = document.getElementsByClassName("with-dropdown");
 		//Make sure everything that is supposed to be hidden, is hidden
@@ -37,12 +38,12 @@ const search = (id) => {
 
 	//get items in dropdown
 	const item_list = searchbar.nextElementSibling;
-	const trackSearch = searchbar.addEventListener("keyup", (event) => {
+	searchbar.addEventListener("keyup", (event) => {
 		Array.from(item_list.childNodes).forEach((item) => {
 			if (item.nodeType === Node.ELEMENT_NODE) {
 				console.log(item);
-				const searchterm = item.id.toLowerCase()
-				if (!searchterm.startsWith(event.target.value.toLowerCase())) {
+				const search_term = item.id.toLowerCase()
+				if (!search_term.startsWith(event.target.value.toLowerCase())) {
 					item.style.display = "none";
 				} else {
 					item.style.display = "flex";
@@ -52,3 +53,9 @@ const search = (id) => {
 
 	});
 }
+
+
+
+
+
+
