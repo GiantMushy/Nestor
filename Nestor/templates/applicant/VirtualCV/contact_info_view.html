@@ -1,0 +1,38 @@
+{% load static %}
+<div class="black_block contact-info" id="contact-info-view">
+    <h3 style="display: inline-block">Contact Information</h3>
+    <button onclick="toggleEditContactInfo()" class="edit-button">edit</button>
+    <br>
+    <div class="profile-data-block" style="margin-right: 10%">
+        <p class="profile-data-label">Full name</p>
+        <p class="profile-data">{{ applicant.full_name }}</p>
+    </div>
+    <div class="profile-data-block">
+        <p class="profile-data-label">Country</p>
+        <p class="profile-data">{{ applicant.zipcode.city.country}}</p>
+    </div>
+
+    <div class="profile-data-block" style="margin-right: 10%">
+        <p class="profile-data-label">Email</p>
+        <p class="profile-data">{{ applicant.email }}</p>
+    </div>
+    <div class="profile-data-block">
+        <p class="profile-data-label">City, zipcode</p>
+        <p class="profile-data">{{ applicant.zipcode }}</p>
+    </div>
+
+    <div class="profile-data-block" style="margin-right: 10%">
+        <p class="profile-data-label">Phone number</p>
+        <p class="profile-data">{{ applicant.phone }}</p>
+    </div>
+    <div class="profile-data-block">
+        <p class="profile-data-label">Address</p>
+        <p class="profile-data">{{ applicant.address }}</p>
+    </div>
+
+    <div style="overflow: hidden">
+        <p class="profile-data-label">Bio</p>
+        <br>
+        <p class="profile-data bio">{{ applicant.bio }}</p>
+    </div>
+</div>
