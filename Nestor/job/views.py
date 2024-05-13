@@ -4,6 +4,7 @@ from job.models import Job, Application, FavoriteJob
 from django.utils import timezone
 from common.models import JobCategory, City
 from company.models import Company, Employee
+from applicant.models import Education, CVEducation, CVExperience
 
 
 def add_days_left(job):
@@ -111,6 +112,40 @@ def applied_jobs(request):
                'active_section': get_active_section(request)
                }
     return render(request, 'job/applied_jobs.html', context)
+
+
+def your_job_offers(request):
+    employee = get_object_or_404(Employee, user=request.user)
+    company_id = employee.company.id
+    company_jobs = Job.objects.filter(company_id=company_id)
+
+    context = {'companies': Company.objects.all().order_by('name'),
+               'categories': JobCategory.objects.all().order_by('name'),
+               'countries': City.objects.all().order_by('name'),
+               'jobs': [add_days_left(job) for job in company_jobs],
+               'active_section': get_active_section(request)
+               }
+    return render(request, 'job/your_job_offers.html', context)
+
+
+def get_applications_by_job_id(request, id):
+    applicants = Application.objects.filter(job_id=id).all()
+
+    for applicant in applicants:
+        education = CVEducation.objects.filter(applicant=applicant.applicant)
+        experience = CVExperience.objects.filter(applicant=applicant.applicant)
+        if education.exists():
+            applicant.education = education[0].education
+
+        if experience.exists():
+            applicant.experience = experience[0].experience
+
+
+    return render(request, 'job/applications_page.html', {
+        'job': get_object_or_404(Job, pk=id),
+        'applicants':applicants,
+        'active_section': get_active_section(request)
+    })
 
 
 

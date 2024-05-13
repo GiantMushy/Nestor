@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+    {% block additionalStyles %}
+    <link rel="stylesheet" href="{% static 'css/applications_page.css' %}"/>
+    <link rel="stylesheet" href="{% static "css/applicant_card.css" %}"/>
+    {% endblock %}
+    {% block content %}
+    <div class="job-page-container">
+        <div class="job-details">
+            <h1>{{ job.name }}</h1>
+            <div class="description-container">
+                <h3>Job description</h3>
+                <p>{{ job.description }}</p>
+            </div>
+        </div>
+        <div class="right-container">
+            <h3>Due date</h3>
+            <div class="other-info">
+                <p>{{ job.application_due_date }}</p>
+            </div>
+            <h3>Category</h3>
+            <div class="other-info">
+                <p>{{ job.job_category }}</p>
+            </div>
+            <h3>Job percentage</h3>
+            <div class="other-info">
+                <p>{{ job.percentage }}%</p>
+            </div>
+        </div>
+    </div>
+        <p>{{ education }}</p>
+    <div class="all_applicants">
+        {% for applicant in applicants %}
+            {% include 'job/applicant_card.html' with applicant=applicant %}
+        {% endfor %}
+    </div>
+    {% endblock %}

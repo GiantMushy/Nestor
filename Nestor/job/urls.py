@@ -7,5 +7,8 @@ urlpatterns = [
     path('<int:id>', views.get_job_by_id, name="job_page"),
     path('create_job', views.create_job, name="create_job"),
     path('favorite_jobs', views.favorite_jobs, name="favorite_jobs"),
-    path('applied_jobs', views.applied_jobs, name="applied_jobs")
+    path('applied_jobs', views.applied_jobs, name="applied_jobs"),
+    path('your_job_offers', views.your_job_offers, name="your_job_offers"),
+    path('your_job_offers/<int:id>', views.get_applications_by_job_id, name="applications_page"),
+
 ]
