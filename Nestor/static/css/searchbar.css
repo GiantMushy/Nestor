@@ -45,7 +45,8 @@
 	font-weight: 500;
 }
 
-#search-btn-job, #search-btn-company  {
+#search-btn-job,
+#search-btn-company {
 	color: #F5F5F2;
 	border-radius: 10px;
 	border: none;
@@ -99,7 +100,7 @@
 	flex-direction: row;
 }
 
-#sort-btn {
+.sort-btn {
 	width: 130px;
 	height: 42px;
 	text-align: left;
@@ -108,6 +109,7 @@
 	background-color: #363841;
 	color: #F5F5F2;
 	font-weight: 600;
+	border: none;
 }
 
 #sort-chevron {
@@ -251,4 +253,73 @@
 	border-bottom: none;
 	border-bottom-right-radius: 0px;
 	border-bottom-left-radius: 0px;
+}
+
+#sort-dropdown {
+	color: #363841;
+	background-color: #FFF;
+	position: absolute;
+	width: 100%;
+	top: 40px;
+	display: flex;
+	flex-direction: column;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+
+#sort-dropdown li {
+	font-size: 0.7rem;
+	list-style-type: none;
+	padding: 5px 10px;
+	border-top: grey 1px solid;
+}
+
+#sort-dropdown li:hover {
+	background-color: #DDD;
+	cursor: pointer;
+}
+
+#sort-dropdown:first-child {
+	border-top: none;
+}
+
+.arrow {
+	height: 13px;
+	float: right;
+	display: none;
+}
+
+.arrow-active {
+	display: block;
+}
+
+.arrow-descend {
+	animation: rotate-arrow 1.0s ease-out;
+	transform: rotate(180deg);
+}
+
+.arrow-ascend {
+	animation: rotate-arrow-back 1.5s linear infinite;
+
+}
+
+
+@keyframes rotate-arrow {
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(180deg);
+	}
+}
+
+@keyframes rotate-arrow-back {
+	from {
+		transform: rotate(180deg);
+	}
+
+	to {
+		transform: rotate(360deg);
+	}
 }
