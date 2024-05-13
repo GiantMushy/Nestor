@@ -1,6 +1,6 @@
 from django import forms 
 # import ModelForm, widgets
-from job.models import Job
+from job.models import Job, FavoriteJob
 from django.utils import timezone
 from company.models import Employee, Company
 from common.models import Country, ZipCode, City
@@ -24,3 +24,9 @@ class JobCreateForm(forms.ModelForm):
             'percentage': forms.NumberInput(attrs={'placeholder': 'Enter job percentage'}),
             # 'is_available': forms.CheckboxInput(attrs={'class': 'checkbox'})
         }
+
+
+class FavoriteJobCreateForm(forms.ModelForm):
+    class Meta:
+        model = FavoriteJob
+        fields = ['applicant', 'job']
