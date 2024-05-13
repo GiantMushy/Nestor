@@ -17,6 +17,9 @@ const toggleAddExperience = () => {
 	if (view.classList.contains("hidden")) { view.classList.remove("hidden") }
 	else { view.classList.add("hidden") }
 }
+const removeExperience = (id) => {
+
+}
 
 
 const toggleEditEducation = (id) => {
@@ -29,6 +32,9 @@ const toggleAddEducation = () => {
 	const view = document.getElementById("education/new");
 	if (view.classList.contains("hidden")) { view.classList.remove("hidden") }
 	else { view.classList.add("hidden") }
+}
+const removeEducation = (id) => {
+
 }
 
 
@@ -43,3 +49,17 @@ const toggleAddReference = () => {
 	if (view.classList.contains("hidden")) { view.classList.remove("hidden") }
 	else { view.classList.add("hidden") }
 }
+const removeReference = (id) => {
+
+}
+
+const toggleEditSkills = () => {
+	const view = document.getElementById(`skills/view`);
+	if (view.classList.contains("hidden")) { view.classList.remove("hidden") }
+	else { view.classList.add("hidden") }
+	const edit = document.getElementById(`skills/edit`);
+	if (edit.classList.contains("hidden")) { edit.classList.remove("hidden") }
+	else { edit.classList.add("hidden") }
+}
+
+const removeSkill = () => {}

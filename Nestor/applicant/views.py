@@ -2,9 +2,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 # from django.contrib.auth.forms import UserCreationForm
 from applicant.models import *
 from applicant.forms.applicant_form import *
-from common.models import ZipCode
+from common.models import ZipCode, Skills, SkillGenre
 
 
+################################  CONTACT INFORMATION #####################################
 def contact_info(request):
     print("Hello Contact Info")
     applicant = Applicant.objects.filter(user=request.user).first()
@@ -21,6 +22,7 @@ def contact_info(request):
         return redirect('applicant')
 
 
+################################  EXPERIENCES #####################################
 def experience_add(request):
     print("Adding Experience")
     applicant = Applicant.objects.filter(user=request.user).first()
@@ -56,6 +58,7 @@ def experience_edit(request):
 
 
 
+################################  EDUCATIONS #####################################
 def education_add(request):
     print("Adding Education")
     applicant = Applicant.objects.filter(user=request.user).first()
@@ -90,6 +93,8 @@ def education_edit(request):
         return redirect('applicant')
 
 
+
+################################  REFERENCES #####################################
 def reference_add(request):
     print("Adding Reference")
     applicant = Applicant.objects.filter(user=request.user).first()
@@ -124,12 +129,35 @@ def reference_edit(request):
         return redirect('applicant')
 
 
+def reference_delete(request):
+    return redirect('applicant')
+
+
+################################  SKILLS  #####################################
+def skills_edit(request): #adds and removes skills
+    return redirect('applicant')
+
+
+################################  OTHER  #####################################
 def applicant(request):
     print("Displaying Applicant Data")
     applicant = Applicant.objects.filter(user=request.user).first()
     experiences = CVExperience.objects.filter(applicant=applicant).all()
     educations = CVEducation.objects.filter(applicant=applicant).all()
     references = CVReferences.objects.filter(applicant=applicant).all()
+    app_skills = CVSkills.objects.filter(applicant=applicant).all()
+    genres = SkillGenre.objects.all()
+    skills = Skills.objects.all()
+
+    all_skills = {}
+    applicant_skills = {}
+    for genre in genres:
+        all_skills[genre] = []
+        applicant_skills[genre] = []
+    for skill in skills:
+        all_skills[skill.genre].append(skill.name)
+    for skill in app_skills:
+        applicant_skills[skill.skill.genre].append(skill.skill.name)
 
     context = {
         'applicant': applicant,
@@ -137,7 +165,9 @@ def applicant(request):
         'education_levels': EducationLevel.objects.all(),
         'experiences': experiences,
         'educations': educations,
-        'references': references
+        'references': references,
+        'applicant_skills': applicant_skills,
+        'all_skills': all_skills,
     }
     return render(request, 'applicant/applicant.html', context)
 

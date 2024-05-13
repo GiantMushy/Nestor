@@ -55,4 +55,9 @@
         {% endfor %}
     {% endif %}
     
+    <h2 class="CV-block-title">Skills</h2>
+    <button onclick="toggleEditSkills()" class="edit-button add">+</button>
+    {% include 'applicant/VirtualCV/skills_view.html' %}
+    {% include 'applicant/VirtualCV/skills_edit.html' %}
+    
 {% endblock %}
