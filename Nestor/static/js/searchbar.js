@@ -55,7 +55,33 @@ const search = (id) => {
 }
 
 
+const get_selected_items = (dropdown_list) => {
+	let selected_items = []
+	let checkboxes = dropdown_list.querySelectorAll('input[type="checkbox"]')
+	checkboxes.forEach((checkbox) => {
+		if (checkbox.checked) {
+			selected_items.push(checkbox.value)
+		}
+	})
+	return selected_items
+}
 
 
+const get_updated_placeholder = (dropdown) => {
+	let new_placeholder = ''
+	dropdown.forEach((item) => {
+		const item_name = item.querySelector('label').innerText
+		const checkbox = item.querySelector("input[type='checkbox']")
+		if (checkbox.checked) {
+			new_placeholder += item_name + ', '
+		}
+	})
+	new_placeholder = new_placeholder.replace(/, $/, '')
+	return new_placeholder
+}
 
+
+const update_placeholder = (placeholder, html_item) => {
+	html_item.value = placeholder
+}
 

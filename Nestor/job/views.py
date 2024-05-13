@@ -53,10 +53,13 @@ def index(request):
 
 
 def get_job_by_id(request, id):
-    active_section = get_active_section(request)
+    all_jobs = Job.objects.all().order_by('name')
+    fav_jobs = FavoriteJob.objects.filter(applicant__user_id=request.user.id).all()
+
     return render(request, 'job/job_page.html', {
         'job': get_object_or_404(Job, pk=id),
-        'active_section': active_section
+        'fav_jobs': [job.job.id for job in fav_jobs],
+        'active_section': get_active_section(request)
     })
 
 
@@ -100,8 +103,6 @@ def applied_jobs(request):
     job_ids = [app.job_id for app in applications]
 
     all_jobs = Job.objects.filter(id__in=job_ids)
-
-    print(applications)
 
     context = {'companies': Company.objects.all().order_by('name'),
                'categories': JobCategory.objects.all().order_by('name'),
