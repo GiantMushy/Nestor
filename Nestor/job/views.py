@@ -164,7 +164,6 @@ def get_applications_by_job_id(request, id):
         if experience.exists():
             applicant.experience = experience[0].experience
 
-
     return render(request, 'job/applications_page.html', {
         'job': get_object_or_404(Job, pk=id),
         'applicants':applicants,

@@ -2,6 +2,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	margin-bottom: 20px;
 }
 
 .company-page-content {
@@ -13,6 +14,14 @@
 	text-align: start;
 	letter-spacing: 0.5px;
 	font-size: 0.8rem;
+}
+
+.available-jobs {
+	margin-top: 10px;
+}
+
+.available-jobs h2 {
+	margin-bottom: 10px;
 }
 
 .company-page-content h5 {

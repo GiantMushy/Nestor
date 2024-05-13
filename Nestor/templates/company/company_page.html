@@ -29,9 +29,15 @@
             </div>
         </div>
     </div>
-    <div id="all-jobs" class="all_jobs">
-        {% for job in jobs %}
-            {% include 'job/single_job.html' with job=job %}
-        {% endfor %}
+    <div class="available-jobs">
+        <h2>Available jobs at {{ company.name }}</h2>
+        {% if not jobs %}
+        <p>No available jobs, check later!</p>
+        {% endif %}
+        <div id="all-jobs" class="all_jobs">
+            {% for job in jobs %}
+                {% include 'job/single_job.html' with job=job %}
+            {% endfor %}
+        </div>
     </div>
     {% endblock %}
