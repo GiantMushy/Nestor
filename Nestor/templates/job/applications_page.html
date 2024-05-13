@@ -28,10 +28,10 @@
             </div>
         </div>
     </div>
-        <p>{{ education }}</p>
+        <!-- <p>{{ education }}</p> -->
     <div class="all_applicants">
-        {% for applicant in applicants %}
-            {% include 'job/applicant_card.html' with applicant=applicant %}
+        {% for application in applications %}
+            {% include 'job/applicant_card.html' with application=application %}
         {% endfor %}
     </div>
     {% endblock %}

@@ -1,20 +1,20 @@
 {% load static %}
-{% block additionalStyles %}
+    {% block additionalStyles %}
     <link rel="stylesheet" href="{% static "css/applicant_card.css" %}"/>
-{% endblock %}
-<div class="app_card">
-    <div class="app_image_container">
-        <img src="{{ applicant.applicant.profile_image }}" alt="">
-    </div>
-    <div class="app_card_info">
-        <p>{{ applicant.applicant.full_name }}</p>
-        <p>{{ applicant.education.degree }} - {{ applicant.education.level }}</p>
-        <p>{{ applicant.experience.workplace_name }} - {{ applicant.experience.role }}</p>
+    {% endblock %}
+    <a href="/jobs/your_job_offers/{{ job.id }}/application/{{ application.id }}" class="app_card">
+        <div class="app_image_container">
+            <img src="{{ application.applicant.profile_image }}" alt="profile image">
+        </div>
+        <div class="app_card_info">
+            <p>{{ application.applicant.full_name }}</p>
+            <p>{{ application.education.school_name }} - {{ application.education.level }}</p>
+            <p>{{ application.experience.workplace_name }} - {{ application.experience.role }}</p>
 
-    </div>
-    <div class="app_card_info">
-        <div class="info_container"><img src="static/images/phone.png" alt=""><p>{{ applicant.applicant.phone }}</p></div>
-        <div class="info_container"><img src="images/location.png" alt=""><p>{{ applicant.applicant.address }}</p></div>
-        <div class="info_container"><img src="images/mail_icon.png" alt=""><p>{{ applicant.applicant.email }}</p></div>
-    </div>
-</div>
+        </div>
+        <div class="app_card_info">
+            <div class="info_container"><img src="{% static 'images/phone.png' %}" alt=""><p>{{ application.applicant.phone }}</p></div>
+            <div class="info_container"><img src="{% static 'images/location.png' %}" alt=""><p>{{ application.applicant.address }}</p></div>
+            <div class="info_container"><img src="{% static 'images/mail_icon.png' %}" alt=""><p>{{ application.applicant.email }}</p></div>
+        </div>
+    </a>

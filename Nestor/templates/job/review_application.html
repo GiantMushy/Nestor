@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block additionalStyles %}
+<link rel="stylesheet" href="{% static "css/applicant_card.css" %}"/>
+{% endblock %}
+{% block content %}    
+
+<div class="application-container">
+    <div class="left-application">
+        <div class="image-container">
+            <img />
+        </div>
+        <div class="basic-info-section">
+        </div>
+        <div class="references-section">
+        </div>
+
+    </div>
+    <div class="right-application">
+        <h1>{{ application.applicant.full_name }}</h1>
+        <div class="experience-section">
+
+        </div>
+        <div class="education-section">
+        </div>
+        <div class="skill-section">
+        </div>
+        <div class="cover-letter-section">
+        </div>
+    </div>
+</div>
+{% endblock %}
