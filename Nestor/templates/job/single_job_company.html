@@ -12,8 +12,12 @@
             <div class="job_container_right_column"><p>{{ job.percentage }}%</p></div>
         </div>
         <div class="job_container_row">
-            <p>{{ job.num_of_applicants }} applicants</p>
-            {% if job.days_left == '1' %}
+            {% if job.total_applicants  == 1 %}
+            <p>{{ job.total_applicants }} applicant</p>
+            {% else %}
+            <p>{{ job.total_applicants }} applicants</p>
+            {% endif %}
+            {% if job.days_left == '1' or job.days_left == '-1' %}
             <div class="job_container_right_column"><p>{{ job.days_left }} day</p></div>
             {% else %}
             <div class="job_container_right_column"><p>{{ job.days_left }} days</p></div>

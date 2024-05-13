@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from company.forms.company_form import CompanyCreateForm
 from company.models import Company, Employee
 from common.models import JobCategory, City
+from job.models import Job
 from django.http import JsonResponse
 
 
@@ -33,8 +34,10 @@ def index(request):
 
 def get_company_by_id(request, id):
     active_section = get_active_section(request)
+
     return render(request, 'company/company_page.html', {
         'company': get_object_or_404(Company, pk=id),
+        'jobs': Job.objects.filter(company_id=id).order_by('name'),
         'active_section': active_section
     })
 
