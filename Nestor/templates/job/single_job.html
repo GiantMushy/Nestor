@@ -1,9 +1,6 @@
 {% load static %}
-{% block additionalStyles %}
-    <link rel="stylesheet" href="{% static 'css/job_cards.css' %}" />
-{% endblock additionalStyles %}
-<a href="/jobs/{{ job.id }}">
-    <div class="job_card">
+<a id="{{ job.id }}" href="/jobs/{{ job.id }}" data-job="{{ job.name }}" data-due="{{ job.days_left }}" data-date="{{ job.date_of_offering }}" data-company="{{ job.company }}">
+        <div  class="job_card">
         <div class="job_container_row">
             <div class="company_image_container"><img src="{{ job.company.logo }}"/></div>
             <div class="job_container_right_column">
