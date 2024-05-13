@@ -1,5 +1,5 @@
-<div class="black_block" id="reference-view">
-    <button onclick="toggleEditReference()" class="edit-button">edit</button><br>
+<div class="black_block" id="reference/view/{{ reference.reference_id }}">
+    <button onclick="toggleEditReference({{ reference.reference_id }})" class="edit-button">edit</button><br>
     <div class="profile-data-block" style="margin-right: 5%; width: 25%">
         <p class="profile-data-label">Full name</p>
         <p class="profile-data">{{ reference.reference.name }}</p>
