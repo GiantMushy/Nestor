@@ -1,0 +1,123 @@
+.job-page-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.job-page-content {
+	margin-top: 15px;
+	display: flex;
+	color: #363841;
+	line-height: 1.25rem;
+	text-align: justify;
+	letter-spacing: 0.5px;
+	font-size: 0.8rem;
+}
+
+.job-page-content h5 {
+	font-size: 1rem;
+	margin-top: 10px;
+	margin-bottom: 3px;
+}
+
+.company-logo,
+.job-image {
+	max-width: 100%;
+}
+
+.left-job-view,
+.right-job-view {
+	width: 25%;
+}
+
+.left-job-view,
+.middle-job-view {
+	margin-right: 2.5%;
+}
+
+.middle-job-view {
+	width: 45%;
+}
+
+.title-and-btn {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.apply-btn {
+	text-decoration: none;
+	align-self: flex-start;
+	padding: 8px 40px;
+	font-size: 0.8rem;
+	color: #FFF;
+	border-radius: 10px;
+	background-color: #4AA587;
+	border: none;
+	margin-right: 20px;
+}
+
+.favorite-btn {
+    text-decoration: none;
+    font-size: 0.8rem;
+    color: #363841;
+	padding: 2px 5px;
+    border-radius: 10px;
+    font-weight: bold;
+    border: 2px solid #4AA587;
+    display: inline-flex;
+    align-items: center;
+}
+
+.favorite-btn p,
+.favorite-btn img {
+    margin: 0;
+}
+
+.job-title {
+	font-size: 1.5rem;
+	margin-bottom: 20px;
+	text-align: left;
+	line-height: 1.6rem;
+}
+
+.company-title {
+	font-size: 1.2rem;
+	margin: 10px 0px;
+}
+
+.heart-image {
+	width: 25px;
+	height: 25px;
+}
+
+
+@media only screen and (max-width: 700px) {
+	.job-page-content {
+		flex-direction: column;
+	}
+
+	.job-image {
+		max-width: 50%;
+	}
+
+	.left-job-view,
+	.middle-job-view,
+	.right-job-view {
+		width: 100%;
+	}
+
+	.left-job-view {
+		display: flex;
+	}
+
+	.middle-job-view,
+	.right-job-view {
+		margin-top: 30px;
+	}
+
+	.left-job-info {
+		margin-left: 10%;
+		width: 40%
+	}
+}

@@ -1,4 +1,5 @@
-const active = document.body.addEventListener("click", (elem) => {
+
+document.body.addEventListener("click", (elem) => {
 	if (!elem.target.classList.contains("search-dropdown") && !elem.target.classList.contains("in-dropdown")) {
 		const active_elements = document.getElementsByClassName("with-dropdown");
 		//Make sure everything that is supposed to be hidden, is hidden
@@ -37,12 +38,12 @@ const search = (id) => {
 
 	//get items in dropdown
 	const item_list = searchbar.nextElementSibling;
-	const trackSearch = searchbar.addEventListener("keyup", (event) => {
+	searchbar.addEventListener("keyup", (event) => {
 		Array.from(item_list.childNodes).forEach((item) => {
 			if (item.nodeType === Node.ELEMENT_NODE) {
 				console.log(item);
-				const searchterm = item.id.toLowerCase()
-				if (!searchterm.startsWith(event.target.value.toLowerCase())) {
+				const search_term = item.id.toLowerCase()
+				if (!search_term.startsWith(event.target.value.toLowerCase())) {
 					item.style.display = "none";
 				} else {
 					item.style.display = "flex";
@@ -52,3 +53,35 @@ const search = (id) => {
 
 	});
 }
+
+
+const get_selected_items = (dropdown_list) => {
+	let selected_items = []
+	let checkboxes = dropdown_list.querySelectorAll('input[type="checkbox"]')
+	checkboxes.forEach((checkbox) => {
+		if (checkbox.checked) {
+			selected_items.push(checkbox.value)
+		}
+	})
+	return selected_items
+}
+
+
+const get_updated_placeholder = (dropdown) => {
+	let new_placeholder = ''
+	dropdown.forEach((item) => {
+		const item_name = item.querySelector('label').innerText
+		const checkbox = item.querySelector("input[type='checkbox']")
+		if (checkbox.checked) {
+			new_placeholder += item_name + ', '
+		}
+	})
+	new_placeholder = new_placeholder.replace(/, $/, '')
+	return new_placeholder
+}
+
+
+const update_placeholder = (placeholder, html_item) => {
+	html_item.value = placeholder
+}
+

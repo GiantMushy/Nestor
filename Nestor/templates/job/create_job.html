@@ -2,48 +2,59 @@
 {% load static %}
     {% block additionalStyles %}
     <link rel="stylesheet" href="{% static 'css/create_job.css' %}" />
+    <script type="text/javascript" src="{% static 'js/create_job.js' %}"></script>
     {% endblock additionalStyles %}
     {% block content %}
     <div class="create-job-container">
-        <h2>Create new job offer</h2>
+        <h2 class="title">Create a new job offer for {{ employee.company }}</h2>
         <form class="form form-horizontal" action="{% url 'create_job' %}" method="post">
             {% csrf_token %}
-            <!-- <div class="form-upper"> -->
-            <!--     <label for="id-job_image">Job image: </label> -->
-            <!--     {{ form.job_image }} -->
-            <!--     <div class="middle-upper-form"> -->
-            <!--         <label for="id_name">Job name: </label> -->
-            <!--         {{ form.name }} -->
-            <!--         <label for="id_category">Job category: </label> -->
-            <!--         {{ form.job_category }} -->
-            <!--         <label for="id_application_due_date">Due date: </label> -->
-            <!--         {{ form.application_due_date }} -->
-            <!--         <label for="id_starting_dage">Starting date: </label> -->
-            <!--         {{ form.starting_date }} -->
-            <!--     </div> -->
-            <!--     <div class="right-upper-form"> -->
-            <!--         <label for="id_zipcode">Zipcode: </label> -->
-            <!--         {{ form.zipcode }} -->
-            <!--         <label for="id_address">Address: </label> -->
-            <!--         {{ form.address }} -->
-            <!--         <label for="id_job_type">Job type: </label> -->
-            <!--         {{ form.job_type }} -->
-            <!--         <label for="id_percentage">Job percentage: </label> -->
-            <!--         {{ form.percentage }} -->
-            <!--     </div> -->
-            <!-- </div> -->
-            <!-- <label for="id_description">Description: </label> -->
-            <!-- {{ form.description }} -->
-            <!-- <div id="temporary"> -->
-            <!--     <label for="id_company">Company: </label> -->
-            <!--     {{ form.company }} -->
-            <!--     <label for="id_date_of_offering">Date of offering: </label> -->
-            <!--     {{ form.date_of_offering }} -->
-            <!--     <label for="id_is_available">Availability: </label> -->
-            <!--     {{ form.is_available }} -->
-            <!-- </div> -->
-            {{ form }}
-            <input type="submit" value="Create" class="btn btn-primary pull-right" style="clear:both; margin: 10px" />
+            <div class="form-upper">
+                <!-- <label for="id-job_image">Job image: </label> -->
+                <div class="job-image-container">
+                    <img id="job-image" src="{% static 'images/empty_img.png' %}" />                
+                    <div id="image-input" class="image-input">
+                        {{ form.job_image }}
+                        <button id="update-image" class="submit-btn" onclick="update_image()">Update</button>
+                    </div>
+                    <p id="error-msg-image" class="error-msg hidden">Image URL not valid, please try again.</p>
+                </div>
+
+                <div class="middle-upper-form">
+                    <label for="id_name">Job name: </label>
+                    {{ form.name }}
+                    <label for="id_category">Job category: </label>
+                    {{ form.job_category }}
+                    <label for="id_application_due_date">Due date: </label>
+                    {{ form.application_due_date }}
+                    <label for="id_starting_dage">Starting date: </label>
+                    {{ form.starting_date }}
+                </div>
+                <div class="right-upper-form">
+                    <!-- <label for="id_country">Country: </label> -->
+                    <!-- {{ form.country }} -->
+                    <!-- <label for="id_city">City: </label> -->
+                    <!-- {{ form.city }} -->
+                    <label for="id_zipcode">Zipcode: </label>
+                    {{ form.zipcode }}
+                    <label for="id_address">Address: </label>
+                    {{ form.address }}
+                    <label for="id_job_type">Job type: </label>
+                    {{ form.job_type }}
+                    <label for="id_percentage">Job percentage: </label>
+                    {{ form.percentage }}
+                </div>
+            </div>
+            <div class="desc-container">
+                <label for="id_description">Description: </label>
+                {{ form.description }}
+            </div>
+            <div id="temporary">
+                <!-- <label for="id_company">Company: </label> -->
+                <label for="id_is_available">Availability: </label>
+                {{ form.is_available }}
+            </div>
+            <input type="submit" value="Create a new Job" class="submit-btn" style="clear:both; margin: 10px" />
         </form>
     </div>
     {% endblock %}

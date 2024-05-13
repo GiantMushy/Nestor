@@ -1,42 +1,42 @@
-.job-page-container {
+
+.company-page-container {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
-.job-page-content {
+.company-page-content {
 	margin-top: 15px;
 	display: flex;
 	color: #363841;
 	line-height: 1.25rem;
-	text-align: justify;
+	text-align: start;
 	letter-spacing: 0.5px;
 	font-size: 0.8rem;
 }
 
-.job-page-content h5 {
+.company-page-content h5 {
 	font-size: 1rem;
 	margin-top: 10px;
 	margin-bottom: 3px;
 }
 
 .company-logo,
-.job-image {
+.company-image {
 	max-width: 100%;
 }
 
-.left-job-view,
-.right-job-view {
-	width: 25%;
+.left-company-view {
+	width: 30%;
 }
 
-.left-job-view,
-.middle-job-view {
+.left-company-view,
+.right-company-view {
 	margin-right: 2.5%;
 }
 
-.middle-job-view {
-	width: 45%;
+.right-company-view {
+	width: 70%;
 }
 
 .title-and-btn {
@@ -45,56 +45,39 @@
 	align-items: center;
 }
 
-.apply-btn {
-	text-decoration: none;
-	align-self: flex-start;
-	padding: 8px 40px;
-	font-size: 0.8rem;
-	color: #FFF;
-	border-radius: 10px;
-	background-color: #4AA587;
-	border: none;
-	margin-right: 20px;
-}
-
-.job-title {
+.company-title {
 	font-size: 1.5rem;
 	margin-bottom: 20px;
 	text-align: left;
 	line-height: 1.6rem;
 }
 
-.company-title {
-	font-size: 1.2rem;
-	margin: 10px 0px;
-}
-
 
 @media only screen and (max-width: 700px) {
-	.job-page-content {
+	.company-page-content {
 		flex-direction: column;
+		justify-content: start;
 	}
 
-	.job-image {
-		max-width: 50%;
+	.company-image {
+		min-width: 90%;
 	}
 
-	.left-job-view,
-	.middle-job-view,
-	.right-job-view {
+	.left-company-view,
+	.right-company-view {
 		width: 100%;
 	}
 
-	.left-job-view {
+	.left-company-view {
 		display: flex;
 	}
 
-	.middle-job-view,
-	.right-job-view {
+	.left-company-view,
+	.right-company-view {
 		margin-top: 30px;
 	}
 
-	.left-job-info {
+	.left-company-view {
 		margin-left: 10%;
 		width: 40%
 	}

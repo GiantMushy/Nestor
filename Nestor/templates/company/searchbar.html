@@ -1,44 +1,40 @@
 {% load static %}
-{% block additionalStyles %}
-        <link rel="stylesheet" href="{% static 'css/searchbar.css' %}" />
-{% endblock additionalStyles %}
-
-<form class="searchbar">
+    {% block additionalStyles %}
+    <link rel="stylesheet" href="{% static 'css/searchbar.css' %}" />
+{#    <script type="text/javascript" src="{% static 'js/searchbar.js' %}"></script>#}
+    {% endblock additionalStyles %}
     <h1 id="searchbar-title">Search for your dream job</h1>
     <div class="searchbar-filters">
         <div class="search-container">
-            <input id="filter-category" type="text" placeholder=" Pick category">
+            <input id="filter-location" type="text" onclick="search('filter-location')" class="with-dropdown searchbar-input" placeholder="{%  if countries_placeholder %} {{ countries_placeholder }} {% else %}Pick location{% endif %}" autocomplete="off">
+            <div id="countries-list" class="dropdown-list search-dropdown hidden">
+                {% for item in countries %}
+                <div id="{{ item.name }}-country-item" class="dropdown-item in-dropdown" >
+                    <label class="in-dropdown" for="country-{{ item.id }}">{{ item.name }}</label>
+                    <input class="dropdown-checkbox in-dropdown" type="checkbox" id="country-{{ item.id }}" value="{{ item.id }}" {% if item.id in countries_checked %} checked {% endif %}>
+                </div>
+                {% endfor %}
+            </div>
             <span class="chevron"></span>
-        </div>
-        <div class="search-container">
-{#            <input id="filter-location" type="text" placeholder=" Pick location">#}
-{#            <span class="chevron"></span>#}
-                <input type="text" placeholder="Pick location" class="search-input">
-                <ul class="dropdown-menu">
-                    {% for category in categories %}
-                        <li><a href="#">{{ category.name}}</a></li>
-                    {% endfor %}
-                <!-- Add more options here -->
-                </ul>
         </div>
     </div>
     <div class="searchbar-search">
         <div id="job-search-container">
-            <input id="search-jobname" type="text" placeholder=" Enter job title here...">
+            <input class="searchbar" id="search-company" type="text" placeholder="Enter company name here..." value="{{ cpn_value }}">
             <img src="../static/images/searchicon.svg" alt="search icon">
         </div>
-        <button id="search-btn">Search</button>
+        <button class="search-btn-company" id="search-btn-company" type="button">Search</button>
     </div>
     <div class="searchbar-extras">
-        <label id="checkbox-container" for="checkbox-applied">Show applied jobs
-            <input id="checkbox-applied" type="checkbox">
-            <span class="checkmark"></span>
-        </label>
+        {% if employee %}
         <a href="{% url 'create_job' %}" class="create-job-btn">Create Job</a>
-{#        <button id="create-job-btn">Create Job</button>#}
+        {% endif %}
         <div id="sort-btn-container">
             <button id="sort-btn">Sort by</button>
-        <span id="sort-chevron"class="chevron"></span>
+            <span id="sort-chevron"class="chevron"></span>
         </div>
     </div>
-</form>
+ 
+
+    <script type="text/javascript" src="{% static 'js/searchbar.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/search_company.js' %}"></script>

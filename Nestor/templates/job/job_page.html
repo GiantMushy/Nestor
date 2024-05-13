@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
     {% block additionalStyles %}
-    <link rel="stylesheet" href="{% static 'css/job-page.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/job_page.css' %}"/>
     {% endblock %}
     {% block content %}
     <div class="job-page-container">
@@ -20,8 +20,17 @@
             <div class="middle-job-view">
                 <div class="title-and-btn">
                     <h2 class="job-title">{{ job.name }}</h2>
-                    <a class="apply-btn" href="" >Apply</a>
+                    <a class="apply-btn" href="">Apply </a>
                 </div>
+                <a class="favorite-btn" href="">
+                    {% if job.id in fav_jobs %}
+                        <p>Unfavorite</p> 
+                        <img class="heart-image" src="{% static 'images/filled_heart.png'%}" alt="">
+                    {% else %}
+                        <p>Favorite</p> 
+                        <img class="heart-image" src="{% static 'images/heartoutline_110866.png'%}" alt="">
+                    {% endif %}
+                </a>
                 <h5>Job description</h5>
                 <p>{{ job.description }}</p>
             </div>
@@ -32,7 +41,6 @@
                 <p class="company-description">{{ job.company.description }}</p>
                 <h5>Employees</h5>
                 <p>{{ job.company.number_of_employees }}</p>
-
             </div>
         </div>
     </div>

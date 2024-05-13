@@ -23,4 +23,4 @@ class Employee(models.Model):
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.user.name + " " + self.company.name
+        return str(self.user.get_full_name()) + ", " + str(self.company.name)
