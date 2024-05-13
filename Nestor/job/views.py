@@ -100,8 +100,6 @@ def applied_jobs(request):
 
     all_jobs = Job.objects.filter(id__in=job_ids)
 
-    print(applications)
-
     context = {'companies': Company.objects.all().order_by('name'),
                'categories': JobCategory.objects.all().order_by('name'),
                'countries': City.objects.all().order_by('name'),
