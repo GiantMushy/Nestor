@@ -2,6 +2,7 @@
 <div class="black_block hidden" id="education-edit">
     <form class="form form-horizontal" method="post" action="applicant/education_edit">
         {% csrf_token %}
+        <input type="hidden" name="education_id" value="{{ education.education_id }}">
         <input type="submit" class="edit-button" value="Add" />
         <br>
         <div class="profile-data-block" style="margin-right: 5%; width: 25%">

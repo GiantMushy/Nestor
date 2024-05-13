@@ -6,11 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="f178713c-272d-4fb1-901f-08a5ee9808ce" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/company/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/company/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/searchbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/searchbar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/searchbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/searchbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/company/searchbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/company/searchbar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/job/searchbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/job/searchbar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/applicant/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/applicant/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/applicant/VirtualCV/education_edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/applicant/VirtualCV/education_edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/applicant/VirtualCV/experience_edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/applicant/VirtualCV/experience_edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/applicant/VirtualCV/reference_edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/applicant/VirtualCV/reference_edit.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +48,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.pycharm.django.structure.promotion.once.per.project": "true",
     "django.template.preview.state": "SHOW_EDITOR_AND_PREVIEW",
-    "git-widget-placeholder": "Rebasing aj__searchbar__test",
+    "git-widget-placeholder": "ProfileFikt",
     "last_opened_file_path": "C:/Users/thorr/OneDrive/Documents/GitHub/Nestor/Nestor/static/images",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
