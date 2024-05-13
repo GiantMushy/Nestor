@@ -1,6 +1,6 @@
 {% load static %}
 <div class="black_block hidden" id="education-new">
-    <form class="form form-horizontal" method="post">
+    <form class="form form-horizontal" method="post" action="applicant/education_add">
         {% csrf_token %}
         <input type="submit" class="edit-button" value="Add" />
         <br>

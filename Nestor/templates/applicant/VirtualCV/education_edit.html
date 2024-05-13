@@ -1,10 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% load static %}
+<div class="black_block hidden" id="education-edit">
+    <form class="form form-horizontal" method="post" action="applicant/education_edit">
+        {% csrf_token %}
+        <input type="submit" class="edit-button" value="Add" />
+        <br>
+        <div class="profile-data-block" style="margin-right: 5%; width: 25%">
+            <p class="profile-data-label">School</p><br>
+            <input type="text" name="school_name" value="{{ education.education.school_name }}" class="profile-data-input form-control" required id="id_school_name">
+        </div>
+        <div class="profile-data-block" style="margin-right: 5%; width: 25%">
+            <p class="profile-data-label">Degree</p><br>
+            <input type="text" name="degree" value="{{ education.education.degree }}" class="profile-data-input form-control" required id="id_degree">
+        </div>
+        <div class="profile-data-block" style="width: 25%">
+            <p class="profile-data-label">Level</p><br>
+            <select name="level" class="profile-data-select" required id="id_level">
+                {% for option in education_levels %}
+                    <option value="{{ option.id }}">{{ option }}</option>
+                {% endfor %}
+            </select>
+        </div>
 
-</body>
-</html>
+        <div class="profile-data-block" style="margin-right: 5%; width: 15%">
+            <p class="profile-data-label">Start Date</p><br>
+            <input type="date" name="start_date" value="{{ education.education.start_date }}" class="profile-data-input form-control" required id="id_start_date">
+        </div>
+        <div class="profile-data-block" style="width: 15%">
+            <p class="profile-data-label">End Date</p><br>
+            <input type="date" name="end_date" value="{{ education.education.end_date }}" class="profile-data-input form-control" id="id_end_date">
+        </div>
+
+        <div style="overflow: hidden">
+            <p class="profile-data-label">Degree Description</p><br>
+            <textarea name="description" id="id_description" class="profile-data-input bio-input form-control">{{ education.education.description }}</textarea>
+        </div>
+    </form>
+</div>

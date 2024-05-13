@@ -1,6 +1,6 @@
 {% load static %}
 <div class="black_block hidden" id="experience-edit">
-    <form class="form form-horizontal" method="post">
+    <form class="form form-horizontal" method="post" action="applicant/experience_edit">
         {% csrf_token %}
         <input type="submit" class="edit-button" value="Update" />
         <br>
