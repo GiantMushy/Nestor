@@ -1,16 +1,31 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block additionalStyles %}
-{% endblock %}
-{% block content %}
-<div>
-    <div>
-        <img src="{{ company.logo }}" class="logo-img"/>
+    {% block additionalStyles %}
+    <link rel="stylesheet" href="{% static 'css/company_page.css' %}"/>
+    {% endblock %}
+    {% block content %}
+    <div class="company-page-container">
+        <div class="company-page-content">
+            <div class="left-company-view">
+                <img class="company-image" src="{{ company.logo }}" class="job-img"/>
+                <div class="left-company-info">
+                    <h5>Address</h5>
+                    <p>{{ company.address }}, {{ company.zipcode.city }}, {{ company.zipcode.city.country }}</p>
+                    <h5>Phone</h5>
+                    <p>{{ company.phone }}</p>
+                    <h5>Email</h5>
+                    <p>{{ company.email }}</p>
+                </div>
+            </div>
+            <div class="right-company-view">
+                <div class="title-and-btn">
+                    <h2 class="company-title">{{ company.name }}</h2>
+                </div>
+                <h5>About us</h5>
+                <p>{{ company.description }}</p>
+                <h5>Employees</h5>
+                <p>{{ company.number_of_employees }}</p>
+            </div>
+        </div>
     </div>
-    <div>
-        <h1>{{ company.name }}</h1>
-        <h3>Employees: {{ company.number_of_employees }}</h3>
-        <p>{{ company.description }}</p>
-    </div>
-</div>
-{% endblock %}
+    {% endblock %}

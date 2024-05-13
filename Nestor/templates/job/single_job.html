@@ -7,7 +7,11 @@
         <div class="job_container_row">
             <div class="company_image_container"><img src="{{ job.company.logo }}"/></div>
             <div class="job_container_right_column">
+                {% if job.id in fav_jobs %}
+                <div><img class="heart_image" src="{% static 'images/filled_heart.png'%}" alt=""></div>
+                {% else %}
                 <div><img class="heart_image" src="{% static 'images/heartoutline_110866.png'%}" alt=""></div>
+                {% endif %}
             </div>
         </div>
         <div class="job_container_row">
