@@ -1,6 +1,6 @@
 {% load static %}
 <div class="black_block contact-info hidden" id="contact-info-edit">
-    <form class="form form-horizontal" method="post">
+    <form class="form form-horizontal" method="post" action="applicant/contact-info">
         {% csrf_token %}
         <h3 style="display: inline-block">Contact Information</h3>
         <input type="submit" class="edit-button" value="Update" />

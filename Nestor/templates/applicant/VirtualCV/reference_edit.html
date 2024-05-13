@@ -1,6 +1,6 @@
 {% load static %}
 <div class="black_block hidden" id="reference-edit">
-    <form class="form form-horizontal" method="POST">
+    <form class="form form-horizontal" method="POST"  action="applicant/reference_edit">
         {% csrf_token %}
         <input type="submit" class="edit-button" value="Update" /><br>
         <div class="profile-data-block" style="margin-right: 10%">
