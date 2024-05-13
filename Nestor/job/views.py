@@ -144,7 +144,8 @@ def your_job_offers(request):
                'categories': JobCategory.objects.all().order_by('name'),
                'countries': City.objects.all().order_by('name'),
                'jobs': [add_days_left(job) for job in company_jobs],
-               'active_section': get_active_section(request)
+               'active_section': get_active_section(request),
+                'employee' : employee
                }
     return render(request, 'job/your_job_offers.html', context)
 

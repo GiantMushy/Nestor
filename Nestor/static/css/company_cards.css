@@ -1,29 +1,44 @@
+.create-job-btn {
+	display: block;
+	color: #F5F5F2;
+	border-radius: 10px;
+	border: none;
+	height: 35px;
+	font-size: 0.8rem;
+	background-color: #4AA587;
+	width: 150px;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	line-height: 35px;
+}
 
+.create-job-btn:active {
+	background-color: #297554;
+}
 
 p {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .all_companies {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 10px;
 }
 
-.a
-
-@media (max-width: 1540px) {
-.all_companies {
-    grid-template-columns: repeat(2, 1fr);
-}
+.a @media (max-width: 1540px) {
+	.all_companies {
+		grid-template-columns: repeat(2, 1fr);
+	}
 }
 
 @media (max-width: 1000px) {
-.all_companies {
-    grid-template-columns: repeat(1, 1fr);
-}
+	.all_companies {
+		grid-template-columns: repeat(1, 1fr);
+	}
 }
 
 .all_companies a {
@@ -33,58 +48,58 @@ p {
 }
 
 .company_card {
-    border-radius: 10px;
-    background-color: white;
-    display: grid;
-    grid-template-rows: 100px 20px 20px;
-    gap: 10px;
-    padding: 15px;
+	border-radius: 10px;
+	background-color: white;
+	display: grid;
+	grid-template-rows: 100px 20px 20px;
+	gap: 10px;
+	padding: 15px;
 }
 
 .company_container_row {
-    display: grid;
-    grid-template-columns: 40% 60%;
+	display: grid;
+	grid-template-columns: 40% 60%;
 }
 
-.company_container_row p{
-    margin: 0px;
+.company_container_row p {
+	margin: 0px;
 }
 
 .company_image_container {
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 .like_button {
-    display: flex;
-    justify-content: end;
+	display: flex;
+	justify-content: end;
 }
 
 .company_container_right_column {
-    display: flex;
-    justify-content: start;
+	display: flex;
+	justify-content: start;
 }
 
 .company_image {
-    width: 170px;
+	width: 170px;
 }
 
 .info_container {
-    display: grid;
-    grid-template-columns: 20px 1fr;
-    gap: 10px;
-    justify-content: start;
+	display: grid;
+	grid-template-columns: 20px 1fr;
+	gap: 10px;
+	justify-content: start;
 }
 
 .info_container img {
-    width: 20px;
+	width: 20px;
 }
 
 .heart_image {
-    width: 30px;
-    height: 30px;
+	width: 30px;
+	height: 30px;
 }
 
 .header {
-    margin-bottom: 20px ;
+	margin-bottom: 20px;
 }

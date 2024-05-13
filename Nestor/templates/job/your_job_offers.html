@@ -7,6 +7,9 @@
 {% block content %}
     <div class="header" >
         <h1>Your job offers</h1>
+            {% if employee %}
+            <a href="{% url 'create_job' %}" class="create-job-btn">Create Job</a>
+            {% endif %}
     </div>
 {#    {% include 'job/searchbar.html' %}#}
     <div class="all_jobs">
