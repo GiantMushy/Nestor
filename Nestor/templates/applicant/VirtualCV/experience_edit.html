@@ -1,5 +1,5 @@
 {% load static %}
-<div class="black_block hidden" id="experience-edit">
+<div class="black_block hidden" id="experience/edit/{{ experience.experience_id }}">
     <form class="form form-horizontal" method="post" action="applicant/experience_edit">
         {% csrf_token %}
         <input type="hidden" name="experience_id" value="{{ experience.experience_id }}">

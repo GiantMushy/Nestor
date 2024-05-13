@@ -1,5 +1,5 @@
 {% load static %}
-<div class="black_block hidden" id="reference-edit">
+<div class="black_block hidden" id="reference/edit/{{ reference.reference_id }}">
     <form class="form form-horizontal" method="POST"  action="applicant/reference_edit">
         {% csrf_token %}
         <input type="hidden" name="reference_id" value="{{ reference.reference_id }}">
