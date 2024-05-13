@@ -11,3 +11,7 @@ main {
 .hidden {
 	display: none;
 }
+
+button:hover {
+	cursor: pointer;
+}

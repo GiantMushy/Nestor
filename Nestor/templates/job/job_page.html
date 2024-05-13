@@ -22,15 +22,19 @@
                     <h2 class="job-title">{{ job.name }}</h2>
                     <a class="apply-btn" href="">Apply </a>
                 </div>
-                <a class="favorite-btn" href="">
-                    {% if job.id in fav_jobs %}
-                        <p>Unfavorite</p> 
-                        <img class="heart-image" src="{% static 'images/filled_heart.png'%}" alt="">
-                    {% else %}
-                        <p>Favorite</p> 
-                        <img class="heart-image" src="{% static 'images/heartoutline_110866.png'%}" alt="">
-                    {% endif %}
-                </a>
+                <form action="{% url 'favorite_job' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="job_id" value="{{ job.id }}">
+                    <button class="favorite-btn">
+                        {% if job.id in fav_jobs %}
+                            <p>Remove from favorites</p> 
+                            <img class="heart-image" src="{% static 'images/heartoutline_110866.png'%}" alt="">
+                        {% else %}
+                            <p>Add to favorites</p> 
+                            <img class="heart-image" src="{% static 'images/filled_heart.png'%}" alt="">
+                        {% endif %}
+                    </button>
+                </form>
                 <h5>Job description</h5>
                 <p>{{ job.description }}</p>
             </div>

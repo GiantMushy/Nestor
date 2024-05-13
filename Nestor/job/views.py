@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from job.forms.job_form import JobCreateForm
+from applicant.models import Applicant
 from job.models import Job, Application, FavoriteJob
 from django.utils import timezone
 from common.models import JobCategory, City
@@ -112,6 +113,24 @@ def applied_jobs(request):
                }
     return render(request, 'job/applied_jobs.html', context)
 
+
+def favorite_job(request):
+    # To get the job that was selected in the url before and the applicant
+    job_id = request.POST.get('job_id')
+
+    fav_jobs = FavoriteJob.objects.filter(applicant__user_id=request.user.id).all()
+    fav_job = fav_jobs.filter(job__id=job_id).all()
+
+    job = get_object_or_404(Job, id=job_id)
+    applicant = get_object_or_404(Applicant, user_id=request.user.id)
+
+    if not fav_job:
+        new_favorite = FavoriteJob(applicant=applicant, job=job)
+        new_favorite.save()
+    else:
+        fav_job.delete()
+
+    return redirect(f'/jobs/{job_id}')
 
 
 def get_active_section(request):
