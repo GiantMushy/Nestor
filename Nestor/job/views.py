@@ -7,7 +7,7 @@ from common.models import JobCategory, City
 from company.models import Company, Employee
 from applicant.models import Education, CVEducation, CVExperience
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth.decorators import permission_required
 
 
 def add_days_left(job):
@@ -70,9 +70,10 @@ def get_job_by_id(request, id):
         'active_section': get_active_section(request)
     })
 
-# TODO: 
+
 
 @login_required(redirect_field_name="/login")
+@permission_required('job.add_job', raise_exception=True)
 def create_job(request):
     employee = Employee.objects.filter(user=request.user).first()
     active_section = get_active_section(request)
@@ -149,6 +150,7 @@ def favorite_job(request):
 # TODO: 
 
 @login_required(redirect_field_name="/login")
+@permission_required('job.view_job', raise_exception=True)
 def your_job_offers(request):
     employee = get_object_or_404(Employee, user=request.user)
     company_id = employee.company.id
@@ -163,6 +165,7 @@ def your_job_offers(request):
 
 # TODO: 
 @login_required(redirect_field_name="/login")
+@permission_required('job.view_job', raise_exception=True)
 def get_applications_by_job_id(request, id):
     applications = Application.objects.filter(job_id=id).all()
 
@@ -186,6 +189,7 @@ def get_applications_by_job_id(request, id):
     })
 
 # TODO: 
+@permission_required('job.view_job', raise_exception=True)
 def review_application(request, jid, aid):
     
     application = Application.objects.get(id=aid)
