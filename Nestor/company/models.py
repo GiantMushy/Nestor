@@ -11,6 +11,7 @@ class Company(models.Model):
     description = models.TextField(max_length=1000)
     link = models.URLField(max_length=1000)
     logo = models.CharField(max_length=9999)
+    cover_image = models.CharField(max_length=9999, null=True, blank=True)
     phone = models.CharField(max_length=12)
     email = models.CharField(max_length=50)
 
