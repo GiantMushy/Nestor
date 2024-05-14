@@ -30,8 +30,8 @@
     </div>
     <h3>Number of applicants: {{ job.num_of_applicants }}</h3>
     <div class="all_applicants">
-        {% for applicant in applicants %}
-            {% include 'job/applicant_card.html' with applicant=applicant %}
+        {% for application in applications %}
+            {% include 'job/applicant_card.html' with application=application %}
         {% endfor %}
     </div>
     {% endblock %}

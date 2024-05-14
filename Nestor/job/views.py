@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from job.forms.job_form import JobCreateForm
 from applicant.models import Applicant
-from job.models import Job, Application, FavoriteJob
+from job.models import Job, Application, FavoriteJob, hasEducation, hasExperience, hasReferences, hasSkills
 from django.utils import timezone
 from common.models import JobCategory, City
 from company.models import Company, Employee
@@ -149,25 +149,62 @@ def your_job_offers(request):
 
 
 def get_applications_by_job_id(request, id):
-    applicants = Application.objects.filter(job_id=id).all()
-    job = get_object_or_404(Job, pk=id)
-    total_applicants = len(applicants)
-    job.num_of_applicants = total_applicants
+    applications = Application.objects.filter(job_id=id).all()
 
-    for applicant in applicants:
-        education = CVEducation.objects.filter(applicant=applicant.applicant)
-        experience = CVExperience.objects.filter(applicant=applicant.applicant)
+    for application in applications:
+        education = hasEducation.objects.filter(application=application.id)
+        experience = hasExperience.objects.filter(application=application.id)
+        skills = hasSkills.objects.filter(application=application.id)
+        references = hasReferences.objects.filter(application=application.id)
         if education.exists():
-            applicant.education = education[0].education
+            for ed in education:
+                application.education = ed.education
 
         if experience.exists():
-            applicant.experience = experience[0].experience
+            for ex in experience:
+                application.experience = ex.experience
 
     return render(request, 'job/applications_page.html', {
-        'job': job,
-        'applicants':applicants,
+        'job': get_object_or_404(Job, pk=id),
+        'applications':applications,
         'active_section': get_active_section(request)
     })
+
+
+def review_application(request, jid, aid):
+    
+    application = Application.objects.get(id=aid)
+
+    education = hasEducation.objects.filter(application=application.id)
+    experience = hasExperience.objects.filter(application=application.id)
+    skills = hasSkills.objects.filter(application=application.id)
+    references = hasReferences.objects.filter(application=application.id)
+    if education.exists():
+        application.education = []
+        for ed in education:
+            application.education.append(ed.education)
+
+    if experience.exists():
+        application.experience = []
+        for ex in experience:
+            application.experience.append(ex.experience)
+
+    if skills.exists():
+        application.skills = []
+        for skill in skills:
+            application.skills.append(skill.skill)
+    
+    if references.exists():
+        application.references = []
+        for ref in references:
+            application.references.append(ref.reference)
+
+    return render(request, 'job/review_application.html', {
+        'job': Job.objects.get(id=jid),
+        'application': application,
+        'active_section': get_active_section(request)
+    })
+
 
 
 def get_active_section(request):
