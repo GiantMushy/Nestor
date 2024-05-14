@@ -15,13 +15,13 @@ body {
 }
 
 
-@media (max-width: 930px) {
+@media (max-width: 1200px) {
 	.all_jobs {
 		grid-template-columns: repeat(2, 1fr);
 	}
 }
 
-@media (max-width: 590px) {
+@media (max-width: 700px) {
 	.all_jobs {
 		grid-template-columns: repeat(1, 1fr);
 	}
@@ -48,7 +48,14 @@ body {
 	overflow: hidden;
 }
 
-.job_container_row p {
+.job_container_row-applied {
+	display: grid;
+	grid-template-columns: 50% 50%;
+	overflow: hidden;
+}
+
+.job_container_row p,
+.job_container_row-applied p {
 	margin: 0px;
 }
 

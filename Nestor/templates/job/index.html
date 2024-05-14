@@ -5,9 +5,16 @@
 {% endblock additionalStyles %}
 {% block content %}
     {% include 'job/searchbar.html' %}    
+    {% if jobs %}
     <div id="all-jobs" class="all_jobs">
         {% for job in jobs %}
             {% include 'job/single_job.html' with job=job %}
         {% endfor %}
     </div>
+    {% else %}
+    <div class="no-data-found">
+        <img src="{% static 'images/Nestor_logo.png'%}">
+        <h2>No jobs found, try editing your search</h2>
+    </div>
+    {% endif %}
 {% endblock %}

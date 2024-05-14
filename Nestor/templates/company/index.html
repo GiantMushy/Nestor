@@ -6,9 +6,16 @@
 
 {% block content %}
     {% include 'company/searchbar.html' %}
+    {% if companies %}
     <div class="all_companies">
         {% for company in companies %}
             {% include 'company/single_company.html' with companies=companies %}
         {% endfor %}
     </div>
+    {% else %}
+    <div class="no-data-found">
+        <img src="{% static 'images/Nestor_logo.png'%}">
+        <h2>No companies found, try editing your search</h2>
+    </div>
+    {% endif %}
 {% endblock %}

@@ -18,8 +18,6 @@ def index(request):
     all_jobs = Job.objects.all().order_by('name')
     fav_jobs = FavoriteJob.objects.filter(applicant__user_id=request.user.id).all()
     employee = Employee.objects.filter(user=request.user.id).first()
-    jobs = [add_days_left(job) for job in all_jobs]
-    filtered_jobs = [job for job in jobs if int(job.days_left) > 0]
 
     # Getting the query parameters
     job_param = request.GET.get('job')
@@ -35,6 +33,9 @@ def index(request):
         all_jobs = all_jobs.filter(zipcode__city_id__in=cou_params)
     if cat_params:
         all_jobs = all_jobs.filter(job_category_id__in=cat_params)
+
+    jobs = [add_days_left(job) for job in all_jobs]
+    filtered_jobs = [job for job in jobs if int(job.days_left) > 0]
 
     context = {'jobs': filtered_jobs,
                'active_section': get_active_section(request),
