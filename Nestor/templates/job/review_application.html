@@ -8,9 +8,23 @@
 <div class="application-container">
     <div class="left-application">
         <div class="image-container">
-            <img />
+            <img src="{{ application.applicant.profile_image }}" alt="profile image"/>
         </div>
         <div class="basic-info-section">
+            <div>
+                <img src="{% static '' %}"/>
+                <span>{{ application.applicant.phone }} </span>
+            </div
+            <div>
+                <img src="{% static '' %}"/>
+                <span>{{ application.applicant.zipcode.city.name }} </span>
+            </div
+            <div>
+                <img src="{% static '' %}"/>
+                <span>{{ application.applicant.phone }} </span>
+            </div
+
+
         </div>
         <div class="references-section">
         </div>
