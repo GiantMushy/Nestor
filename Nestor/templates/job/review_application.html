@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+    {% block additionalStyles %}
+<link rel="stylesheet" href="{% static "css/review_application.css" %}"/>
+{% endblock %}
+{% block content %}    
+
+<div class="application-container">
+    <div class="left-application">
+        <div class="image-container">
+            <img class="profile-image" src="{{ application.applicant.profile_image }}" alt="profile image"/>
+        </div>
+        <div class="basic-info-section">
+            <h4>Basic info</h4>
+            <div class="basic-info-item">
+                <img class="icon" src="{% static 'images/phone_icon.png' %}"/>
+                <span>{{ application.applicant.phone }} </span>
+            </div>
+            <div class="basic-info-item">
+                <img class="icon" src="{% static 'images/location.png' %}"/>
+                <span>{{ application.applicant.zipcode.city.name }}, {{ application.applicant.zipcode.city.country.name }} </span>
+            </div>
+            <div class="basic-info-item">
+                <img class="icon" src="{% static 'images/mail_icon.png' %}"/>
+                <span>{{ application.applicant.email }} </span>
+            </div>
+        </div>
+        {% if application.references %}
+        <div class="info-section">
+            <h4>References</h4>
+            {% for item in application.references %}
+            <div class="info-item">
+                <p>{{ item.name }}</p>
+                <ul>
+                    <li>{{ item.role }} - {{ item.workplace_name }}</li>
+                    <li>{{ item.email }}</li>
+                    {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+        {% if application.skills %}
+        <div class="info-section">
+            <h4>Skills</h4>
+            <ul class="info-item">
+                {% for item in application.skills %}
+                <li>{{ item.name }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+    <div class="right-application">
+        <h1 class="title-name">{{ application.applicant.full_name }}</h1>
+        <p>{{ application.applicant.bio }}</p>
+        {% if application.experience %}
+        <div class="info-section">
+            <h4>Experience</h4>
+            {% for item in application.experience  %}
+            <div class="info-item">
+                <p>{{ item.role }} - {{ item.workplace_name }}</p>
+                <ul>
+                    {% if item.end_date %}
+                    <li>{{ item.start_date }} - {{ item.end_date }}</li>
+                    {% else %}
+                    <li>{{ item.start_date }} - currently</li>
+                    {% endif %}
+                    <li>{{ item.description }}</li>
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% if application.education %}
+        <div class="info-section">
+            <h4>Education</h4>
+            {% for item in application.education %}
+            <div class="info-item">
+                <p>{{ item.school_name }}</p>
+                <p>{{ item.degree }} {{ item.level }}</p>
+                <ul>
+                    {% if item.end_date %}
+                    <li>{{ item.start_date }} - {{ item.end_date }}</li>
+                    {% else %}
+                    <li>{{ item.start_date }} - currently</li>
+                    {% endif %}
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        <div class="cover-letter-section">
+        </div>
+
+    </div>
+{% endblock %}

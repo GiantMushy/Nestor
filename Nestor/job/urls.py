@@ -11,4 +11,5 @@ urlpatterns = [
     path('favorite_job', views.favorite_job, name="favorite_job"),
     path('your_job_offers', views.your_job_offers, name="your_job_offers"),
     path('your_job_offers/<int:id>', views.get_applications_by_job_id, name="applications_page"),
+    path('your_job_offers/<int:jid>/application/<int:aid>', views.review_application, name="review_application"),
 ]
