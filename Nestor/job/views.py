@@ -99,23 +99,29 @@ def favorite_jobs(request):
                'countries': City.objects.all().order_by('name'),
                'jobs': [add_days_left(job) for job in all_jobs],
                'active_section': get_active_section(request),
-               'fav_jobs': [job.job.id for job in fav_jobs],
-               }
+               'fav_jobs': [job.job.id for job in fav_jobs]}
+
     return render(request, 'job/favorite_jobs.html', context)
 
 
 def applied_jobs(request):
     applications = Application.objects.filter(applicant__user_id=request.user.id).all()
-    job_ids = [app.job_id for app in applications]
 
-    all_jobs = Job.objects.filter(id__in=job_ids)
+    for application in applications:
+        if application.job.application_due_date < timezone.now().date():
+            if not application.job.is_available:
+                application.status = 'Finished'
+            else:
+                application.status = 'In review'
+        else:
+            application.status = 'In progress'
 
     context = {'companies': Company.objects.all().order_by('name'),
                'categories': JobCategory.objects.all().order_by('name'),
                'countries': City.objects.all().order_by('name'),
-               'jobs': [add_days_left(job) for job in all_jobs],
-               'active_section': get_active_section(request)
-               }
+               'applications': applications,
+               'active_section': get_active_section(request)}
+
     return render(request, 'job/applied_jobs.html', context)
 
 

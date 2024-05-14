@@ -1,0 +1,19 @@
+{% load static %}
+<a id="{{ job.id }}" href="/jobs/{{ job.id }}" data-job="{{ job.name }}" data-due="{{ job.days_left }}" data-date="{{ job.date_of_offering }}" data-company="{{ job.company }}">
+        <div  class="job_card">
+        <div class="job_container_row">
+            <div class="company_image_container"><img src="{{ application.job.company.logo }}"/></div>
+            <div class="job_container_right_column">
+                <p>{{ application.status }}</p>
+            </div>
+        </div>
+        <div class="job_container_row">
+            <p>{{ application.job.name }}</p>
+            <div class="job_container_right_column"><p>{{ application.job.percentage }}%</p></div>
+        </div>
+        <div class="job_container_row">
+            <p>{{ application.job.company }}</p>
+            <div class="job_container_right_column"><p>Applied: {{ application.date }}</p></div>
+        </div>
+    </div>
+</a>
