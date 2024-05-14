@@ -24,7 +24,11 @@ document.body.addEventListener("click", (elem) => {
 		const parent = elem.target.parentNode;
 		parent.getElementsByClassName("chevron")[0].classList.add("active");
 		parent.getElementsByClassName("search-dropdown")[0].classList.remove("hidden");
-		parent.getElementsByClassName("searchbar-input")[0].classList.add("searchbar-active");
+		if (parent.classList.contains("search-container")) {
+			parent.getElementsByClassName("searchbar-input")[0].classList.add("searchbar-active");
+		} else {
+			document.getElementById("sort-btn").classList.add("searchbar-active");
+		}
 
 
 		// elem.target.nextElementSibling.classList.remove("hidden");
@@ -41,7 +45,6 @@ const search = (id) => {
 	searchbar.addEventListener("keyup", (event) => {
 		Array.from(item_list.childNodes).forEach((item) => {
 			if (item.nodeType === Node.ELEMENT_NODE) {
-				console.log(item);
 				const search_term = item.id.toLowerCase()
 				if (!search_term.startsWith(event.target.value.toLowerCase())) {
 					item.style.display = "none";
@@ -66,6 +69,95 @@ const get_selected_items = (dropdown_list) => {
 	return selected_items
 }
 
+let current_sort = "";
+document.addEventListener("DOMContentLoaded", () => {
+	sort("date");
+	console.log(current_sort);
+})
+
+const sort = (sort_by) => {
+	const all_jobs = document.getElementById("all-jobs").childNodes;
+	const clean_jobs = Array.from(all_jobs).filter(item => item.nodeType === Node.ELEMENT_NODE);
+	const active_arrow = document.getElementsByClassName("arrow-active")[0];
+	if (active_arrow) {
+		active_arrow.classList.remove("arrow-active");
+		const rotated_arrow = document.getElementsByClassName("arrow-descend")[0];
+		if (rotated_arrow) {
+			rotated_arrow.classList.remove("arrow-descend");
+		}
+	}
+	let sorted = [];
+	if (sort_by === "job") {
+		const job_arrow = document.getElementById("job-arrow");
+		job_arrow.classList.add("arrow-active")
+		//descend
+		if (current_sort === "job-ascent") {
+			job_arrow.classList.add("arrow-descend")
+			sorted = clean_jobs.sort((b, a) => a.dataset.job.localeCompare(b.dataset.job))
+
+			current_sort = "job-descent";
+		} else {
+			//ascend
+			sorted = clean_jobs.sort((a, b) => a.dataset.job.localeCompare(b.dataset.job))
+			current_sort = "job-ascent";
+		}
+	} else if (sort_by === "company") {
+		const company_arrow = document.getElementById("company-arrow");
+		company_arrow.classList.add("arrow-active")
+		//descending
+		if (current_sort === "company-ascent") {
+			company_arrow.classList.add("arrow-descend")
+			sorted = clean_jobs.sort((b, a) => a.dataset.company.localeCompare(b.dataset.company))
+
+			current_sort = "company-descent";
+		} else {
+			//ascend
+			sorted = clean_jobs.sort((a, b) => a.dataset.company.localeCompare(b.dataset.company))
+			current_sort = "company-ascent";
+		}
+	} else if (sort_by === "date") {
+		const date_arrow = document.getElementById("date-arrow");
+		date_arrow.classList.add("arrow-active")
+		//descending
+		if (current_sort === "date-ascent") {
+			date_arrow.classList.add("arrow-descend")
+			sorted = clean_jobs.sort((a, b) => {
+				let d1 = new Date(a.dataset.date)
+				let d2 = new Date(b.dataset.date)
+				return d2 - d1;
+			})
+			current_sort = "date-descent";
+		} else {
+			//ascend
+			sorted = clean_jobs.sort((b, a) => {
+				let d1 = new Date(a.dataset.date)
+				let d2 = new Date(b.dataset.date)
+				return d2 - d1;
+			})
+			current_sort = "date-ascent";
+		}
+	} else if (sort_by === "due") {
+		const due_arrow = document.getElementById("due-arrow");
+		due_arrow.classList.add("arrow-active")
+		//descending
+		if (current_sort === "due-ascent") {
+			due_arrow.classList.add("arrow-descend")
+			sorted = clean_jobs.sort((b, a) => a.dataset.due - b.dataset.due)
+
+			current_sort = "due-descent";
+		} else {
+
+			//ascend
+			sorted = clean_jobs.sort((a, b) => a.dataset.due - b.dataset.due)
+			current_sort = "due-ascent";
+		}
+	}
+
+
+	for (let i = 0; i < sorted.length; i++) {
+		sorted[i].style.order = i;
+	}
+}
 
 const get_updated_placeholder = (dropdown) => {
 	let new_placeholder = ''

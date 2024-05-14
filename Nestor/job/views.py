@@ -5,6 +5,7 @@ from job.models import Job, Application, FavoriteJob
 from django.utils import timezone
 from common.models import JobCategory, City
 from company.models import Company, Employee
+from applicant.models import Education, CVEducation, CVExperience
 
 
 def add_days_left(job):
@@ -16,6 +17,7 @@ def add_days_left(job):
 def index(request):
     all_jobs = Job.objects.all().order_by('name')
     fav_jobs = FavoriteJob.objects.filter(applicant__user_id=request.user.id).all()
+    employee = Employee.objects.filter(user=request.user.id).first()
 
     # Getting the query parameters
     job_param = request.GET.get('job')
@@ -48,6 +50,7 @@ def index(request):
                    ', '.join([com.name for com in Company.objects.filter(id__in=com_params).order_by('name')]),
                'job_value': job_param or "",
                'fav_jobs': [job.job.id for job in fav_jobs],
+               'employee': employee
                }
 
     return render(request, 'job/index.html', context)
@@ -120,7 +123,6 @@ def favorite_job(request):
 
     fav_jobs = FavoriteJob.objects.filter(applicant__user_id=request.user.id).all()
     fav_job = fav_jobs.filter(job__id=job_id).all()
-
     job = get_object_or_404(Job, id=job_id)
     applicant = get_object_or_404(Applicant, user_id=request.user.id)
 
@@ -133,6 +135,41 @@ def favorite_job(request):
     return redirect(f'/jobs/{job_id}')
 
 
+def your_job_offers(request):
+    employee = get_object_or_404(Employee, user=request.user)
+    company_id = employee.company.id
+    company_jobs = Job.objects.filter(company_id=company_id)
+    get_total_applicants(company_jobs)
+
+    context = {'jobs': [add_days_left(job) for job in company_jobs],
+               'active_section': get_active_section(request),
+               'employee': employee}
+
+    return render(request, 'job/your_job_offers.html', context)
+
+
+def get_applications_by_job_id(request, id):
+    applicants = Application.objects.filter(job_id=id).all()
+    job = get_object_or_404(Job, pk=id)
+    total_applicants = len(applicants)
+    job.num_of_applicants = total_applicants
+
+    for applicant in applicants:
+        education = CVEducation.objects.filter(applicant=applicant.applicant)
+        experience = CVExperience.objects.filter(applicant=applicant.applicant)
+        if education.exists():
+            applicant.education = education[0].education
+
+        if experience.exists():
+            applicant.experience = experience[0].experience
+
+    return render(request, 'job/applications_page.html', {
+        'job': job,
+        'applicants':applicants,
+        'active_section': get_active_section(request)
+    })
+
+
 def get_active_section(request):
     active_section = None
     if request.path.startswith('/jobs/'):
@@ -141,3 +178,9 @@ def get_active_section(request):
         active_section = 'companies'
 
     return active_section
+
+
+def get_total_applicants(company_jobs):
+    for job in company_jobs:
+        total_applicants = Application.objects.filter(job_id=job.id).count()
+        job.total_applicants = total_applicants

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block additionalStyles %}
+        <link rel="stylesheet" href="{% static 'css/company_cards.css' %}" />
+        <script>const allCards = {{ jobs }}</script>
+{% endblock additionalStyles %}
+{% block content %}
+    <div class="header" >
+        <h1>Your job offers</h1>
+            {% if employee %}
+            <a href="{% url 'create_job' %}" class="create-job-btn">Create Job</a>
+            {% endif %}
+    </div>
+{#    {% include 'job/searchbar.html' %}#}
+    <div class="all_jobs">
+        {% for job in jobs %}
+            {% include 'job/single_job_company.html' with job=job %}
+        {% endfor %}
+    </div>
+{% endblock %}

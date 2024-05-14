@@ -1,0 +1,66 @@
+
+
+.all_applicants {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+@media (max-width: 1100px) {
+.all_applicants {
+    grid-template-columns: repeat(1, 1fr);
+}
+}
+
+
+.app_card {
+    display: grid;
+    grid-template-columns: 60px 1fr 1fr;
+    gap: 10px;
+    border-radius: 10px;
+    background-color: white;
+    padding: 10px;
+}
+
+.app_card p {
+    margin: 0px;
+    overflow: hidden;
+}
+
+
+.app_image_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.app_image_container img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.info_container {
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    gap: 10px;
+    justify-content: start;
+}
+
+.info_container img {
+    width: 20px;
+}
+
+.app_card_info {
+    display: grid;
+    gap: 10px;
+    overflow: hidden;
+}
+
+.app_card p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
