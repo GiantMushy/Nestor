@@ -123,7 +123,6 @@ def favorite_job(request):
 
     fav_jobs = FavoriteJob.objects.filter(applicant__user_id=request.user.id).all()
     fav_job = fav_jobs.filter(job__id=job_id).all()
-
     job = get_object_or_404(Job, id=job_id)
     applicant = get_object_or_404(Applicant, user_id=request.user.id)
 
