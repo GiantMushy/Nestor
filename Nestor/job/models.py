@@ -35,9 +35,11 @@ class Job(models.Model):
 class Application(models.Model):
     applicant = models.ForeignKey(Applicant, on_delete=models.CASCADE)
     job = models.ForeignKey(Job, on_delete=models.CASCADE)
+    date = models.DateField(default=timezone.now)
 
     def __str__(self):
         return str(self.applicant.full_name) + ' - ' + str(self.job.name)
+
 
 class FavoriteJob(models.Model):
     applicant = models.ForeignKey(Applicant, on_delete=models.CASCADE)
@@ -45,6 +47,7 @@ class FavoriteJob(models.Model):
 
     def __str__(self):
         return str(self.applicant.full_name) + ' - ' + str(self.job.name)
+
 
 class hasSkills(models.Model):
     application = models.ForeignKey(Application, on_delete=models.CASCADE)
