@@ -1,0 +1,12 @@
+<h2 class="CV-block-title">Experience</h2>
+<button onclick="toggleAddExperience()" class="add">+</button>
+{% include 'applicant/application/contact_info.html' %}
+{% if not experiences %}
+    <div class="black_block">
+        <h3>No registered experience history</h3>
+    </div>
+{% else %}
+    {% for experience in experiences %}
+        {% include 'applicant/application/contact_info.html' %}
+    {% endfor %}
+{% endif %}

@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from applicant.models import *
 from applicant.forms.applicant_form import *
 from common.models import ZipCode, Skills, SkillGenre
-from job.models import Job
+from job.models import Job, Application, hasSkills, hasEducation, hasExperience, hasReferences
 
 
 ################################  CONTACT INFORMATION #####################################
@@ -205,16 +205,41 @@ def index(request):
     return render(request, 'applicant/index.html', {'applicant': applicant})
 
 
-def apply(request, id):
-    print("Displaying Applicant Data")
+def apply_init(request, id):
+    print("Displaying Application Data")
     applicant = Applicant.objects.filter(user=request.user).first()
-    experiences = CVExperience.objects.filter(applicant=applicant).all()
-    educations = CVEducation.objects.filter(applicant=applicant).all()
-    references = CVReferences.objects.filter(applicant=applicant).all()
-    app_skills = CVSkills.objects.filter(applicant=applicant).all()
+    job = get_object_or_404(Job, pk=id)
+
+    application = Application.objects.filter(job=job, applicant=applicant)
+    if not application.exists():
+        application = Application(applicant=applicant, job=job)
+        application.save()
+        profile_experiences = CVExperience.objects.filter(application=application).all()
+        profile_educations = CVEducation.objects.filter(application=application).all()
+        profile_references = CVReferences.objects.filter(application=application).all()
+        profile_app_skills = CVSkills.objects.filter(application=application).all()
+
+        for experience in profile_experiences:
+            exp = hasExperience(application=application, experience=experience.experience)
+            exp.save()
+        for education in profile_educations:
+            edu = hasEducation(application=application, education=education.education)
+            edu.save()
+        for reference in profile_references:
+            ref = hasReferences(application=application, reference=reference.reference)
+            ref.save()
+        for skill in profile_app_skills:
+            skl = hasSkills(application=application, skill=skill.skill)
+            skl.save()
+        print("New Application Created Successfully and Data Transferred")
+
+    experiences = hasExperience.objects.filter(application=application).all()
+    educations = hasEducation.objects.filter(application=application).all()
+    references = hasReferences.objects.filter(application=application).all()
+    app_skills = hasSkills.objects.filter(application=application).all()
+
     genres = SkillGenre.objects.all()
     skills = Skills.objects.all()
-
     all_skills = {}
     applicant_skills = {}
     for genre in genres:
@@ -226,7 +251,7 @@ def apply(request, id):
         applicant_skills[skill.skill.genre].append(skill.skill)
 
     context = {
-        'job': get_object_or_404(Job, pk=id),
+        'job': job,
         'applicant': applicant,
         'zip_options': ZipCode.objects.all(),
         'education_levels': EducationLevel.objects.all(),
@@ -236,5 +261,5 @@ def apply(request, id):
         'applicant_skills': applicant_skills,
         'all_skills': all_skills
     }
-    return render(request, 'applicant/apply.html', context)
+    return render(request, 'applicant/application/__init__.html', context)
 

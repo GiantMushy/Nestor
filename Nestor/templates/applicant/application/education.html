@@ -1,0 +1,13 @@
+<h2 class="CV-block-title">Education</h2>
+<button onclick="toggleAddEducation()" class="edit-button add">+</button>
+    {% include 'applicant/application/contact_info.html' %}
+{% if not educations %}
+    <div class="black_block">
+        <h3>No registered education history</h3>
+    </div>
+{% else %} 
+    {% for education in educations %}
+        {% include 'applicant/VirtualCV/education_view.html' %}
+        {% include 'applicant/VirtualCV/education_edit.html' %}
+    {% endfor %}
+{% endif %}

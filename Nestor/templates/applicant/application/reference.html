@@ -1,0 +1,13 @@
+<h2 class="CV-block-title">References</h2>
+<button onclick="toggleAddReference()" class="edit-button add">+</button>
+{% include 'applicant/VirtualCV/reference_new.html' %}
+{% if not references %}
+    <div class="black_block">
+        <h3>No registered references</h3>
+    </div>
+{% else %}
+    {% for reference in references %}
+        {% include 'applicant/VirtualCV/reference_view.html' %}
+        {% include 'applicant/VirtualCV/reference_edit.html' %}
+    {% endfor %}
+{% endif %}

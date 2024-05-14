@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block additionalStyles %}
+<link rel="stylesheet" href="{% static 'css/apply.css' %}" /> 
+<script type="text/javascript" src="{% static 'js/apply.js' %}"></script>
+{% endblock additionalStyles %}
+
+{% block content %}
+    <h1> {{ job.name }} </h1><h2> {{ job.company }}</h2>
+    
+    <img src="{{ applicant.profile_image }}" class="profile-image"/>
+    <div class="black_block">
+    <div id="contact_info">{% include 'applicant/application/contact_info.html' %}</div>
+    <div id="experience" class="hidden">{% include 'applicant/application/experience.html' %}</div>
+    <div id="education" class="hidden">{% include 'applicant/application/education.html' %}</div>
+    <div id="reference" class="hidden">{% include 'applicant/application/reference.html' %}</div>
+    <div id="skill" class="hidden">{% include 'applicant/application/skill.html' %}</div>
+    <div id="final_review" class="hidden">{% include 'applicant/application/final_review.html' %}</div>
+    <div id="success_message" class="hidden">{% include 'applicant/application/success_message.html' %}</div>
+    <div id="failed_message" class="hidden">{% include 'applicant/application/failed_message.html' %}</div>
+    </div>
+    
+    
+    
+{% endblock %}
