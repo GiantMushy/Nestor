@@ -14,7 +14,7 @@ const search_for_jobs = () => {
 	let param_added = false
 	let parameters = ""
 	if (job_search.value) {
-		parameters += "&job=" + job_search.value
+		parameters += "job=" + job_search.value
 		param_added = true
 	}
 	if (selected_countries) {
