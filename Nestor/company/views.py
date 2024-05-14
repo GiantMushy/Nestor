@@ -3,7 +3,7 @@ from company.forms.company_form import CompanyCreateForm
 from company.models import Company, Employee
 from common.models import JobCategory, City
 from django.utils import timezone
-from job.models import Job
+from job.models import Job, FavoriteJob
 from django.http import JsonResponse
 
 
@@ -35,6 +35,7 @@ def index(request):
 
 def get_company_by_id(request, id):
     active_section = get_active_section(request)
+
     all_jobs = Job.objects.filter(company_id=id).order_by('name')
 
     jobs = [add_days_left(job) for job in all_jobs]
