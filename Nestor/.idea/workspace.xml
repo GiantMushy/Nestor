@@ -5,16 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f178713c-272d-4fb1-901f-08a5ee9808ce" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/static/images/plus_icon.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/applicant/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/applicant/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/applicant/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/applicant/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/css/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/profile.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/js/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/profile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/applicant/VirtualCV/contact_info_edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/applicant/VirtualCV/contact_info_edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/applicant/VirtualCV/contact_info_view.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/applicant/VirtualCV/contact_info_view.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/applicant/VirtualCV/skills_edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/applicant/VirtualCV/skills_edit.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/applicant/VirtualCV/skills_view.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/applicant/VirtualCV/skills_view.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/applicant/applicant.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/applicant/applicant.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

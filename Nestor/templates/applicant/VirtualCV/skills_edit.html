@@ -10,17 +10,20 @@
                 </div>
             {% endfor %}
             <div class="new_skill">
-                <input type="image" id="add_skill_select" onclick="addSkillSelect()" class="add_skill" src="{% static 'images/plus_icon.png' %}">
-                <select name="skill-{{ genre }}" class="skill-select" required id="id_skill">
-                    <option value=""></option>
-                    {% for all_genre, all_skill in all_skills.items %}
-                        {% if all_genre == genre %}
-                            {% for a_skill in all_skill %}
-                                <option value="{{ a_skill.id }}">{{ a_skill.name }}</option>
-                            {% endfor %}
-                        {% endif %}
-                    {% endfor %}
-                </select>
+                <form class="form form-horizontal" method="post" action="applicant/add_skill">
+                    {% csrf_token %}
+                    <input type="submit" id="add_skill_select" class="add_skill" src="{% static 'images/plus_icon.png' %}">
+                    <select name="{{ genre.name }}" class="skill-select" required id="id_skill">
+                        <option value=""></option>
+                        {% for all_genre, all_skill in all_skills.items %}
+                            {% if all_genre == genre %}
+                                {% for a_skill in all_skill %}
+                                    <option value="{{ a_skill }}">{{ a_skill.name }}</option>
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </form>
             </div>
         </div>
     {% endfor %}

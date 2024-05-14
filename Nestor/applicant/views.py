@@ -140,7 +140,28 @@ def reference_del(request):
 
 
 ################################  SKILLS  #####################################
-def skills_edit(request): #adds and removes skills
+def add_skill(request): #adds a skill
+    applicant = Applicant.objects.filter(user=request.user).first()
+    app_skills = CVSkills.objects.filter(applicant=applicant).all()
+    token, data = request.POST.items()
+    genre, skill = data
+    print(app_skills)
+    validity = True
+    for app_skill in app_skills:
+        if skill in app_skill.skill.name:
+            validity = False
+    if validity:
+        skill_object = Skills.objects.filter(name=skill).first()
+        cvskill = CVSkills(applicant=applicant, skill=skill_object)
+        cvskill.save()
+        print("Skill Added SUCCESS")
+    else:
+        print("Skill already in Applicant")
+
+    return redirect('applicant')
+
+
+def remove_skill(request): #removes a skill
     return redirect('applicant')
 
 

@@ -166,14 +166,14 @@
 .new_skill {
 	position: relative;
 	display: inline-block;
-	width: 20%;
+	width: 16%;
 	min-width: 10rem;
 
 }
 .add_skill {
 	border: none;
 	position: absolute;
-	right: -2.2rem;
+	right: -2rem;
 	top: 0.0rem;
 	display: inline-block;
 	background-color: #4AA587;
