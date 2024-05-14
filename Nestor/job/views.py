@@ -6,6 +6,8 @@ from django.utils import timezone
 from common.models import JobCategory, City
 from company.models import Company, Employee
 from applicant.models import Education, CVEducation, CVExperience
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import permission_required
 
 
 def add_days_left(job):
@@ -69,6 +71,9 @@ def get_job_by_id(request, id):
     })
 
 
+
+@login_required(redirect_field_name="/login")
+@permission_required('job.add_job', raise_exception=True)
 def create_job(request):
     employee = Employee.objects.filter(user=request.user).first()
     active_section = get_active_section(request)
@@ -87,7 +92,9 @@ def create_job(request):
         'active_section': active_section
     })
 
+#TODO: 
 
+@login_required(redirect_field_name="/login")
 def favorite_jobs(request):
     fav_jobs = FavoriteJob.objects.filter(applicant__user_id=request.user.id).all()
     job_ids = [app.job_id for app in fav_jobs]
@@ -103,7 +110,9 @@ def favorite_jobs(request):
                }
     return render(request, 'job/favorite_jobs.html', context)
 
+# TODO: 
 
+@login_required(redirect_field_name="/login")
 def applied_jobs(request):
     applications = Application.objects.filter(applicant__user_id=request.user.id).all()
     job_ids = [app.job_id for app in applications]
@@ -118,7 +127,9 @@ def applied_jobs(request):
                }
     return render(request, 'job/applied_jobs.html', context)
 
+# TODO: 
 
+@login_required(redirect_field_name="/login")
 def favorite_job(request):
     # To get the job that was selected in the url before and the applicant
     job_id = request.POST.get('job_id')
@@ -136,7 +147,10 @@ def favorite_job(request):
 
     return redirect(f'/jobs/{job_id}')
 
+# TODO: 
 
+@login_required(redirect_field_name="/login")
+@permission_required('job.view_job', raise_exception=True)
 def your_job_offers(request):
     employee = get_object_or_404(Employee, user=request.user)
     company_id = employee.company.id
@@ -149,7 +163,9 @@ def your_job_offers(request):
 
     return render(request, 'job/your_job_offers.html', context)
 
-
+# TODO: 
+@login_required(redirect_field_name="/login")
+@permission_required('job.view_job', raise_exception=True)
 def get_applications_by_job_id(request, id):
     applications = Application.objects.filter(job_id=id).all()
 
@@ -172,7 +188,8 @@ def get_applications_by_job_id(request, id):
         'active_section': get_active_section(request)
     })
 
-
+# TODO: 
+@permission_required('job.view_job', raise_exception=True)
 def review_application(request, jid, aid):
     
     application = Application.objects.get(id=aid)
