@@ -139,10 +139,7 @@ def your_job_offers(request):
     employee = get_object_or_404(Employee, user=request.user)
     company_id = employee.company.id
     company_jobs = Job.objects.filter(company_id=company_id)
-
-    for job in company_jobs:
-        total_applicants = Application.objects.filter(job_id=job.id).count()
-        job.total_applicants = total_applicants
+    get_total_applicants(company_jobs)
 
     context = {'jobs': [add_days_left(job) for job in company_jobs],
                'active_section': get_active_section(request),
@@ -153,6 +150,10 @@ def your_job_offers(request):
 
 def get_applications_by_job_id(request, id):
     applicants = Application.objects.filter(job_id=id).all()
+    job = get_object_or_404(Job, pk=id)
+    total_applicants = len(applicants)
+    print(total_applicants)
+    job.num_of_applicants = total_applicants
 
     for applicant in applicants:
         education = CVEducation.objects.filter(applicant=applicant.applicant)
@@ -164,7 +165,7 @@ def get_applications_by_job_id(request, id):
             applicant.experience = experience[0].experience
 
     return render(request, 'job/applications_page.html', {
-        'job': get_object_or_404(Job, pk=id),
+        'job': job,
         'applicants':applicants,
         'active_section': get_active_section(request)
     })
@@ -178,3 +179,9 @@ def get_active_section(request):
         active_section = 'companies'
 
     return active_section
+
+
+def get_total_applicants(company_jobs):
+    for job in company_jobs:
+        total_applicants = Application.objects.filter(job_id=job.id).count()
+        job.total_applicants = total_applicants
