@@ -45,7 +45,12 @@
 	align-items: center;
 }
 
-.apply-btn {
+.company-btn-container {
+	margin-top: 20px;
+}
+
+
+.apply-btn, .company-page-btn {
 	text-decoration: none;
 	align-self: flex-start;
 	padding: 8px 40px;
@@ -56,6 +61,7 @@
 	border: none;
 	margin-right: 20px;
 }
+
 
 .favorite-btn {
     text-decoration: none;
