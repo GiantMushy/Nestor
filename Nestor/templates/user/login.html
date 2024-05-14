@@ -1,8 +1,17 @@
 {% extends "base.html" %}
+{% load static %}
+    {% block additionalStyles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/register_login.css' %}"/>
+{% endblock additionalStyles %}
 {% block content %}
-    <form method="post" class="form form-horizontal">
+<div id="form-container">
+    <h1>Login</h1>
+    <form id="login-form" method="post" class="form form-horizontal">
         {% csrf_token %}
         {{ form }}
-        <input type="submit" class="btn btn-primary" value="Login" />
+        <div id="register-form-btn-container">
+            <input type="submit" id="login-form-btn" class="btn btn-primary" value="Login" />
+        </div>
     </form>
+</div>
 {% endblock %}

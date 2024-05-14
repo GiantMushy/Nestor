@@ -13,7 +13,6 @@ def register(request):
             form.save()
             return redirect('login')
         else:
-
             for field, errors in form.errors.items():
                 for error in errors:
                     messages.error(request, f'{field}: {error}')
