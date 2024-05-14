@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from applicant.models import *
 from applicant.forms.applicant_form import *
 from common.models import ZipCode, Skills, SkillGenre
+from job.models import Job
 
 
 ################################  CONTACT INFORMATION #####################################
@@ -202,3 +203,38 @@ def applicant(request):
 def index(request):
     applicant = Applicant.objects.filter(user=request.user).first()
     return render(request, 'applicant/index.html', {'applicant': applicant})
+
+
+def apply(request, id):
+    print("Displaying Applicant Data")
+    applicant = Applicant.objects.filter(user=request.user).first()
+    experiences = CVExperience.objects.filter(applicant=applicant).all()
+    educations = CVEducation.objects.filter(applicant=applicant).all()
+    references = CVReferences.objects.filter(applicant=applicant).all()
+    app_skills = CVSkills.objects.filter(applicant=applicant).all()
+    genres = SkillGenre.objects.all()
+    skills = Skills.objects.all()
+
+    all_skills = {}
+    applicant_skills = {}
+    for genre in genres:
+        all_skills[genre] = []
+        applicant_skills[genre] = []
+    for skill in skills:
+        all_skills[skill.genre].append(skill)
+    for skill in app_skills:
+        applicant_skills[skill.skill.genre].append(skill.skill)
+
+    context = {
+        'job': get_object_or_404(Job, pk=id),
+        'applicant': applicant,
+        'zip_options': ZipCode.objects.all(),
+        'education_levels': EducationLevel.objects.all(),
+        'experiences': experiences,
+        'educations': educations,
+        'references': references,
+        'applicant_skills': applicant_skills,
+        'all_skills': all_skills
+    }
+    return render(request, 'applicant/apply.html', context)
+
