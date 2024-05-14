@@ -63,3 +63,5 @@ const toggleEditSkills = () => {
 }
 
 const removeSkill = () => {}
+
+const addSkillSelect = () => {}

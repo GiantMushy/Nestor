@@ -57,6 +57,9 @@ def experience_edit(request):
         return redirect('applicant')
 
 
+def experience_del(request):
+    return redirect('applicant')
+
 
 ################################  EDUCATIONS #####################################
 def education_add(request):
@@ -92,6 +95,9 @@ def education_edit(request):
         print("POST Education Validity Failed")
         return redirect('applicant')
 
+
+def education_del(request):
+    return redirect('applicant')
 
 
 ################################  REFERENCES #####################################
@@ -129,7 +135,7 @@ def reference_edit(request):
         return redirect('applicant')
 
 
-def reference_delete(request):
+def reference_del(request):
     return redirect('applicant')
 
 
@@ -155,9 +161,9 @@ def applicant(request):
         all_skills[genre] = []
         applicant_skills[genre] = []
     for skill in skills:
-        all_skills[skill.genre].append(skill.name)
+        all_skills[skill.genre].append(skill)
     for skill in app_skills:
-        applicant_skills[skill.skill.genre].append(skill.skill.name)
+        applicant_skills[skill.skill.genre].append(skill.skill)
 
     context = {
         'applicant': applicant,
@@ -167,7 +173,7 @@ def applicant(request):
         'educations': educations,
         'references': references,
         'applicant_skills': applicant_skills,
-        'all_skills': all_skills,
+        'all_skills': all_skills
     }
     return render(request, 'applicant/applicant.html', context)
 
