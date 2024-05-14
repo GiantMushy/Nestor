@@ -152,7 +152,6 @@ def get_applications_by_job_id(request, id):
     applicants = Application.objects.filter(job_id=id).all()
     job = get_object_or_404(Job, pk=id)
     total_applicants = len(applicants)
-    print(total_applicants)
     job.num_of_applicants = total_applicants
 
     for applicant in applicants:
