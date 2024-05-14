@@ -5,6 +5,7 @@ from common.models import JobCategory, City
 from django.utils import timezone
 from job.models import Job
 from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -45,7 +46,8 @@ def get_company_by_id(request, id):
         'active_section': active_section
     })
 
-
+# TODO:  blabla
+@login_required(redirect_field_name="/login")
 def create_company(request):
     active_section = get_active_section(request)
     if request.method == 'POST':
