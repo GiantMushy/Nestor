@@ -35,11 +35,13 @@ def index(request):
 
 def get_company_by_id(request, id):
     active_section = get_active_section(request)
-    jobs = Job.objects.filter(company_id=id).order_by('name')
+    all_jobs = Job.objects.filter(company_id=id).order_by('name')
 
+    jobs = [add_days_left(job) for job in all_jobs]
+    filtered_jobs = [job for job in jobs if int(job.days_left) > 0]
     return render(request, 'company/company_page.html', {
         'company': get_object_or_404(Company, pk=id),
-        'jobs': [add_days_left(job) for job in jobs],
+        'jobs': filtered_jobs,
         'active_section': active_section
     })
 
