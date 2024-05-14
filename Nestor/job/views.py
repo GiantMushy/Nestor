@@ -59,13 +59,26 @@ def index(request):
     return render(request, 'job/index.html', context)
 
 
+def get_application_status(application):
+    if application.job.application_due_date < timezone.now().date():
+        if not application.job.is_available:
+            application.status = 'Finished'
+        else:
+            application.status = 'In review'
+    else:
+        application.status = 'In progress'
+
+
 def get_job_by_id(request, id):
-    all_jobs = Job.objects.all().order_by('name')
     fav_jobs = FavoriteJob.objects.filter(applicant__user_id=request.user.id).all()
+    application = Application.objects.filter(applicant__user_id=request.user.id, job_id=id).first()
+    if application:
+        get_application_status(application)
 
     return render(request, 'job/job_page.html', {
         'job': get_object_or_404(Job, pk=id),
         'fav_jobs': [job.job.id for job in fav_jobs],
+        'application': application,
         'active_section': get_active_section(request)
     })
 
@@ -77,7 +90,7 @@ def create_job(request):
         form = JobCreateForm(data=request.POST, initial= {'company': employee.company})
         if form.is_valid():
             job = form.save(commit=False)
-            job.company= employee.company
+            job.company = employee.company
             job.save()
             return redirect('job_index')
     else:
@@ -92,7 +105,6 @@ def create_job(request):
 def favorite_jobs(request):
     fav_jobs = FavoriteJob.objects.filter(applicant__user_id=request.user.id).all()
     job_ids = [app.job_id for app in fav_jobs]
-
     all_jobs = Job.objects.filter(id__in=job_ids)
 
     context = {'companies': Company.objects.all().order_by('name'),
@@ -109,13 +121,7 @@ def applied_jobs(request):
     applications = Application.objects.filter(applicant__user_id=request.user.id).all()
 
     for application in applications:
-        if application.job.application_due_date < timezone.now().date():
-            if not application.job.is_available:
-                application.status = 'Finished'
-            else:
-                application.status = 'In review'
-        else:
-            application.status = 'In progress'
+        get_application_status(application)
 
     context = {'companies': Company.objects.all().order_by('name'),
                'categories': JobCategory.objects.all().order_by('name'),
