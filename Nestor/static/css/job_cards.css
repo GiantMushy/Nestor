@@ -2,16 +2,16 @@ body {
 	background-color: #F5F5F2;
 }
 
-p {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.job_card p {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .all_jobs {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 10px;
 }
 
 
