@@ -183,13 +183,24 @@ def review_application(request, jid, aid):
     skills = hasSkills.objects.filter(application=application.id)
     references = hasReferences.objects.filter(application=application.id)
     if education.exists():
+        application.education = []
         for ed in education:
-            application.education = ed.education
+            application.education.append(ed.education)
 
     if experience.exists():
+        application.experience = []
         for ex in experience:
-            application.experience = ex.experience
+            application.experience.append(ex.experience)
 
+    if skills.exists():
+        application.skills = []
+        for skill in skills:
+            application.skills.append(skill.skill)
+    
+    if references.exists():
+        application.references = []
+        for ref in references:
+            application.references.append(ref.reference)
 
     return render(request, 'job/review_application.html', {
         'job': Job.objects.get(id=jid),
