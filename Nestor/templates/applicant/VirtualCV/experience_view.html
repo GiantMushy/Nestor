@@ -1,5 +1,8 @@
+{% load static %}
 <div class="black_block" id="experience/view/{{ experience.experience_id }}">
-    <button onclick="toggleEditExperience({{ experience.experience_id }})" class="edit-button">edit</button><br>
+    <input type="image" id="remove-from-cv" onclick="removeExperience({{ experience.experience_id }})" class="remove-button" src="{% static 'images/remove_X.png' %}">
+    <button onclick="toggleEditExperience({{ experience.experience_id }})" class="edit-button">edit</button>
+    <br>
     <div class="profile-data-block" style="margin-right: 5%; width: 25%">
         <p class="profile-data-label">Company</p>
         <p class="profile-data">{{ experience.experience.workplace_name }}</p>

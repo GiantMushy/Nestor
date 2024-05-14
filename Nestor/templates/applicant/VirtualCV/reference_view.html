@@ -1,4 +1,6 @@
+{% load static %}
 <div class="black_block" id="reference/view/{{ reference.reference_id }}">
+    <input type="image" id="remove-from-cv" onclick="removeReference({{ reference.reference_id }})" class="remove-button" src="{% static 'images/remove_X.png' %}">
     <button onclick="toggleEditReference({{ reference.reference_id }})" class="edit-button">edit</button><br>
     <div class="profile-data-block" style="margin-right: 5%; width: 25%">
         <p class="profile-data-label">Full name</p>
