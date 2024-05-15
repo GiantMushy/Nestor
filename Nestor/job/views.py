@@ -77,6 +77,7 @@ def get_application_status(application):
 def get_job_by_id(request, id):
     fav_jobs = FavoriteJob.objects.filter(user=request.user).all()
     application = Application.objects.filter(applicant__user_id=request.user.id, job_id=id).first()
+    applicant = Applicant.objects.filter(applicant=request.user.id).first()
     if application:
         get_application_status(application)
 
@@ -84,6 +85,7 @@ def get_job_by_id(request, id):
         'job': get_object_or_404(Job, pk=id),
         'fav_jobs': [job.job.id for job in fav_jobs],
         'application': application,
+        'applicant': applicant,
         'active_section': get_active_section(request)
     })
 
