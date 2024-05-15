@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block additionalStyles %}
+<link rel="stylesheet" href="{% static 'css/apply.css' %}" /> 
+<script type="text/javascript" src="{% static 'js/apply.js' %}"></script>
+{% endblock additionalStyles %}
+
+{% block content %}
+    <h1>Applying for "{{ job.name }}" with {{ job.company }}</h1><br>
+    <div style="position: relative; display: flex; height: 100%;">
+        <div style="flex-direction: row; height: 100%" class="contact-info">
+            <img src="{{ applicant.profile_image }}" class="profile-image"/>
+            <p>{{ applicant.full_name }}</p>
+            <p>{{ applicant.email }}</p>
+            <p>{{ applicant.phone }}</p>
+        </div>
+        <div class="black_block" style="width:75%; height: 60vh; overflow: auto">
+            <div class="progress_header">
+                <div><p>Experience</p></div>
+                <div><p>Education</p></div>
+                <div><p>References</p></div>
+                <div><p>Skills</p></div>
+                <div><p>Final Review</p></div>
+            </div><br>
+            <div id="experience">{% include 'applicant/application/experience.html' %}</div>
+            <div id="education" class="hidden">{% include 'applicant/application/education.html' %}</div>
+            <div id="reference" class="hidden">{% include 'applicant/application/reference.html' %}</div>
+            <div id="skill" class="hidden">{% include 'applicant/application/skill.html' %}</div>
+            <div id="final_review" class="hidden">{% include 'applicant/application/final_review.html' %}</div>
+            <div id="success_message" class="hidden">{% include 'applicant/application/success_message.html' %}</div>
+            <div id="failed_message" class="hidden">{% include 'applicant/application/failed_message.html' %}</div>
+        </div>
+    </div>
+{% endblock %}

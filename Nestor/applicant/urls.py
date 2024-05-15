@@ -12,5 +12,6 @@ urlpatterns = [
     path('applicant/education_edit', views.education_edit, name='applicant/education_edit'),
     path('applicant/reference_edit', views.reference_edit, name='applicant/reference_edit'),
     path('applicant/add_skill', views.add_skill, name='applicant/add_skill'),
-    path('applicant/remove_skill', views.remove_skill, name='applicant/remove_skill')
+    path('applicant/remove_skill', views.remove_skill, name='applicant/remove_skill'),
+    path('application/<int:id>', views.apply_init, name='apply/init')
 ]

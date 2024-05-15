@@ -1,0 +1,218 @@
+.hidden {
+	display: none;
+}
+
+.black_block {
+	position: relative;
+	display: inline-block;
+	border: 1px solid #363841;
+	background-color: #363841;
+	color: #F5F5F2;
+	border-radius: 0.5rem;
+	padding: 1rem 2rem;
+	margin-bottom: 2rem;
+}
+
+.white_block {
+	position: relative;
+	border: 1px solid #363841;
+	background-color: #F5F5F2;
+	margin: 0.3rem -1rem;
+	color: #363841;
+	border-radius: 0.4rem;
+	padding: 0.5rem 1rem;
+	height: 85vh;
+	overflow: auto;
+}
+
+.contact-info {
+	top: 0.0rem;
+	position: sticky;
+	display: inline-block;
+	margin-right: 2rem;
+	width: 12rem;
+}
+
+.CV-block-title {
+	margin-top: 0.4rem;
+	margin-bottom: 0.4rem;
+	margin-left: 40%;
+	display: inline-block;
+}
+
+.profile-image {
+	border-radius: 5%;
+	width: 100%;
+}
+
+.edit-button {
+	border: none;
+	background-color: #4AA587;
+	color: #F5F5F2;
+	border-radius: 0.5rem;
+	padding: 0.4rem 1rem;
+	position: absolute;
+	right: 1rem;
+	cursor: pointer;
+}
+
+.remove-button {
+	border: none;
+	background-color: #F5F5F2;
+	border-radius: 0.5rem;
+	width: 1.7rem;
+	position: absolute;
+	padding: 0.2rem 0.2rem 0.2rem 0.2rem;
+	right: 1rem;
+}
+
+.add {
+	border: none;
+	background-color: #4AA587;
+	color: #F5F5F2;
+	border-radius: 50%;
+	position: absolute;
+	display: inline-block;
+	left: 37.5%;
+	padding: 0.0rem 0.3rem 0.1rem 0.3rem;
+	font-size: 1rem;
+	font-weight: bold;
+	margin-top: 0.6rem;
+}
+
+.profile-data-block {
+	width: 44%;
+	display: inline-block;
+	margin-bottom: 0.5rem;
+	min-width: 12rem;
+}
+
+.profile-data {
+	background-color: #EDEAEA;
+	color: #363841;
+	border-radius: 0.3rem;
+	padding: 0.4rem 0.0rem 0.4rem 0.4rem;
+}
+
+.profile-data-label {
+	font-weight: bold;
+	font-size: 0.9rem;
+	padding-top: 0.5rem;
+	padding-bottom: 0.2rem;
+}
+
+.profile-data-input {
+	color: #363841;
+	border-radius: 0.3rem;
+	padding: 0.4rem 0.0rem 0.4rem 0.4rem;
+	font-size: 1rem;
+	width: 100%;
+}
+
+.profile-data-select {
+	color: #363841;
+	border-radius: 0.3rem;
+	padding: 0.4rem 0.0rem 0.4rem 0.4rem;
+}
+
+#contactable {
+	display: inline-block;
+}
+
+.bio {
+	@extend .profile-data;
+	width: 100%;
+	height: 4rem;
+	overflow: auto;
+}
+
+
+.bio-input {
+	@extend .profile-data-input;
+	width: 99%;
+	height: 4rem;
+	overflow: auto;
+}
+
+.black_block_white_subsection {
+	color: #363841;
+	background-color: #F5F5F2;
+	border-radius: 0.5rem;
+	padding: 1rem 2rem;
+	margin: 1rem 0.0rem 0.5rem 0.0rem;
+}
+
+.skill_selection {
+	position: relative;
+	border: 1px solid #363841;
+	width: 20%;
+	min-width: 12rem;
+	display: inline-block;
+	margin-right: 1.5rem;
+	margin-bottom: 0.3rem;
+	border-radius: 0.3rem;
+	padding: 0.4rem 0.4rem 0.4rem 0.4rem;
+}
+.delete-skill {
+	border: none;
+	position: absolute;
+	right: 0.0rem;
+	top: 0.0rem;
+	display: inline-block;
+	background-color: #EDEAEA;
+	border-radius: 0.4rem;
+	width: 1.6rem;
+	height: 1.6rem;
+	padding: 0.2rem 0.2rem 0.2rem 0.2rem;
+}
+.new_skill {
+	position: relative;
+	display: inline-block;
+	width: 16%;
+	min-width: 10rem;
+}
+.add_skill {
+	border: none;
+	position: absolute;
+	right: -2rem;
+	top: 0.0rem;
+	display: inline-block;
+	background-color: #4AA587;
+	border-radius: 0.4rem;
+	width: 1.6rem;
+	height: 1.6rem;
+	padding: 0.2rem 0.2rem 0.2rem 2rem;
+}
+.skill-select {
+	position: relative;
+	color: #363841;
+	border-radius: 0.3rem;
+	padding: 0.4rem 0.0rem 0.4rem 0.4rem;
+	margin-right: 0.5rem;
+	margin-bottom: 0.3rem;
+	width: 100%;
+	z-index: 1;
+}
+
+.progress_header {
+	position: sticky;
+	height: 2rem;
+	width: 100%;
+}
+
+.progress_header div{
+	display: inline-block;
+	font-size: 1rem;
+	width: 15%;
+}
+
+.next_prev_button {
+	position: absolute;
+	display: inline-block;
+	border: none;
+	background-color: #4AA587;
+	color: #F5F5F2;
+	border-radius: 1rem;
+	padding: 0.4rem 1rem;
+	left: 1rem;
+}
