@@ -1,6 +1,10 @@
 {% load static %}
 <div class="black_block" id="experience/view/{{ experience.experience_id }}">
-    <input type="image" id="remove-from-cv" onclick="removeExperience({{ experience.experience_id }})" class="remove-button" src="{% static 'images/remove_X.png' %}">
+    <form id="deleteForm" method="post" action="applicant/remove_experience">
+        {% csrf_token %}
+        <input type="hidden" name="experience_id" value="{{ experience.experience_id }}">
+        <button type="submit" class="remove-button">X</button>
+    </form>
     <button onclick="toggleEditExperience({{ experience.experience_id }})" class="edit-button">edit</button>
     <br>
     <div class="profile-data-block" style="margin-right: 5%; width: 25%">

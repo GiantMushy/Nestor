@@ -1,6 +1,10 @@
 {% load static %}
 <div class="black_block" id="education/view/{{ education.education_id }}">
-    <input type="image" id="remove-from-cv" onclick="removeEducation({{ education.education_id }})" class="remove-button" src="{% static 'images/remove_X.png' %}">
+    <form id="deleteForm" method="post" action="applicant/remove_education">
+        {% csrf_token %}
+        <input type="hidden" name="education_id" value="{{ education.education_id }}">
+        <button type="submit" class="remove-button">X</button>
+    </form>
     <button onclick="toggleEditEducation({{ education.education_id }})" class="edit-button">edit</button>
     <br>
     <div class="profile-data-block" style="margin-right: 5%; width: 25%">

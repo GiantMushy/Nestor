@@ -4,6 +4,7 @@ from applicant.models import *
 from applicant.forms.applicant_form import *
 from common.models import ZipCode, Skills, SkillGenre
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import Group
 from job.models import Job, Application, hasSkills, hasEducation, hasExperience, hasReferences
 
 
@@ -61,7 +62,11 @@ def experience_edit(request):
         return redirect('applicant')
 
 
-def experience_del(request):
+def remove_experience(request):
+    experience_id = request.POST.get('experience_id')
+    exp = get_object_or_404(Experience, id=experience_id)
+    exp.delete()
+    print("experience deleted")
     return redirect('applicant')
 
 
@@ -100,7 +105,11 @@ def education_edit(request):
         return redirect('applicant')
 
 
-def education_del(request):
+def remove_education(request):
+    education_id = request.POST.get('education_id')
+    edu = get_object_or_404(Education, id=education_id)
+    edu.delete()
+    print("education deleted")
     return redirect('applicant')
 
 
@@ -139,7 +148,11 @@ def reference_edit(request):
         return redirect('applicant')
 
 
-def reference_del(request):
+def remove_reference(request):
+    reference_id = request.POST.get('reference_id')
+    ref = get_object_or_404(References, id=reference_id)
+    ref.delete()
+    print("reference deleted")
     return redirect('applicant')
 
 
@@ -166,6 +179,12 @@ def add_skill(request): #adds a skill
 
 
 def remove_skill(request): #removes a skill
+    applicant = Applicant.objects.filter(user=request.user).first()
+    skill_name = request.POST.get('skill_name')
+    skill = get_object_or_404(Skills, name=skill_name)
+    cvskill = CVSkills.objects.filter(skill=skill, applicant=applicant).first()
+    cvskill.delete()
+    print("Skill removed")
     return redirect('applicant')
 
 
@@ -288,6 +307,11 @@ def application_experience_edit(request, id):
         return redirect('/applicants/application/'+str(id))
 
 
+def application_remove_experience(request, id):
+    print("Removing Experience")
+    return redirect('/applicants/application/'+str(id))
+
+
 def application_education_edit(request, id):
     print("Editing Education")
     applicant = Applicant.objects.filter(user=request.user).first()
@@ -302,6 +326,11 @@ def application_education_edit(request, id):
     else:
         print("POST Education Validity Failed")
         return redirect('/applicants/application/'+str(id))
+
+
+def application_remove_education(request, id):
+    print("Removing Education")
+    return redirect('/applicants/application/'+str(id))
 
 
 def application_reference_edit(request, id):
@@ -320,6 +349,11 @@ def application_reference_edit(request, id):
         return redirect('/applicants/application/'+str(id))
 
 
+def application_remove_reference(request, id):
+    print("Removing Reference")
+    return redirect('/applicants/application/'+str(id))
+
+
 def application_experience_add(request, id):
     print("Adding Experience")
     applicant = Applicant.objects.filter(user=request.user).first()
@@ -333,10 +367,10 @@ def application_experience_add(request, id):
         experience.save()
         exp = hasExperience(application=application, experience=experience)
         exp.save()
-        return redirect('/applicants/application/' + str(id))
+        return redirect('/applicants/application/'+str(id))
     else:
         print("POST Experience Validity Failed: ")
-        return redirect('/applicants/application/' + str(id))
+        return redirect('/applicants/application/'+str(id))
 
 
 def application_education_add(request, id):
@@ -352,10 +386,10 @@ def application_education_add(request, id):
         education.save()
         edu = hasEducation(application=application, education=education)
         edu.save()
-        return redirect('/applicants/application/' + str(id))
+        return redirect('/applicants/application/'+str(id))
     else:
         print("POST Education Validity Failed: ")
-        return redirect('/applicants/application/' + str(id))
+        return redirect('/applicants/application/'+str(id))
 
 
 def application_reference_add(request, id):
@@ -371,10 +405,10 @@ def application_reference_add(request, id):
         reference.save()
         ref = hasReferences(application=application, reference=reference)
         ref.save()
-        return redirect('/applicants/application/' + str(id))
+        return redirect('/applicants/application/'+str(id))
     else:
         print("POST Reference Validity Failed: ")
-        return redirect('/applicants/application/' + str(id))
+        return redirect('/applicants/application/'+str(id))
 
 
 def application_add_skill(request, id): #adds a skill
@@ -395,4 +429,7 @@ def application_add_skill(request, id): #adds a skill
         print("Skill Added SUCCESS")
     else:
         print("Skill already in Applicant")
-    return redirect('/applicants/application/' + str(id))
+    return redirect('/applicants/application/'+str(id))
+
+def application_remove_skill(request, id):
+    return redirect('/applicants/application/'+str(id))
