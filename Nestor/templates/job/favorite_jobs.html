@@ -7,7 +7,7 @@
     {% if jobs %}
     <div id="all-jobs" class="all_jobs">
         {% for job in jobs %}
-            {% include 'job/single_job.html' with jobs=jobs %}
+            {% include 'job/single_job.html' with job=job %}
         {% endfor %}
     </div>
     {% else %}

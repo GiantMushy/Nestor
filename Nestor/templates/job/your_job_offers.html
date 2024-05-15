@@ -11,10 +11,16 @@
             <a href="{% url 'create_job' %}" class="create-job-btn">Create Job</a>
             {% endif %}
     </div>
-{#    {% include 'job/searchbar.html' %}#}
-    <div class="all_jobs">
+    {% if jobs %}
+    <div id="all-jobs" class="all_jobs">
         {% for job in jobs %}
             {% include 'job/single_job_company.html' with job=job %}
         {% endfor %}
     </div>
+    {% else %}
+    <div class="no-data-found">
+        <img src="{% static 'images/Nestor_logo.png'%}">
+        <h2>No job offers created</h2>
+    </div>
+    {% endif %}
 {% endblock %}
