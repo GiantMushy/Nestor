@@ -21,7 +21,6 @@ class JobCreateForm(forms.ModelForm):
             'job-category': forms.Select(attrs={'placeholder': 'Select a job category'}),
             'address': forms.TextInput(attrs={'placeholder': 'Enter the job address'}),
             'job_image': forms.TextInput(attrs={'placeholder': 'Enter a valid image link'}),
-            'percentage': forms.NumberInput(attrs={'placeholder': 'Enter job percentage'}),
             # 'is_available': forms.CheckboxInput(attrs={'class': 'checkbox'})
         }
 

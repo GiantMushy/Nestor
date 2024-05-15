@@ -25,7 +25,6 @@ class Job(models.Model):
     date_of_offering = models.DateField(default=timezone.now)
     application_due_date = models.DateField()
     starting_date = models.DateField()
-    percentage = models.IntegerField()
     num_of_applicants = models.IntegerField(default=0)
     is_available = models.BooleanField(default=True)
 
@@ -37,6 +36,7 @@ class Application(models.Model):
     applicant = models.ForeignKey(Applicant, on_delete=models.CASCADE)
     job = models.ForeignKey(Job, on_delete=models.CASCADE)
     date = models.DateField(default=timezone.now)
+    is_submitted = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.applicant.full_name) + ' - ' + str(self.job.name)
