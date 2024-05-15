@@ -4,7 +4,6 @@ from company.models import Company, Employee
 from common.models import JobCategory, City
 from django.utils import timezone
 from job.models import Job, FavoriteJob
-from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 
 
@@ -36,9 +35,7 @@ def index(request):
 
 def get_company_by_id(request, id):
     active_section = get_active_section(request)
-
     all_jobs = Job.objects.filter(company_id=id).order_by('name')
-
     fav_jobs = FavoriteJob.objects.filter(user=request.user).all()
 
     jobs = [add_days_left(job) for job in all_jobs]
@@ -46,7 +43,7 @@ def get_company_by_id(request, id):
     return render(request, 'company/company_page.html', {
         'company': get_object_or_404(Company, pk=id),
         'jobs': filtered_jobs,
-        'fav_jobs': fav_jobs,
+        'fav_jobs': [job.job.id for job in fav_jobs],
         'active_section': active_section
     })
 
