@@ -7,7 +7,11 @@
     <div class="job-page-container">
         <div class="job-page-content">
             <div class="left-job-view">
+                {% if job.job_image %}
                 <img class="job-image" src="{{ job.job_image }}" class="job-img"/>
+                {% else %}
+                <img class="job-image" src="{% static 'images/Nestor_logo.png' %}" class="job-img"/>
+                {% endif %}
                 <div class="left-job-info">
                     <h5>Due Date</h5>
                     <p>{{ job.application_due_date }}</p>
