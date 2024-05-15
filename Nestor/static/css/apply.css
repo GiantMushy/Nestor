@@ -52,7 +52,7 @@
 	border-radius: 0.5rem;
 	padding: 0.4rem 1rem;
 	position: absolute;
-	right: 1rem;
+	right: 3.5rem;
 	cursor: pointer;
 }
 
@@ -153,6 +153,7 @@
 	border-radius: 0.3rem;
 	padding: 0.4rem 0.4rem 0.4rem 0.4rem;
 }
+
 .delete-skill {
 	border: none;
 	position: absolute;
@@ -165,12 +166,15 @@
 	height: 1.6rem;
 	padding: 0.2rem 0.2rem 0.2rem 0.2rem;
 }
+
 .new_skill {
 	position: relative;
 	display: inline-block;
 	width: 16%;
 	min-width: 10rem;
+
 }
+
 .add_skill {
 	border: none;
 	position: absolute;
@@ -183,6 +187,7 @@
 	height: 1.6rem;
 	padding: 0.2rem 0.2rem 0.2rem 2rem;
 }
+
 .skill-select {
 	position: relative;
 	color: #363841;
@@ -194,13 +199,14 @@
 	z-index: 1;
 }
 
+
 .progress_header {
 	position: sticky;
 	height: 2rem;
 	width: 100%;
 }
 
-.progress_header div{
+.progress_header div {
 	display: inline-block;
 	font-size: 1rem;
 	width: 15%;
