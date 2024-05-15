@@ -29,4 +29,4 @@ class JobCreateForm(forms.ModelForm):
 class FavoriteJobCreateForm(forms.ModelForm):
     class Meta:
         model = FavoriteJob
-        fields = ['applicant', 'job']
+        fields = ['user', 'job']
