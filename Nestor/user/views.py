@@ -7,7 +7,7 @@ def register(request):
     # for message in messages:
     #     # Do something with each message, e.g., print or process
     #     print(message)
-    if request.method =='POST':
+    if request.method == 'POST':
         form = UserForm(data=request.POST)
         if form.is_valid():
             form.save()
