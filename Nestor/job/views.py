@@ -180,7 +180,10 @@ def your_job_offers(request):
 @login_required(redirect_field_name="/login")
 @permission_required('job.view_job', raise_exception=True)
 def get_applications_by_job_id(request, id):
+    employee = get_object_or_404(Employee, user=request.user)
+    job = get_object_or_404(Job, pk=id)
     applications = Application.objects.filter(job_id=id).all()
+    job.num_of_applicants = len(applications)
 
     for application in applications:
         education = hasEducation.objects.filter(application=application.id)
@@ -196,9 +199,10 @@ def get_applications_by_job_id(request, id):
                 application.experience = ex.experience
 
     return render(request, 'job/applications_page.html', {
-        'job': get_object_or_404(Job, pk=id),
+        'job': job,
         'applications':applications,
-        'active_section': get_active_section(request)
+        'active_section': get_active_section(request),
+        'employee': employee
     })
 
 # TODO: 
