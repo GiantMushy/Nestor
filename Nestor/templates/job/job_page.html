@@ -24,30 +24,29 @@
             <div class="middle-job-view">
                 <div class="title-and-btn">
                     <h2 class="job-title">{{ job.name }}</h2>
-                    {% if not application.is_applied %}
+                    {% if not application.is_submitted %}
                         <a class="apply-btn" href="/applicants/application/{{ job.id }}">Apply </a>
                     {% endif %}
                 </div>
-                {% if application.is_applied %}
+                {% if application.is_submitted %}
                     <div>
                         <p>You applied {{ application.date }}</p>
                         <p>Status: {{ application.status }}</p>
                     </div>
-                {% else %}
-                    <form action="{% url 'favorite_job' %}" method="post">
-                        {% csrf_token %}
-                        <input type="hidden" name="job_id" value="{{ job.id }}">
-                        <button class="favorite-btn">
-                            {% if job.id in fav_jobs %}
-                                <p>Remove from favorites</p> 
-                                <img class="heart-image" src="{% static 'images/heartoutline_110866.png'%}" alt="">
-                            {% else %}
-                                <p>Add to favorites</p> 
-                                <img class="heart-image" src="{% static 'images/filled_heart.png'%}" alt="">
-                            {% endif %}
-                        </button>
-                    </form>
                 {% endif %}
+                <form action="{% url 'favorite_job' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="job_id" value="{{ job.id }}">
+                    <button class="favorite-btn">
+                        {% if job.id in fav_jobs %}
+                            <p>Remove from favorites</p>
+                            <img class="heart-image" src="{% static 'images/heartoutline_110866.png'%}" alt="">
+                        {% else %}
+                            <p>Add to favorites</p>
+                            <img class="heart-image" src="{% static 'images/filled_heart.png'%}" alt="">
+                        {% endif %}
+                    </button>
+                </form>
                 <h5>Job description</h5>
                 <p>{{ job.description }}</p>
             </div>

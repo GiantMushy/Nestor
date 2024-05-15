@@ -127,7 +127,7 @@ def favorite_jobs(request):
 
 @login_required(redirect_field_name="/login")
 def applied_jobs(request):
-    applications = Application.objects.filter(applicant__user_id=request.user.id).all()
+    applications = Application.objects.filter(applicant__user_id=request.user.id, is_submitted=True).all()
 
     for application in applications:
         get_application_status(application)
