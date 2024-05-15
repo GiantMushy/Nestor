@@ -7,12 +7,18 @@
 {% endblock additionalStyles %}
 
 {% block content %}
+<div class="cv-container">
     <h1>{{ applicant.full_name }}'s Virtual CV </h1><br>
-    
-    <img src="{{ applicant.profile_image }}" class="profile-image"/>
-    {% include 'applicant/VirtualCV/contact_info_view.html' %}
-    {% include 'applicant/VirtualCV/contact_info_edit.html' %}
-    <br>
+    <div class="contact-container">
+        <div class="profile-container">
+            <img src="{{ applicant.profile_image }}" class="profile-image" alt="profile image"/>
+        </div>
+        <div class="contact-right">
+            {% include 'applicant/VirtualCV/contact_info_view.html' %}
+            {% include 'applicant/VirtualCV/contact_info_edit.html' %}
+        </div>
+        <br>
+    </div>
     
     <h2 class="CV-block-title">Experience</h2>
     <button onclick="toggleAddExperience()" class="add">+</button>
@@ -60,5 +66,5 @@
     <button onclick="toggleEditSkills()" class="edit-button add">+</button>
     {% include 'applicant/VirtualCV/skills_view.html' %}
     {% include 'applicant/VirtualCV/skills_edit.html' %}
-    
+</div> 
 {% endblock %}
