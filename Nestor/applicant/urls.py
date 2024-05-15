@@ -13,5 +13,12 @@ urlpatterns = [
     path('applicant/reference_edit', views.reference_edit, name='applicant/reference_edit'),
     path('applicant/add_skill', views.add_skill, name='applicant/add_skill'),
     path('applicant/remove_skill', views.remove_skill, name='applicant/remove_skill'),
-    path('application/<int:id>', views.apply_init, name='apply/init')
+    path('application/<int:id>', views.apply_init, name='apply/init'),
+    path('application/experience_add/<int:id>', views.application_experience_add, name='application/experience_add'),
+    path('application/education_add/<int:id>', views.application_education_add, name='application/education_add'),
+    path('application/reference_add/<int:id>', views.application_reference_add, name='application/reference_add'),
+    path('application/experience_edit/<int:id>', views.application_experience_edit, name='application/experience_edit'),
+    path('application/education_edit/<int:id>', views.application_education_edit, name='application/education_edit'),
+    path('application/reference_edit/<int:id>', views.application_reference_edit, name='application/reference_edit'),
+    path('application/add_skill/<int:id>', views.add_skill, name='application/add_skill')
 ]

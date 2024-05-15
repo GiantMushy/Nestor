@@ -1,40 +1,41 @@
 {% load static %}
 <h2 class="CV-block-title">References</h2>
-<button onclick="toggleAddReference()" class="add">+</button>
+<button onclick="toggleAddInstance('reference')" class="add">+</button>
 <button onclick="goTo('skill')" class="next_prev_button" style="left: 90%">next</button>
 <button onclick="goTo('education')" class="next_prev_button">prev</button>
 
+{% include 'applicant/application/reference_new.html' %}
 {% if not references %}
-    <div class="black_block">
+    <div class="white_block">
         <h3>No registered references</h3>
     </div>
 {% else %}
     {% for reference in references %}
-        <div class="black_block hidden" id="reference/edit/{{ reference.reference_id }}">
-            <form class="form form-horizontal" method="POST"  action="applicant/reference_edit">
+        <div class="white_block">
+            <form class="form form-horizontal" method="POST"  action="/applicants/application/reference_edit/{{ job.id }}">
                 {% csrf_token %}
                 <input type="hidden" name="reference_id" value="{{ reference.reference_id }}">
                 <input type="submit" class="edit-button" value="Update" /><br>
                 <div class="profile-data-block" style="margin-right: 10%">
-                    <p class="profile-data-label">Full name</p><br>
+                    <p class="profile-data-label">Full name</p>
                     <input type="text" name="name" class="profile-data-input" value="{{ reference.reference.name }}" required id="id_name">
                 </div>
                 <div class="profile-data-block">
-                    <p class="profile-data-label">Company</p><br>
+                    <p class="profile-data-label">Company</p>
                     <input type="text" name="workplace_name" class="profile-data-input" value="{{ reference.reference.workplace_name }}" required id="id_workplace_name">
                 </div>
         
                 <div class="profile-data-block" style="margin-right: 10%">
-                    <p class="profile-data-label">Role</p><br>
+                    <p class="profile-data-label">Role</p>
                     <input type="text" name="role" class="profile-data-input" value="{{ reference.reference.role }}" required id="id_role">
                 </div>
                 <div class="profile-data-block">
-                    <p class="profile-data-label">Email</p><br>
+                    <p class="profile-data-label">Email</p>
                     <input type="text" name="email" class="profile-data-input" value="{{ reference.reference.email }}" required id="id_email">
                 </div>
                 
                 <div class="profile-data-block" style="margin-right: 10%">
-                    <p class="profile-data-label">Phone</p><br>
+                    <p class="profile-data-label">Phone</p>
                     <input type="text" name="phone" class="profile-data-input" value="{{ reference.reference.phone }}" required id="id_phone">
                 </div>
                 <div class="profile-data-block">

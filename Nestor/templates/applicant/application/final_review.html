@@ -11,13 +11,6 @@
 {% endblock additionalStyles %}
 
 {% block content %}
-    <h1> {{ job.name }} </h1><h2> {{ job.company }}</h2>
-    
-    <img src="{{ applicant.profile_image }}" class="profile-image"/>
-    {% include 'applicant/VirtualCV/contact_info_view.html' %}
-    {% include 'applicant/VirtualCV/contact_info_edit.html' %}
-    <br>
-    
     <h2 class="CV-block-title">Experience</h2>
     <button onclick="toggleAddExperience()" class="add">+</button>
     {% include 'applicant/VirtualCV/experience_new.html' %}

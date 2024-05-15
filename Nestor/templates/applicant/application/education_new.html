@@ -1,19 +1,19 @@
 {% load static %}
-<div class="black_block hidden" id="education/new">
-    <form class="form form-horizontal" method="post" action="applicant/education_add">
+<div class="white_block hidden" id="education/new">
+    <form class="form form-horizontal" method="post" action="/applicants/application/education_add/{{ job.id }}">
         {% csrf_token %}
         <input type="submit" class="edit-button" value="Add" />
         <br>
         <div class="profile-data-block" style="margin-right: 5%; width: 25%">
-            <p class="profile-data-label">School</p><br>
+            <p class="profile-data-label">School</p>
             <input type="text" name="school_name" class="profile-data-input form-control" required id="id_school_name">
         </div>
         <div class="profile-data-block" style="margin-right: 5%; width: 25%">
-            <p class="profile-data-label">Degree</p><br>
+            <p class="profile-data-label">Degree</p>
             <input type="text" name="degree" class="profile-data-input form-control" required id="id_degree">
         </div>
         <div class="profile-data-block" style="width: 25%">
-            <p class="profile-data-label">Level</p><br>
+            <p class="profile-data-label">Level</p>
             <select name="level" class="profile-data-select" required id="id_level">
                 {% for option in education_levels %}
                     <option value="{{ option.id }}">{{ option }}</option>
@@ -22,16 +22,16 @@
         </div>
 
         <div class="profile-data-block" style="margin-right: 5%; width: 15%">
-            <p class="profile-data-label">Start Date</p><br>
+            <p class="profile-data-label">Start Date</p>
             <input type="date" name="start_date" class="profile-data-input form-control" required id="id_start_date">
         </div>
         <div class="profile-data-block" style="width: 15%">
-            <p class="profile-data-label">End Date</p><br>
+            <p class="profile-data-label">End Date</p>
             <input type="date" name="end_date" class="profile-data-input form-control" id="id_end_date">
         </div>
 
         <div style="overflow: hidden">
-            <p class="profile-data-label">Degree Description</p><br>
+            <p class="profile-data-label">Degree Description</p>
             <textarea name="description" id="id_description" class="profile-data-input bio-input form-control"></textarea>
         </div>
     </form>
