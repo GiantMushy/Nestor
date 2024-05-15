@@ -54,17 +54,29 @@ class hasSkills(models.Model):
     application = models.ForeignKey(Application, on_delete=models.CASCADE)
     skill = models.ForeignKey(Skills, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return str(self.application.applicant.full_name) + ' - ' + str(self.skill.name)
+
 
 class hasExperience(models.Model):
     application = models.ForeignKey(Application, on_delete=models.CASCADE)
     experience = models.ForeignKey(Experience, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.application.applicant.full_name) + ' - ' + str(self.experience.workplace_name) + str(self.experience.role)
 
 
 class hasEducation(models.Model):
     application = models.ForeignKey(Application, on_delete=models.CASCADE)
     education = models.ForeignKey(Education, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return str(self.application.applicant.full_name) + ' - ' + str(self.education.school_name) + str(self.education.degree)
+
 
 class hasReferences(models.Model):
     application = models.ForeignKey(Application, on_delete=models.CASCADE)
     reference = models.ForeignKey(References, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.application.applicant.full_name) + ' - ' + str(self.reference.name)

@@ -68,7 +68,18 @@ p {
 
 .company_image_container {
 	display: flex;
+	justify-content: center;
 	align-items: center;
+	width: 100%;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+.company_image {
+	width: 100%;
+    display: block;
+	object-position: center;
+    object-fit: cover;
 }
 
 .like_button {
@@ -79,10 +90,6 @@ p {
 .company_container_right_column {
 	display: flex;
 	justify-content: start;
-}
-
-.company_image {
-	width: 170px;
 }
 
 .info_container {
@@ -104,3 +111,4 @@ p {
 .header {
 	margin-bottom: 20px;
 }
+
