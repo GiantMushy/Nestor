@@ -20,5 +20,5 @@ urlpatterns = [
     path('application/experience_edit/<int:id>', views.application_experience_edit, name='application/experience_edit'),
     path('application/education_edit/<int:id>', views.application_education_edit, name='application/education_edit'),
     path('application/reference_edit/<int:id>', views.application_reference_edit, name='application/reference_edit'),
-    path('application/add_skill/<int:id>', views.add_skill, name='application/add_skill')
+    path('application/add_skill/<int:id>', views.application_add_skill, name='application/add_skill')
 ]
