@@ -38,7 +38,8 @@ def get_company_by_id(request, id):
     active_section = get_active_section(request)
 
     all_jobs = Job.objects.filter(company_id=id).order_by('name')
-    fav_jobs = FavoriteJob.objects.filter(applicant__user_id=request.user.id).all()
+
+    fav_jobs = FavoriteJob.objects.filter(user=request.user).all()
 
     jobs = [add_days_left(job) for job in all_jobs]
     filtered_jobs = [job for job in jobs if int(job.days_left) > 0]

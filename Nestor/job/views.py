@@ -18,7 +18,7 @@ def add_days_left(job):
 
 def index(request):
     all_jobs = Job.objects.all().order_by('name')
-    fav_jobs = FavoriteJob.objects.filter(applicant__user_id=request.user.id).all()
+    fav_jobs = FavoriteJob.objects.filter(user=request.user).all()
     employee = Employee.objects.filter(user=request.user.id).first()
 
     # Getting the query parameters
@@ -72,7 +72,7 @@ def get_application_status(application):
 
 
 def get_job_by_id(request, id):
-    fav_jobs = FavoriteJob.objects.filter(applicant__user_id=request.user.id).all()
+    fav_jobs = FavoriteJob.objects.filter(user=request.user).all()
     application = Application.objects.filter(applicant__user_id=request.user.id, job_id=id).first()
     if application:
         get_application_status(application)
@@ -110,7 +110,7 @@ def create_job(request):
 
 @login_required(redirect_field_name="/login")
 def favorite_jobs(request):
-    fav_jobs = FavoriteJob.objects.filter(applicant__user_id=request.user.id).all()
+    fav_jobs = FavoriteJob.objects.filter(user=request.user).all()
     job_ids = [app.job_id for app in fav_jobs]
     all_jobs = Job.objects.filter(id__in=job_ids)
 
@@ -147,13 +147,13 @@ def favorite_job(request):
     # To get the job that was selected in the url before and the applicant
     job_id = request.POST.get('job_id')
 
-    fav_jobs = FavoriteJob.objects.filter(applicant__user_id=request.user.id).all()
+    fav_jobs = FavoriteJob.objects.filter(user=request.user).all()
     fav_job = fav_jobs.filter(job__id=job_id).all()
     job = get_object_or_404(Job, id=job_id)
-    applicant = get_object_or_404(Applicant, user_id=request.user.id)
+    # applicant = get_object_or_404(Applicant, user_id=request.user.id)
 
     if not fav_job:
-        new_favorite = FavoriteJob(applicant=applicant, job=job)
+        new_favorite = FavoriteJob(user=request.user, job=job)
         new_favorite.save()
     else:
         fav_job.delete()

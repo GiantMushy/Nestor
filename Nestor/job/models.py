@@ -3,6 +3,7 @@ from company.models import Company
 from common.models import ZipCode, Skills, JobCategory
 from applicant.models import Applicant, Experience, Education, References
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 
 class JobType(models.Model):  #summer/internship/part-time/fulltime
@@ -42,11 +43,11 @@ class Application(models.Model):
 
 
 class FavoriteJob(models.Model):
-    applicant = models.ForeignKey(Applicant, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     job = models.ForeignKey(Job, on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.applicant.full_name) + ' - ' + str(self.job.name)
+        return str(self.user.get_full_name()) + ' - ' + str(self.job.name)
 
 
 class hasSkills(models.Model):

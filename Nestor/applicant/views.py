@@ -5,19 +5,19 @@ from applicant.forms.applicant_form import *
 from common.models import ZipCode, Skills, SkillGenre
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
+from job.models import Job, Application, hasSkills, hasEducation, hasExperience, hasReferences
 
 ################################  CONTACT INFORMATION #####################################
 def contact_info(request):
     print("Hello Contact Info")
     applicant = Applicant.objects.filter(user=request.user).first()
 
+
     applicant_form = ApplicantForm(instance=applicant, data=request.POST)
     if applicant_form.is_valid():
         applicant = applicant_form.save(commit=False)
         applicant.user = request.user
 
-        group = Group.objects.get(name='Applicant')
-        applicant.user.groups.add(group)
         applicant.save()
         print("PATCH Contact Info Validity SUCCESS")
         return redirect('applicant')
@@ -172,7 +172,6 @@ def remove_skill(request): #removes a skill
 ################################  OTHER  #####################################
 @login_required(redirect_field_name="/login")
 def applicant(request):
-    print("Displaying Applicant Data")
     applicant = Applicant.objects.filter(user=request.user).first()
     experiences = CVExperience.objects.filter(applicant=applicant).all()
     educations = CVEducation.objects.filter(applicant=applicant).all()
@@ -190,6 +189,7 @@ def applicant(request):
         all_skills[skill.genre].append(skill)
     for skill in app_skills:
         applicant_skills[skill.skill.genre].append(skill.skill)
+   
 
     context = {
         'applicant': applicant,
