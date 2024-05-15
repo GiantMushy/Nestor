@@ -18,9 +18,12 @@ def add_days_left(job):
 
 def index(request):
     all_jobs = Job.objects.all().order_by('name')
-    fav_jobs = FavoriteJob.objects.filter(user=request.user).all()
-    employee = Employee.objects.filter(user=request.user.id).first()
-
+    fav_jobs = ""
+    employee = ""
+    if request.user.is_authenticated: 
+        fav_jobs = FavoriteJob.objects.filter(user=request.user).all()
+        employee = Employee.objects.filter(user=request.user.id).first()
+        fav_jobs = [job.job.id for job in fav_jobs]
     # Getting the query parameters
     job_param = request.GET.get('job')
     com_params = list(request.GET.getlist('com'))
@@ -54,7 +57,7 @@ def index(request):
                'companies_placeholder':
                    ', '.join([com.name for com in Company.objects.filter(id__in=com_params).order_by('name')]),
                'job_value': job_param or "",
-               'fav_jobs': [job.job.id for job in fav_jobs],
+               'fav_jobs': fav_jobs,
                'employee': employee
                }
 
