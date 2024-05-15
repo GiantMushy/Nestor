@@ -3,8 +3,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from applicant.models import *
 from applicant.forms.applicant_form import *
 from common.models import ZipCode, Skills, SkillGenre
+<<<<<<< HEAD
+=======
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
+>>>>>>> 2077ca4301a7a81e83ad13d4cc3d403e59670d5a
 from job.models import Job, Application, hasSkills, hasEducation, hasExperience, hasReferences
 
 
@@ -17,9 +20,6 @@ def contact_info(request):
     if applicant_form.is_valid():
         applicant = applicant_form.save(commit=False)
         applicant.user = request.user
-
-        group = Group.objects.get(name='Applicant')
-        applicant.user.groups.add(group)
         applicant.save()
         print("PATCH Contact Info Validity SUCCESS")
         return redirect('applicant')
@@ -172,7 +172,6 @@ def remove_skill(request): #removes a skill
 
 
 ################################  OTHER  #####################################
-@login_required(redirect_field_name="/login")
 def applicant(request):
     print("Displaying Applicant Data")
     applicant = Applicant.objects.filter(user=request.user).first()
@@ -206,7 +205,6 @@ def applicant(request):
     return render(request, 'applicant/applicant.html', context)
 
 
-@login_required(redirect_field_name="/login")
 def index(request):
     applicant = Applicant.objects.filter(user=request.user).first()
     return render(request, 'applicant/index.html', {'applicant': applicant})

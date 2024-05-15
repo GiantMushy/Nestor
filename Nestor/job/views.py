@@ -6,8 +6,6 @@ from django.utils import timezone
 from common.models import JobCategory, City
 from company.models import Company, Employee
 from applicant.models import Education, CVEducation, CVExperience
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.decorators import permission_required
 
 
 def add_days_left(job):
@@ -20,6 +18,8 @@ def index(request):
     all_jobs = Job.objects.all().order_by('name')
     fav_jobs = FavoriteJob.objects.filter(applicant__user_id=request.user.id).all()
     employee = Employee.objects.filter(user=request.user.id).first()
+    jobs = [add_days_left(job) for job in all_jobs]
+    filtered_jobs = [job for job in jobs if int(job.days_left) > 0]
 
     # Getting the query parameters
     job_param = request.GET.get('job')
@@ -35,9 +35,6 @@ def index(request):
         all_jobs = all_jobs.filter(zipcode__city_id__in=cou_params)
     if cat_params:
         all_jobs = all_jobs.filter(job_category_id__in=cat_params)
-
-    jobs = [add_days_left(job) for job in all_jobs]
-    filtered_jobs = [job for job in jobs if int(job.days_left) > 0]
 
     context = {'jobs': filtered_jobs,
                'active_section': get_active_section(request),
@@ -61,33 +58,17 @@ def index(request):
     return render(request, 'job/index.html', context)
 
 
-def get_application_status(application):
-    if application.job.application_due_date < timezone.now().date():
-        if not application.job.is_available:
-            application.status = 'Finished'
-        else:
-            application.status = 'In review'
-    else:
-        application.status = 'In progress'
-
-
 def get_job_by_id(request, id):
+    all_jobs = Job.objects.all().order_by('name')
     fav_jobs = FavoriteJob.objects.filter(applicant__user_id=request.user.id).all()
-    application = Application.objects.filter(applicant__user_id=request.user.id, job_id=id).first()
-    if application:
-        get_application_status(application)
 
     return render(request, 'job/job_page.html', {
         'job': get_object_or_404(Job, pk=id),
         'fav_jobs': [job.job.id for job in fav_jobs],
-        'application': application,
         'active_section': get_active_section(request)
     })
 
 
-
-@login_required(redirect_field_name="/login")
-@permission_required('job.add_job', raise_exception=True)
 def create_job(request):
     employee = Employee.objects.filter(user=request.user).first()
     active_section = get_active_section(request)
@@ -95,7 +76,7 @@ def create_job(request):
         form = JobCreateForm(data=request.POST, initial= {'company': employee.company})
         if form.is_valid():
             job = form.save(commit=False)
-            job.company = employee.company
+            job.company= employee.company
             job.save()
             return redirect('job_index')
     else:
@@ -106,12 +87,11 @@ def create_job(request):
         'active_section': active_section
     })
 
-#TODO: 
 
-@login_required(redirect_field_name="/login")
 def favorite_jobs(request):
     fav_jobs = FavoriteJob.objects.filter(applicant__user_id=request.user.id).all()
     job_ids = [app.job_id for app in fav_jobs]
+
     all_jobs = Job.objects.filter(id__in=job_ids)
 
     context = {'companies': Company.objects.all().order_by('name'),
@@ -119,30 +99,26 @@ def favorite_jobs(request):
                'countries': City.objects.all().order_by('name'),
                'jobs': [add_days_left(job) for job in all_jobs],
                'active_section': get_active_section(request),
-               'fav_jobs': [job.job.id for job in fav_jobs]}
-
+               'fav_jobs': [job.job.id for job in fav_jobs],
+               }
     return render(request, 'job/favorite_jobs.html', context)
 
-# TODO: 
 
-@login_required(redirect_field_name="/login")
 def applied_jobs(request):
     applications = Application.objects.filter(applicant__user_id=request.user.id).all()
+    job_ids = [app.job_id for app in applications]
 
-    for application in applications:
-        get_application_status(application)
+    all_jobs = Job.objects.filter(id__in=job_ids)
 
     context = {'companies': Company.objects.all().order_by('name'),
                'categories': JobCategory.objects.all().order_by('name'),
                'countries': City.objects.all().order_by('name'),
-               'applications': applications,
-               'active_section': get_active_section(request)}
-
+               'jobs': [add_days_left(job) for job in all_jobs],
+               'active_section': get_active_section(request)
+               }
     return render(request, 'job/applied_jobs.html', context)
 
-# TODO: 
 
-@login_required(redirect_field_name="/login")
 def favorite_job(request):
     # To get the job that was selected in the url before and the applicant
     job_id = request.POST.get('job_id')
@@ -160,10 +136,7 @@ def favorite_job(request):
 
     return redirect(f'/jobs/{job_id}')
 
-# TODO: 
 
-@login_required(redirect_field_name="/login")
-@permission_required('job.view_job', raise_exception=True)
 def your_job_offers(request):
     employee = get_object_or_404(Employee, user=request.user)
     company_id = employee.company.id
@@ -176,9 +149,7 @@ def your_job_offers(request):
 
     return render(request, 'job/your_job_offers.html', context)
 
-# TODO: 
-@login_required(redirect_field_name="/login")
-@permission_required('job.view_job', raise_exception=True)
+
 def get_applications_by_job_id(request, id):
     applications = Application.objects.filter(job_id=id).all()
 
@@ -201,8 +172,7 @@ def get_applications_by_job_id(request, id):
         'active_section': get_active_section(request)
     })
 
-# TODO: 
-@permission_required('job.view_job', raise_exception=True)
+
 def review_application(request, jid, aid):
     
     application = Application.objects.get(id=aid)

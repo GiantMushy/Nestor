@@ -3,8 +3,6 @@ from django.contrib.auth.models import User
 from common.models import ZipCode
 
 
-# employee_group, created = Group.objects.get_or_create(name='Employee')
-
 class Company(models.Model):
     name = models.CharField(max_length=100)
     zipcode = models.ForeignKey(ZipCode, on_delete=models.SET_NULL, null=True)
@@ -24,7 +22,6 @@ class Company(models.Model):
 class Employee(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
-
 
     def __str__(self):
         return str(self.user.get_full_name()) + ", " + str(self.company.name)
