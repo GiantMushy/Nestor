@@ -5,6 +5,8 @@ from applicant.forms.applicant_form import *
 from common.models import ZipCode, Skills, SkillGenre
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
+from job.models import Job, Application, hasSkills, hasEducation, hasExperience, hasReferences
+
 
 ################################  CONTACT INFORMATION #####################################
 def contact_info(request):
@@ -208,3 +210,66 @@ def applicant(request):
 def index(request):
     applicant = Applicant.objects.filter(user=request.user).first()
     return render(request, 'applicant/index.html', {'applicant': applicant})
+
+
+def apply_init(request, id):
+    print("Displaying Application Data")
+    applicant = Applicant.objects.filter(user=request.user).first()
+    job = get_object_or_404(Job, pk=id)
+
+    application = Application.objects.filter(job=job, applicant=applicant)
+    if not application.exists():
+        application = Application(applicant=applicant, job=job)
+        application.save()
+        profile_experiences = CVExperience.objects.filter(applicant=applicant).all()
+        profile_educations = CVEducation.objects.filter(applicant=applicant).all()
+        profile_references = CVReferences.objects.filter(applicant=applicant).all()
+        profile_app_skills = CVSkills.objects.filter(applicant=applicant).all()
+
+        for experience in profile_experiences:
+            exp = hasExperience(application=application, experience=experience.experience)
+            exp.save()
+        for education in profile_educations:
+            edu = hasEducation(application=application, education=education.education)
+            edu.save()
+        for reference in profile_references:
+            ref = hasReferences(application=application, reference=reference.reference)
+            ref.save()
+        for skill in profile_app_skills:
+            skl = hasSkills(application=application, skill=skill.skill)
+            skl.save()
+        print("New Application Created Successfully and Data Transferred")
+    else:
+        application = application.first()
+        print("Application Already Exists")
+
+    experiences = hasExperience.objects.filter(application=application).all()
+    educations = hasEducation.objects.filter(application=application).all()
+    references = hasReferences.objects.filter(application=application).all()
+    app_skills = hasSkills.objects.filter(application=application).all()
+
+    genres = SkillGenre.objects.all()
+    skills = Skills.objects.all()
+    all_skills = {}
+    applicant_skills = {}
+    for genre in genres:
+        all_skills[genre] = []
+        applicant_skills[genre] = []
+    for skill in skills:
+        all_skills[skill.genre].append(skill)
+    for skill in app_skills:
+        applicant_skills[skill.skill.genre].append(skill.skill)
+
+    context = {
+        'job': job,
+        'applicant': applicant,
+        'zip_options': ZipCode.objects.all(),
+        'education_levels': EducationLevel.objects.all(),
+        'experiences': experiences,
+        'educations': educations,
+        'references': references,
+        'applicant_skills': applicant_skills,
+        'all_skills': all_skills
+    }
+    return render(request, 'applicant/application/__init__.html', context)
+
