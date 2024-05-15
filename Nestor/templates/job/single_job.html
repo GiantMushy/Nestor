@@ -2,7 +2,7 @@
 <a id="{{ job.id }}" href="/jobs/{{ job.id }}" data-job="{{ job.name }}" data-due="{{ job.days_left }}" data-date="{{ job.date_of_offering }}" data-company="{{ job.company }}">
         <div  class="job_card">
         <div class="job_container_row">
-            <div class="company_image_container"><img src="{{ job.company.logo }}"/></div>
+            <div class="company_image_container"><img class="company_image" src="{{ job.company.logo }}" alt=""/></div>
             <div class="job_container_right_column">
                 {% if job.id in fav_jobs %}
                 <div><img class="heart_image" src="{% static 'images/filled_heart.png'%}" alt=""></div>
