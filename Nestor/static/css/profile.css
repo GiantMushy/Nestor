@@ -1,5 +1,3 @@
-{% load static %}
-
 .hidden {
 	display: none;
 }
@@ -25,6 +23,13 @@
 	width: 62%;
 }
 
+.contact-container {
+	display: flex;
+}
+
+.contact-right {
+	width: 35%;
+}
 
 .CV-block-title {
 	margin-top: 2rem;
@@ -35,10 +40,10 @@
 
 .profile-image {
 	border-radius: 50%;
-	width: 15rem;
 	margin-left: 2rem;
 	margin-bottom: 2rem;
-	height: 20%;
+	max-width: 100%;
+	max-height: 100%;
 }
 
 .edit-button {
@@ -170,6 +175,7 @@
 	min-width: 10rem;
 
 }
+
 .add_skill {
 	border: none;
 	position: absolute;
@@ -182,6 +188,7 @@
 	height: 1.6rem;
 	padding: 0.2rem 0.2rem 0.2rem 2rem;
 }
+
 .skill-select {
 	position: relative;
 	color: #363841;
