@@ -4,39 +4,45 @@
 
 .black_block {
 	position: relative;
+	display: inline-block;
 	border: 1px solid #363841;
 	background-color: #363841;
 	color: #F5F5F2;
 	border-radius: 0.5rem;
 	padding: 1rem 2rem;
-	margin: 0.0rem 2rem 1rem 2rem;
-	width: 90%;
+	margin-bottom: 2rem;
+}
+
+.white_block {
+	position: relative;
+	border: 1px solid #363841;
+	background-color: #F5F5F2;
+	margin: 0.3rem -1rem;
+	color: #363841;
+	border-radius: 0.4rem;
+	padding: 0.5rem 1rem;
+	height: 85vh;
+	overflow: auto;
 }
 
 .contact-info {
-	position: relative;
-	color: #363841;
-	border-radius: 0.5rem;
-	padding: 1rem 2rem;
+	top: 0.0rem;
+	position: sticky;
 	display: inline-block;
-	margin: 0.0rem 2rem 1rem 2rem;
-	width: 62%;
+	margin-right: 2rem;
+	width: 12rem;
 }
 
-
 .CV-block-title {
-	margin-top: 2rem;
+	margin-top: 0.4rem;
 	margin-bottom: 0.4rem;
-	margin-left: 7%;
+	margin-left: 40%;
 	display: inline-block;
 }
 
 .profile-image {
-	border-radius: 50%;
-	width: 15rem;
-	margin-left: 2rem;
-	margin-bottom: 2rem;
-	height: 20%;
+	border-radius: 5%;
+	width: 100%;
 }
 
 .edit-button {
@@ -46,7 +52,7 @@
 	border-radius: 0.5rem;
 	padding: 0.4rem 1rem;
 	position: absolute;
-	right: 3.5rem;
+	right: 1rem;
 	cursor: pointer;
 }
 
@@ -67,11 +73,11 @@
 	border-radius: 50%;
 	position: absolute;
 	display: inline-block;
-	right: 85%;
+	left: 37.5%;
 	padding: 0.0rem 0.3rem 0.1rem 0.3rem;
 	font-size: 1rem;
 	font-weight: bold;
-	margin-top: 2.2rem;
+	margin-top: 0.6rem;
 }
 
 .profile-data-block {
@@ -147,7 +153,6 @@
 	border-radius: 0.3rem;
 	padding: 0.4rem 0.4rem 0.4rem 0.4rem;
 }
-
 .delete-skill {
 	border: none;
 	position: absolute;
@@ -160,13 +165,11 @@
 	height: 1.6rem;
 	padding: 0.2rem 0.2rem 0.2rem 0.2rem;
 }
-
 .new_skill {
 	position: relative;
 	display: inline-block;
 	width: 16%;
 	min-width: 10rem;
-
 }
 .add_skill {
 	border: none;
@@ -189,4 +192,27 @@
 	margin-bottom: 0.3rem;
 	width: 100%;
 	z-index: 1;
+}
+
+.progress_header {
+	position: sticky;
+	height: 2rem;
+	width: 100%;
+}
+
+.progress_header div{
+	display: inline-block;
+	font-size: 1rem;
+	width: 15%;
+}
+
+.next_prev_button {
+	position: absolute;
+	display: inline-block;
+	border: none;
+	background-color: #4AA587;
+	color: #F5F5F2;
+	border-radius: 1rem;
+	padding: 0.4rem 1rem;
+	left: 1rem;
 }

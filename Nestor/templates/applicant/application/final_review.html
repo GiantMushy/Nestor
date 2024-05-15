@@ -1,5 +1,9 @@
-{% extends "base.html" %}
 {% load static %}
+<h2 class="CV-block-title">Final CV Review</h2>
+<button onclick="toggleAddReference()" class="add">+</button>
+<button onclick="goTo('final_review')" class="next_prev_button" style="left: 90%">next</button>
+<button onclick="goTo('skill')" class="next_prev_button">prev</button>
+
 
 {% block additionalStyles %}
 <link rel="stylesheet" href="{% static 'css/apply.css' %}" /> 

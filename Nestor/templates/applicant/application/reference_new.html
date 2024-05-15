@@ -1,0 +1,32 @@
+{% load static %}
+<div class="black_block hidden" id="reference/new">
+    <form class="form form-horizontal" method="POST" action="applicant/reference_add">
+        {% csrf_token %}
+        <input type="submit" class="edit-button" value="Add" /><br>
+        <div class="profile-data-block" style="width: 25%; margin-right: 5%">
+            <p class="profile-data-label">Full name</p><br>
+            <input type="text" name="name" class="profile-data-input" required id="id_name">
+        </div>
+        <div class="profile-data-block" style="width: 25%; margin-right: 5%">
+            <p class="profile-data-label">Company</p><br>
+            <input type="text" name="workplace_name" class="profile-data-input" required id="id_workplace_name">
+        </div>
+        <div class="profile-data-block" style="width: 25%">
+            <p class="profile-data-label">Role</p><br>
+            <input type="text" name="role" class="profile-data-input" required id="id_role">
+        </div>
+        
+        <div class="profile-data-block" style="width: 25%; margin-right: 5%">
+            <p class="profile-data-label">Email</p><br>
+            <input type="text" name="email" class="profile-data-input" required id="id_email">
+        </div>
+        <div class="profile-data-block" style="width: 20%; margin-right: 5%">
+            <p class="profile-data-label">Phone</p><br>
+            <input type="text" name="phone" class="profile-data-input" required id="id_phone">
+        </div>
+        <div class="profile-data-block">
+            <input type="checkbox" name="is_contactable" class="profile-data-input" id="id_is_contactable">
+            <p style="display: inline-block">Ask me before contacting</p>
+        </div>
+    </form>
+</div>

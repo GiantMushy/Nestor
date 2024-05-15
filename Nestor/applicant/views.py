@@ -214,10 +214,10 @@ def apply_init(request, id):
     if not application.exists():
         application = Application(applicant=applicant, job=job)
         application.save()
-        profile_experiences = CVExperience.objects.filter(application=application).all()
-        profile_educations = CVEducation.objects.filter(application=application).all()
-        profile_references = CVReferences.objects.filter(application=application).all()
-        profile_app_skills = CVSkills.objects.filter(application=application).all()
+        profile_experiences = CVExperience.objects.filter(applicant=applicant).all()
+        profile_educations = CVEducation.objects.filter(applicant=applicant).all()
+        profile_references = CVReferences.objects.filter(applicant=applicant).all()
+        profile_app_skills = CVSkills.objects.filter(applicant=applicant).all()
 
         for experience in profile_experiences:
             exp = hasExperience(application=application, experience=experience.experience)
@@ -232,6 +232,9 @@ def apply_init(request, id):
             skl = hasSkills(application=application, skill=skill.skill)
             skl.save()
         print("New Application Created Successfully and Data Transferred")
+    else:
+        application = application.first()
+        print("Application Already Exists")
 
     experiences = hasExperience.objects.filter(application=application).all()
     educations = hasEducation.objects.filter(application=application).all()
