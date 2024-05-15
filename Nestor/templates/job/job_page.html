@@ -24,7 +24,12 @@
             <div class="middle-job-view">
                 <div class="title-and-btn">
                     <h2 class="job-title">{{ job.name }}</h2>
+<<<<<<< HEAD
                     <a class="apply-btn" href="/applicants/application/{{ job.id }}">Apply </a>
+=======
+                    {% if not application %}
+                        <a class="apply-btn" href="/applicants/application/{{ job.id }}">Apply </a>
+>>>>>>> 2077ca4301a7a81e83ad13d4cc3d403e59670d5a
                 </div>
                 <form action="{% url 'favorite_job' %}" method="post">
                     {% csrf_token %}

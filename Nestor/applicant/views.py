@@ -3,6 +3,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from applicant.models import *
 from applicant.forms.applicant_form import *
 from common.models import ZipCode, Skills, SkillGenre
+<<<<<<< HEAD
+=======
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import Group
+>>>>>>> 2077ca4301a7a81e83ad13d4cc3d403e59670d5a
 from job.models import Job, Application, hasSkills, hasEducation, hasExperience, hasReferences
 
 
