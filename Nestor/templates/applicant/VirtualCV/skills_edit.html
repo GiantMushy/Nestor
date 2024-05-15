@@ -1,11 +1,10 @@
 {% load static %}
-<div class="black_block" id="skills/edit">
+<div class="black_block hidden" id="skills/edit">
     {% for genre, skills in applicant_skills.items %}
         <div class="black_block_white_subsection">
             <h3>{{ genre }}</h3>
             {% for skill in skills %}
                 <div class="skill_selection">
-                    <input type="image" id="remove-skill" onclick="removeSkill({{ skill.skill_id }})" class="delete-skill" src="{% static 'images/remove_X.png' %}">
                     <h4>{{ skill }}</h4>
                 </div>
             {% endfor %}
