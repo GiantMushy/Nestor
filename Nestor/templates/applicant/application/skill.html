@@ -4,6 +4,7 @@
 <button onclick="goTo('final_review')" class="next_prev_button" style="left: 90%">next</button>
 <button onclick="goTo('reference')" class="next_prev_button">prev</button>
 
+<div style="margin: 0.0rem -1rem; padding: 1rem 1rem; height: 45vh; overflow: auto">
 <div class="black_block" id="skills/edit">
     {% for genre, skills in applicant_skills.items %}
         <div class="black_block_white_subsection">
@@ -15,7 +16,7 @@
                 </div>
             {% endfor %}
             <div class="new_skill">
-                <form class="form form-horizontal" method="post" action="/applicants/application/skill_add/{{ job.id }}">
+                <form class="form form-horizontal" method="post" action="/applicants/application/add_skill/{{ job.id }}">
                     {% csrf_token %}
                     <input type="submit" id="add_skill_select" class="add_skill" src="{% static 'images/plus_icon.png' %}">
                     <select name="{{ genre.name }}" class="skill-select" required id="id_skill">
@@ -32,4 +33,5 @@
             </div>
         </div>
     {% endfor %}
+</div>
 </div>

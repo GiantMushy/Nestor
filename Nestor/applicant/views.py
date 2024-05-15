@@ -4,7 +4,6 @@ from applicant.models import *
 from applicant.forms.applicant_form import *
 from common.models import ZipCode, Skills, SkillGenre
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import Group
 from job.models import Job, Application, hasSkills, hasEducation, hasExperience, hasReferences
 
 
@@ -325,61 +324,64 @@ def application_experience_add(request, id):
     print("Adding Experience")
     applicant = Applicant.objects.filter(user=request.user).first()
     job = get_object_or_404(Job, pk=id)
-    application = Application.objects.filter(job=job, applicant=applicant)
+    application = Application.objects.filter(job=job, applicant=applicant).first()
 
     experience_form = ExperienceForm(data=request.POST)
     if experience_form.is_valid():
         print("POST Experience Validity SUCCESS")
         experience = experience_form.save(commit=False)
-        applicant = Applicant.objects.filter(user=request.user).first()
         experience.save()
-        exp = hasExperience(applicant=applicant, experience=experience)
+        exp = hasExperience(application=application, experience=experience)
         exp.save()
-        return redirect('/applicants/application/'+str(id))
+        return redirect('/applicants/application/' + str(id))
     else:
         print("POST Experience Validity Failed: ")
-        return redirect('/applicants/application/'+str(id))
+        return redirect('/applicants/application/' + str(id))
 
 
 def application_education_add(request, id):
     print("Adding Education")
     applicant = Applicant.objects.filter(user=request.user).first()
+    job = get_object_or_404(Job, pk=id)
+    application = Application.objects.filter(job=job, applicant=applicant).first()
 
     education_form = EducationForm(data=request.POST)
     if education_form.is_valid():
         print("POST Education Validity SUCCESS")
         education = education_form.save(commit=False)
-        applicant = Applicant.objects.filter(user=request.user).first()
         education.save()
-        cvedu = CVEducation(applicant=applicant, education=education)
-        cvedu.save()
-        return redirect('/applicants/application/'+str(id))
+        edu = hasEducation(application=application, education=education)
+        edu.save()
+        return redirect('/applicants/application/' + str(id))
     else:
         print("POST Education Validity Failed: ")
-        return redirect('/applicants/application/'+str(id))
+        return redirect('/applicants/application/' + str(id))
 
 
 def application_reference_add(request, id):
     print("Adding Reference")
     applicant = Applicant.objects.filter(user=request.user).first()
+    job = get_object_or_404(Job, pk=id)
+    application = Application.objects.filter(job=job, applicant=applicant).first()
 
     reference_form = ReferenceForm(data=request.POST)
     if reference_form.is_valid():
         print("POST Reference Validity SUCCESS")
         reference = reference_form.save(commit=False)
-        applicant = Applicant.objects.filter(user=request.user).first()
         reference.save()
-        cvref = CVReferences(applicant=applicant, reference=reference)
-        cvref.save()
-        return redirect('/applicants/application/'+str(id))
+        ref = hasReferences(application=application, reference=reference)
+        ref.save()
+        return redirect('/applicants/application/' + str(id))
     else:
         print("POST Reference Validity Failed: ")
-        return redirect('/applicants/application/'+str(id))
+        return redirect('/applicants/application/' + str(id))
 
 
 def application_add_skill(request, id): #adds a skill
     applicant = Applicant.objects.filter(user=request.user).first()
     app_skills = CVSkills.objects.filter(applicant=applicant).all()
+    job = get_object_or_404(Job, pk=id)
+    application = Application.objects.filter(job=job, applicant=applicant).first()
     token, data = request.POST.items()
     genre, skill = data
     validity = True
@@ -388,10 +390,9 @@ def application_add_skill(request, id): #adds a skill
             validity = False
     if validity:
         skill_object = Skills.objects.filter(name=skill).first()
-        hasskill = hasSkills(applicant=applicant, skill=skill_object)
+        hasskill = hasSkills(application=application, skill=skill_object)
         hasskill.save()
         print("Skill Added SUCCESS")
     else:
         print("Skill already in Applicant")
-
-    return redirect('/applicants/application/'+str(id))
+    return redirect('/applicants/application/' + str(id))
