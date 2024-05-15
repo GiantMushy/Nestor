@@ -27,7 +27,11 @@
         <p class="profile-data">{{ reference.reference.phone }}</p>
     </div>
     <div class="profile-data-block">
+        {% if reference.reference.is_contactable %}
         <input type="checkbox" class="profile-data" id="contactable" checked>
+        {% else %}
+        <input type="checkbox" class="profile-data" id="contactable">
+        {% endif %}
         <p style="display: inline-block">Ask me before contacting</p>
     </div>
 </div>

@@ -1,5 +1,5 @@
 {% load static %}
-<a href="/companies/{{ company.id }}">
+<a id="{{ company.id }}" data-company="{{ company.name }}" href="/companies/{{ company.id }}">
     <div class="company_card">
         <div class="company_container_row">
             <div class="company_image_container"><img class="company_image" src="{{ company.logo }}" alt=""></div>

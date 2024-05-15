@@ -55,10 +55,10 @@
                 <button id="sort-btn" class="sort-btn with-dropdown">Sort by</button>
                 <span id="sort-chevron"class="chevron"></span>
                 <div id="sort-dropdown" class="dropdown-list search-dropdown hidden">
-                    <li class="in-dropdown" onclick="sort('date')">Date<img id="date-arrow" class="arrow" src="{% static 'images/arrow-down.svg' %}"/></img></li>
-                    <li class="in-dropdown" onclick="sort('due')">Due date<img id="due-arrow" class="arrow" src="{% static 'images/arrow-down.svg' %}"/></img></li>
-                    <li class="in-dropdown" onclick="sort('job')">Job name<img id="job-arrow" class="arrow" src="{% static 'images/arrow-down.svg' %}"/></img></li>
-                    <li class="in-dropdown" onclick="sort('company')">Company name<img id="company-arrow" class="arrow" src="{% static 'images/arrow-down.svg' %}"/></img></li>
+                    <li class="in-dropdown" onclick="sort('date', 'jobs')">Date<img id="date-arrow" class="arrow" src="{% static 'images/arrow-down.svg' %}"/></img></li>
+                    <li class="in-dropdown" onclick="sort('due', 'jobs')">Due date<img id="due-arrow" class="arrow" src="{% static 'images/arrow-down.svg' %}"/></img></li>
+                    <li class="in-dropdown" onclick="sort('job', 'jobs')">Job name<img id="job-arrow" class="arrow" src="{% static 'images/arrow-down.svg' %}"/></img></li>
+                    <li class="in-dropdown" onclick="sort('company', 'jobs')">Company name<img id="company-arrow" class="arrow" src="{% static 'images/arrow-down.svg' %}"/></img></li>
                 </div>
             </div>
         </div>

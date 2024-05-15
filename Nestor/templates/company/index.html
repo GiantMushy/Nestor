@@ -7,7 +7,7 @@
 {% block content %}
     {% include 'company/searchbar.html' %}
     {% if companies %}
-    <div class="all_companies">
+    <div id="all-companies" class="all_companies">
         {% for company in companies %}
             {% include 'company/single_company.html' with companies=companies %}
         {% endfor %}

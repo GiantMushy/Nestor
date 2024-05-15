@@ -71,13 +71,36 @@ const get_selected_items = (dropdown_list) => {
 
 let current_sort = "";
 document.addEventListener("DOMContentLoaded", () => {
-	sort("date");
-	console.log(current_sort);
-})
+	if (document.getElementById("all-jobs")) {
+		sort("date", "jobs");
+	} else {
+		sort("company", "companies");
+	}
+});
 
-const sort = (sort_by) => {
-	const all_jobs = document.getElementById("all-jobs").childNodes;
-	const clean_jobs = Array.from(all_jobs).filter(item => item.nodeType === Node.ELEMENT_NODE);
+
+// const helper = (input, select) => {
+// 	const id = input + "-arrow"
+// 	const select_elem = document.getElementById(id)
+// 	select_elem.classList.add("arrow-active")
+// 	if (current_sort === (input + "-ascent")) {
+// 		select_elem.classList.add("arrow-descend")
+// 		sorted = select.sort((b, a)
+// 	}
+// }
+//
+
+
+// const sort_date = (data) => {
+//
+// }
+
+const sort = (sort_by, selector) => {
+	const all_items = document.getElementById("all-" + selector).childNodes;
+	const clean = Array.from(all_items).filter(item => item.nodeType === Node.ELEMENT_NODE);
+
+
+	//handle active arrow
 	const active_arrow = document.getElementsByClassName("arrow-active")[0];
 	if (active_arrow) {
 		active_arrow.classList.remove("arrow-active");
@@ -87,18 +110,19 @@ const sort = (sort_by) => {
 		}
 	}
 	let sorted = [];
+
 	if (sort_by === "job") {
 		const job_arrow = document.getElementById("job-arrow");
 		job_arrow.classList.add("arrow-active")
 		//descend
 		if (current_sort === "job-ascent") {
 			job_arrow.classList.add("arrow-descend")
-			sorted = clean_jobs.sort((b, a) => a.dataset.job.localeCompare(b.dataset.job))
+			sorted = clean.sort((b, a) => a.dataset.job.localeCompare(b.dataset.job))
 
 			current_sort = "job-descent";
 		} else {
 			//ascend
-			sorted = clean_jobs.sort((a, b) => a.dataset.job.localeCompare(b.dataset.job))
+			sorted = clean.sort((a, b) => a.dataset.job.localeCompare(b.dataset.job))
 			current_sort = "job-ascent";
 		}
 	} else if (sort_by === "company") {
@@ -107,12 +131,12 @@ const sort = (sort_by) => {
 		//descending
 		if (current_sort === "company-ascent") {
 			company_arrow.classList.add("arrow-descend")
-			sorted = clean_jobs.sort((b, a) => a.dataset.company.localeCompare(b.dataset.company))
+			sorted = clean.sort((b, a) => a.dataset.company.localeCompare(b.dataset.company))
 
 			current_sort = "company-descent";
 		} else {
 			//ascend
-			sorted = clean_jobs.sort((a, b) => a.dataset.company.localeCompare(b.dataset.company))
+			sorted = clean.sort((a, b) => a.dataset.company.localeCompare(b.dataset.company))
 			current_sort = "company-ascent";
 		}
 	} else if (sort_by === "date") {
@@ -121,7 +145,7 @@ const sort = (sort_by) => {
 		//descending
 		if (current_sort === "date-ascent") {
 			date_arrow.classList.add("arrow-descend")
-			sorted = clean_jobs.sort((a, b) => {
+			sorted = clean.sort((a, b) => {
 				let d1 = new Date(a.dataset.date)
 				let d2 = new Date(b.dataset.date)
 				return d2 - d1;
@@ -129,7 +153,7 @@ const sort = (sort_by) => {
 			current_sort = "date-descent";
 		} else {
 			//ascend
-			sorted = clean_jobs.sort((b, a) => {
+			sorted = clean.sort((b, a) => {
 				let d1 = new Date(a.dataset.date)
 				let d2 = new Date(b.dataset.date)
 				return d2 - d1;
@@ -142,13 +166,13 @@ const sort = (sort_by) => {
 		//descending
 		if (current_sort === "due-ascent") {
 			due_arrow.classList.add("arrow-descend")
-			sorted = clean_jobs.sort((b, a) => a.dataset.due - b.dataset.due)
+			sorted = clean.sort((b, a) => a.dataset.due - b.dataset.due)
 
 			current_sort = "due-descent";
 		} else {
 
 			//ascend
-			sorted = clean_jobs.sort((a, b) => a.dataset.due - b.dataset.due)
+			sorted = clean.sort((a, b) => a.dataset.due - b.dataset.due)
 			current_sort = "due-ascent";
 		}
 	}
@@ -158,6 +182,7 @@ const sort = (sort_by) => {
 		sorted[i].style.order = i;
 	}
 }
+
 
 const get_updated_placeholder = (dropdown) => {
 	let new_placeholder = ''

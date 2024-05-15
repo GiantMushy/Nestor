@@ -30,9 +30,16 @@
         <!-- <a href="{% url 'create_job' %}" class="create-job-btn">Create Job</a> -->
         <!-- {% endif %} -->
         <div id="sort-btn-container">
-            <button id="sort-btn">Sort by</button>
+            <button id="sort-btn" class="sort-btn with-dropdown">Sort by</button>
             <span id="sort-chevron"class="chevron"></span>
+            <div id="sort-dropdown" class="dropdown-list search-dropdown hidden">
+                <li class="in-dropdown" onclick="sort('company', 'companies')">Company name<img id="company-arrow" class="arrow" src="{% static 'images/arrow-down.svg' %}"/></img></li>
+            </div>
         </div>
+        <!-- <div id="sort-btn-container"> -->
+        <!--     <button id="sort-btn">Sort by</button> -->
+        <!--     <span id="sort-chevron"class="chevron"></span> -->
+        <!-- </div> -->
     </div>
  
 
