@@ -24,11 +24,11 @@
             <div class="middle-job-view">
                 <div class="title-and-btn">
                     <h2 class="job-title">{{ job.name }}</h2>
-                    {% if not application %}
+                    {% if not application.is_applied %}
                         <a class="apply-btn" href="/applicants/application/{{ job.id }}">Apply </a>
                     {% endif %}
                 </div>
-                {% if application %}
+                {% if application.is_applied %}
                     <div>
                         <p>You applied {{ application.date }}</p>
                         <p>Status: {{ application.status }}</p>

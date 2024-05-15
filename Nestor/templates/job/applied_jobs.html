@@ -4,10 +4,19 @@
     <link rel="stylesheet" href="{% static 'css/job_cards.css' %}" />
 {% endblock additionalStyles %}
 {% block content %}
-{#    {% include 'job/searchbar.html' %}    #}
+    {% if applications %}
     <div id="all-jobs" class="all_jobs">
         {% for application in applications %}
             {% include 'job/single_applied_job.html' with applications=applications %}
         {% endfor %}
     </div>
+    {% else %}
+    <div class="no-data-found">
+        <img src="{% static 'images/Nestor_logo.png'%}">
+        <h2>No applied jobs</h2>
+    </div>
+    {% endif %}
 {% endblock %}
+
+
+

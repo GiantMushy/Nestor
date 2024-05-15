@@ -2,5 +2,18 @@
 {% load static %}
 {% block additionalStyles %}
     <link rel="stylesheet" href="{% static 'css/job_cards.css' %}" />
-    <script>const allCards = {{ jobs }}</script>
 {% endblock additionalStyles %}
+{% block content %}
+    {% if jobs %}
+    <div id="all-jobs" class="all_jobs">
+        {% for job in jobs %}
+            {% include 'job/single_job.html' with jobs=jobs %}
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="no-data-found">
+        <img src="{% static 'images/Nestor_logo.png'%}">
+        <h2>No favorite jobs</h2>
+    </div>
+    {% endif %}
+{% endblock %}
