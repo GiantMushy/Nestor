@@ -26,6 +26,7 @@
                     <h2 class="job-title">{{ job.name }}</h2>
                     {% if not application %}
                         <a class="apply-btn" href="/applicants/application/{{ job.id }}">Apply </a>
+                    {% endif %}
                 </div>
                 {% if application %}
                     <div>
