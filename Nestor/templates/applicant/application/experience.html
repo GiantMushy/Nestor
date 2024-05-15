@@ -3,6 +3,8 @@
 <button onclick="toggleAddInstance('experience')" class="add">+</button>
 <button onclick="goTo('education')" class="next_prev_button" style="left: 90%">next</button>
 <button onclick="goTo('experience')" class="next_prev_button">prev</button>
+
+{% include 'applicant/application/experience_new.html' %}
 {% if not experiences %}
     <div class="white_block">
         <h3>No registered experience history</h3>
@@ -10,7 +12,7 @@
 {% else %}
     {% for experience in experiences %}
         <div class="white_block">
-            <form class="form form-horizontal" method="post" action="application/experience">
+            <form class="form form-horizontal" method="post" action="/applicants/application/experience_edit/{{ job.id }}">
                 {% csrf_token %}
                 <input type="hidden" name="experience_id" value="{{ experience.experience_id }}">
                 <input type="submit" class="edit-button" value="Update" />

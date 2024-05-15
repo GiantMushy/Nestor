@@ -1,30 +1,32 @@
 {% load static %}
 <h2 class="CV-block-title">Education</h2>
-<button onclick="toggleAddEducation()" class="add">+</button>
+<button onclick="toggleAddInstance('education')" class="add">+</button>
 <button onclick="goTo('reference')" class="next_prev_button" style="left: 90%">next</button>
 <button onclick="goTo('experience')" class="next_prev_button">prev</button>
+
+{% include 'applicant/application/education_new.html' %}
 {% if not educations %}
-    <div class="black_block">
+    <div class="white_block">
         <h3>No registered education history</h3>
     </div>
 {% else %} 
     {% for education in educations %}
-        <div class="black_block" id="education/edit/{{ education.education_id }}">
-            <form class="form form-horizontal" method="post" action="application/education">
+        <div class="white_block">
+            <form class="form form-horizontal" method="post" action="/applicants/application/education_edit/{{ job.id }}">
                 {% csrf_token %}
                 <input type="hidden" name="education_id" value="{{ education.education_id }}">
-                <input type="submit" class="edit-button" value="Add" />
+                <input type="submit" class="edit-button" value="Update" />
                 <br>
                 <div class="profile-data-block" style="margin-right: 5%; width: 25%">
-                    <p class="profile-data-label">School</p><br>
+                    <p class="profile-data-label">School</p>
                     <input type="text" name="school_name" value="{{ education.education.school_name }}" class="profile-data-input form-control" required id="id_school_name">
                 </div>
                 <div class="profile-data-block" style="margin-right: 5%; width: 25%">
-                    <p class="profile-data-label">Degree</p><br>
+                    <p class="profile-data-label">Degree</p>
                     <input type="text" name="degree" value="{{ education.education.degree }}" class="profile-data-input form-control" required id="id_degree">
                 </div>
                 <div class="profile-data-block" style="width: 25%">
-                    <p class="profile-data-label">Level</p><br>
+                    <p class="profile-data-label">Level</p>
                     <select name="level" class="profile-data-select" required id="id_level">
                         {% for option in education_levels %}
                             <option value="{{ option.id }}">{{ option }}</option>
@@ -33,16 +35,16 @@
                 </div>
         
                 <div class="profile-data-block" style="margin-right: 5%; width: 15%">
-                    <p class="profile-data-label">Start Date</p><br>
+                    <p class="profile-data-label">Start Date</p>
                     <input type="date" name="start_date" value="{{ education.education.start_date }}" class="profile-data-input form-control" required id="id_start_date">
                 </div>
                 <div class="profile-data-block" style="width: 15%">
-                    <p class="profile-data-label">End Date</p><br>
+                    <p class="profile-data-label">End Date</p>
                     <input type="date" name="end_date" value="{{ education.education.end_date }}" class="profile-data-input form-control" id="id_end_date">
                 </div>
         
                 <div style="overflow: hidden">
-                    <p class="profile-data-label">Degree Description</p><br>
+                    <p class="profile-data-label">Degree Description</p>
                     <textarea name="description" id="id_description" class="profile-data-input bio-input form-control">{{ education.education.description }}</textarea>
                 </div>
             </form>
