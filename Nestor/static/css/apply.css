@@ -50,13 +50,13 @@
 	border-radius: 0.5rem;
 	padding: 0.4rem 1rem;
 	position: absolute;
-	right: 1rem;
+	right: 3rem;
 	cursor: pointer;
 }
 
 .remove-button {
 	border: none;
-	background-color: #F5F5F2;
+	background-color: #EDEAEA;
 	border-radius: 0.5rem;
 	width: 1.7rem;
 	position: absolute;

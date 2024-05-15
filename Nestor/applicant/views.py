@@ -308,7 +308,14 @@ def application_experience_edit(request, id):
 
 
 def application_remove_experience(request, id):
-    print("Removing Experience")
+    job = get_object_or_404(Job, pk=id)
+    applicant = Applicant.objects.filter(user=request.user).first()
+    application = Application.objects.filter(job=job, applicant=applicant).first()
+    experience_id = request.POST.get('experience_id')
+    experience = get_object_or_404(Experience, id=experience_id)
+    exp = hasExperience.objects.filter(experience=experience, application=application).first()
+    exp.delete()
+    print("experience deleted")
     return redirect('/applicants/application/'+str(id))
 
 
@@ -329,7 +336,14 @@ def application_education_edit(request, id):
 
 
 def application_remove_education(request, id):
-    print("Removing Education")
+    job = get_object_or_404(Job, pk=id)
+    applicant = Applicant.objects.filter(user=request.user).first()
+    application = Application.objects.filter(job=job, applicant=applicant).first()
+    education_id = request.POST.get('education_id')
+    education = get_object_or_404(Education, id=education_id)
+    edu = hasEducation.objects.filter(education=education, application=application).first()
+    edu.delete()
+    print("education deleted")
     return redirect('/applicants/application/'+str(id))
 
 
@@ -350,7 +364,14 @@ def application_reference_edit(request, id):
 
 
 def application_remove_reference(request, id):
-    print("Removing Reference")
+    job = get_object_or_404(Job, pk=id)
+    applicant = Applicant.objects.filter(user=request.user).first()
+    application = Application.objects.filter(job=job, applicant=applicant).first()
+    reference_id = request.POST.get('reference_id')
+    reference = get_object_or_404(References, id=reference_id)
+    ref = hasReferences.objects.filter(reference=reference, application=application).first()
+    ref.delete()
+    print("reference deleted")
     return redirect('/applicants/application/'+str(id))
 
 
@@ -431,5 +452,14 @@ def application_add_skill(request, id): #adds a skill
         print("Skill already in Applicant")
     return redirect('/applicants/application/'+str(id))
 
+
 def application_remove_skill(request, id):
+    job = get_object_or_404(Job, pk=id)
+    applicant = Applicant.objects.filter(user=request.user).first()
+    application = Application.objects.filter(job=job, applicant=applicant).first()
+    skill_name = request.POST.get('skill_name')
+    skill = get_object_or_404(Skills, name=skill_name)
+    hasskill = hasSkills.objects.filter(skill=skill, application=application).first()
+    hasskill.delete()
+    print("Skill removed")
     return redirect('/applicants/application/'+str(id))

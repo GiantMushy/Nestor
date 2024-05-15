@@ -1,4 +1,8 @@
 const goTo = (window) => {
+	const con = document.getElementById('contact-info')
+	if (window == 'contact-info') {if (con.classList.contains("hidden")) {con.classList.remove("hidden")}}
+	else {if (con.classList.contains("hidden")) {} else {con.classList.add("hidden")}}
+
 	const exp = document.getElementById('experience')
 	if (window == 'experience') {if (exp.classList.contains("hidden")) {exp.classList.remove("hidden")}}
 	else {if (exp.classList.contains("hidden")) {} else {exp.classList.add("hidden")}}

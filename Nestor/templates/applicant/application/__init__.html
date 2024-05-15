@@ -11,19 +11,23 @@
     <div style="position: relative; display: flex; height: 100%;">
         <div style="flex-direction: row; height: 100%" class="contact-info">
             <img src="{{ applicant.profile_image }}" class="profile-image"/>
-            <p>{{ applicant.full_name }}</p>
-            <p>{{ applicant.email }}</p>
-            <p>{{ applicant.phone }}</p>
+            <p style="font-size: 1.2rem">{{ applicant.full_name }}</p>
+            <p style="font-size: 0.8rem">{{ applicant.email }}</p>
+            <p style="font-size: 0.8rem">{{ applicant.phone }}</p>
+            <p style="font-size: 0.8rem">{{  applicant.zipcode.city.country }} - {{  applicant.zipcode }}</p>
+            <p style="font-size: 0.8rem">{{ applicant.address }}</p>
         </div>
         <div class="black_block" style="width:75%; height: 60vh;">
             <div class="progress_header">
+                <div><p>Cover Letter</p></div>
                 <div><p>Experience</p></div>
                 <div><p>Education</p></div>
                 <div><p>References</p></div>
                 <div><p>Skills</p></div>
                 <div><p>Final Review</p></div>
             </div><br>
-            <div id="experience">{% include 'applicant/application/experience.html' %}</div>
+            <div id="contact-info">{% include 'applicant/application/contact_info.html' %}</div>
+            <div id="experience" class="hidden">{% include 'applicant/application/experience.html' %}</div>
             <div id="education" class="hidden">{% include 'applicant/application/education.html' %}</div>
             <div id="reference" class="hidden">{% include 'applicant/application/reference.html' %}</div>
             <div id="skill" class="hidden">{% include 'applicant/application/skill.html' %}</div>

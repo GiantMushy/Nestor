@@ -8,7 +8,7 @@ class ApplicantForm(ModelForm):
         exclude = ['id', 'user']
         widgets = {
                 'profile_image': widgets.TextInput(attrs={'class': 'form-control'})
-        } 
+        }
 
 
 class ExperienceForm(ModelForm):

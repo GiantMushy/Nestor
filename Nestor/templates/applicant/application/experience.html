@@ -2,7 +2,7 @@
 <h2 class="CV-block-title">Experience</h2>
 <button onclick="toggleAddInstance('experience')" class="add">+</button>
 <button onclick="goTo('education')" class="next_prev_button" style="left: 90%">next</button>
-<button onclick="goTo('experience')" class="next_prev_button">prev</button>
+<button onclick="goTo('contact-info')" class="next_prev_button">prev</button>
 
 <div style="margin: 0.0rem -1rem; padding: 1rem 1rem; height: 45vh; overflow: auto">
 {% include 'applicant/application/experience_new.html' %}
@@ -13,6 +13,11 @@
 {% else %}
     {% for experience in experiences %}
         <div class="white_block">
+            <form id="deleteForm" method="post" action="/applicants/application/remove_experience/{{ job.id }}">
+                {% csrf_token %}
+                <input type="hidden" name="experience_id" value="{{ experience.experience_id }}">
+                <button type="submit" class="remove-button">X</button>
+            </form>
             <form class="form form-horizontal" method="post" action="/applicants/application/experience_edit/{{ job.id }}">
                 {% csrf_token %}
                 <input type="hidden" name="experience_id" value="{{ experience.experience_id }}">

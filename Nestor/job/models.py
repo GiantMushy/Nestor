@@ -36,6 +36,7 @@ class Application(models.Model):
     applicant = models.ForeignKey(Applicant, on_delete=models.CASCADE)
     job = models.ForeignKey(Job, on_delete=models.CASCADE)
     date = models.DateField(default=timezone.now)
+    cover_letter = models.TextField(max_length=1000)
     is_submitted = models.BooleanField(default=False)
 
     def __str__(self):

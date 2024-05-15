@@ -11,7 +11,11 @@
             <h3>{{ genre }}</h3>
             {% for skill in skills %}
                 <div class="skill_selection">
-                    <input type="image" id="remove-skill" onclick="removeSkill({{ skill.skill_id }})" class="delete-skill" src="{% static 'images/remove_X.png' %}">
+                    <form id="deleteForm" method="post" action="/applicants/application/remove_skill/{{ job.id }}">
+                            {% csrf_token %}
+                            <input type="hidden" name="skill_name" value="{{ skill }}">
+                            <button type="submit" class="delete-skill">X</button>
+                    </form>
                     <h4>{{ skill }}</h4>
                 </div>
             {% endfor %}

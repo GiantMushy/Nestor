@@ -13,6 +13,11 @@
 {% else %} 
     {% for education in educations %}
         <div class="white_block">
+            <form id="deleteForm" method="post" action="/applicants/application/remove_education/{{ job.id }}">
+                {% csrf_token %}
+                <input type="hidden" name="education_id" value="{{ education.education_id }}">
+                <button type="submit" class="remove-button">X</button>
+            </form>
             <form class="form form-horizontal" method="post" action="/applicants/application/education_edit/{{ job.id }}">
                 {% csrf_token %}
                 <input type="hidden" name="education_id" value="{{ education.education_id }}">
