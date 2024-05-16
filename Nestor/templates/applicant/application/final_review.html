@@ -3,50 +3,49 @@
 <button onclick="goTo('skill')" class="next_prev_button">prev</button>
 <form id="apply" method="post" action="/applicants/application/apply/{{ application.id }}">
     {% csrf_token %}
-    <button type="submit" class="next_prev_button" style="left: 90%">APPLY</button>
+    <button type="submit" class="next_prev_button" style="left: 90%; top: 12%">APPLY</button>
     <input type="hidden" name="application_id" value="{{ application.id }}">
 </form>
 <br>
-<div style="margin: 0.0rem -1rem; padding: 1rem 1rem; height: 45vh; overflow: auto">
-<h2 class="CV-block-title" style="margin-left: 2%">Experience</h2>
-{% if not experiences %}
+<div class="black_block_info">
+    <h2 class="CV-block-title" style="margin-left: 2%">Experience</h2>
+    {% if not experiences %}
+        <div class="white_block">
+            <h3>No registered experience history</h3>
+        </div>
+    {% else %}
+        {% for experience in experiences %}
+            {% include 'applicant/application/review/experience.html' %}
+        {% endfor %}
+    {% endif %}
+
+    <h2 class="CV-block-title" style="margin-left: 2%";>Education</h2>
+    {% if not educations %}
+        <div class="white_block">
+            <h3>No registered education history</h3>
+        </div>
+    {% else %}
+        {% for education in educations %}
+            {% include 'applicant/application/review/education.html' %}
+        {% endfor %}
+    {% endif %}
+
+    <h2 class="CV-block-title" style="margin-left: 2%;">References</h2>
+    {% if not references %}
+        <div class="white_block">
+            <h3>No registered references</h3>
+        </div>
+    {% else %}
+        {% for reference in references %}
+            {% include 'applicant/application/review/reference.html' %}
+        {% endfor %}
+    {% endif %}
+
+    <h2 class="CV-block-title" style="margin-left: 2%;">Skills</h2>
+    {% include 'applicant/application/review/skill.html' %}
+
+    <h2 class="CV-block-title" style="margin-left: 2%;">Cover Letter</h2>
     <div class="white_block">
-        <h3>No registered experience history</h3>
+        <p>{{ application.cover_letter }}</p>
     </div>
-{% else %}
-    {% for experience in experiences %}
-        {% include 'applicant/application/review/experience.html' %}
-    {% endfor %}
-{% endif %}
-
-<h2 class="CV-block-title" style="margin-left: 2%";>Education</h2>
-{% if not educations %}
-    <div class="white_block">
-        <h3>No registered education history</h3>
-    </div>
-{% else %} 
-    {% for education in educations %}
-        {% include 'applicant/application/review/education.html' %}
-    {% endfor %}
-{% endif %}
-
-<h2 class="CV-block-title" style="margin-left: 2%;">References</h2>
-{% if not references %}
-    <div class="white_block">
-        <h3>No registered references</h3>
-    </div>
-{% else %}
-    {% for reference in references %}
-        {% include 'applicant/application/review/reference.html' %}
-    {% endfor %}
-{% endif %}
-
-<h2 class="CV-block-title" style="margin-left: 2%;">Skills</h2>
-{% include 'applicant/application/review/skill.html' %}
-
-<h2 class="CV-block-title" style="margin-left: 2%;">Cover Letter</h2>
-<div class="white_block">
-    <p>{{ application.cover_letter }}</p>
-</div>
-
 </div>
