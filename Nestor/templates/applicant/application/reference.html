@@ -1,28 +1,36 @@
 {% load static %}
-<h2 class="CV-block-title">References</h2>
-<button onclick="toggleAddInstance('reference')" class="add">+</button>
-<button onclick="goTo('skill')" class="next_prev_button" style="left: 90%">next</button>
-<button onclick="goTo('education')" class="next_prev_button">prev</button>
+<div class="control">
+    <button onclick="goTo('education')" class="next_prev_button">prev</button>
+    <div class="title-and-btn">
+        <button onclick="toggleAddInstance('reference')" class="add">+</button>
+        <h2 class="CV-block-title">References</h2>
+    </div>
+    <button onclick="goTo('skill')" class="next_prev_button">next</button>
+</div>
 
-<div class="black_block_info">
-{% include 'applicant/application/reference_new.html' %}
-{% if not references %}
+<div class="section-container">
+    {% include 'applicant/application/reference_new.html' %}
+    {% if not references %}
     <div class="white_block">
         <h3>No registered references</h3>
     </div>
-{% else %}
+    {% else %}
     {% for reference in references %}
-        <div class="white_block">
-            <form id="deleteForm" method="post" action="/applicants/application/remove_reference/{{ job.id }}">
-                {% csrf_token %}
-                <input type="hidden" name="reference_id" value="{{ reference.reference_id }}">
-                <button type="submit" class="remove-button">X</button>
-            </form>
-            <form class="form form-horizontal" method="POST"  action="/applicants/application/reference_edit/{{ job.id }}">
-                {% csrf_token %}
-                <input type="hidden" name="reference_id" value="{{ reference.reference_id }}">
+    <div class="white_block">
+        <form id="deleteForm" method="post" action="/applicants/application/remove_reference/{{ job.id }}">
+            {% csrf_token %}
+            <input type="hidden" name="reference_id" value="{{ reference.reference_id }}">
+            <button type="submit" class="remove-button">X</button>
+        </form>
+        <form class="form form-horizontal" method="POST"  action="/applicants/application/reference_edit/{{ job.id }}">
+            {% csrf_token %}
+            <input type="hidden" name="reference_id" value="{{ reference.reference_id }}">
+            <div class="btn-container">
                 <input type="submit" class="edit-button" value="Update" /><br>
-                <div class="profile-data-block" style="margin-right: 10%">
+            </div>
+
+            <div class="horizontal-input">
+                <div class="profile-data-block">
                     <p class="profile-data-label">Full name</p>
                     <input type="text" name="name" class="profile-data-input" value="{{ reference.reference.name }}" required id="id_name">
                 </div>
@@ -30,8 +38,10 @@
                     <p class="profile-data-label">Company</p>
                     <input type="text" name="workplace_name" class="profile-data-input" value="{{ reference.reference.workplace_name }}" required id="id_workplace_name">
                 </div>
-        
-                <div class="profile-data-block" style="margin-right: 10%">
+            </div>
+
+            <div class="horizontal-input">
+                <div class="profile-data-block">
                     <p class="profile-data-label">Role</p>
                     <input type="text" name="role" class="profile-data-input" value="{{ reference.reference.role }}" required id="id_role">
                 </div>
@@ -39,17 +49,20 @@
                     <p class="profile-data-label">Email</p>
                     <input type="text" name="email" class="profile-data-input" value="{{ reference.reference.email }}" required id="id_email">
                 </div>
-                
-                <div class="profile-data-block" style="margin-right: 10%">
+            </div>
+
+            <div class="horizontal-input">
+                <div class="profile-data-block">
                     <p class="profile-data-label">Phone</p>
                     <input type="text" name="phone" class="profile-data-input" value="{{ reference.reference.phone }}" required id="id_phone">
                 </div>
-                <div class="profile-data-block">
-                    <input type="checkbox" name="is_contactable" class="profile-data" id="id_is_contactable" {% if reference.reference.is_contactable %}checked{% endif %}>
-                    <p style="display: inline-block">Ask me before contacting</p>
+                <div class="checkbox-container">
+                    <p>Ask me before contacting</p>
+                    <input type="checkbox" name="is_contactable" id="id_is_contactable">
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
+    </div>
     {% endfor %}
-{% endif %}
+    {% endif %}
 </div>
