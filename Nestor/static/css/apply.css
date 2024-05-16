@@ -4,13 +4,15 @@
 
 .black_block {
 	position: relative;
-	display: inline-block;
+	/* display: inline-block; */
 	border: 1px solid #363841;
 	background-color: #363841;
 	color: #F5F5F2;
 	border-radius: 0.5rem;
 	padding: 1rem 2rem;
 	margin-bottom: 2rem;
+	height: 100%;
+	width: 80%;
 }
 
 .white_block {
@@ -24,11 +26,9 @@
 }
 
 .contact-info {
-	top: 0.0rem;
-	position: sticky;
-	display: inline-block;
-	margin-right: 2rem;
-	width: 12rem;
+	margin-right: 3%;
+	width: 16%;
+	height: 100%;
 }
 
 .CV-block-title {
@@ -38,9 +38,22 @@
 	display: inline-block;
 }
 
+.profile-image-container {
+	width: 100%;
+	height: 50%;
+}
+
+.applicant-info {
+	height: 40%;
+}
+
+
 .profile-image {
 	border-radius: 5%;
-	width: 100%;
+	/* max-width: 100%; */
+	/* max-width: 100% */
+	width: 30px;
+	height: 50px;
 }
 
 .edit-button {
@@ -151,6 +164,7 @@
 	border-radius: 0.3rem;
 	padding: 0.4rem 0.4rem 0.4rem 0.4rem;
 }
+
 .delete-skill {
 	border: none;
 	position: absolute;
@@ -163,12 +177,14 @@
 	height: 1.6rem;
 	padding: 0.2rem 0.2rem 0.2rem 0.2rem;
 }
+
 .new_skill {
 	position: relative;
 	display: inline-block;
 	width: 16%;
 	min-width: 10rem;
 }
+
 .add_skill {
 	border: none;
 	position: absolute;
@@ -181,6 +197,7 @@
 	height: 1.6rem;
 	padding: 0.2rem 0.2rem 0.2rem 2rem;
 }
+
 .skill-select {
 	position: relative;
 	color: #363841;
@@ -198,7 +215,7 @@
 	width: 100%;
 }
 
-.progress_header div{
+.progress_header div {
 	display: inline-block;
 	font-size: 1rem;
 	width: 15%;
@@ -215,6 +232,7 @@
 	left: 1rem;
 }
 
+<<<<<<< Updated upstream
 .successful-message-container {
 	display: flex;
 	justify-content: center;
@@ -230,4 +248,14 @@
 .successful-message-container h1,
 .successful-message-container h2 {
 	word-wrap: break-word;
+=======
+.info-section {
+	display: flex;
+	height: 100%;
+}
+
+.application-container {
+	height: 100%;
+
+>>>>>>> Stashed changes
 }
