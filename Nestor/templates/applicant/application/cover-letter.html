@@ -1,46 +1,55 @@
 {% load static %}
-<h2 class="CV-block-title">General</h2>
-<button onclick="goTo('experience')" class="next_prev_button" style="left: 90%">next</button>
+<div class="control">
+    <div></div>
+    <h2 class="CV-block-title">General</h2>
+    <button onclick="goTo('experience')" class="next_prev_button">next</button>
+</div>
 
-<div class="black_block_info">
+<div class="section-container">
     <div class="white_block">
         <form class="form form-horizontal" method="post" action="/applicants/application/contact-info/{{ job.id }}">
             {% csrf_token %}
-            <input type="submit" class="edit-button" value="Update" />
-            <br>
-            <div class="profile-data-block" style="margin-right: 10%">
-                <p class="profile-data-label">Full name</p>
-                <input type="text" name="full_name" class="profile-data-input" value="{{ applicant.full_name }}" required id="id_full_name">
+            <div class="btn-container">
+                <input type="submit" class="edit-button" value="Update" />
             </div>
-            <div class="profile-data-block">
-                <p class="profile-data-label">Profile Picture</p>
-                <input type="text" name="profile_image" class="profile-data-input form-control" value="{{ applicant.profile_image }}" required id="id_profile_image">
-            </div>
-
-            <div class="profile-data-block" style="margin-right: 10%">
-                <p class="profile-data-label">Email</p>
-                <input type="text" name="email" class="profile-data-input" value="{{ applicant.email }}" required id="id_email">
-            </div>
-            <div class="profile-data-block">
-                <p class="profile-data-label">City, zipcode</p>
-                <select name="zipcode" class="profile-data-select" required id="id_zipcode">
-                    {% for option in zip_options %}
-                    <option value="{{ option.id }}">{{ option }}</option>
-                    {% endfor %}
-                    <option value="{{ applicant.zipcode.id  }}" selected>{{ applicant.zipcode }}</option>
-                </select>
+            <div class="horizontal-input">
+                <div class="profile-data-block">
+                    <p class="profile-data-label">Full name</p>
+                    <input type="text" name="full_name" class="profile-data-input" value="{{ applicant.full_name }}" required id="id_full_name">
+                </div>
+                <div class="profile-data-block">
+                    <p class="profile-data-label">Profile Picture</p>
+                    <input type="text" name="profile_image" class="profile-data-input form-control" value="{{ applicant.profile_image }}" required id="id_profile_image">
+                </div>
             </div>
 
-            <div class="profile-data-block" style="margin-right: 10%">
-                <p class="profile-data-label">Phone number</p>
-                <input type="text" name="phone" class="profile-data-input" value="{{ applicant.phone }}" required id="id_phone">
-            </div>
-            <div class="profile-data-block">
-                <p class="profile-data-label">Street Name & House Number</p>
-                <input type="text" name="address" class="profile-data-input" value="{{ applicant.address }}" required id="id_address">
+            <div class="horizontal-input">
+                <div class="profile-data-block">
+                    <p class="profile-data-label">Email</p>
+                    <input type="text" name="email" class="profile-data-input" value="{{ applicant.email }}" required id="id_email">
+                </div>
+                <div class="profile-data-block">
+                    <p class="profile-data-label">City, zipcode</p>
+                    <select name="zipcode" class="profile-data-select" required id="id_zipcode">
+                        {% for option in zip_options %}
+                        <option value="{{ option.id }}">{{ option }}</option>
+                        {% endfor %}
+                        <option value="{{ applicant.zipcode.id  }}" selected>{{ applicant.zipcode }}</option>
+                    </select>
+                </div>
             </div>
 
-            <div style="overflow: hidden">
+            <div class="horizontal-input">
+                <div class="profile-data-block"> 
+                    <p class="profile-data-label">Phone number</p>
+                    <input type="text" name="phone" class="profile-data-input" value="{{ applicant.phone }}" required id="id_phone">
+                </div>
+                <div class="profile-data-block">
+                    <p class="profile-data-label">Street Name & House Number</p>
+                    <input type="text" name="address" class="profile-data-input" value="{{ applicant.address }}" required id="id_address">
+                </div>
+            </div>
+            <div class="profile-data-bio">
                 <p class="profile-data-label">Bio</p>
                 <textarea name="bio" required id="id_bio" class="profile-data-input bio-input">{{ applicant.bio }}</textarea>
             </div>
@@ -50,7 +59,9 @@
         <form class="form form-horizontal" method="post" action="/applicants/application/cover-letter/{{ job.id }}">
         {% csrf_token %}
             <div style="overflow: hidden;">
-                <input type="submit" class="edit-button" value="Update" /><br>
+                <div class="btn-container">
+                    <input type="submit" class="edit-button" value="Update" />
+                </div>
                 <p class="profile-data-label">Cover Letter</p>
                 {% if application.cover_letter %}
                 <textarea name="cover-letter" required id="id_cover-letter" class="profile-data-input bio-input" style="height: 14rem">{{ application.cover_letter |safe }}}</textarea>

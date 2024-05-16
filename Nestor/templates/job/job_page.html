@@ -56,16 +56,16 @@
             </div>
             <div class="right-job-view">
                 <img class="company-logo" src="{{ job.company.logo }}" />
-                <h3 class="company-title">{{ job.company.name }}</h3>
+                <div class="company-btn-container">
+                    <h3 class="company-title">{{ job.company.name }}</h3>
+                    <a class="company-page-btn" href="/companies/{{ job.company.id }}">Company page </a>
+                </div>
                 <h5>About us</h5>
                 <p class="company-description">{{ job.company.description }}</p>
                 <h5>Address</h5>
                 <p>{{ job.company.address }}, {{ job.company.zipcode.city }}, {{ job.company.zipcode.city.country }} </p>
                 <h5>Employees</h5>
                 <p>{{ job.company.number_of_employees }}</p>
-                <div class="company-btn-container">
-                    <a class="company-page-btn" href="/companies/{{ job.company.id }}">Company page </a>
-                </div>
             </div>
         </div>
     </div>

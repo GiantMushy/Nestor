@@ -8,20 +8,20 @@
 
 {% block content %}
 <div class="application-container">
-    <h1>Applying for "{{ job.name }}" with {{ job.company }}</h1>
+    <h1 class="title">Applying for "{{ job.name }}" with {{ job.company }}</h1>
     <div class="application-main">
-        <div class="contact-info">
-            <div class="image-container">
-                <img src="{{ applicant.profile_image }}" class="profile-image"/>
-            </div>
-            <div class="left-info">
-                <p class="left-info-name">{{ applicant.full_name }}</p>
-                <p>{{ applicant.email }}</p>
-                <p>{{ applicant.phone }}</p>
-                <p>{{  applicant.zipcode.city.country }} - {{  applicant.zipcode }}</p>
-                <p>{{ applicant.address }}</p>
-            </div>
-        </div>
+        <!-- <div class="contact-info"> -->
+        <!--     <div class="image-container"> -->
+        <!--         <img src="{{ applicant.profile_image }}" class="profile-image"/> -->
+        <!--     </div> -->
+        <!--     <ul class="left-info"> -->
+        <!--         <li class="left-info-name">{{ applicant.full_name }}</li> -->
+        <!--         <li>{{ applicant.email }}</li> -->
+        <!--         <li>{{ applicant.phone }}</li> -->
+        <!--         <li>{{  applicant.zipcode.city.country }} - {{  applicant.zipcode }}</li> -->
+        <!--         <li>{{ applicant.address }}</li> -->
+        <!--     </ul> -->
+        <!-- </div> -->
         <div class="black_block">
             <div class="progress_header">
                 <div ><button onclick="goTo('cover-letter')" class="page_select_button selected-button" id="prog_1">General</button></div>
@@ -30,7 +30,7 @@
                 <div><button onclick="goTo('reference')" class="page_select_button" id="prog_4">References</button></div>
                 <div><button onclick="goTo('skill')" class="page_select_button" id="prog_5">Skills</button></div>
                 <div><button onclick="goTo('final_review')" class="page_select_button" id="prog_6">Final Review</button></div>
-            </div><br>
+            </div>
             <div id="cover-letter">{% include 'applicant/application/cover-letter.html' %}</div>
             <div id="experience" class="hidden">{% include 'applicant/application/experience.html' %}</div>
             <div id="education" class="hidden">{% include 'applicant/application/education.html' %}</div>
