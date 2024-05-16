@@ -2,7 +2,7 @@
 <h2 class="CV-block-title">General</h2>
 <button onclick="goTo('experience')" class="next_prev_button" style="left: 90%">next</button>
 
-<div style="margin: 0.0rem -1rem; padding: 1rem 1rem; height: 45vh; overflow: auto">
+<div class="black_block_info">
     <div class="white_block">
         <form class="form form-horizontal" method="post" action="/applicants/application/contact-info/{{ job.id }}">
             {% csrf_token %}
