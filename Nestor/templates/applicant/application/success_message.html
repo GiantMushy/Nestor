@@ -1,10 +1,12 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load static %}
 
 {% block additionalStyles %}
-<link rel="stylesheet" href="{% static 'css/apply.css' %}" /> 
-<script type="text/javascript" src="{% static 'js/apply.js' %}"></script>
-{% endblock additionalStyles %}
+    {{ block.super }}
+    <meta name="test" content="should work">
+<!-- <link rel="stylesheet" href="{% static 'css/apply.css' %}" />  -->
+<!-- <script type="text/javascript" src="{% static 'js/apply.js' %}"></script> -->
+{% endblock %}
 
 {% block content %}
     <img src="{% static 'images/success_message.png' %}">
