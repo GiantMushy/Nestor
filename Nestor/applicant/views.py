@@ -86,6 +86,7 @@ def remove_experience(request):
 
 ################################  EDUCATIONS #####################################
 def education_add(request):
+    '''adds an instance of education in the users profile'''
     applicant = Applicant.objects.filter(user=request.user).first()
 
     education_form = EducationForm(data=request.POST)
@@ -101,6 +102,7 @@ def education_add(request):
 
 
 def education_edit(request):
+    '''edits an instance of education in the users profile'''
     applicant = Applicant.objects.filter(user=request.user).first()
     education_id = request.POST.get('education_id')
     education = get_object_or_404(Education, id=education_id)
@@ -124,6 +126,7 @@ def remove_education(request):
 
 ################################  REFERENCES #####################################
 def reference_add(request):
+    '''adds an instance of reference to the users profile'''
     applicant = Applicant.objects.filter(user=request.user).first()
 
     reference_form = ReferenceForm(data=request.POST)
@@ -139,6 +142,7 @@ def reference_add(request):
 
 
 def reference_edit(request):
+    '''updates a reference data'''
     applicant = Applicant.objects.filter(user=request.user).first()
     reference_id = request.POST.get('reference_id')
     reference = get_object_or_404(References, id=reference_id)
@@ -162,6 +166,8 @@ def remove_reference(request):
 
 ################################  SKILLS  #####################################
 def add_skill(request):
+    '''adds a skill to the users profile
+    does not add it if it is already in the user data'''
     applicant = Applicant.objects.filter(user=request.user).first()
     app_skills = CVSkills.objects.filter(applicant=applicant).all()
     token, data = request.POST.items()
@@ -192,6 +198,7 @@ def remove_skill(request):
 ################################  OTHER  #####################################
 @login_required(redirect_field_name="/login")
 def applicant(request):
+    '''Displays all data for an applicants Profile'''
     applicant = Applicant.objects.filter(user=request.user).first()
     experiences = CVExperience.objects.filter(applicant=applicant).all()
     educations = CVEducation.objects.filter(applicant=applicant).all()
@@ -237,11 +244,16 @@ def applicant(request):
 
 @login_required(redirect_field_name="/login")
 def index(request):
+    '''index for certain applicant'''
     applicant = Applicant.objects.filter(user=request.user).first()
     return render(request, 'applicant/index.html', {'applicant': applicant})
 
 
 def apply_init(request, id, page):
+    '''Displays all application data
+    if application does not already exist, then it copies all
+    data from the users profile to the application
+    redirects to the application page'''
     applicant = Applicant.objects.filter(user=request.user).first()
     job = get_object_or_404(Job, pk=id)
 
@@ -312,6 +324,7 @@ def apply_init(request, id, page):
 
 
 def application_experience_edit(request, id):
+    '''edits an instance of experience in an application'''
     applicant = Applicant.objects.filter(user=request.user).first()
     experience_id = request.POST.get('experience_id')
     experience = get_object_or_404(Experience, id=experience_id)
@@ -325,6 +338,8 @@ def application_experience_edit(request, id):
 
 
 def application_remove_experience(request, id):
+    '''removes an instance of experience from an application
+    does not remove it from the users profile'''
     job = get_object_or_404(Job, pk=id)
     applicant = Applicant.objects.filter(user=request.user).first()
     application = Application.objects.filter(job=job, applicant=applicant).first()
@@ -336,6 +351,7 @@ def application_remove_experience(request, id):
 
 
 def application_education_edit(request, id):
+    '''edits an instance of education in an application'''
     applicant = Applicant.objects.filter(user=request.user).first()
     education_id = request.POST.get('education_id')
     education = get_object_or_404(Education, id=education_id)
@@ -349,6 +365,8 @@ def application_education_edit(request, id):
 
 
 def application_remove_education(request, id):
+    '''removes an education from an application
+    does not remove it from the profile'''
     job = get_object_or_404(Job, pk=id)
     applicant = Applicant.objects.filter(user=request.user).first()
     application = Application.objects.filter(job=job, applicant=applicant).first()
@@ -360,6 +378,7 @@ def application_remove_education(request, id):
 
 
 def application_reference_edit(request, id):
+    '''edits a reference in the application'''
     applicant = Applicant.objects.filter(user=request.user).first()
     reference_id = request.POST.get('reference_id')
     reference = get_object_or_404(References, id=reference_id)
@@ -373,6 +392,8 @@ def application_reference_edit(request, id):
 
 
 def application_remove_reference(request, id):
+    '''removes a reference from an application
+    does not remove it from the users profile'''
     job = get_object_or_404(Job, pk=id)
     applicant = Applicant.objects.filter(user=request.user).first()
     application = Application.objects.filter(job=job, applicant=applicant).first()
@@ -384,6 +405,8 @@ def application_remove_reference(request, id):
 
 
 def application_experience_add(request, id):
+    '''adds an instance of experience to an application
+    does not add it to the users profile'''
     applicant = Applicant.objects.filter(user=request.user).first()
     job = get_object_or_404(Job, pk=id)
     application = Application.objects.filter(job=job, applicant=applicant).first()
@@ -401,6 +424,8 @@ def application_experience_add(request, id):
 
 
 def application_education_add(request, id):
+    '''adds an instance of education to the application
+    does not add it to the users profile'''
     applicant = Applicant.objects.filter(user=request.user).first()
     job = get_object_or_404(Job, pk=id)
     application = Application.objects.filter(job=job, applicant=applicant).first()
@@ -417,7 +442,8 @@ def application_education_add(request, id):
 
 
 def application_reference_add(request, id):
-    '''adds a reference to the '''
+    '''adds a reference to the application
+    does not add it to the users profile'''
     applicant = Applicant.objects.filter(user=request.user).first()
     job = get_object_or_404(Job, pk=id)
     application = Application.objects.filter(job=job, applicant=applicant).first()
