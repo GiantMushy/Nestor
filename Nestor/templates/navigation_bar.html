@@ -35,7 +35,7 @@
             <a href="{% url 'applied_jobs' %}" class="{% if request.path == '/jobs/applied_jobs' %}active{% endif %}"><h6>Applied jobs</h6></a>
             {% endif %}
             {% else %}
-            <a href="{% url 'job_index' %}" class="{% if request.path == '/companies/' %}active{% endif %}"><h6>All companies</h6></a>
+            <a href="{% url 'company_index' %}" class="{% if request.path == '/companies/' %}active{% endif %}"><h6>All companies</h6></a>
             {% endif %}
         </div>
     </div>
