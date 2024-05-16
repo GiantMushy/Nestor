@@ -8,6 +8,7 @@ from django.contrib.auth.models import Group
 from job.models import Job, Application, hasSkills, hasEducation, hasExperience, hasReferences
 
 
+
 ################################  CONTACT INFORMATION #####################################
 def contact_info(request):
     print("Hello Contact Info")
@@ -286,7 +287,8 @@ def apply_init(request, id):
         'educations': educations,
         'references': references,
         'applicant_skills': applicant_skills,
-        'all_skills': all_skills
+        'all_skills': all_skills,
+        'application': application
     }
     return render(request, 'applicant/application/__init__.html', context)
 
@@ -463,3 +465,27 @@ def application_remove_skill(request, id):
     hasskill.delete()
     print("Skill removed")
     return redirect('/applicants/application/'+str(id))
+
+
+def application_cover_letter(request, id):
+    job = get_object_or_404(Job, pk=id)
+    applicant = Applicant.objects.filter(user=request.user).first()
+    application = Application.objects.filter(job=job, applicant=applicant).first()
+    covlet = request.POST['cover-letter']
+
+    application.cover_letter = covlet
+    print(application.cover_letter)
+    application.save()
+    print("Cover Letter Updated")
+    return redirect('/applicants/application/'+str(id))
+
+
+def final_apply(request, id):
+    application = get_object_or_404(Application, pk=id)
+    application.is_submitted = True
+    application.save()
+    context = {
+        'job_name': application.job.name,
+        'company_name': application.job.company
+    }
+    return render(request, 'applicant/application/success_message.html', context)

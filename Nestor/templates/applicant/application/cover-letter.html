@@ -1,0 +1,15 @@
+{% load static %}
+<h2 class="CV-block-title">Cover Letter</h2>
+<button onclick="goTo('experience')" class="next_prev_button" style="left: 90%">next</button>
+
+<div style="margin: 0.0rem -1rem; padding: 1rem 1rem; height: 45vh; overflow: auto">
+<div class="white_block" style="height: 90%">
+<form class="form form-horizontal" method="post" action="/applicants/application/cover-letter/{{ job.id }}">
+    {% csrf_token %}
+    <input type="submit" class="edit-button" value="Update" />
+    <br><br>
+    <div style="overflow: hidden;">
+        <textarea name="cover-letter" required id="id_cover-letter" class="profile-data-input bio-input" style="height: 14rem">{{ application.cover_letter }}</textarea>
+    </div>
+</form>
+</div></div>

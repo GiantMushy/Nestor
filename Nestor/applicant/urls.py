@@ -29,9 +29,12 @@ urlpatterns = [
     path('application/experience_edit/<int:id>', views.application_experience_edit, name='application/experience_edit'),
     path('application/education_edit/<int:id>', views.application_education_edit, name='application/education_edit'),
     path('application/reference_edit/<int:id>', views.application_reference_edit, name='application/reference_edit'),
+    path('application/cover-letter/<int:id>', views.application_cover_letter, name='application/cover-letter'),
 
     path('application/remove_skill/<int:id>', views.application_remove_skill, name='application/remove_skill'),
     path('application/remove_experience/<int:id>', views.application_remove_experience, name='application/remove_experience'),
     path('application/remove_education/<int:id>', views.application_remove_education, name='application/remove_education'),
-    path('application/remove_reference/<int:id>', views.application_remove_reference, name='application/remove_reference')
+    path('application/remove_reference/<int:id>', views.application_remove_reference, name='application/remove_reference'),
+
+    path('application/apply/<int:id>', views.final_apply, name='final_apply')
 ]
