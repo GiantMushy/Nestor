@@ -242,7 +242,7 @@ def index(request):
     return render(request, 'applicant/index.html', {'applicant': applicant})
 
 
-def apply_init(request, id):
+def apply_init(request, id, page):
     print("Displaying Application Data")
     applicant = Applicant.objects.filter(user=request.user).first()
     job = get_object_or_404(Job, pk=id)
@@ -301,7 +301,6 @@ def apply_init(request, id):
     for experience in experiences:
         experience.experience.start_date = experience.experience.start_date.strftime("%Y-%m-%d")
         experience.experience.end_date = experience.experience.end_date.strftime("%Y-%m-%d")
-
     context = {
         'job': job,
         'applicant': applicant,
@@ -312,7 +311,8 @@ def apply_init(request, id):
         'references': references,
         'applicant_skills': applicant_skills,
         'all_skills': all_skills,
-        'application': application
+        'application': application,
+        'page': str(page)
     }
     return render(request, 'applicant/application/__init__.html', context)
 
@@ -327,10 +327,10 @@ def application_experience_edit(request, id):
     if experience_form.is_valid():
         print("POST Experience Validity SUCCESS")
         experience_form.save()
-        return redirect('/applicants/application/'+str(id))
+        return redirect('/applicants/application/'+str(id)+'/experience')
     else:
         print("POST Experience Validity Failed")
-        return redirect('/applicants/application/'+str(id))
+        return redirect('/applicants/application/'+str(id)+'/experience')
 
 
 def application_remove_experience(request, id):
@@ -342,7 +342,7 @@ def application_remove_experience(request, id):
     exp = hasExperience.objects.filter(experience=experience, application=application).first()
     exp.delete()
     print("experience deleted")
-    return redirect('/applicants/application/'+str(id))
+    return redirect('/applicants/application/'+str(id)+'/experience')
 
 
 def application_education_edit(request, id):
@@ -355,10 +355,10 @@ def application_education_edit(request, id):
     if education_form.is_valid():
         print("POST Education Validity SUCCESS")
         education_form.save()
-        return redirect('/applicants/application/'+str(id))
+        return redirect('/applicants/application/'+str(id)+'/education')
     else:
         print("POST Education Validity Failed")
-        return redirect('/applicants/application/'+str(id))
+        return redirect('/applicants/application/'+str(id)+'/education')
 
 
 def application_remove_education(request, id):
@@ -370,7 +370,7 @@ def application_remove_education(request, id):
     edu = hasEducation.objects.filter(education=education, application=application).first()
     edu.delete()
     print("education deleted")
-    return redirect('/applicants/application/'+str(id))
+    return redirect('/applicants/application/'+str(id)+'/education')
 
 
 def application_reference_edit(request, id):
@@ -383,10 +383,10 @@ def application_reference_edit(request, id):
     if reference_form.is_valid():
         print("POST Reference Validity SUCCESS")
         reference_form.save()
-        return redirect('/applicants/application/'+str(id))
+        return redirect('/applicants/application/'+str(id)+'/reference')
     else:
         print("POST Reference Validity Failed")
-        return redirect('/applicants/application/'+str(id))
+        return redirect('/applicants/application/'+str(id)+'/reference')
 
 
 def application_remove_reference(request, id):
@@ -398,7 +398,7 @@ def application_remove_reference(request, id):
     ref = hasReferences.objects.filter(reference=reference, application=application).first()
     ref.delete()
     print("reference deleted")
-    return redirect('/applicants/application/'+str(id))
+    return redirect('/applicants/application/'+str(id)+'/reference')
 
 
 def application_experience_add(request, id):
@@ -415,10 +415,10 @@ def application_experience_add(request, id):
         experience.save()
         exp = hasExperience(application=application, experience=experience)
         exp.save()
-        return redirect('/applicants/application/'+str(id))
+        return redirect('/applicants/application/'+str(id)+'/experience')
     else:
         print("POST Experience Validity Failed: ")
-        return redirect('/applicants/application/'+str(id))
+        return redirect('/applicants/application/'+str(id)+'/experience')
 
 
 def application_education_add(request, id):
@@ -434,10 +434,10 @@ def application_education_add(request, id):
         education.save()
         edu = hasEducation(application=application, education=education)
         edu.save()
-        return redirect('/applicants/application/'+str(id))
+        return redirect('/applicants/application/'+str(id)+'/education')
     else:
         print("POST Education Validity Failed: ")
-        return redirect('/applicants/application/'+str(id))
+        return redirect('/applicants/application/'+str(id)+'/education')
 
 
 def application_reference_add(request, id):
@@ -453,10 +453,10 @@ def application_reference_add(request, id):
         reference.save()
         ref = hasReferences(application=application, reference=reference)
         ref.save()
-        return redirect('/applicants/application/'+str(id))
+        return redirect('/applicants/application/'+str(id)+'/reference')
     else:
         print("POST Reference Validity Failed: ")
-        return redirect('/applicants/application/'+str(id))
+        return redirect('/applicants/application/'+str(id)+'/reference')
 
 
 def application_add_skill(request, id): #adds a skill
@@ -477,7 +477,7 @@ def application_add_skill(request, id): #adds a skill
         print("Skill Added SUCCESS")
     else:
         print("Skill already in Applicant")
-    return redirect('/applicants/application/'+str(id))
+    return redirect('/applicants/application/'+str(id)+'/skill')
 
 
 def application_remove_skill(request, id):
@@ -489,7 +489,7 @@ def application_remove_skill(request, id):
     hasskill = hasSkills.objects.filter(skill=skill, application=application).first()
     hasskill.delete()
     print("Skill removed")
-    return redirect('/applicants/application/'+str(id))
+    return redirect('/applicants/application/'+str(id)+'/skill')
 
 
 def application_cover_letter(request, id):
@@ -502,7 +502,7 @@ def application_cover_letter(request, id):
     print(application.cover_letter)
     application.save()
     print("Cover Letter Updated")
-    return redirect('/applicants/application/'+str(id))
+    return redirect('/applicants/application/'+str(id)+'/cover-letter')
 
 
 def final_apply(request, id):

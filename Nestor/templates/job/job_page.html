@@ -29,7 +29,7 @@
                 <div class="title-and-btn">
                     <h2 class="job-title">{{ job.name }}</h2>
                     {% if not application.is_submitted %}
-                        <a class="apply-btn" href="/applicants/application/{{ job.id }}">Apply </a>
+                        <a class="apply-btn" href="/applicants/application/{{ job.id }}/cover-letter">Apply </a>
                     {% endif %}
                 </div>
                 {% if application.is_submitted %}

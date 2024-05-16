@@ -1,4 +1,5 @@
 const goTo = (window) => {
+	if (typeof window === "object") {window = window.id}
 	const con = document.getElementById('cover-letter')
 	if (window == 'cover-letter') {if (con.classList.contains("hidden")) {con.classList.remove("hidden")}}
 	else {if (con.classList.contains("hidden")) {} else {con.classList.add("hidden")}}
