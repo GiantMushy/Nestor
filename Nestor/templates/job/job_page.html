@@ -1,76 +1,76 @@
 {% extends 'base.html' %}
 {% load static %}
-    {% block additionalStyles %}
-    <link rel="stylesheet" href="{% static 'css/job_page.css' %}"/>
-    {% endblock %}
-    {% block content %}
-    <div class="job-page-container">
-        <div class="job-page-content">
-            <div class="left-job-view">
-                {% if job.job_image %}
-                <img class="job-image" src="{{ job.job_image }}" class="job-img"/>
-                {% else %}
-                <img class="job-image" src="{% static 'images/Nestor_logo.png' %}" class="job-img"/>
-                {% endif %}
-                <div class="left-job-info">
-                    <h5>Due Date</h5>
-                    <p>{{ job.application_due_date }}</p>
-                    <h5>Starting Date</h5>
-                    <p>{{ job.starting_date }}</p>
-                    <h5>Category</h5>
-                    <p>{{ job.job_category.name }}</p>
-                    <h5>Job type</h5>
-                    <p>{{ job.job_type }}</p>
-                    <h5>Location</h5>
-                    <p>{{ job.zipcode.city }}, {{ job.zipcode.city.country }} </p>
-                </div>
-            </div>
-            <div class="middle-job-view">
-                <div class="title-and-btn">
-                    <h2 class="job-title">{{ job.name }}</h2>
-                    {% if not application.is_submitted and not employee %}
-                        <a class="apply-btn" href="/applicants/application/{{ job.id }}/cover-letter">Apply</a>
-                    {% endif %}
-                </div>
-                {% if application.is_submitted %}
-                    <div>
-                        <p>You applied {{ application.date }}</p>
-                        <p>Status: {{ application.status }}</p>
-                    </div>
-                {% endif %}
-                {% if not employee %}
-                <form action="{% url 'favorite_job' %}" method="post">
-                    {% csrf_token %}
-                    <input type="hidden" name="job_id" value="{{ job.id }}">
-                    <button class="favorite-btn">
-                        {% if job.id in fav_jobs %}
-                            <p>Remove from favorites</p>
-                            <img class="heart-image" src="{% static 'images/filled_heart.png'%}" alt="">
-                        {% else %}
-                            <p>Add to favorites</p>
-                            <img class="heart-image" src="{% static 'images/heartoutline_110866.png'%}" alt="">
-                        {% endif %}
-                    </button>
-                </form>
-                {% endif %}
-                <h5>Job description</h5>
-                <p>{{ job.description }}</p>
-            </div>
-            <div class="right-job-view">
-                <img class="company-logo" src="{{ job.company.logo }}" />
-                <div class="company-btn-container">
-                    <h3 class="company-title">{{ job.company.name }}</h3>
-                    <div class="company-page-btn-container">
-                        <a class="company-page-btn" href="/companies/{{ job.company.id }}">Company page </a>
-                    </div>
-                </div>
-                <h5>About us</h5>
-                <p class="company-description">{{ job.company.description }}</p>
-                <h5>Address</h5>
-                <p>{{ job.company.address }}, {{ job.company.zipcode.city }}, {{ job.company.zipcode.city.country }} </p>
-                <h5>Employees</h5>
-                <p>{{ job.company.number_of_employees }}</p>
+{% block additionalStyles %}
+<link rel="stylesheet" href="{% static 'css/job_page.css' %}"/>
+{% endblock %}
+{% block content %}
+<div class="job-page-container">
+    <div class="job-page-content">
+        <div class="left-job-view">
+            {% if job.job_image %}
+            <img class="job-image" src="{{ job.job_image }}" class="job-img"/>
+            {% else %}
+            <img class="job-image" src="{% static 'images/Nestor_logo.png' %}" class="job-img"/>
+            {% endif %}
+            <div class="left-job-info">
+                <h5>Due Date</h5>
+                <p>{{ job.application_due_date }}</p>
+                <h5>Starting Date</h5>
+                <p>{{ job.starting_date }}</p>
+                <h5>Category</h5>
+                <p>{{ job.job_category.name }}</p>
+                <h5>Job type</h5>
+                <p>{{ job.job_type }}</p>
+                <h5>Location</h5>
+                <p>{{ job.zipcode.city }}, {{ job.zipcode.city.country }} </p>
             </div>
         </div>
+        <div class="middle-job-view">
+            <div class="title-and-btn">
+                <h2 class="job-title">{{ job.name }}</h2>
+                {% if not application.is_submitted and not employee %}
+                    <a class="apply-btn" href="/applicants/application/{{ job.id }}/cover-letter">Apply</a>
+                {% endif %}
+            </div>
+            {% if application.is_submitted %}
+                <div>
+                    <p>You applied {{ application.date }}</p>
+                    <p>Status: {{ application.status }}</p>
+                </div>
+            {% endif %}
+            {% if not employee %}
+            <form action="{% url 'favorite_job' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="job_id" value="{{ job.id }}">
+                <button class="favorite-btn">
+                    {% if job.id in fav_jobs %}
+                        <p>Remove from favorites</p>
+                        <img class="heart-image" src="{% static 'images/filled_heart.png'%}" alt="">
+                    {% else %}
+                        <p>Add to favorites</p>
+                        <img class="heart-image" src="{% static 'images/heartoutline_110866.png'%}" alt="">
+                    {% endif %}
+                </button>
+            </form>
+            {% endif %}
+            <h5>Job description</h5>
+            <p>{{ job.description }}</p>
+        </div>
+        <div class="right-job-view">
+            <img class="company-logo" src="{{ job.company.logo }}" />
+            <div class="company-btn-container">
+                <h3 class="company-title">{{ job.company.name }}</h3>
+                <div class="company-page-btn-container">
+                    <a class="company-page-btn" href="/companies/{{ job.company.id }}">Company page </a>
+                </div>
+            </div>
+            <h5>About us</h5>
+            <p class="company-description">{{ job.company.description }}</p>
+            <h5>Address</h5>
+            <p>{{ job.company.address }}, {{ job.company.zipcode.city }}, {{ job.company.zipcode.city.country }} </p>
+            <h5>Employees</h5>
+            <p>{{ job.company.number_of_employees }}</p>
+        </div>
     </div>
-    {% endblock %}
+</div>
+{% endblock %}
