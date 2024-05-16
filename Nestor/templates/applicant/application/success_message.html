@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% load static %}
 
-</body>
-</html>
+{% block additionalStyles %}
+<link rel="stylesheet" href="{% static 'css/apply.css' %}" /> 
+<script type="text/javascript" src="{% static 'js/apply.js' %}"></script>
+{% endblock additionalStyles %}
+
+{% block content %}
+    <h1>Application Success!</h1>
+    <h2>for "{{ job_name }}" with {{ company_name }}</h2><br>
+
+    <img src="{{ applicant.profile_image }}"/>
+{% endblock %}
