@@ -58,7 +58,9 @@
                 <img class="company-logo" src="{{ job.company.logo }}" />
                 <div class="company-btn-container">
                     <h3 class="company-title">{{ job.company.name }}</h3>
-                    <a class="company-page-btn" href="/companies/{{ job.company.id }}">Company page </a>
+                    <div class="company-page-btn-container">
+                        <a class="company-page-btn" href="/companies/{{ job.company.id }}">Company page </a>
+                    </div>
                 </div>
                 <h5>About us</h5>
                 <p class="company-description">{{ job.company.description }}</p>
