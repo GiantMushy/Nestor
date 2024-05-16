@@ -9,7 +9,11 @@
     <input type="submit" class="edit-button" value="Update" />
     <br><br>
     <div style="overflow: hidden;">
+        {% if application.cover_letter %}
         <textarea name="cover-letter" required id="id_cover-letter" class="profile-data-input bio-input" style="height: 14rem">{{ application.cover_letter }}</textarea>
+        {% else %}
+        <textarea name="cover-letter" required id="id_cover-letter" placeholder="Write your cover letter here" class="profile-data-input bio-input" style="height: 14rem"></textarea>
+        {% endif %}
     </div>
 </form>
 </div></div>
