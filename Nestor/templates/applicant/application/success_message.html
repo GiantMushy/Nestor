@@ -7,8 +7,7 @@
 {% endblock additionalStyles %}
 
 {% block content %}
+    <img src="{% static 'images/success_message.png' %}">
     <h1>Application Success!</h1>
     <h2>for "{{ job_name }}" with {{ company_name }}</h2><br>
-
-    <img src="{{ applicant.profile_image }}"/>
 {% endblock %}
