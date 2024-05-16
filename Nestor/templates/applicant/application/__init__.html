@@ -19,12 +19,12 @@
         </div>
         <div class="black_block" style="width:75%; height: 60vh;">
             <div class="progress_header">
-                <div><p>General</p></div>
-                <div><p>Experience</p></div>
-                <div><p>Education</p></div>
-                <div><p>References</p></div>
-                <div><p>Skills</p></div>
-                <div><p>Final Review</p></div>
+                <div ><button onclick="goTo('cover-letter')" class="page_select_button selected-button" id="prog_1">General</button></div>
+                <div><button onclick="goTo('experience')" class="page_select_button" id="prog_2">Experience</button></div>
+                <div><button onclick="goTo('education')" class="page_select_button" id="prog_3">Education</button></div>
+                <div><button onclick="goTo('reference')" class="page_select_button" id="prog_4">References</button></div>
+                <div><button onclick="goTo('skill')" class="page_select_button" id="prog_5">Skills</button></div>
+                <div><button onclick="goTo('final_review')" class="page_select_button" id="prog_6">Final Review</button></div>
             </div><br>
             <div id="cover-letter">{% include 'applicant/application/cover-letter.html' %}</div>
             <div id="experience" class="hidden">{% include 'applicant/application/experience.html' %}</div>
@@ -32,8 +32,6 @@
             <div id="reference" class="hidden">{% include 'applicant/application/reference.html' %}</div>
             <div id="skill" class="hidden">{% include 'applicant/application/skill.html' %}</div>
             <div id="final_review" class="hidden">{% include 'applicant/application/final_review.html' %}</div>
-            <div id="success_message" class="hidden">{% include 'applicant/application/success_message.html' %}</div>
-            <div id="failed_message" class="hidden">{% include 'applicant/application/failed_message.html' %}</div>
         </div>
     </div>
 {% endblock %}

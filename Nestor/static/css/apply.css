@@ -193,16 +193,32 @@
 }
 
 .progress_header {
-	position: sticky;
 	height: 2rem;
 	width: 100%;
 }
 
 .progress_header div{
 	display: inline-block;
+  	justify-content: center; /* Horizontally centers the button */
+  	align-items: center;
 	font-size: 1rem;
-	width: 15%;
+	width: 16%;
 }
+
+.page_select_button {
+	border: none;
+	background-color: #F5F5F2;
+	color: #363841;
+	border-radius: 1rem;
+	padding: 0.4rem 1rem;
+	width: 8rem;
+}
+
+.selected-button {
+	background-color: #4AA587;
+	color: #F5F5F2;
+}
+
 
 .next_prev_button {
 	position: absolute;
