@@ -7,7 +7,7 @@
     {% if applications %}
     <div id="all-jobs" class="all_jobs">
         {% for application in applications %}
-            {% include 'job/single_applied_job.html' with applications=applications %}
+            {% include 'job/single_applied_job.html' with application=application %}
         {% endfor %}
     </div>
     {% else %}

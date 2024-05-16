@@ -1,17 +1,21 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from user.forms.user_form import UserForm
-from applicant.forms.applicant_form import ApplicantForm
+from applicant.models import Applicant
+
 
 def register(request):
-
-    # for message in messages:
-    #     # Do something with each message, e.g., print or process
-    #     print(message)
-    if request.method =='POST':
+    if request.method == 'POST':
         form = UserForm(data=request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            # Creating applicant model for that user
+            Applicant.objects.create(user=user)
+            applicant = Applicant.objects.get(user=user)
+            applicant.full_name = user.get_full_name()
+            applicant.email = user.email
+            applicant.save()
+
             return redirect('login')
         else:
             for field, errors in form.errors.items():
