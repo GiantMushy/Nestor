@@ -28,8 +28,8 @@
             <div class="middle-job-view">
                 <div class="title-and-btn">
                     <h2 class="job-title">{{ job.name }}</h2>
-                    {% if not application.is_submitted %}
-                        <a class="apply-btn" href="/applicants/application/{{ job.id }}/cover-letter">Apply </a>
+                    {% if not application.is_submitted and not employee %}
+                        <a class="apply-btn" href="/applicants/application/{{ job.id }}/cover-letter">Apply</a>
                     {% endif %}
                 </div>
                 {% if application.is_submitted %}
@@ -38,6 +38,7 @@
                         <p>Status: {{ application.status }}</p>
                     </div>
                 {% endif %}
+                {% if not employee %}
                 <form action="{% url 'favorite_job' %}" method="post">
                     {% csrf_token %}
                     <input type="hidden" name="job_id" value="{{ job.id }}">
@@ -51,6 +52,7 @@
                         {% endif %}
                     </button>
                 </form>
+                {% endif %}
                 <h5>Job description</h5>
                 <p>{{ job.description }}</p>
             </div>
