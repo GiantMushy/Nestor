@@ -1,29 +1,33 @@
 {% load static %}
 <div class="white_block">
-    <div class="profile-data-block" style="margin-right: 5%; width: 25%">
-        <p class="profile-data-label">School</p>
-        <p class="profile-data">{{ education.education.school_name }}</p>
+
+    <div class="horizontal-input">
+        <div class="profile-data-block-three">
+            <p class="profile-data-label">School</p>
+            <p class="profile-data">{{ education.education.school_name }}</p>
+        </div>
+        <div class="profile-data-block-three">
+            <p class="profile-data-label">Degree</p>
+            <p class="profile-data">{{ education.education.degree }}</p>
+        </div>
+        <div class="profile-data-block-three">
+            <p class="profile-data-label">Level</p>
+            <p class="profile-data">{{ education.education.level }}</p>
+        </div>
     </div>
-    <div class="profile-data-block" style="margin-right: 5%; width: 25%">
-        <p class="profile-data-label">Degree</p>
-        <p class="profile-data">{{ education.education.degree }}</p>
-    </div>
-    <div class="profile-data-block" style="margin-right: 5%; width: 15%">
-        <p class="profile-data-label">Level</p>
-        <p class="profile-data">{{ education.education.level }}</p>
-    </div>
-    <div class="profile-data-block" style="margin-right: 5%; width: 15%">
-        <p class="profile-data-label">Start date</p>
-        <p class="profile-data">{{ education.education.start_date }}</p>
-    </div>
-    <div class="profile-data-block" style="width: 15%">
-        <p class="profile-data-label">End date</p>
-        <p class="profile-data">{{ education.education.end_date }}</p>
+    <div class="horizontal-input">
+        <div class="profile-data-block">
+            <p class="profile-data-label">Start date</p>
+            <p class="profile-data">{{ education.education.start_date }}</p>
+        </div>
+        <div class="profile-data-block">
+            <p class="profile-data-label">End date</p>
+            <p class="profile-data">{{ education.education.end_date }}</p>
+        </div>
     </div>
 
-    <div style="overflow: hidden">
+    <div class="hide-overflow">
         <p class="profile-data-label">Degree description</p>
-        <br>
-        <p class="profile-data bio">{{ education.education.description }}</p>
+                {% autoescape off %}{{ education.education.description}}{% endautoescape %}
     </div>
 </div>

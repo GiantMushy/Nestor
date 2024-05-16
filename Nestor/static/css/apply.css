@@ -21,6 +21,19 @@
 	font-weight: 700;
 }
 
+.hide-overflow {
+	overflow: hidden;
+}
+
+.clear-style {
+	clear: both;
+	margin: 10px;
+}
+
+.cover-letter {
+	height: 15rem;
+}
+
 .contact-info {
 	margin-right: 5%;
 	width: 15%;
