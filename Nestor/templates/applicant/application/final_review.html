@@ -19,7 +19,7 @@
         {% endfor %}
     {% endif %}
 
-    <h2 class="CV-block-title" style="margin-left: 2%";>Education</h2>
+    <h2 class="CV-block-title" style="margin-left: 2%">Education</h2>
     {% if not educations %}
         <div class="white_block">
             <h3>No registered education history</h3>
@@ -46,6 +46,6 @@
 
     <h2 class="CV-block-title" style="margin-left: 2%;">Cover Letter</h2>
     <div class="white_block">
-        <p>{{ application.cover_letter }}</p>
+        {% autoescape off %}{{ application.cover_letter }}{% endautoescape %}
     </div>
 </div>

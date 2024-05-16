@@ -30,9 +30,8 @@
         <p class="profile-data">{{ applicant.address }}</p>
     </div>
 
-    <div style="overflow: hidden">
+    <div style="overflow: auto">
         <p class="profile-data-label">Bio</p>
-        <br>
-        <p class="profile-data bio">{{ applicant.bio }}</p>
+        {% autoescape off %}{{ applicant.bio }}{% endautoescape %}
     </div>
 </div>
