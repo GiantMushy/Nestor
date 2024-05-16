@@ -2,37 +2,42 @@
 <div class="white_block hidden" id="education/new">
     <form class="form form-horizontal" method="post" action="/applicants/application/education_add/{{ job.id }}">
         {% csrf_token %}
-        <input type="submit" class="edit-button" value="Add" />
-        <br>
-        <div class="profile-data-block" style="margin-right: 5%; width: 25%">
-            <p class="profile-data-label">School</p>
-            <input type="text" name="school_name" class="profile-data-input form-control" required id="id_school_name">
+        <div class="btn-container">
+            <input type="submit" class="edit-button" value="Add" />
         </div>
-        <div class="profile-data-block" style="margin-right: 5%; width: 25%">
-            <p class="profile-data-label">Degree</p>
-            <input type="text" name="degree" class="profile-data-input form-control" required id="id_degree">
-        </div>
-        <div class="profile-data-block" style="width: 25%">
-            <p class="profile-data-label">Level</p>
-            <select name="level" class="profile-data-select" required id="id_level">
-                {% for option in education_levels %}
+        <div class="horizontal-input">
+            <div class="profile-data-block-three">
+                <p class="profile-data-label">School</p>
+                <input type="text" name="school_name" class="profile-data-input form-control" required id="id_school_name">
+            </div>
+            <div class="profile-data-block-three">
+                <p class="profile-data-label">Degree</p>
+                <input type="text" name="degree" class="profile-data-input form-control" required id="id_degree">
+            </div>
+            <div class="profile-data-block-three">
+                <p class="profile-data-label">Level</p>
+                <select name="level" class="profile-data-select" required id="id_level">
+                    {% for option in education_levels %}
                     <option value="{{ option.id }}">{{ option }}</option>
-                {% endfor %}
-            </select>
+                    {% endfor %}
+                </select>
+            </div>
         </div>
 
-        <div class="profile-data-block" style="margin-right: 5%; width: 15%">
-            <p class="profile-data-label">Start Date</p>
-            <input type="date" name="start_date" class="profile-data-input form-control" required id="id_start_date">
-        </div>
-        <div class="profile-data-block" style="width: 15%">
-            <p class="profile-data-label">End Date</p>
-            <input type="date" name="end_date" class="profile-data-input form-control" id="id_end_date">
+        <div class="horizontal-input">
+            <div class="profile-data-block">
+                <p class="profile-data-label">Start Date</p>
+                <input type="date" name="start_date" class="profile-data-input form-control" required id="id_start_date">
+            </div>
+            <div class="profile-data-block">
+                <p class="profile-data-label">End Date</p>
+                <input type="date" name="end_date" class="profile-data-input form-control" id="id_end_date">
+            </div>
         </div>
 
-        <div style="overflow: hidden">
+        <div class="checkbox-container">
             <p class="profile-data-label">Degree Description</p>
-            <textarea name="description" id="id_description" class="profile-data-input bio-input form-control"></textarea>
+            <textarea name="description" id="id_description" class="bio-input form-control"></textarea>
         </div>
     </form>
 </div>

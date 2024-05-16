@@ -1,53 +1,61 @@
 {% load static %}
-<h2 class="CV-block-title">Experience</h2>
-<button onclick="toggleAddInstance('experience')" class="add">+</button>
-<button onclick="goTo('education')" class="next_prev_button" style="left: 90%">next</button>
-<button onclick="goTo('cover-letter')" class="next_prev_button">prev</button>
+<div class="control">
+    <button onclick="goTo('cover-letter')" class="next_prev_button">prev</button>
+    <div class="title-and-btn">
+        <button onclick="toggleAddInstance('experience')" class="add">+</button>
+        <h2 class="CV-block-title">Experience</h2>
+    </div>
+    <button onclick="goTo('education')" class="next_prev_button">next</button>
+</div>
 
-<div class="black_block_info">
-{% include 'applicant/application/experience_new.html' %}
-{% if not experiences %}
+<div class="section-container">
+    {% include 'applicant/application/experience_new.html' %}
+    {% if not experiences %}
     <div class="white_block">
         <h3>No registered experience history</h3>
     </div>
-{% else %}
+    {% else %}
     {% for experience in experiences %}
-        <div class="white_block">
-            <form id="deleteForm" method="post" action="/applicants/application/remove_experience/{{ job.id }}">
-                {% csrf_token %}
-                <input type="hidden" name="experience_id" value="{{ experience.experience_id }}">
-                <button type="submit" class="remove-button">X</button>
-            </form>
-            <form class="form form-horizontal" method="post" action="/applicants/application/experience_edit/{{ job.id }}">
-                {% csrf_token %}
-                <input type="hidden" name="experience_id" value="{{ experience.experience_id }}">
+    <div class="white_block">
+        <form id="deleteForm" method="post" action="/applicants/application/remove_experience/{{ job.id }}">
+            {% csrf_token %}
+            <input type="hidden" name="experience_id" value="{{ experience.experience_id }}">
+            <button type="submit" class="remove-button">X</button>
+        </form>
+        <form class="form form-horizontal" method="post" action="/applicants/application/experience_edit/{{ job.id }}">
+            {% csrf_token %}
+            <input type="hidden" name="experience_id" value="{{ experience.experience_id }}">
+            <div class="btn-container">
                 <input type="submit" class="edit-button" value="Update" />
-                <br>
-                <div class="profile-data-block" style="margin-right: 5%; width: 25%">
+            </div>
+            <div class="horizontal-input">
+                <div class="profile-data-block">
                     <p class="profile-data-label">Company</p>
                     <input type="text" name="workplace_name" class="profile-data-input form-control" value="{{ experience.experience.workplace_name }}" required id="id_workplace_name">
                 </div>
-                <div class="profile-data-block" style="margin-right: 5%; width: 25%">
+                <div class="profile-data-block">
                     <p class="profile-data-label">Role</p>
                     <input type="text" name="role" class="profile-data-input form-control" value="{{ experience.experience.role }}" required id="id_role">
                 </div>
-        
-                <div class="profile-data-block" style="margin-right: 5%; width: 15%">
+            </div>
+
+            <div class="horizontal-input">
+                <div class="profile-data-block">
                     <p class="profile-data-label">Start Date</p>
                     <input type="date" name="start_date" class="profile-data-input form-control" value="{{ experience.experience.start_date }}" required id="id_start_date">
                 </div>
-                <div class="profile-data-block" style="width: 15%">
+                <div class="profile-data-block">
                     <p class="profile-data-label">End Date</p>
                     <input type="date" name="end_date" class="profile-data-input form-control" value="{{ experience.experience.end_date }}" id="id_end_date">
                 </div>
-        
-                <div style="overflow: hidden">
-                    <p class="profile-data-label">Description</p>
-                    <textarea name="description" id="id_description" class="profile-data-input bio-input form-control">{{ experience.experience.description }}</textarea>
-                </div>
-            </form>
-        </div>
+            </div>
+
+            <div style="overflow: hidden">
+                <p class="profile-data-label">Description</p>
+                <textarea name="description" id="id_description" class="profile-data-input bio-input form-control">{{ experience.experience.description }}</textarea>
+            </div>
+        </form>
+    </div>
     {% endfor %}
-    
-{% endif %}
+    {% endif %}
 </div>
