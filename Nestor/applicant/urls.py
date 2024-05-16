@@ -5,6 +5,7 @@ urlpatterns = [
     path('', views.index, name='applicant_index'),
     path('applicant', views.applicant, name='applicant'),
     path('applicant/contact-info', views.contact_info, name='applicant/contact-info'),
+    path('application/contact-info/<int:id>', views.application_contact_info, name='application/contact-info'),
 
     path('applicant/experience_add', views.experience_add, name='applicant/experience_add'),
     path('applicant/education_add', views.education_add, name='applicant/education_add'),

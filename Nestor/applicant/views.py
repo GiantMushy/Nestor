@@ -12,7 +12,6 @@ from datetime import datetime
 
 ################################  CONTACT INFORMATION #####################################
 def contact_info(request):
-    print("Hello Contact Info")
     applicant = Applicant.objects.filter(user=request.user).first()
 
     applicant_form = ApplicantForm(instance=applicant, data=request.POST)
@@ -27,6 +26,20 @@ def contact_info(request):
         print("PATCH Contact Info Validity Failed")
         return redirect('applicant')
 
+def application_contact_info(request, id):
+    applicant = Applicant.objects.filter(user=request.user).first()
+
+    applicant_form = ApplicantForm(instance=applicant, data=request.POST)
+    if applicant_form.is_valid():
+        applicant = applicant_form.save(commit=False)
+        applicant.user = request.user
+
+        applicant.save()
+        print("PATCH Contact Info Validity SUCCESS")
+        return redirect('/applicants/application/'+str(id)+'/cover-letter')
+    else:
+        print("PATCH Contact Info Validity Failed")
+        return redirect('/applicants/application/'+str(id)+'/cover-letter')
 
 ################################  EXPERIENCES #####################################
 def experience_add(request):
