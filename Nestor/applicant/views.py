@@ -6,13 +6,13 @@ from common.models import ZipCode, Skills, SkillGenre
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from job.models import Job, Application, hasSkills, hasEducation, hasExperience, hasReferences
+from datetime import datetime
 
 
 ################################  CONTACT INFORMATION #####################################
 def contact_info(request):
     print("Hello Contact Info")
     applicant = Applicant.objects.filter(user=request.user).first()
-
 
     applicant_form = ApplicantForm(instance=applicant, data=request.POST)
     if applicant_form.is_valid():
@@ -199,6 +199,13 @@ def applicant(request):
     genres = SkillGenre.objects.all()
     skills = Skills.objects.all()
 
+    if not applicant:
+        applicant = {
+            "full_name": request.user.get_full_name(),
+            "email": request.user.email
+                     }
+    
+
     all_skills = {}
     applicant_skills = {}
     for genre in genres:
@@ -208,7 +215,12 @@ def applicant(request):
         all_skills[skill.genre].append(skill)
     for skill in app_skills:
         applicant_skills[skill.skill.genre].append(skill.skill)
-   
+    for ed in educations:
+        ed.education.start_date = ed.education.start_date.strftime("%Y-%m-%d")
+        ed.education.end_date = ed.education.end_date.strftime("%Y-%m-%d")
+    for exp in experiences:
+        exp.experience.start_date = exp.experience.start_date.strftime("%Y-%m-%d")
+        exp.experience.end_date = exp.experience.end_date.strftime("%Y-%m-%d")
 
     context = {
         'applicant': applicant,
@@ -243,10 +255,15 @@ def apply_init(request, id):
         profile_references = CVReferences.objects.filter(applicant=applicant).all()
         profile_app_skills = CVSkills.objects.filter(applicant=applicant).all()
 
+
+
         for experience in profile_experiences:
             exp = hasExperience(application=application, experience=experience.experience)
             exp.save()
         for education in profile_educations:
+            education.education.start_date = education.education.start_date.strftime("%Y-%m-%d")
+            education.education.end_date = education.education.end_date.strftime("%Y-%m-%d")
+
             edu = hasEducation(application=application, education=education.education)
             edu.save()
         for reference in profile_references:
@@ -276,6 +293,13 @@ def apply_init(request, id):
         all_skills[skill.genre].append(skill)
     for skill in app_skills:
         applicant_skills[skill.skill.genre].append(skill.skill)
+
+    for education in educations:
+        education.education.start_date = education.education.start_date.strftime("%Y-%m-%d")
+        education.education.end_date = education.education.end_date.strftime("%Y-%m-%d")
+    for experience in experiences:
+        experience.experience.start_date = experience.experience.start_date.strftime("%Y-%m-%d")
+        experience.experience.end_date = experience.experience.end_date.strftime("%Y-%m-%d")
 
     context = {
         'job': job,
@@ -382,6 +406,7 @@ def application_experience_add(request, id):
     application = Application.objects.filter(job=job, applicant=applicant).first()
 
     experience_form = ExperienceForm(data=request.POST)
+    
     if experience_form.is_valid():
         print("POST Experience Validity SUCCESS")
         experience = experience_form.save(commit=False)
