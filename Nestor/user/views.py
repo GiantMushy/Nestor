@@ -10,24 +10,15 @@ def register(request):
     #     print(message)
     if request.method =='POST':
         form = UserForm(data=request.POST)
-        form2 = ApplicantForm(data=request.POST)
         if form.is_valid():
             form.save()
-            print("form 1 valid")
-            print(form.id)
-            print(request.user)
-            form2.user = request.user
-            if form2.is_valid():
-                form2.save()
-            
-                return redirect('login')
+            return redirect('login')
         else:
             for field, errors in form.errors.items():
                 for error in errors:
                     messages.error(request, f'{field}: {error}')
     return render(request, 'user/register.html', {
         'form': UserForm(),
-        'form2': ApplicantForm()
     })
 
 # def profile(request):
