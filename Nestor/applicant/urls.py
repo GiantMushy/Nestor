@@ -5,6 +5,7 @@ urlpatterns = [
     path('', views.index, name='applicant_index'),
     path('applicant', views.applicant, name='applicant'),
     path('applicant/contact-info', views.contact_info, name='applicant/contact-info'),
+    path('application/contact-info/<int:id>', views.application_contact_info, name='application/contact-info'),
 
     path('applicant/experience_add', views.experience_add, name='applicant/experience_add'),
     path('applicant/education_add', views.education_add, name='applicant/education_add'),
@@ -20,7 +21,7 @@ urlpatterns = [
     path('applicant/remove_education', views.remove_education, name='applicant/remove_education'),
     path('applicant/remove_reference', views.remove_reference, name='applicant/remove_reference'),
 
-    path('application/<int:id>', views.apply_init, name='apply/init'),
+    path('application/<int:id>/<str:page>', views.apply_init, name='apply/init'),
     path('application/experience_add/<int:id>', views.application_experience_add, name='application/experience_add'),
     path('application/education_add/<int:id>', views.application_education_add, name='application/education_add'),
     path('application/reference_add/<int:id>', views.application_reference_add, name='application/reference_add'),

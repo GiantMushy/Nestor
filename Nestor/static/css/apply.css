@@ -11,6 +11,15 @@
 	border-radius: 0.5rem;
 	padding: 1rem 2rem;
 	margin-bottom: 2rem;
+	width: 75%;
+	height: 70vh;
+}
+
+.black_block_info {
+	margin: 0.0rem -1rem;
+	padding: 1rem 1rem;
+	height: 50vh;
+	overflow: auto;
 }
 
 .white_block {
@@ -29,6 +38,7 @@
 	display: inline-block;
 	margin-right: 2rem;
 	width: 12rem;
+	height: 100%;
 }
 
 .CV-block-title {
@@ -151,6 +161,7 @@
 	border-radius: 0.3rem;
 	padding: 0.4rem 0.4rem 0.4rem 0.4rem;
 }
+
 .delete-skill {
 	border: none;
 	position: absolute;
@@ -163,12 +174,14 @@
 	height: 1.6rem;
 	padding: 0.2rem 0.2rem 0.2rem 0.2rem;
 }
+
 .new_skill {
 	position: relative;
 	display: inline-block;
 	width: 16%;
 	min-width: 10rem;
 }
+
 .add_skill {
 	border: none;
 	position: absolute;
@@ -181,6 +194,7 @@
 	height: 1.6rem;
 	padding: 0.2rem 0.2rem 0.2rem 2rem;
 }
+
 .skill-select {
 	position: relative;
 	color: #363841;
@@ -193,16 +207,32 @@
 }
 
 .progress_header {
-	position: sticky;
 	height: 2rem;
 	width: 100%;
 }
 
-.progress_header div{
+.progress_header div {
 	display: inline-block;
+  	justify-content: center; /* Horizontally centers the button */
+  	align-items: center;
 	font-size: 1rem;
-	width: 15%;
+	width: 16%;
 }
+
+.page_select_button {
+	border: none;
+	background-color: #F5F5F2;
+	color: #363841;
+	border-radius: 1rem;
+	padding: 0.4rem 1rem;
+	width: 8rem;
+}
+
+.selected-button {
+	background-color: #4AA587;
+	color: #F5F5F2;
+}
+
 
 .next_prev_button {
 	position: absolute;
@@ -230,4 +260,17 @@
 .successful-message-container h1,
 .successful-message-container h2 {
 	word-wrap: break-word;
+}
+.application-main {
+	position: relative;
+	display: flex;
+	height: 100%;
+}
+
+.left-info {
+	font-size: 0.8rem;
+}
+
+.left-info-name {
+	font-size: 1.2rem;
 }
