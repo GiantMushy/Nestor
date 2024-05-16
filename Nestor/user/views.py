@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from user.forms.user_form import UserForm
 from applicant.models import Applicant
+from django.contrib.auth import login
 
 
 def register(request):
@@ -16,7 +17,9 @@ def register(request):
             applicant.email = user.email
             applicant.save()
 
-            return redirect('login')
+            login(request, user)
+
+            return redirect('/jobs')
         else:
             for field, errors in form.errors.items():
                 for error in errors:
