@@ -30,7 +30,7 @@
 
     <div style="overflow: hidden">
         <p class="profile-data-label">Degree description</p>
-        <br>
-        <p class="profile-data bio">{{ education.education.description }}</p>
+        <br>>
+        {% autoescape off %}{{ education.education.description }}{% endautoescape %}
     </div>
 </div>

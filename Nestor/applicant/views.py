@@ -9,9 +9,10 @@ from job.models import Job, Application, hasSkills, hasEducation, hasExperience,
 from datetime import datetime
 
 
-
 ################################  CONTACT INFORMATION #####################################
 def contact_info(request):
+    '''Validates and updates applicant contact_info requests
+    Redirects to profile'''
     applicant = Applicant.objects.filter(user=request.user).first()
 
     applicant_form = ApplicantForm(instance=applicant, data=request.POST)
@@ -20,13 +21,14 @@ def contact_info(request):
         applicant.user = request.user
 
         applicant.save()
-        print("PATCH Contact Info Validity SUCCESS")
         return redirect('applicant')
     else:
-        print("PATCH Contact Info Validity Failed")
         return redirect('applicant')
+
 
 def application_contact_info(request, id):
+    '''Validates and updates applicant contact_info requests from the application page
+    Redirects back to application page instead of profile'''
     applicant = Applicant.objects.filter(user=request.user).first()
 
     applicant_form = ApplicantForm(instance=applicant, data=request.POST)
@@ -35,20 +37,19 @@ def application_contact_info(request, id):
         applicant.user = request.user
 
         applicant.save()
-        print("PATCH Contact Info Validity SUCCESS")
-        return redirect('/applicants/application/'+str(id)+'/cover-letter')
+        return redirect('/applicants/application/' + str(id) + '/cover-letter')
     else:
-        print("PATCH Contact Info Validity Failed")
-        return redirect('/applicants/application/'+str(id)+'/cover-letter')
+        return redirect('/applicants/application/' + str(id) + '/cover-letter')
+
 
 ################################  EXPERIENCES #####################################
 def experience_add(request):
-    print("Adding Experience")
+    '''Validates and adds an experience instance for the applicants profile
+    Redirects to profile'''
     applicant = Applicant.objects.filter(user=request.user).first()
 
     experience_form = ExperienceForm(data=request.POST)
     if experience_form.is_valid():
-        print("POST Experience Validity SUCCESS")
         experience = experience_form.save(commit=False)
         applicant = Applicant.objects.filter(user=request.user).first()
         experience.save()
@@ -56,42 +57,39 @@ def experience_add(request):
         cvexp.save()
         return redirect('applicant')
     else:
-        print("POST Experience Validity Failed: ")
         return redirect('applicant')
 
 
 def experience_edit(request):
-    print("Editing Experience")
+    '''Validates and updates an experience instance for the applicants profile
+    Redirects to profile'''
     applicant = Applicant.objects.filter(user=request.user).first()
     experience_id = request.POST.get('experience_id')
     experience = get_object_or_404(Experience, id=experience_id)
     experience_form = ExperienceForm(data=request.POST, instance=experience)
 
     if experience_form.is_valid():
-        print("POST Experience Validity SUCCESS")
         experience_form.save()
         return redirect('applicant')
     else:
-        print("POST Experience Validity Failed")
         return redirect('applicant')
 
 
 def remove_experience(request):
+    '''Removes an experience instance from the applicants profile
+    Redirects to profile'''
     experience_id = request.POST.get('experience_id')
     exp = get_object_or_404(Experience, id=experience_id)
     exp.delete()
-    print("experience deleted")
     return redirect('applicant')
 
 
 ################################  EDUCATIONS #####################################
 def education_add(request):
-    print("Adding Education")
     applicant = Applicant.objects.filter(user=request.user).first()
 
     education_form = EducationForm(data=request.POST)
     if education_form.is_valid():
-        print("POST Education Validity SUCCESS")
         education = education_form.save(commit=False)
         applicant = Applicant.objects.filter(user=request.user).first()
         education.save()
@@ -99,42 +97,37 @@ def education_add(request):
         cvedu.save()
         return redirect('applicant')
     else:
-        print("POST Education Validity Failed: ")
         return redirect('applicant')
 
 
 def education_edit(request):
-    print("Editing Education")
     applicant = Applicant.objects.filter(user=request.user).first()
     education_id = request.POST.get('education_id')
     education = get_object_or_404(Education, id=education_id)
     education_form = EducationForm(data=request.POST, instance=education)
 
     if education_form.is_valid():
-        print("POST Education Validity SUCCESS")
         education_form.save()
         return redirect('applicant')
     else:
-        print("POST Education Validity Failed")
         return redirect('applicant')
 
 
 def remove_education(request):
+    '''Removes an education instance from the applicants profile
+    Redirects to profile'''
     education_id = request.POST.get('education_id')
     edu = get_object_or_404(Education, id=education_id)
     edu.delete()
-    print("education deleted")
     return redirect('applicant')
 
 
 ################################  REFERENCES #####################################
 def reference_add(request):
-    print("Adding Reference")
     applicant = Applicant.objects.filter(user=request.user).first()
 
     reference_form = ReferenceForm(data=request.POST)
     if reference_form.is_valid():
-        print("POST Reference Validity SUCCESS")
         reference = reference_form.save(commit=False)
         applicant = Applicant.objects.filter(user=request.user).first()
         reference.save()
@@ -142,36 +135,33 @@ def reference_add(request):
         cvref.save()
         return redirect('applicant')
     else:
-        print("POST Reference Validity Failed: ")
         return redirect('applicant')
 
 
 def reference_edit(request):
-    print("Editing Reference")
     applicant = Applicant.objects.filter(user=request.user).first()
     reference_id = request.POST.get('reference_id')
     reference = get_object_or_404(References, id=reference_id)
     reference_form = ReferenceForm(data=request.POST, instance=reference)
 
     if reference_form.is_valid():
-        print("POST Reference Validity SUCCESS")
         reference_form.save()
         return redirect('applicant')
     else:
-        print("POST Reference Validity Failed")
         return redirect('applicant')
 
 
 def remove_reference(request):
+    '''Removes a reference instance from the applicants profile
+    Redirects to profile'''
     reference_id = request.POST.get('reference_id')
     ref = get_object_or_404(References, id=reference_id)
     ref.delete()
-    print("reference deleted")
     return redirect('applicant')
 
 
 ################################  SKILLS  #####################################
-def add_skill(request): #adds a skill
+def add_skill(request):
     applicant = Applicant.objects.filter(user=request.user).first()
     app_skills = CVSkills.objects.filter(applicant=applicant).all()
     token, data = request.POST.items()
@@ -185,20 +175,17 @@ def add_skill(request): #adds a skill
         skill_object = Skills.objects.filter(name=skill).first()
         cvskill = CVSkills(applicant=applicant, skill=skill_object)
         cvskill.save()
-        print("Skill Added SUCCESS")
-    else:
-        print("Skill already in Applicant")
-
     return redirect('applicant')
 
 
-def remove_skill(request): #removes a skill
+def remove_skill(request):
+    '''Removes an experience instance from the applicants profile
+    Redirects to profile'''
     applicant = Applicant.objects.filter(user=request.user).first()
     skill_name = request.POST.get('skill_name')
     skill = get_object_or_404(Skills, name=skill_name)
     cvskill = CVSkills.objects.filter(skill=skill, applicant=applicant).first()
     cvskill.delete()
-    print("Skill removed")
     return redirect('applicant')
 
 
@@ -217,8 +204,7 @@ def applicant(request):
         applicant = {
             "full_name": request.user.get_full_name(),
             "email": request.user.email
-                     }
-    
+        }
 
     all_skills = {}
     applicant_skills = {}
@@ -256,7 +242,6 @@ def index(request):
 
 
 def apply_init(request, id, page):
-    print("Displaying Application Data")
     applicant = Applicant.objects.filter(user=request.user).first()
     job = get_object_or_404(Job, pk=id)
 
@@ -268,8 +253,6 @@ def apply_init(request, id, page):
         profile_educations = CVEducation.objects.filter(applicant=applicant).all()
         profile_references = CVReferences.objects.filter(applicant=applicant).all()
         profile_app_skills = CVSkills.objects.filter(applicant=applicant).all()
-
-
 
         for experience in profile_experiences:
             exp = hasExperience(application=application, experience=experience.experience)
@@ -286,10 +269,8 @@ def apply_init(request, id, page):
         for skill in profile_app_skills:
             skl = hasSkills(application=application, skill=skill.skill)
             skl.save()
-        print("New Application Created Successfully and Data Transferred")
     else:
         application = application.first()
-        print("Application Already Exists")
 
     experiences = hasExperience.objects.filter(application=application).all()
     educations = hasEducation.objects.filter(application=application).all()
@@ -331,19 +312,16 @@ def apply_init(request, id, page):
 
 
 def application_experience_edit(request, id):
-    print("Editing Experience")
     applicant = Applicant.objects.filter(user=request.user).first()
     experience_id = request.POST.get('experience_id')
     experience = get_object_or_404(Experience, id=experience_id)
     experience_form = ExperienceForm(data=request.POST, instance=experience)
 
     if experience_form.is_valid():
-        print("POST Experience Validity SUCCESS")
         experience_form.save()
-        return redirect('/applicants/application/'+str(id)+'/experience')
+        return redirect('/applicants/application/' + str(id) + '/experience')
     else:
-        print("POST Experience Validity Failed")
-        return redirect('/applicants/application/'+str(id)+'/experience')
+        return redirect('/applicants/application/' + str(id) + '/experience')
 
 
 def application_remove_experience(request, id):
@@ -354,24 +332,20 @@ def application_remove_experience(request, id):
     experience = get_object_or_404(Experience, id=experience_id)
     exp = hasExperience.objects.filter(experience=experience, application=application).first()
     exp.delete()
-    print("experience deleted")
-    return redirect('/applicants/application/'+str(id)+'/experience')
+    return redirect('/applicants/application/' + str(id) + '/experience')
 
 
 def application_education_edit(request, id):
-    print("Editing Education")
     applicant = Applicant.objects.filter(user=request.user).first()
     education_id = request.POST.get('education_id')
     education = get_object_or_404(Education, id=education_id)
     education_form = EducationForm(data=request.POST, instance=education)
 
     if education_form.is_valid():
-        print("POST Education Validity SUCCESS")
         education_form.save()
-        return redirect('/applicants/application/'+str(id)+'/education')
+        return redirect('/applicants/application/' + str(id) + '/education')
     else:
-        print("POST Education Validity Failed")
-        return redirect('/applicants/application/'+str(id)+'/education')
+        return redirect('/applicants/application/' + str(id) + '/education')
 
 
 def application_remove_education(request, id):
@@ -382,24 +356,20 @@ def application_remove_education(request, id):
     education = get_object_or_404(Education, id=education_id)
     edu = hasEducation.objects.filter(education=education, application=application).first()
     edu.delete()
-    print("education deleted")
-    return redirect('/applicants/application/'+str(id)+'/education')
+    return redirect('/applicants/application/' + str(id) + '/education')
 
 
 def application_reference_edit(request, id):
-    print("Editing Reference")
     applicant = Applicant.objects.filter(user=request.user).first()
     reference_id = request.POST.get('reference_id')
     reference = get_object_or_404(References, id=reference_id)
     reference_form = ReferenceForm(data=request.POST, instance=reference)
 
     if reference_form.is_valid():
-        print("POST Reference Validity SUCCESS")
         reference_form.save()
-        return redirect('/applicants/application/'+str(id)+'/reference')
+        return redirect('/applicants/application/' + str(id) + '/reference')
     else:
-        print("POST Reference Validity Failed")
-        return redirect('/applicants/application/'+str(id)+'/reference')
+        return redirect('/applicants/application/' + str(id) + '/reference')
 
 
 def application_remove_reference(request, id):
@@ -410,69 +380,62 @@ def application_remove_reference(request, id):
     reference = get_object_or_404(References, id=reference_id)
     ref = hasReferences.objects.filter(reference=reference, application=application).first()
     ref.delete()
-    print("reference deleted")
-    return redirect('/applicants/application/'+str(id)+'/reference')
+    return redirect('/applicants/application/' + str(id) + '/reference')
 
 
 def application_experience_add(request, id):
-    print("Adding Experience")
     applicant = Applicant.objects.filter(user=request.user).first()
     job = get_object_or_404(Job, pk=id)
     application = Application.objects.filter(job=job, applicant=applicant).first()
 
     experience_form = ExperienceForm(data=request.POST)
-    
+
     if experience_form.is_valid():
-        print("POST Experience Validity SUCCESS")
         experience = experience_form.save(commit=False)
         experience.save()
         exp = hasExperience(application=application, experience=experience)
         exp.save()
-        return redirect('/applicants/application/'+str(id)+'/experience')
+        return redirect('/applicants/application/' + str(id) + '/experience')
     else:
-        print("POST Experience Validity Failed: ")
-        return redirect('/applicants/application/'+str(id)+'/experience')
+        return redirect('/applicants/application/' + str(id) + '/experience')
 
 
 def application_education_add(request, id):
-    print("Adding Education")
     applicant = Applicant.objects.filter(user=request.user).first()
     job = get_object_or_404(Job, pk=id)
     application = Application.objects.filter(job=job, applicant=applicant).first()
 
     education_form = EducationForm(data=request.POST)
     if education_form.is_valid():
-        print("POST Education Validity SUCCESS")
         education = education_form.save(commit=False)
         education.save()
         edu = hasEducation(application=application, education=education)
         edu.save()
-        return redirect('/applicants/application/'+str(id)+'/education')
+        return redirect('/applicants/application/' + str(id) + '/education')
     else:
-        print("POST Education Validity Failed: ")
-        return redirect('/applicants/application/'+str(id)+'/education')
+        return redirect('/applicants/application/' + str(id) + '/education')
 
 
 def application_reference_add(request, id):
-    print("Adding Reference")
+    '''adds a reference to the '''
     applicant = Applicant.objects.filter(user=request.user).first()
     job = get_object_or_404(Job, pk=id)
     application = Application.objects.filter(job=job, applicant=applicant).first()
 
     reference_form = ReferenceForm(data=request.POST)
     if reference_form.is_valid():
-        print("POST Reference Validity SUCCESS")
         reference = reference_form.save(commit=False)
         reference.save()
         ref = hasReferences(application=application, reference=reference)
         ref.save()
-        return redirect('/applicants/application/'+str(id)+'/reference')
+        return redirect('/applicants/application/' + str(id) + '/reference')
     else:
-        print("POST Reference Validity Failed: ")
-        return redirect('/applicants/application/'+str(id)+'/reference')
+        return redirect('/applicants/application/' + str(id) + '/reference')
 
 
-def application_add_skill(request, id): #adds a skill
+def application_add_skill(request, id):
+    '''adds a skll to an application
+    does not add it to the users profile'''
     applicant = Applicant.objects.filter(user=request.user).first()
     app_skills = CVSkills.objects.filter(applicant=applicant).all()
     job = get_object_or_404(Job, pk=id)
@@ -487,13 +450,12 @@ def application_add_skill(request, id): #adds a skill
         skill_object = Skills.objects.filter(name=skill).first()
         hasskill = hasSkills(application=application, skill=skill_object)
         hasskill.save()
-        print("Skill Added SUCCESS")
-    else:
-        print("Skill already in Applicant")
-    return redirect('/applicants/application/'+str(id)+'/skill')
+    return redirect('/applicants/application/' + str(id) + '/skill')
 
 
 def application_remove_skill(request, id):
+    '''removes a skill from an application
+    does not remove it from the applicants profle'''
     job = get_object_or_404(Job, pk=id)
     applicant = Applicant.objects.filter(user=request.user).first()
     application = Application.objects.filter(job=job, applicant=applicant).first()
@@ -501,11 +463,12 @@ def application_remove_skill(request, id):
     skill = get_object_or_404(Skills, name=skill_name)
     hasskill = hasSkills.objects.filter(skill=skill, application=application).first()
     hasskill.delete()
-    print("Skill removed")
-    return redirect('/applicants/application/'+str(id)+'/skill')
+    return redirect('/applicants/application/' + str(id) + '/skill')
 
 
 def application_cover_letter(request, id):
+    '''updates/saves the cover letter of an application
+    rediriects to the application's page'''
     job = get_object_or_404(Job, pk=id)
     applicant = Applicant.objects.filter(user=request.user).first()
     application = Application.objects.filter(job=job, applicant=applicant).first()
@@ -514,11 +477,13 @@ def application_cover_letter(request, id):
     application.cover_letter = covlet
     print(application.cover_letter)
     application.save()
-    print("Cover Letter Updated")
-    return redirect('/applicants/application/'+str(id)+'/cover-letter')
+    return redirect('/applicants/application/' + str(id) + '/cover-letter')
 
 
 def final_apply(request, id):
+    '''makes an application un-accessible for the user
+        accessible for the company
+        and redirects the user to the success_message page'''
     application = get_object_or_404(Application, pk=id)
     application.is_submitted = True
     application.save()
@@ -527,4 +492,3 @@ def final_apply(request, id):
         'company_name': application.job.company
     }
     return render(request, 'applicant/application/success_message.html', context)
-

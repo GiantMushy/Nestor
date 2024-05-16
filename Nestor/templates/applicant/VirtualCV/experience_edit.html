@@ -25,7 +25,7 @@
 
         <div style="overflow: hidden">
             <p class="profile-data-label">Description</p>
-            <textarea name="description" id="id_description" class="profile-data-input bio-input form-control">{{ experience.experience.description }}</textarea>
+            <textarea name="description" id="id_description" class="profile-data-input bio-input form-control">{{ experience.experience.description |safe }}</textarea>
         </div>
     </form>
 </div>

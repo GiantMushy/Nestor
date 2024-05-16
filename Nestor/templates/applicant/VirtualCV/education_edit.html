@@ -33,7 +33,7 @@
 
         <div style="overflow: hidden">
             <p class="profile-data-label">Degree Description</p>
-            <textarea name="description" id="id_description" class="profile-data-input bio-input form-control">{{ education.education.description }}</textarea>
+            <textarea name="description" id="id_description" class="profile-data-input bio-input form-control">{{ education.education.description |safe }}</textarea>
         </div>
     </form>
 </div>

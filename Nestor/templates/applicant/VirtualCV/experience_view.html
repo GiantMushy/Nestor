@@ -27,6 +27,6 @@
     <div style="overflow: hidden">
         <p class="profile-data-label">Job description</p>
         <br>
-        <p class="profile-data bio">{{ experience.experience.description }}</p>
+        {% autoescape off %}{{ experience.experience.description }}{% endautoescape %}
     </div>
 </div>
