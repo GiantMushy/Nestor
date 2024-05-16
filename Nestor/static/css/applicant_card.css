@@ -35,9 +35,13 @@
 }
 
 .app_image_container img {
-    max-width: 100%;
-    max-height: 100%;
-    border-radius: 50%;
+    /*max-width: 100%;*/
+    /*max-height: 100%;*/
+    /*border-radius: 50%;*/
+    border-radius: 5%;
+	width: 100%;
+    height: auto;
+    object-fit: cover;
 }
 
 .info_container {
