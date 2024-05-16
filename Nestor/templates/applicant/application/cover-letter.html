@@ -25,7 +25,7 @@
                 <p class="profile-data-label">City, zipcode</p>
                 <select name="zipcode" class="profile-data-select" required id="id_zipcode">
                     {% for option in zip_options %}
-                        <option value="{{ option.id }}">{{ option }}</option>
+                    <option value="{{ option.id }}">{{ option }}</option>
                     {% endfor %}
                     <option value="{{ applicant.zipcode.id  }}" selected>{{ applicant.zipcode }}</option>
                 </select>
@@ -48,11 +48,11 @@
     </div>
     <div class="white_block">
         <form class="form form-horizontal" method="post" action="/applicants/application/cover-letter/{{ job.id }}">
-                <div style="overflow: hidden;">
-                    <input type="submit" class="edit-button" value="Update" /><br>
-                    <p class="profile-data-label">Cover Letter</p>
-                    <textarea name="cover-letter" required id="id_cover-letter" class="profile-data-input bio-input" style="height: 14rem">{{ application.cover_letter }}</textarea>
-                </div>
+            <div style="overflow: hidden;">
+                <input type="submit" class="edit-button" value="Update" /><br>
+                <p class="profile-data-label">Cover Letter</p>
+                <textarea name="cover-letter" required id="id_cover-letter" class="profile-data-input bio-input" style="height: 14rem">{{ application.cover_letter }}</textarea>
+            </div>
         </form>
-        </div>
     </div>
+</div>
