@@ -44,10 +44,10 @@
                     <button class="favorite-btn">
                         {% if job.id in fav_jobs %}
                             <p>Remove from favorites</p>
-                            <img class="heart-image" src="{% static 'images/heartoutline_110866.png'%}" alt="">
+                            <img class="heart-image" src="{% static 'images/filled_heart.png'%}" alt="">
                         {% else %}
                             <p>Add to favorites</p>
-                            <img class="heart-image" src="{% static 'images/filled_heart.png'%}" alt="">
+                            <img class="heart-image" src="{% static 'images/heartoutline_110866.png'%}" alt="">
                         {% endif %}
                     </button>
                 </form>

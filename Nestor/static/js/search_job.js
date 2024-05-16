@@ -35,7 +35,7 @@ const search_for_jobs = () => {
 	window.location.href = '/jobs/?' + parameters
 }
 
-search_btn_job.addEventListener('click', (elem) => {
+search_btn_job.addEventListener('click', () => {
 	search_for_jobs()
 });
 
@@ -44,6 +44,7 @@ countries_list_job.addEventListener("change", (event) => {
 		const all_items = countries_list_job.querySelectorAll(".dropdown-item")
 		const new_placeholder = get_updated_placeholder(all_items)
 		const country_dropdown_list = document.getElementById("filter-location")
+		console.log(new_placeholder)
 		update_placeholder(new_placeholder, country_dropdown_list)
     }
 });
