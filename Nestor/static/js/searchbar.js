@@ -79,26 +79,13 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// const helper = (input, select) => {
-// 	const id = input + "-arrow"
-// 	const select_elem = document.getElementById(id)
-// 	select_elem.classList.add("arrow-active")
-// 	if (current_sort === (input + "-ascent")) {
-// 		select_elem.classList.add("arrow-descend")
-// 		sorted = select.sort((b, a)
-// 	}
-// }
-//
-
-
-// const sort_date = (data) => {
-//
-// }
-
 const sort = (sort_by, selector) => {
+	if (! document.getElementById("all-" + selector)) {
+		return;
+	}
+
 	const all_items = document.getElementById("all-" + selector).childNodes;
 	const clean = Array.from(all_items).filter(item => item.nodeType === Node.ELEMENT_NODE);
-
 
 	//handle active arrow
 	const active_arrow = document.getElementsByClassName("arrow-active")[0];

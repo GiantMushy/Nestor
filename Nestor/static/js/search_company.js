@@ -22,9 +22,18 @@ const search_for_companies = () => {
 	}
 
 
-search_btn_company.addEventListener('click', (elem) => {
+search_btn_company.addEventListener('click', () => {
     search_for_companies()
 });
+
+
+const search_bar_companies = document.getElementById("search-company")
+
+search_bar_companies.addEventListener("keydown", (event) => {
+	if (event.key === "Enter") {
+		search_for_companies()
+	}
+})
 
 
 // Checking whenever there is a change in checked checkboxes in countries-dropdown
@@ -33,6 +42,7 @@ countries_list_company.addEventListener("change", (event) => {
 		const all_items = countries_list_company.querySelectorAll(".dropdown-item")
 		const new_placeholder = get_updated_placeholder(all_items)
 		const country_dropdown_list = document.getElementById("filter-location")
+		country_dropdown_list.value = ''
 		update_placeholder(new_placeholder, country_dropdown_list)
     }
 });
