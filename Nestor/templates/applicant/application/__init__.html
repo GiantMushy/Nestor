@@ -1,23 +1,28 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block additionalStyles %}
+    {% block additionalStyles %}
 <link rel="stylesheet" href="{% static 'css/apply.css' %}" /> 
 <script type="text/javascript" src="{% static 'js/apply.js' %}"></script>
 {% endblock additionalStyles %}
 
 {% block content %}
-    <h1>Applying for "{{ job.name }}" with {{ job.company }}</h1><br>
-    <div style="position: relative; display: flex; height: 100%;">
-        <div style="flex-direction: row; height: 100%" class="contact-info">
-            <img src="{{ applicant.profile_image }}" class="profile-image"/>
-            <p style="font-size: 1.2rem">{{ applicant.full_name }}</p>
-            <p style="font-size: 0.8rem">{{ applicant.email }}</p>
-            <p style="font-size: 0.8rem">{{ applicant.phone }}</p>
-            <p style="font-size: 0.8rem">{{  applicant.zipcode.city.country }} - {{  applicant.zipcode }}</p>
-            <p style="font-size: 0.8rem">{{ applicant.address }}</p>
+<div class="application-container">
+    <h1>Applying for "{{ job.name }}" with {{ job.company }}</h1>
+    <div class="application-main">
+        <div class="contact-info">
+            <div class="image-container">
+                <img src="{{ applicant.profile_image }}" class="profile-image"/>
+            </div>
+            <div class="left-info">
+                <p class="left-info-name">{{ applicant.full_name }}</p>
+                <p>{{ applicant.email }}</p>
+                <p>{{ applicant.phone }}</p>
+                <p>{{  applicant.zipcode.city.country }} - {{  applicant.zipcode }}</p>
+                <p>{{ applicant.address }}</p>
+            </div>
         </div>
-        <div class="black_block" style="width:75%; height: 60vh;">
+        <div class="black_block">
             <div class="progress_header">
                 <div ><button onclick="goTo('cover-letter')" class="page_select_button selected-button" id="prog_1">General</button></div>
                 <div><button onclick="goTo('experience')" class="page_select_button" id="prog_2">Experience</button></div>
@@ -34,4 +39,8 @@
             <div id="final_review" class="hidden">{% include 'applicant/application/final_review.html' %}</div>
         </div>
     </div>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", goTo("{{ page }}")) 
+</script>
 {% endblock %}
