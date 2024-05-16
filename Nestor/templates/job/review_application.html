@@ -14,7 +14,7 @@
             <h4>Basic info</h4>
             <div class="basic-info-item">
                 <img class="icon" src="{% static 'images/phone_icon.png' %}"/>
-                <span>{{ application.applicant.phone }} </span>
+                <span>{{ application.applicant.phone }}</span>
             </div>
             <div class="basic-info-item">
                 <img class="icon" src="{% static 'images/location.png' %}"/>
@@ -34,10 +34,16 @@
                 <ul>
                     <li>{{ item.role }} - {{ item.workplace_name }}</li>
                     <li>{{ item.email }}</li>
-                    {% endfor %}
+                    {% if item.is_contactable %}
+                    <li>Is contactable: Yes</li> 
+                    {% else %}
+                    <li>Is contactable: No</li> 
+                    {% endif %}
+
             </div>
-            {% endif %}
+            {% endfor %}
         </div>
+        {% endif %}
         {% if application.skills %}
         <div class="info-section">
             <h4>Skills</h4>
@@ -46,8 +52,8 @@
                 <li>{{ item.name }}</li>
                 {% endfor %}
             </ul>
-            {% endif %}
         </div>
+        {% endif %}
     </div>
     <div class="right-application">
         <h1 class="title-name">{{ application.applicant.full_name }}</h1>
@@ -88,8 +94,11 @@
             {% endfor %}
         </div>
         {% endif %}
-        <div class="cover-letter-section">
+        <div class="info-section">
+            <h4>Cover Letter</h4>   
+            <p>{{ application.cover_letter }}</p>
         </div>
 
     </div>
+</div>
 {% endblock %}

@@ -78,6 +78,7 @@
 
 .searchbar {
 	width: 100%;
+	padding-left: 5px;
 }
 
 #job-search-container img {
@@ -277,6 +278,11 @@
 #sort-dropdown li:hover {
 	background-color: #DDD;
 	cursor: pointer;
+}
+
+#sort-dropdown li:hover:last-child {
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
 }
 
 #sort-dropdown:first-child {
