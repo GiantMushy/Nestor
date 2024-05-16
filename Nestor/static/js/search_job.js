@@ -67,3 +67,11 @@ companies_list.addEventListener("change", (event) => {
 		update_placeholder(new_placeholder, company_dropdown_list)
     }
 });
+
+const search_bar_jobs = document.getElementById("search-job")
+
+search_bar_jobs.addEventListener("keydown", (event) => {
+	if (event.key === "Enter") {
+		search_for_jobs()
+	}
+})

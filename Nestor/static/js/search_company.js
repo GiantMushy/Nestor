@@ -36,3 +36,12 @@ countries_list_company.addEventListener("change", (event) => {
 		update_placeholder(new_placeholder, country_dropdown_list)
     }
 });
+
+
+const search_bar_companies = document.getElementById("search-company")
+
+search_bar_companies.addEventListener("keydown", (event) => {
+	if (event.key === "Enter") {
+		search_for_companies()
+	}
+})
