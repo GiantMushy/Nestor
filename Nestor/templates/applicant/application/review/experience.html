@@ -1,25 +1,29 @@
 {% load static %}
 <div class="white_block">
-    <div class="profile-data-block" style="margin-right: 5%; width: 25%">
+
+<div class="horizontal-input">
+    <div class="profile-data-block">
         <p class="profile-data-label">Company</p>
         <p class="profile-data">{{ experience.experience.workplace_name }}</p>
     </div>
-    <div class="profile-data-block" style="margin-right: 5%; width: 25%">
+    <div class="profile-data-block">
         <p class="profile-data-label">Role</p>
         <p class="profile-data">{{ experience.experience.role }}</p>
     </div>
-    <div class="profile-data-block" style="margin-right: 5%; width: 15%">
+    </div>
+<div class="horizontal-input">
+    <div class="profile-data-block">
         <p class="profile-data-label">Start date</p>
         <p class="profile-data">{{ experience.experience.start_date }}</p>
     </div>
-    <div class="profile-data-block" style="width: 15%">
+    <div class="profile-data-block">
         <p class="profile-data-label">End date</p>
         <p class="profile-data">{{ experience.experience.end_date }}</p>
     </div>
+</div>
 
-    <div style="overflow: hidden">
+    <div class="hide-overflow">
         <p class="profile-data-label">Job description</p>
-        <br>
-        <p class="profile-data bio">{{ experience.experience.description }}</p>
+        {% autoescape off %}{{ experience.experience.description }}{% endautoescape %}
     </div>
 </div>

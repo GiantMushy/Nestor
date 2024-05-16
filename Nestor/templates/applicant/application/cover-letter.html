@@ -58,15 +58,15 @@
     <div class="white_block">
         <form class="form form-horizontal" method="post" action="/applicants/application/cover-letter/{{ job.id }}">
         {% csrf_token %}
-            <div style="overflow: hidden;">
+            <div class="hide-overflow">
                 <div class="btn-container">
                     <input type="submit" class="edit-button" value="Update" />
                 </div>
                 <p class="profile-data-label">Cover Letter</p>
                 {% if application.cover_letter %}
-                <textarea name="cover-letter" required id="id_cover-letter" class="profile-data-input bio-input" style="height: 14rem">{{ application.cover_letter |safe }}}</textarea>
+                <textarea name="cover-letter" required id="id_cover-letter" class="profile-data-input bio-input">{{ application.cover_letter |safe }}}</textarea>
                 {% else %}
-                <textarea name="cover-letter" required id="id_cover-letter" placeholder="Write your cover letter here" class="profile-data-input bio-input" style="height: 14rem"></textarea>
+                <textarea name="cover-letter" required id="id_cover-letter" placeholder="Write your cover letter here" class="profile-data-input bio-input"></textarea>
                 {% endif %}
             </div>
         </form>

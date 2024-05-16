@@ -8,7 +8,7 @@
 
 {% block content %}
 <div class="cv-container">
-    <h1>{{ applicant.full_name }}'s Virtual CV </h1><br>
+    <h1>{{ applicant.full_name }}'s Virtual CV </h1>
     <div class="contact-container">
         <div class="profile-container">
             <img src="{{ applicant.profile_image }}" class="profile-image" alt="profile image"/>
@@ -17,7 +17,6 @@
             {% include 'applicant/VirtualCV/contact_info_view.html' %}
             {% include 'applicant/VirtualCV/contact_info_edit.html' %}
         </div>
-        <br>
     </div>
     
     <h2 class="CV-block-title">Experience</h2>

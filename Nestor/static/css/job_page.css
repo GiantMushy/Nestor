@@ -50,6 +50,12 @@
 }
 
 
+.company-page-btn-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 .apply-btn, .company-page-btn {
 	text-decoration: none;
 	align-self: flex-start;
@@ -59,7 +65,6 @@
 	border-radius: 10px;
 	background-color: #4AA587;
 	border: none;
-	margin-right: 20px;
 }
 
 
