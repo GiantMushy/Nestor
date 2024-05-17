@@ -2,8 +2,10 @@
 <div class="black_block" id="reference/view/{{ reference.reference_id }}">
     <form id="deleteForm" method="post" action="applicant/remove_reference">
         {% csrf_token %}
-        <input type="hidden" name="reference_id" value="{{ reference.reference_id }}">
-        <button type="submit" class="remove-button">X</button>
+         <input type="hidden" name="reference_id" value="{{ reference.reference_id }}">
+        <div class="btn-container">
+            <button type="submit" class="remove-button">X</button>
+        </div>
     </form>
     <button onclick="toggleEditReference({{ reference.reference_id }})" class="edit-button">edit</button>
     <div class="horizontal-input">
