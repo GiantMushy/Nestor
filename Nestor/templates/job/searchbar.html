@@ -1,67 +1,67 @@
 {% load static %}
-    {% block additionalStyles %}
-    <link rel="stylesheet" href="{% static 'css/searchbar.css' %}" />
-    {#    <script type="text/javascript" src="{% static 'js/searchbar.js' %}"></script>#}
-    {% endblock additionalStyles %}
-    <div id="searchbar-container">
-        <h1 id="searchbar-title">Search for your dream job</h1>
-        <div class="searchbar-filters ">
-            <div class="search-container">
-                <input id="filter-category" onclick="search('filter-category')" class="with-dropdown searchbar-input" type="text" placeholder="{% if categories_placeholder %} {{ categories_placeholder }} {% else %}Pick category{% endif %}"  autocomplete="off">
-                <div id="categories-list" class="dropdown-list search-dropdown hidden">
-                    {% for item in categories %}
-                    <div id="{{ item.name }}-category-item" class="dropdown-item in-dropdown" >
-                        <label class="in-dropdown" for="category-{{ item.id }}">{{ item.name }}</label>
-                        <input class="dropdown-checkbox in-dropdown" type="checkbox" id="category-{{ item.id }}" value="{{ item.id }}" {% if item.id in categories_checked %} checked {% endif %}>
-                    </div>
-                    {% endfor %}
+{% block additionalStyles %}
+<link rel="stylesheet" href="{% static 'css/searchbar.css' %}" />
+{#    <script type="text/javascript" src="{% static 'js/searchbar.js' %}"></script>#}
+{% endblock additionalStyles %}
+<div id="searchbar-container">
+    <h1 id="searchbar-title">Search for your dream job</h1>
+    <div class="searchbar-filters ">
+        <div class="search-container">
+            <input id="filter-category" onclick="search('filter-category')" class="with-dropdown searchbar-input" type="text" placeholder="{% if categories_placeholder %} {{ categories_placeholder }} {% else %}Pick category{% endif %}"  autocomplete="off">
+            <div id="categories-list" class="dropdown-list search-dropdown hidden">
+                {% for item in categories %}
+                <div id="{{ item.name }}-category-item" class="dropdown-item in-dropdown" >
+                    <label class="in-dropdown" for="category-{{ item.id }}">{{ item.name }}</label>
+                    <input class="dropdown-checkbox in-dropdown" type="checkbox" id="category-{{ item.id }}" value="{{ item.id }}" {% if item.id in categories_checked %} checked {% endif %}>
                 </div>
-                <span class="chevron with-dropdown"></span>
+                {% endfor %}
             </div>
-            <div class="search-container">
-                <input id="filter-company" type="text" onclick="search('filter-company')" class="with-dropdown searchbar-input" placeholder="{% if companies_placeholder %} {{ companies_placeholder }} {% else %}Pick company{% endif %}" autocomplete="off">
-                <div id="companies-list" class="dropdown-list search-dropdown hidden">
-                    {% for item in companies %}
-                    <div id="{{ item.name }}-company-item" class="dropdown-item in-dropdown">
-                        <label class="in-dropdown" for="company-{{ item.id }}">{{ item.name }}</label>
-                        <input class="dropdown-checkbox in-dropdown" type="checkbox" id="company-{{ item.id }}" value="{{ item.id }}" {% if item.id in companies_checked %} checked {% endif %}>
-                    </div>
-                    {% endfor %}
-                </div>
-                <span class="chevron"></span>
-            </div>
-            <div class="search-container">
-                <input id="filter-location" type="text" onclick="search('filter-location')" class="with-dropdown searchbar-input" placeholder="{% if countries_placeholder %} {{ countries_placeholder }} {% else %}Pick location{% endif %}" autocomplete="off">
-                <div id="countries-list" class="dropdown-list search-dropdown hidden">
-                    {% for item in countries %}
-                    <div id="{{ item.name }}-country-item" class="dropdown-item in-dropdown" >
-                        <label class="in-dropdown" for="country-{{ item.id }}">{{ item.name }}</label>
-                        <input class="dropdown-checkbox in-dropdown" type="checkbox" id="country-{{ item.id }}" value="{{ item.id }}" {% if item.id in countries_checked %} checked {% endif %}>
-                    </div>
-                    {% endfor %}
-                </div>
-                <span class="chevron"></span>
-            </div>
+            <span class="chevron with-dropdown"></span>
         </div>
-        <div class="searchbar-search">
-            <div id="job-search-container">
-                <input class="searchbar" id="search-job" type="text" placeholder="Enter job title here..." value="{{ job_value }}">
-                <img src="../static/images/searchicon.svg" alt="search icon">
-            </div>
-            <button class="search-btn-job" id="search-btn-job" type="button">Search</button>
-        </div>
-        <div class="searchbar-extras">
-            <div id="sort-btn-container">
-                <button id="sort-btn" class="sort-btn with-dropdown">Sort by</button>
-                <span id="sort-chevron"class="chevron"></span>
-                <div id="sort-dropdown" class="dropdown-list search-dropdown hidden">
-                    <li class="in-dropdown" onclick="sort('date', 'jobs')">Date<img id="date-arrow" class="arrow" src="{% static 'images/arrow-down.svg' %}"/></img></li>
-                    <li class="in-dropdown" onclick="sort('due', 'jobs')">Due date<img id="due-arrow" class="arrow" src="{% static 'images/arrow-down.svg' %}"/></img></li>
-                    <li class="in-dropdown" onclick="sort('job', 'jobs')">Job name<img id="job-arrow" class="arrow" src="{% static 'images/arrow-down.svg' %}"/></img></li>
-                    <li class="in-dropdown" onclick="sort('company', 'jobs')">Company name<img id="company-arrow" class="arrow" src="{% static 'images/arrow-down.svg' %}"/></img></li>
+        <div class="search-container">
+            <input id="filter-company" type="text" onclick="search('filter-company')" class="with-dropdown searchbar-input" placeholder="{% if companies_placeholder %} {{ companies_placeholder }} {% else %}Pick company{% endif %}" autocomplete="off">
+            <div id="companies-list" class="dropdown-list search-dropdown hidden">
+                {% for item in companies %}
+                <div id="{{ item.name }}-company-item" class="dropdown-item in-dropdown">
+                    <label class="in-dropdown" for="company-{{ item.id }}">{{ item.name }}</label>
+                    <input class="dropdown-checkbox in-dropdown" type="checkbox" id="company-{{ item.id }}" value="{{ item.id }}" {% if item.id in companies_checked %} checked {% endif %}>
                 </div>
+                {% endfor %}
+            </div>
+            <span class="chevron"></span>
+        </div>
+        <div class="search-container">
+            <input id="filter-location" type="text" onclick="search('filter-location')" class="with-dropdown searchbar-input" placeholder="{% if countries_placeholder %} {{ countries_placeholder }} {% else %}Pick location{% endif %}" autocomplete="off">
+            <div id="countries-list" class="dropdown-list search-dropdown hidden">
+                {% for item in countries %}
+                <div id="{{ item.name }}-country-item" class="dropdown-item in-dropdown" >
+                    <label class="in-dropdown" for="country-{{ item.id }}">{{ item.name }}</label>
+                    <input class="dropdown-checkbox in-dropdown" type="checkbox" id="country-{{ item.id }}" value="{{ item.id }}" {% if item.id in countries_checked %} checked {% endif %}>
+                </div>
+                {% endfor %}
+            </div>
+            <span class="chevron"></span>
+        </div>
+    </div>
+    <div class="searchbar-search">
+        <div id="job-search-container">
+            <input class="searchbar" id="search-job" type="text" placeholder="Enter job title here..." value="{{ job_value }}">
+            <img src="../static/images/searchicon.svg" alt="search icon">
+        </div>
+        <button class="search-btn-job" id="search-btn-job" type="button">Search</button>
+    </div>
+    <div class="searchbar-extras">
+        <div id="sort-btn-container">
+            <button id="sort-btn" class="sort-btn with-dropdown">Sort by</button>
+            <span id="sort-chevron"class="chevron"></span>
+            <div id="sort-dropdown" class="dropdown-list search-dropdown hidden">
+                <li class="in-dropdown" onclick="sort('date', 'jobs')">Date<img id="date-arrow" class="arrow" src="{% static 'images/arrow-down.svg' %}"/></img></li>
+                <li class="in-dropdown" onclick="sort('due', 'jobs')">Due date<img id="due-arrow" class="arrow" src="{% static 'images/arrow-down.svg' %}"/></img></li>
+                <li class="in-dropdown" onclick="sort('job', 'jobs')">Job name<img id="job-arrow" class="arrow" src="{% static 'images/arrow-down.svg' %}"/></img></li>
+                <li class="in-dropdown" onclick="sort('company', 'jobs')">Company name<img id="company-arrow" class="arrow" src="{% static 'images/arrow-down.svg' %}"/></img></li>
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="{% static 'js/searchbar.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/search_job.js' %}"></script>
+</div>
+<script type="text/javascript" src="{% static 'js/searchbar.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/search_job.js' %}"></script>

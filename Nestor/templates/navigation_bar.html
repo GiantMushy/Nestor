@@ -1,8 +1,5 @@
 {% load static %}
-{% block additionalStyles %}
-<link rel="stylesheet" href="{% static 'css/nav_bar.css' %}"/>
-<script type="text/javascript" src="{% static 'js/nav.js' %}"></script>
-{% endblock additionalStyles %}
+{% block content %}
 <nav class="navbar">
     <div class="nav_content_container">
         <div class="uppernav">
@@ -45,4 +42,5 @@
     <a href={% url 'logout' %}>Log out</a>
 </div>
 {% endif %}
+{% endblock %}
 
