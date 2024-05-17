@@ -1,41 +1,53 @@
 # Nestor
+## Before running
+Before running the Django app for the first time you have to run: 
+```
+pip install -r requirements.txt 
+```
 
 
-Before running the Django app for the first time you have to run: pip install -r requirements.txt 
+## Extra requirements
 
-Okkar kröfur 
-A-kröfur
+### Responsive design 
 
-Responsive design 
+### Skills
+- Skills were added to the application process
+- In admin, we can add more skill genres and add more skills in each skill
+genre which makes it easier to access the correct skills (filter the skills)
 
-Skills
-Skills bætt við í application ferlið, þar er hægt að bæta við skills genres í admin og bæta við fleiri tegundum af skills þar undir sem gerir applicants auðveldara með að bæta við skills og flokka þau niður 
+### Virtual CV
+- The website lets a user create a Virtual CV. Here they can;
+  - Edit their contact information
+  - Add/Edit/Delete Experiences
+  - Add/Edit/Delete Education
+  - Add/Edit/Delete References
+  - Add/Delete Skills
+- These CV attributes are then copied over to the user's application when they initiate the application process. 
+- During the application process, the user can further edit the Virtual CV to make it more specific to the job he is applying for, without changing any of the attributes in his original Virtual CV
 
-Virtual CV
-Hægt að setja inn contact information, experience, education, references og skills
-Þessi atriði birtast svo sjálfkrafa þegar sótt er um starf. Þar getur umsækjandi eytt út því sem hann vill og bætt svo við auka atriðum í umsókninni, án þess að breyta grunn upplýsingunum í Virtucal CV
+### Extra Requirements in Job Search
+- It is possible to filter jobs by location (country)
+- It is possible to filter by job name and company name, in either direction
+  - for ex. alphabetical and reverse alphabetical order
 
-Aukakröfur í search
-Hægt er að filtera út frá location (country)
-Hægt er að sorta í báðar áttir eftir job name og company name 
+### Extra Requirements in Company search
+- It is possible to sort by company name
+- It is possible to filter by location and search for a company by name in the search bar
 
-Company search
-Hægt er að sorta eftir company name 
-Hægt er að filtera eftir location og leita eftir nafni fyrirtækisins 
+### Favorite jobs
+- A user [ type: applicant ] can favorite a job from the job's page, and also un-favorite
+- The "heart" icon on a job's job card is displayed as filled-in if the user has added it to favorite jobs 
+- User can see a list of all his favorite jobs in the navigation bar option: "Favorite Jobs"
 
-Favorite jobs
-Hægt að bæta störfum við og fjarlægja úr favorite jobs á job detail site
-Hægt er að sjá hvort störf séu í favorite á öllum job-cards (á öllum stöðum á vefsíðunni) með hjartanu í hægra horninu
-Hægt er að velja favorite jobs í navigation bar
+### Company profile 
+- Website admins can create company profiles and add/change employee access to said company data
+- Employees that are assigned to a campany account can also see/edit their own contact information
 
-Company profile 
-Hægt er að búa til company profile í admin og þar er hægt að bæta við employee aðgöngum sem hafa aðgang að einhverju einu fyrirtæki
-Starfsmenn geta einnig séð contact information í profile-num sínum 
-
-Job offers
-Employees geta búið til störf og publishað þeim, ‘is_available’ checkboxið gerir þeim kleift að gefa kerfinu til kynna hvort búið sé að ráða í starfið
-Einstaklingar með employee aðgang geta séð hvaða störf þeir hafa búið til 
-Þar geta þeir séð hversu margir hafa sótt um störfin og svo ýtt á spjöldin til að fá nánari upplýsingar um hverjir hafa sótt um starfið
-Þar er hægt að sjá grunnupplýsingar um alla umsækjendur en með því að ýta á spjöldin er hægt að sjá allar upplýsingar um umsóknina sjálfa, sem dæmi experience, cover letter, skills og meira 
-
-
+### Job offers
+- Users [ type: employee ] have the following abilities:
+  - Create Jobs offers for their company
+  - Ask website admins to edit the "is_available" job attribute to indicate if the job position has been filled
+  - See a list of the jobs they (or the company) have published
+  - See a list of all applicants that have applied for a specific job offer
+  - Get a detailed overview of an applicants application
+    - contact info / cover letter / experience / education / references / skills
