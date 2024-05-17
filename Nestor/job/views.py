@@ -214,7 +214,7 @@ def get_applications_by_job_id(request, id):
 # TODO: 
 @permission_required('job.view_job', raise_exception=True)
 def review_application(request, jid, aid):
-    
+    employee = get_object_or_404(Employee, user=request.user)
     application = Application.objects.get(id=aid)
 
     education = hasEducation.objects.filter(application=application.id)
@@ -244,6 +244,7 @@ def review_application(request, jid, aid):
     return render(request, 'job/review_application.html', {
         'job': Job.objects.get(id=jid),
         'application': application,
+        'employee': employee,
         'active_section': get_active_section(request)
     })
 
