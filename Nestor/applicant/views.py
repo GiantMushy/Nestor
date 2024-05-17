@@ -6,6 +6,7 @@ from common.models import ZipCode, Skills, SkillGenre, City, Country
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from job.models import Job, Application, hasSkills, hasEducation, hasExperience, hasReferences
+from company.models import Employee
 from datetime import datetime
 
 
@@ -201,6 +202,7 @@ def applicant(request):
     '''Displays all data for an applicants Profile
     note: hasThing -> application specific Thing ..... CVThing -> Profile specific Thing'''
     applicant = Applicant.objects.filter(user=request.user).first()
+    is_employee = Employee.objects.filter(user=request.user).exists()
     experiences = CVExperience.objects.filter(applicant=applicant).all()
     educations = CVEducation.objects.filter(applicant=applicant).all()
     references = CVReferences.objects.filter(applicant=applicant).all()
@@ -243,7 +245,8 @@ def applicant(request):
         'applicant_skills': applicant_skills,
         'all_skills': all_skills,
         'countries': Country.objects.all(),
-        'cities': City.objects.all()
+        'cities': City.objects.all(),
+        'is_employee': is_employee
     }
     return render(request, 'applicant/applicant.html', context)
 
