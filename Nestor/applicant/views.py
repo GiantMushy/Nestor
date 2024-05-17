@@ -324,7 +324,8 @@ def apply_init(request, id, page):
         'applicant_skills': applicant_skills,
         'all_skills': all_skills,
         'application': application,
-        'page': str(page)
+        'page': str(page),
+        'countries': Country.objects.all(),
     }
     return render(request, 'applicant/application/__init__.html', context)
 

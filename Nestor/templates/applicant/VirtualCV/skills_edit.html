@@ -3,14 +3,14 @@
     {% for genre, skills in applicant_skills.items %}
     <div class="black_block_white_subsection">
         <h3>{{ genre }}</h3>
-        <div class="skill-container">
+        <div class="skills-container">
             {% for skill in skills %}
             <div class="skill_selection">
                 <h4>{{ skill }}</h4>
             </div>
             {% endfor %}
-            <div class="new_skill">
-                <form class="form form-horizontal" method="post" action="applicant/add_skill">
+            <div class="new-skill">
+                <form class="form form-horizontal flex new-skill-container" method="post" action="applicant/add_skill">
                     {% csrf_token %}
                     <select name="{{ genre.name }}" class="skill-select" required id="id_skill">
                         <option value=""></option>

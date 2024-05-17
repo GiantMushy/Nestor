@@ -5,7 +5,7 @@
         <input type="hidden" name="reference_id" value="{{ reference.reference_id }}">
         <button type="submit" class="remove-button">X</button>
     </form>
-    <button onclick="toggleEditReference({{ reference.reference_id }})" class="edit-button">edit</button><br>
+    <button onclick="toggleEditReference({{ reference.reference_id }})" class="edit-button">edit</button>
     <div class="horizontal-input">
     <div class="profile-data-block-three">
         <p class="profile-data-label">Full name</p>
@@ -31,7 +31,7 @@
         <p class="profile-data">{{ reference.reference.phone }}</p>
     </div>
     <div class="profile-data-block-three flex-bottom flex">
-        <input type="checkbox" class="profile-data" id="contactable" {% if reference.reference.is_contactable %}checked{% endif %}>
+        <input type="checkbox" class="profile-data" id="contactable" disabled {% if reference.reference.is_contactable %}checked{% endif %}>
         <p>Ask me before contacting</p>
     </div>
     </div>
