@@ -1,11 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from job.forms.job_form import JobCreateForm
-from applicant.models import Applicant
 from job.models import Job, Application, FavoriteJob, hasEducation, hasExperience, hasReferences, hasSkills
 from django.utils import timezone
 from common.models import JobCategory, City
 from company.models import Company, Employee
-from applicant.models import Education, CVEducation, CVExperience
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
 
@@ -122,7 +120,6 @@ def create_job(request):
         'active_section': active_section
     })
 
-#TODO: 
 
 @login_required(redirect_field_name="/login")
 def favorite_jobs(request):
@@ -140,7 +137,6 @@ def favorite_jobs(request):
 
     return render(request, 'job/favorite_jobs.html', context)
 
-# TODO: 
 
 @login_required(redirect_field_name="/login")
 def applied_jobs(request):
@@ -158,7 +154,6 @@ def applied_jobs(request):
 
     return render(request, 'job/applied_jobs.html', context)
 
-# TODO: 
 
 @login_required(redirect_field_name="/login")
 def favorite_job(request):
@@ -169,7 +164,6 @@ def favorite_job(request):
     fav_jobs = FavoriteJob.objects.filter(user_id=request.user.id).all()
     fav_job = fav_jobs.filter(job__id=job_id).all()
     job = get_object_or_404(Job, id=job_id)
-    # applicant = get_object_or_404(Applicant, user_id=request.user.id)
 
     if not fav_job:
         new_favorite = FavoriteJob(user=request.user, job=job)
@@ -179,7 +173,6 @@ def favorite_job(request):
 
     return redirect(f'/jobs/{job_id}')
 
-# TODO: 
 
 @login_required(redirect_field_name="/login")
 @permission_required('job.view_job', raise_exception=True)
@@ -196,7 +189,6 @@ def your_job_offers(request):
 
     return render(request, 'job/your_job_offers.html', context)
 
-# TODO: 
 @login_required(redirect_field_name="/login")
 @permission_required('job.view_job', raise_exception=True)
 def get_applications_by_job_id(request, id):
@@ -210,8 +202,6 @@ def get_applications_by_job_id(request, id):
     for application in applications:
         education = hasEducation.objects.filter(application=application.id)
         experience = hasExperience.objects.filter(application=application.id)
-        skills = hasSkills.objects.filter(application=application.id)
-        references = hasReferences.objects.filter(application=application.id)
         if education.exists():
             for ed in education:
                 application.education = ed.education
@@ -227,7 +217,6 @@ def get_applications_by_job_id(request, id):
         'employee': employee
     })
 
-# TODO: 
 @permission_required('job.view_job', raise_exception=True)
 def review_application(request, jid, aid):
     '''renders an applicants application for an employee that is

@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from common.models import ZipCode
 
 
-# employee_group, created = Group.objects.get_or_create(name='Employee')
 
 class Company(models.Model):
     '''Class that contains all data for companies

@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from company.forms.company_form import CompanyCreateForm
-from company.models import Company, Employee
+from company.models import Company
 from common.models import JobCategory, City
 from django.utils import timezone
 from job.models import Job, FavoriteJob

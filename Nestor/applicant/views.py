@@ -1,13 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
-# from django.contrib.auth.forms import UserCreationForm
 from applicant.models import *
 from applicant.forms.applicant_form import *
 from common.models import ZipCode, Skills, SkillGenre, City, Country
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import Group
 from job.models import Job, Application, hasSkills, hasEducation, hasExperience, hasReferences
 from company.models import Employee
-from datetime import datetime
 
 
 ################################  CONTACT INFORMATION #####################################
