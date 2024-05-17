@@ -35,9 +35,6 @@ const search_for_jobs = () => {
 	window.location.href = '/jobs/?' + parameters
 }
 
-search_btn_job.addEventListener('click', () => {
-	search_for_jobs()
-});
 
 countries_list_job.addEventListener("change", (event) => {
     if (event.target.matches("input[type='checkbox']")) {
@@ -70,7 +67,9 @@ companies_list.addEventListener("change", (event) => {
 });
 
 const search_bar_jobs = document.getElementById("search-job")
-
+search_btn_job.addEventListener('click', () => {
+	search_for_jobs()
+});
 search_bar_jobs.addEventListener("keydown", (event) => {
 	if (event.key === "Enter") {
 		search_for_jobs()
