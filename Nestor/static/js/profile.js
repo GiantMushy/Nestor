@@ -52,3 +52,30 @@ const toggleEditSkills = () => {
 	if (edit.classList.contains("hidden")) { edit.classList.remove("hidden") }
 	else { edit.classList.add("hidden") }
 }
+
+
+const filterZips = (filter) => {
+	const zip_dropdown = document.getElementById("id_zipcode");
+	console.log(filter)
+	const zips = zip_dropdown.getElementsByTagName("option")
+	Array.from(zips).forEach((zip) => {
+		if (zip.dataset.country !== filter) {
+			zip.classList.add("hidden");
+		} else if (zip.classList.contains("hidden")) {
+			zip.classList.remove("hidden");
+		}
+	})
+}
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+	const country_dropdown = document.getElementById("country-dropdown");
+	country_dropdown.addEventListener('change', () => {
+		document.getElementById("id_zipcode").value = "";
+		const country = country_dropdown.value;
+		filterZips(country);
+	});
+
+
+});

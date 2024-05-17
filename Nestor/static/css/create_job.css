@@ -5,6 +5,11 @@
 	width: 100%;
 }
 
+.clear-style {
+	clear: both;
+	margin: 10px;
+}
+
 .form {
 	width: 100%;
 	display: flex;

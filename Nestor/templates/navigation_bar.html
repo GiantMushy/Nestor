@@ -1,5 +1,4 @@
 {% load static %}
-{% block content %}
 <nav class="navbar">
     <div class="nav_content_container">
         <div class="uppernav">
@@ -17,21 +16,20 @@
             <div class="right">
                 <a id="register-btn"  href={% url 'register' %}>Register</a>
                 <a id="login-btn" href={% url 'login' %}>Log in</a>
-                <!-- <button id="login-btn">Log in</button> -->
             </div>
             {% endif %}
         </div>
         <div class="subnav">
             {% if active_section == 'jobs' %}
-            <a href="{% url 'job_index' %}" class="{% if request.path == '/jobs/' %}active{% endif %}"><h6>All jobs</h6></a>
-            {% if employee %}
-            <a href="{% url 'your_job_offers' %}" class="{% if request.path == '/jobs/your_job_offers' %}active{% endif %}"><h6>Your job offers</h6></a>
-            {% elif user.is_authenticated %}
-            <a href="{% url 'favorite_jobs' %}" class="{% if request.path == '/jobs/favorite_jobs' %}active{% endif %}"><h6>Favorite jobs</h6></a>
-            <a href="{% url 'applied_jobs' %}" class="{% if request.path == '/jobs/applied_jobs' %}active{% endif %}"><h6>Applied jobs</h6></a>
-            {% endif %}
-            {% else %}
-            <a href="{% url 'company_index' %}" class="{% if request.path == '/companies/' %}active{% endif %}"><h6>All companies</h6></a>
+                <a href="{% url 'job_index' %}" class="{% if request.path == '/jobs/' %}active{% endif %}"><h6>All jobs</h6></a>
+                    {% if employee %}
+                    <a href="{% url 'your_job_offers' %}" class="{% if request.path == '/jobs/your_job_offers' %}active{% endif %}"><h6>Your job offers</h6></a>
+                    {% elif user.is_authenticated %}
+                    <a href="{% url 'favorite_jobs' %}" class="{% if request.path == '/jobs/favorite_jobs' %}active{% endif %}"><h6>Favorite jobs</h6></a>
+                    <a href="{% url 'applied_jobs' %}" class="{% if request.path == '/jobs/applied_jobs' %}active{% endif %}"><h6>Applied jobs</h6></a>
+                    {% endif %}
+            {% elif active_section == 'companies' %}
+                <a href="{% url 'company_index' %}" class="{% if request.path == '/companies/' %}active{% endif %}"><h6>All companies</h6></a>
             {% endif %}
         </div>
     </div>
@@ -42,5 +40,3 @@
     <a href={% url 'logout' %}>Log out</a>
 </div>
 {% endif %}
-{% endblock %}
-

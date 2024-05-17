@@ -26,12 +26,14 @@
             <p class="profile-data">{{ reference.reference.phone }}</p>
         </div>
         <div class="checkbox-container">
+            <div class="flex">
             <p>Ask me before contacting</p>
             {% if reference.reference.is_contactable %}
             <input type="checkbox" class="profile-data" id="contactable" disabled checked>
             {% else %}
             <input type="checkbox" class="profile-data" id="contactable" disabled >
             {% endif %}
+            </div>
         </div>
     </div>
 </div>

@@ -6,27 +6,29 @@
         <button type="submit" class="remove-button">X</button>
     </form>
     <button onclick="toggleEditExperience({{ experience.experience_id }})" class="edit-button">edit</button>
-    <br>
-    <div class="profile-data-block" style="margin-right: 5%; width: 25%">
-        <p class="profile-data-label">Company</p>
-        <p class="profile-data">{{ experience.experience.workplace_name }}</p>
+    <div class="horizontal-input margin-top">
+        <div class="profile-data-block">
+            <p class="profile-data-label">Company</p>
+            <p class="profile-data">{{ experience.experience.workplace_name }}</p>
+        </div>
+        <div class="profile-data-block">
+            <p class="profile-data-label">Role</p>
+            <p class="profile-data">{{ experience.experience.role }}</p>
+        </div>
     </div>
-    <div class="profile-data-block" style="margin-right: 5%; width: 25%">
-        <p class="profile-data-label">Role</p>
-        <p class="profile-data">{{ experience.experience.role }}</p>
-    </div>
-    <div class="profile-data-block" style="margin-right: 5%; width: 15%">
-        <p class="profile-data-label">Start date</p>
-        <p class="profile-data">{{ experience.experience.start_date }}</p>
-    </div>
-    <div class="profile-data-block" style="width: 15%">
-        <p class="profile-data-label">End date</p>
-        <p class="profile-data">{{ experience.experience.end_date }}</p>
+    <div class="horizontal-input">
+        <div class="profile-data-block">
+            <p class="profile-data-label">Start date</p>
+            <p class="profile-data">{{ experience.experience.start_date }}</p>
+        </div>
+        <div class="profile-data-block">
+            <p class="profile-data-label">End date</p>
+            <p class="profile-data">{{ experience.experience.end_date }}</p>
+        </div>
     </div>
 
-    <div style="overflow: hidden">
+    <div class="hide-overflow"> 
         <p class="profile-data-label">Job description</p>
-        <br>
         {% autoescape off %}{{ experience.experience.description }}{% endautoescape %}
     </div>
 </div>
