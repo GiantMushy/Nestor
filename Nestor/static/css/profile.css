@@ -17,9 +17,6 @@
 	position: relative;
 	color: #363841;
 	border-radius: 0.5rem;
-	/* padding: 1rem 2rem; */
-	/* display: inline-block; */
-	/* margin: 0.0rem 2rem 1rem 2rem; */
 	width: 100%;
 }
 
@@ -60,8 +57,6 @@
 	color: #F5F5F2;
 	border-radius: 0.5rem;
 	padding: 0.4rem 1rem;
-	/* position: absolute; */
-	/* right: 3.5rem; */
 	cursor: pointer;
 }
 
@@ -91,9 +86,7 @@
 
 .profile-data-block {
 	width: 44%;
-	/* display: inline-block; */
 	margin-bottom: 0.5rem;
-	/* min-width: 12rem; */
 }
 
 .profile-data {
@@ -160,9 +153,7 @@
 	width: 20%;
 	min-width: 12rem;
 	display: flex;
-	/* display: inline-block; */
 	margin-right: 1.5rem;
-	/* margin-bottom: 0.3rem; */
 	border-radius: 0.3rem;
 	padding: 0.4rem 0.4rem 0.4rem 0.4rem;
 }
@@ -201,8 +192,6 @@
 	display: flex;
 	width: 20%;
 	margin-top: 10px;
-	/* width: 16%; */
-	/* min-width: 10rem; */
 }
 
 .skills-container {

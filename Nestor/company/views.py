@@ -50,7 +50,6 @@ def get_company_by_id(request, id):
         'active_section': active_section
     })
 
-# TODO:  blabla
 @login_required(redirect_field_name="/login")
 def create_company(request):
     '''Creates a company and redirects to the list of companies page

@@ -74,8 +74,6 @@
 .right a {
 	color: #FFF;
 	border-radius: 10px;
-	/* width: 110px; */
-	/* height: 35px; */
 	padding: 8px 40px;
 	font-size: 0.8rem;
 }
@@ -92,6 +90,7 @@
 }
 
 /*This is for styling and animation for the chevron dropdown*/
+
 .chevron {
 	box-sizing: border-box;
 	position: absolute;
@@ -193,7 +192,6 @@
 
 	to {
 		max-height: 300px;
-		/* Adjust as needed */
 		opacity: 1;
 		visibility: visible;
 	}
@@ -201,11 +199,8 @@
 
 .expand-down {
 	animation: expandDown 0.7s ease-out forwards;
-	/* Customize duration and easing */
 	opacity: 0;
-	/* Start with invisible content */
 	visibility: hidden;
-	/* Start with invisible content */
 }
 
 .left a.active {

@@ -29,10 +29,6 @@ document.body.addEventListener("click", (elem) => {
 		} else {
 			document.getElementById("sort-btn").classList.add("searchbar-active");
 		}
-
-
-		// elem.target.nextElementSibling.classList.remove("hidden");
-		// elem.target.nextElementSibling.nextElementSibling.classList.add("active");
 	}
 });
 
@@ -80,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 const sort = (sort_by, selector) => {
-	if (! document.getElementById("all-" + selector)) {
+	if (!document.getElementById("all-" + selector)) {
 		return;
 	}
 
