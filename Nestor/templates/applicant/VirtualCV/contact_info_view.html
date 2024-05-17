@@ -1,36 +1,44 @@
 {% load static %}
 <div class="contact-info" id="contact-info/view">
-    <h3 style="display: inline-block">Contact Information</h3>
-    <button onclick="toggleEditContactInfo()" class="edit-button" style="right:1rem">edit</button>
-    <br>
-    <div class="profile-data-block" style="margin-right: 10%">
-        <p class="profile-data-label">Full name</p>
-        <p class="profile-data">{{ applicant.full_name }}</p>
+
+    <div class="horizontal-input">
+        <h3>Contact Information</h3>
+        <button onclick="toggleEditContactInfo()" class="edit-button">edit</button>
     </div>
-    <div class="profile-data-block">
-        <p class="profile-data-label">Country</p>
-        <p class="profile-data">{{ applicant.zipcode.city.country}}</p>
+    <div class="horizontal-input">
+        <div class="profile-data-block">
+            <p class="profile-data-label">Full name</p>
+            <p class="profile-data">{{ applicant.full_name }}</p>
+        </div>
+        <div class="profile-data-block">
+            <p class="profile-data-label">Country</p>
+            <p class="profile-data">{{ applicant.zipcode.city.country}}</p>
+        </div>
     </div>
 
-    <div class="profile-data-block" style="margin-right: 10%">
-        <p class="profile-data-label">Email</p>
-        <p class="profile-data">{{ applicant.email }}</p>
-    </div>
-    <div class="profile-data-block">
-        <p class="profile-data-label">City, zipcode</p>
-        <p class="profile-data">{{ applicant.zipcode }}</p>
-    </div>
-
-    <div class="profile-data-block" style="margin-right: 10%">
-        <p class="profile-data-label">Phone number</p>
-        <p class="profile-data">{{ applicant.phone }}</p>
-    </div>
-    <div class="profile-data-block">
-        <p class="profile-data-label">Address</p>
-        <p class="profile-data">{{ applicant.address }}</p>
+    <div class="horizontal-input">
+        <div class="profile-data-block">
+            <p class="profile-data-label">Email</p>
+            <p class="profile-data">{{ applicant.email }}</p>
+        </div>
+        <div class="profile-data-block">
+            <p class="profile-data-label">City, zipcode</p>
+            <p class="profile-data">{{ applicant.zipcode }}</p>
+        </div>
     </div>
 
-    <div style="overflow: auto">
+    <div class="horizontal-input">
+        <div class="profile-data-block">
+            <p class="profile-data-label">Phone number</p>
+            <p class="profile-data">{{ applicant.phone }}</p>
+        </div>
+        <div class="profile-data-block">
+            <p class="profile-data-label">Address</p>
+            <p class="profile-data">{{ applicant.address }}</p>
+        </div>
+    </div>
+
+    <div>
         <p class="profile-data-label">Bio</p>
         {% autoescape off %}{{ applicant.bio }}{% endautoescape %}
     </div>

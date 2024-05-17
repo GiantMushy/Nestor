@@ -4,26 +4,29 @@
         {% csrf_token %}
         <input type="hidden" name="experience_id" value="{{ experience.experience_id }}">
         <input type="submit" class="edit-button" value="Update" />
-        <br>
-        <div class="profile-data-block" style="margin-right: 5%; width: 25%">
-            <p class="profile-data-label">Company</p>
-            <input type="text" name="workplace_name" class="profile-data-input form-control" value="{{ experience.experience.workplace_name }}" required id="id_workplace_name">
-        </div>
-        <div class="profile-data-block" style="margin-right: 5%; width: 25%">
-            <p class="profile-data-label">Role</p>
-            <input type="text" name="role" class="profile-data-input form-control" value="{{ experience.experience.role }}" required id="id_role">
-        </div>
-
-        <div class="profile-data-block" style="margin-right: 5%; width: 15%">
-            <p class="profile-data-label">Start Date</p>
-            <input type="date" name="start_date" class="profile-data-input form-control" value="{{ experience.experience.start_date }}" required id="id_start_date">
-        </div>
-        <div class="profile-data-block" style="width: 15%">
-            <p class="profile-data-label">End Date</p>
-            <input type="date" name="end_date" class="profile-data-input form-control" value="{{ experience.experience.end_date }}" id="id_end_date">
+        <div class="horizontal-input margin-to_">
+            <div class="profile-data-block">
+                <p class="profile-data-label">Company</p>
+                <input type="text" name="workplace_name" class="profile-data-input form-control" value="{{ experience.experience.workplace_name }}" required id="id_workplace_name">
+            </div>
+            <div class="profile-data-block">
+                <p class="profile-data-label">Role</p>
+                <input type="text" name="role" class="profile-data-input form-control" value="{{ experience.experience.role }}" required id="id_role">
+            </div>
         </div>
 
-        <div style="overflow: hidden">
+        <div class="horizontal-input">
+            <div class="profile-data-block">
+                <p class="profile-data-label">Start Date</p>
+                <input type="date" name="start_date" class="profile-data-input form-control" value="{{ experience.experience.start_date }}" required id="id_start_date">
+            </div>
+            <div class="profile-data-block">
+                <p class="profile-data-label">End Date</p>
+                <input type="date" name="end_date" class="profile-data-input form-control" value="{{ experience.experience.end_date }}" id="id_end_date">
+            </div>
+        </div>
+
+        <div class="hide-overflow">
             <p class="profile-data-label">Description</p>
             <textarea name="description" id="id_description" class="profile-data-input bio-input form-control">{{ experience.experience.description |safe }}</textarea>
         </div>

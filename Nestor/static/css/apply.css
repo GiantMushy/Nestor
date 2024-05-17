@@ -267,16 +267,10 @@
 	margin-top: 15px;
 }
 
-.add-skill {
+.add-skil {
 	border: none;
-	/* position: absolute; */
-	/* right: -2rem; */
-	/* top: 0.0rem; */
-	/* display: inline-block; */
 	background-color: #4aa587;
 	border-radius: 0.4rem;
-	/* width: 1.6rem; */
-	/* height: 1.6rem; */
 	width: 40px;
 	padding: 0px;
 	color: #FFF;
@@ -309,7 +303,7 @@
 
 }
 
-<<<<<<< HEAD .progress_header div {
+.progress_header div {
 	display: inline-block;
 	justify-content: center;
 	/* Horizontally centers the button */

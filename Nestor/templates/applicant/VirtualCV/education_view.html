@@ -6,31 +6,33 @@
         <button type="submit" class="remove-button">X</button>
     </form>
     <button onclick="toggleEditEducation({{ education.education_id }})" class="edit-button">edit</button>
-    <br>
-    <div class="profile-data-block" style="margin-right: 5%; width: 25%">
+    <div class="horizontal-input margin-top">
+    <div class="profile-data-block-three">
         <p class="profile-data-label">School</p>
         <p class="profile-data">{{ education.education.school_name }}</p>
     </div>
-    <div class="profile-data-block" style="margin-right: 5%; width: 25%">
+    <div class="profile-data-block-three">
         <p class="profile-data-label">Degree</p>
         <p class="profile-data">{{ education.education.degree }}</p>
     </div>
-    <div class="profile-data-block" style="margin-right: 5%; width: 15%">
+    <div class="profile-data-block-three">
         <p class="profile-data-label">Level</p>
         <p class="profile-data">{{ education.education.level }}</p>
     </div>
-    <div class="profile-data-block" style="margin-right: 5%; width: 15%">
+    </div>
+    <div class="horizontal-input">
+    <div class="profile-data-block">
         <p class="profile-data-label">Start date</p>
         <p class="profile-data">{{ education.education.start_date }}</p>
     </div>
-    <div class="profile-data-block" style="width: 15%">
+    <div class="profile-data-block">
         <p class="profile-data-label">End date</p>
         <p class="profile-data">{{ education.education.end_date }}</p>
     </div>
+    </div>
 
-    <div style="overflow: hidden">
+    <div class="hide-overflow">
         <p class="profile-data-label">Degree description</p>
-        <br>>
         {% autoescape off %}{{ education.education.description }}{% endautoescape %}
     </div>
 </div>

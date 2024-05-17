@@ -4,31 +4,35 @@
         {% csrf_token %}
         <input type="hidden" name="reference_id" value="{{ reference.reference_id }}">
         <input type="submit" class="edit-button" value="Update" />
-        <div class="profile-data-block" style="margin-right: 10%">
+            <div class="horizontal-input">
+        <div class="profile-data-block-three">
             <p class="profile-data-label">Full name</p>
             <input type="text" name="name" class="profile-data-input" value="{{ reference.reference.name }}" required id="id_name">
         </div>
-        <div class="profile-data-block">
+        <div class="profile-data-block-three">
             <p class="profile-data-label">Company</p>
             <input type="text" name="workplace_name" class="profile-data-input" value="{{ reference.reference.workplace_name }}" required id="id_workplace_name">
         </div>
 
-        <div class="profile-data-block" style="margin-right: 10%">
+        <div class="profile-data-block-three">
             <p class="profile-data-label">Role</p>
             <input type="text" name="role" class="profile-data-input" value="{{ reference.reference.role }}" required id="id_role">
         </div>
-        <div class="profile-data-block">
+        </div>
+            <div class="horizontal-input">
+        <div class="profile-data-block-three">
             <p class="profile-data-label">Email</p>
             <input type="text" name="email" class="profile-data-input" value="{{ reference.reference.email }}" required id="id_email">
         </div>
         
-        <div class="profile-data-block" style="margin-right: 10%">
+        <div class="profile-data-block-three">
             <p class="profile-data-label">Phone</p>
             <input type="text" name="phone" class="profile-data-input" value="{{ reference.reference.phone }}" required id="id_phone">
         </div>
-        <div class="profile-data-block">
+        <div class="profile-data-block-three flex-bottom flex">
             <input type="checkbox" name="is_contactable" class="profile-data" id="id_is_contactable" {% if reference.reference.is_contactable %}checked{% endif %}>
-            <p style="display: inline-block">Ask me before contacting</p>
+            <p>Ask me before contacting</p>
+        </div>
         </div>
     </form>
 </div>

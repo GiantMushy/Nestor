@@ -4,11 +4,11 @@
             <div class="black_block_white_subsection">
                 <h3>{{ genre }}</h3>
                 {% for skill in skills %}
-                    <div class="skill_selection" style="background-color: #EDEAEA">
-                        <form id="deleteForm" method="post" action="applicant/remove_skill">
+                    <div class="skill_selection">
+                        <form id="deleteForm" class="new-skill" method="post" action="applicant/remove_skill">
                             {% csrf_token %}
                             <input type="hidden" name="skill_name" value="{{ skill }}">
-                            <button type="submit" class="delete-skill">X</button>
+                           <button type="submit" class="delete-skill">X</button>
                         </form>
                         <h4>{{ skill }}</h4>
                     </div>

@@ -3,16 +3,16 @@
     <form class="form form-horizontal" method="post" action="applicant/education_add">
         {% csrf_token %}
         <input type="submit" class="edit-button" value="Add" />
-        <br>
-        <div class="profile-data-block" style="margin-right: 5%; width: 25%">
+        <div class="horizontal-input margin-top">
+        <div class="profile-data-block-three">
             <p class="profile-data-label">School</p><br>
             <input type="text" name="school_name" class="profile-data-input form-control" required id="id_school_name">
         </div>
-        <div class="profile-data-block" style="margin-right: 5%; width: 25%">
+        <div class="profile-data-block-three">
             <p class="profile-data-label">Degree</p><br>
             <input type="text" name="degree" class="profile-data-input form-control" required id="id_degree">
         </div>
-        <div class="profile-data-block" style="width: 25%">
+        <div class="profile-data-block-three">
             <p class="profile-data-label">Level</p><br>
             <select name="level" class="profile-data-select" required id="id_level">
                 {% for option in education_levels %}
@@ -20,14 +20,17 @@
                 {% endfor %}
             </select>
         </div>
+        </div>
 
-        <div class="profile-data-block" style="margin-right: 5%; width: 15%">
+        <div class="horizontal-input">
+        <div class="profile-data-block">
             <p class="profile-data-label">Start Date</p><br>
             <input type="date" name="start_date" class="profile-data-input form-control" required id="id_start_date">
         </div>
-        <div class="profile-data-block" style="width: 15%">
+        <div class="profile-data-block">
             <p class="profile-data-label">End Date</p><br>
             <input type="date" name="end_date" class="profile-data-input form-control" id="id_end_date">
+        </div>
         </div>
 
         <div style="overflow: hidden">
