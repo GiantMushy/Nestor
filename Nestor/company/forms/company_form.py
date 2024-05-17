@@ -3,6 +3,7 @@ from company.models import Company
 
 
 class CompanyCreateForm(ModelForm):
+    '''Class containing the form to create a new company'''
     class Meta:
         model = Company
         exclude = ['id']

@@ -7,6 +7,7 @@ from common.models import Country, ZipCode, City
 
 
 class JobCreateForm(forms.ModelForm):
+    '''Class containing the form to create a new job'''
 
     class Meta:
         model = Job
@@ -26,6 +27,7 @@ class JobCreateForm(forms.ModelForm):
 
 
 class FavoriteJobCreateForm(forms.ModelForm):
+    '''Class containing the form to add a job as favorite to a user'''
     class Meta:
         model = FavoriteJob
         fields = ['user', 'job']

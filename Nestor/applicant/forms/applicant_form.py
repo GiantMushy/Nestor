@@ -3,6 +3,7 @@ from applicant.models import *
 
 
 class ApplicantForm(ModelForm):
+    '''Class containing the form to create a new applicant'''
     class Meta:
         model = Applicant
         exclude = ['id', 'user']
@@ -12,6 +13,7 @@ class ApplicantForm(ModelForm):
 
 
 class ExperienceForm(ModelForm):
+    '''Class containing the form to create a new experience'''
     class Meta:
         model = Experience
         exclude = ['id']
@@ -25,12 +27,14 @@ class ExperienceForm(ModelForm):
 
 
 class CVExperienceForm(ModelForm):
+    '''Class containing the form to connects a user with an experience'''
     class Meta:
         model = CVExperience
         fields = ['applicant', 'experience']
 
 
 class EducationForm(ModelForm):
+    '''Class containing the form to create a new education'''
     class Meta:
         model = Education
         exclude = ['id']
@@ -45,12 +49,14 @@ class EducationForm(ModelForm):
 
 
 class CVEducationForm(ModelForm):
+    '''Class containing the form to connects a user with an education'''
     class Meta:
         model = CVEducation
         fields = ['applicant', 'education']
 
 
 class ReferenceForm(ModelForm):
+    '''Class containing the form to create a new reference'''
     class Meta:
         model = References
         exclude = ['id']
@@ -65,6 +71,7 @@ class ReferenceForm(ModelForm):
 
 
 class CVReferenceForm(ModelForm):
+    '''Class containing the form to connects a user with a reference'''
     class Meta:
         model = CVReferences
         fields = ['applicant', 'reference']

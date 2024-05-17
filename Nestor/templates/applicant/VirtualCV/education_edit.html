@@ -3,7 +3,7 @@
     <form class="form form-horizontal" method="post" action="applicant/education_edit">
         {% csrf_token %}
         <input type="hidden" name="education_id" value="{{ education.education_id }}">
-        <input type="submit" class="edit-button" value="Add" />
+        <input type="submit" class="edit-button" value="Update" />
         <div class="horizontal-input margin-top">
             <div class="profile-data-block-three">
                 <p class="profile-data-label">School</p>
