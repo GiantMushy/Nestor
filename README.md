@@ -5,6 +5,15 @@ Before running the Django app for the first time you have to run:
 pip install -r requirements.txt 
 ```
 
+### Accounts:
+- All passwords: egerforseti
+- Employee username:
+  - Ísland: gudnith
+- Applicant usernames
+  - katrinjak, baldurth, steinunnolina, eirikuringi, baldurth, hallahrund 
+hallatomas, asthormagnusson, helgathoris, asdisran, katrinjak, jongnarr, arnarthor
+
+
 
 ## Extra requirements
 
