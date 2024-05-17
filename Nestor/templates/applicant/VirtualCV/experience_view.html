@@ -3,10 +3,12 @@
     <form id="deleteForm" method="post" action="applicant/remove_experience">
         {% csrf_token %}
         <input type="hidden" name="experience_id" value="{{ experience.experience_id }}">
+        <div class="btn-container">
         <button type="submit" class="remove-button">X</button>
+        </div>
     </form>
     <button onclick="toggleEditExperience({{ experience.experience_id }})" class="edit-button">edit</button>
-    <div class="horizontal-input margin-top">
+    <div class="horizontal-input">
         <div class="profile-data-block">
             <p class="profile-data-label">Company</p>
             <p class="profile-data">{{ experience.experience.workplace_name }}</p>

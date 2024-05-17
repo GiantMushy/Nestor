@@ -65,7 +65,7 @@
                 </div>
             </div>
             <h5>About us</h5>
-            <p class="company-description">{{ job.company.description }}</p>
+                <p class="company-description">{% autoescape off %}{{ job.company.description }}{% endautoescape %}</p>
             <h5>Address</h5>
             <p>{{ job.company.address }}, {{ job.company.zipcode.city }}, {{ job.company.zipcode.city.country }} </p>
             <h5>Employees</h5>

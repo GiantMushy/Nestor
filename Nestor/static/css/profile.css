@@ -60,8 +60,8 @@
 	color: #F5F5F2;
 	border-radius: 0.5rem;
 	padding: 0.4rem 1rem;
-	position: absolute;
-	right: 3.5rem;
+	/* position: absolute; */
+	/* right: 3.5rem; */
 	cursor: pointer;
 }
 
@@ -210,6 +210,11 @@
 	width: 100%;
 	flex-wrap: wrap;
 	margin-top: 15px;
+}
+
+.btn-container {
+	display: flex;
+	justify-content: right;
 }
 
 .new-skill-container {

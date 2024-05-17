@@ -2,8 +2,10 @@
 <div class="black_block hidden" id="education/new">
     <form class="form form-horizontal" method="post" action="applicant/education_add">
         {% csrf_token %}
-        <input type="submit" class="edit-button" value="Add" />
-        <div class="horizontal-input margin-top">
+        <div class="btn-container">
+            <input type="submit" class="edit-button" value="Add" />
+        </div>
+        <div class="horizontal-input">
         <div class="profile-data-block-three">
             <p class="profile-data-label">School</p>
             <input type="text" name="school_name" class="profile-data-input form-control" required id="id_school_name">

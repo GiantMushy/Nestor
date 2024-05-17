@@ -2,8 +2,10 @@
 <div class="black_block hidden" id="experience/new">
     <form class="form form-horizontal" method="post" action="applicant/experience_add">
         {% csrf_token %}
-        <input type="submit" class="edit-button" value="Add" />
-    <div class="horizontal-input margin-top">
+        <div class="btn-container">
+            <input type="submit" class="edit-button" value="Add" />
+        </div>
+    <div class="horizontal-input">
         <div class="profile-data-block">
             <p class="profile-data-label">Company</p>
             <input type="text" name="workplace_name" class="profile-data-input form-control" required id="id_workplace_name">
