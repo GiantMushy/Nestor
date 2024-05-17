@@ -6,6 +6,8 @@ const job_search = document.getElementById('search-job')
 
 const search_btn_job= document.getElementById('search-btn-job')
 
+/* Search for jobs based on selected countries and joins the Id's
+* to the parameters that are sent with the jobs/ href */
 const search_for_jobs = () => {
 	const selected_categories = get_selected_items(categories_list)
 	const selected_companies = get_selected_items(companies_list)
@@ -35,7 +37,8 @@ const search_for_jobs = () => {
 	window.location.href = '/jobs/?' + parameters
 }
 
-
+/* Checking whenever there is a change in checked checkboxes in countries-dropdown and
+* calls functions to get the new placeholder and update it */
 countries_list_job.addEventListener("change", (event) => {
     if (event.target.matches("input[type='checkbox']")) {
 		const all_items = countries_list_job.querySelectorAll(".dropdown-item")
@@ -46,7 +49,8 @@ countries_list_job.addEventListener("change", (event) => {
     }
 });
 
-// Checking whenever there is a change in checked checkboxes in category-dropdown
+/* Checking whenever there is a change in checked checkboxes in categories-dropdown and
+* calls functions to get the new placeholder and update it */
 categories_list.addEventListener("change", (event) => {
     if (event.target.matches("input[type='checkbox']")) {
 		const all_items = categories_list.querySelectorAll(".dropdown-item")
@@ -56,7 +60,8 @@ categories_list.addEventListener("change", (event) => {
     }
 });
 
-// Checking whenever there is a change in checked checkboxes in company-dropdown
+/* Checking whenever there is a change in checked checkboxes in companies-dropdown and
+* calls functions to get the new placeholder and update it */
 companies_list.addEventListener("change", (event) => {
     if (event.target.matches("input[type='checkbox']")) {
 		const all_items = companies_list.querySelectorAll(".dropdown-item")

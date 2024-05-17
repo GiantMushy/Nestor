@@ -54,6 +54,8 @@ const search = (id) => {
 }
 
 
+/* Gets the selected items from the dropdown_list sent into the function based
+* on whether it's checked or not */
 const get_selected_items = (dropdown_list) => {
 	let selected_items = []
 	let checkboxes = dropdown_list.querySelectorAll('input[type="checkbox"]')
@@ -64,6 +66,7 @@ const get_selected_items = (dropdown_list) => {
 	})
 	return selected_items
 }
+
 
 let current_sort = "";
 document.addEventListener("DOMContentLoaded", () => {
@@ -160,13 +163,14 @@ const sort = (sort_by, selector) => {
 		}
 	}
 
-
 	for (let i = 0; i < sorted.length; i++) {
 		sorted[i].style.order = i;
 	}
 }
 
 
+/* Returns the new placeholder based on the checked boxes in the dropdown
+* object that is sent in */
 const get_updated_placeholder = (dropdown) => {
 	let new_placeholder = ''
 	dropdown.forEach((item) => {
