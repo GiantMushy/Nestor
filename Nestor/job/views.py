@@ -11,12 +11,15 @@ from django.contrib.auth.decorators import permission_required
 
 
 def add_days_left(job):
+    '''Adds the days left of a given job offer to the job card'''
     days_left = job.application_due_date - timezone.now().date()
     job.days_left = str(days_left).split()[0]
     return job
 
 
 def index(request):
+    '''renders the list of available jobs with the required data for
+    each job's job card'''
     all_jobs = Job.objects.all().order_by('name')
     fav_jobs = ""
     employee = ""
@@ -65,6 +68,10 @@ def index(request):
 
 
 def get_application_status(application):
+    '''updates a job's application status with regard to the deadline
+    of its application_due_date
+    If an employee of the company has made the job unavailable, then
+    the status changes to "finished"'''
     if application.job.application_due_date < timezone.now().date():
         if not application.job.is_available:
             application.status = 'Finished'
@@ -75,6 +82,7 @@ def get_application_status(application):
 
 
 def get_job_by_id(request, id):
+    '''renders a specific job's page with all relevant information'''
     fav_jobs = FavoriteJob.objects.filter(user_id=request.user.id).all()
     application = Application.objects.filter(applicant__user_id=request.user.id, job_id=id).first()
     employee = Employee.objects.filter(user=request.user.id).first()
@@ -95,6 +103,8 @@ def get_job_by_id(request, id):
 @login_required(redirect_field_name="/login")
 @permission_required('job.add_job', raise_exception=True)
 def create_job(request):
+    '''A user that is assigned as an employee can create a job
+    for the specific company that he is registered with'''
     employee = Employee.objects.filter(user=request.user).first()
     active_section = get_active_section(request)
     if request.method == 'POST':
@@ -116,6 +126,7 @@ def create_job(request):
 
 @login_required(redirect_field_name="/login")
 def favorite_jobs(request):
+    '''Renders a list of all the jobs that the user has favorited'''
     fav_jobs = FavoriteJob.objects.filter(user_id=request.user.id).all()
     job_ids = [app.job_id for app in fav_jobs]
     all_jobs = Job.objects.filter(id__in=job_ids)
@@ -133,6 +144,7 @@ def favorite_jobs(request):
 
 @login_required(redirect_field_name="/login")
 def applied_jobs(request):
+    '''Renders a list of all the jobs that the user has applied to'''
     applications = Application.objects.filter(applicant__user_id=request.user.id, is_submitted=True).all()
 
     for application in applications:
@@ -150,6 +162,7 @@ def applied_jobs(request):
 
 @login_required(redirect_field_name="/login")
 def favorite_job(request):
+    '''Adds the specified job to the favorited jobs list'''
     # To get the job that was selected in the url before and the applicant
     job_id = request.POST.get('job_id')
 
@@ -171,6 +184,7 @@ def favorite_job(request):
 @login_required(redirect_field_name="/login")
 @permission_required('job.view_job', raise_exception=True)
 def your_job_offers(request):
+    '''Renders a list of all jobs that a given company has on offer'''
     employee = get_object_or_404(Employee, user=request.user)
     company_id = employee.company.id
     company_jobs = Job.objects.filter(company_id=company_id)
@@ -186,6 +200,8 @@ def your_job_offers(request):
 @login_required(redirect_field_name="/login")
 @permission_required('job.view_job', raise_exception=True)
 def get_applications_by_job_id(request, id):
+    '''renders a list of all applicants that have applied to a
+    job that the company has offered'''
     employee = get_object_or_404(Employee, user=request.user)
     job = get_object_or_404(Job, pk=id)
     applications = Application.objects.filter(job_id=id).all()
@@ -214,6 +230,8 @@ def get_applications_by_job_id(request, id):
 # TODO: 
 @permission_required('job.view_job', raise_exception=True)
 def review_application(request, jid, aid):
+    '''renders an applicants application for an employee that is
+    looking to hire him'''
     employee = get_object_or_404(Employee, user=request.user)
     application = Application.objects.get(id=aid)
 
@@ -251,6 +269,8 @@ def review_application(request, jid, aid):
 
 
 def get_active_section(request):
+    '''Keeps the Navigation Bar up-to-date
+    Checks where the user is, and changes the navigation bar accordingly'''
     active_section = None
     if request.path.startswith('/jobs/'):
         active_section = 'jobs'
@@ -261,6 +281,7 @@ def get_active_section(request):
 
 
 def get_total_applicants(company_jobs):
+    '''updates the total number of applicants'''
     for job in company_jobs:
         total_applicants = Application.objects.filter(job_id=job.id).count()
         job.total_applicants = total_applicants

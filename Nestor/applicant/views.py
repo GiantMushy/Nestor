@@ -198,7 +198,8 @@ def remove_skill(request):
 ################################  OTHER  #####################################
 @login_required(redirect_field_name="/login")
 def applicant(request):
-    '''Displays all data for an applicants Profile'''
+    '''Displays all data for an applicants Profile
+    note: hasThing -> application specific Thing ..... CVThing -> Profile specific Thing'''
     applicant = Applicant.objects.filter(user=request.user).first()
     experiences = CVExperience.objects.filter(applicant=applicant).all()
     educations = CVEducation.objects.filter(applicant=applicant).all()
@@ -260,6 +261,7 @@ def apply_init(request, id, page):
 
     application = Application.objects.filter(job=job, applicant=applicant)
     if not application.exists():
+        #Copy over all details from users profile to the application
         application = Application(applicant=applicant, job=job)
         application.save()
         profile_experiences = CVExperience.objects.filter(applicant=applicant).all()
@@ -273,7 +275,6 @@ def apply_init(request, id, page):
         for education in profile_educations:
             education.education.start_date = education.education.start_date.strftime("%Y-%m-%d")
             education.education.end_date = education.education.end_date.strftime("%Y-%m-%d")
-
             edu = hasEducation(application=application, education=education.education)
             edu.save()
         for reference in profile_references:
@@ -285,11 +286,13 @@ def apply_init(request, id, page):
     else:
         application = application.first()
 
+    #Getting application-specific user details (hasThing -> application)/(CVThing -> Profile)
     experiences = hasExperience.objects.filter(application=application).all()
     educations = hasEducation.objects.filter(application=application).all()
     references = hasReferences.objects.filter(application=application).all()
     app_skills = hasSkills.objects.filter(application=application).all()
 
+    #Getting Skill information and formatting it correctly for the context-obj
     genres = SkillGenre.objects.all()
     skills = Skills.objects.all()
     all_skills = {}

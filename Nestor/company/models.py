@@ -6,6 +6,8 @@ from common.models import ZipCode
 # employee_group, created = Group.objects.get_or_create(name='Employee')
 
 class Company(models.Model):
+    '''Class that contains all data for companies
+    registered in our system'''
     name = models.CharField(max_length=100)
     zipcode = models.ForeignKey(ZipCode, on_delete=models.SET_NULL, null=True)
     address = models.CharField(max_length=100)
@@ -22,6 +24,10 @@ class Company(models.Model):
 
 
 class Employee(models.Model):
+    '''Class that assigns a user as an employee
+     Gives the user access to editing complany pages
+     as well as creating job offers in our system'''
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
 

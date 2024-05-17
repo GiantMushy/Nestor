@@ -8,6 +8,9 @@ from django.contrib.auth.decorators import login_required
 
 
 def index(request):
+    '''redirects the user to the list of companies
+    context of the render contains all necessary data for
+    the company cards on the page'''
     companies_qs = Company.objects.all().order_by('name')
 
     # Getting the query parameters
@@ -32,6 +35,8 @@ def index(request):
 
 
 def get_company_by_id(request, id):
+    '''returns the company object by its id
+    renders the specific companies page'''
     active_section = get_active_section(request)
     all_jobs = Job.objects.filter(company_id=id).order_by('name')
     fav_jobs = FavoriteJob.objects.filter(user_id=request.user.id).all()
@@ -48,6 +53,9 @@ def get_company_by_id(request, id):
 # TODO:  blabla
 @login_required(redirect_field_name="/login")
 def create_company(request):
+    '''Creates a company and redirects to the list of companies page
+    if all input was verified. Otherwise redirects back to the
+    create_company page'''
     active_section = get_active_section(request)
     if request.method == 'POST':
         form = CompanyCreateForm(data=request.POST)
@@ -63,6 +71,7 @@ def create_company(request):
 
 
 def get_active_section(request):
+    '''returns the active section of the current user'''
     active_section = None
     if request.path.startswith('/jobs/'):
         active_section = 'jobs'
@@ -73,6 +82,8 @@ def get_active_section(request):
 
 
 def add_days_left(job):
+    '''adds the number of days left of a job offer to the
+    job card'''
     days_left = job.application_due_date - timezone.now().date()
     job.days_left = str(days_left).split()[0]
     return job

@@ -6,7 +6,9 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 
-class JobType(models.Model):  #summer/internship/part-time/fulltime
+class JobType(models.Model):
+    '''Class that contains a list of all type of jobs
+    Types: summer/internship/part-time/fulltime'''
     type = models.CharField(max_length=100)
 
     def __str__(self):
@@ -14,6 +16,7 @@ class JobType(models.Model):  #summer/internship/part-time/fulltime
 
 
 class Job(models.Model):
+    '''Class that contains all the data for all job offers'''
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     zipcode = models.ForeignKey(ZipCode, on_delete=models.SET_NULL, null=True)
     job_type = models.ForeignKey(JobType, on_delete=models.SET_NULL, null=True)
@@ -33,6 +36,7 @@ class Job(models.Model):
 
 
 class Application(models.Model):
+    '''Class that contains all application-specific applicant data'''
     applicant = models.ForeignKey(Applicant, on_delete=models.CASCADE)
     job = models.ForeignKey(Job, on_delete=models.CASCADE)
     date = models.DateField(default=timezone.now)
@@ -44,6 +48,8 @@ class Application(models.Model):
 
 
 class FavoriteJob(models.Model):
+    '''Class that connects a user to a job
+    This connection means that the user has favorited that job'''
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     job = models.ForeignKey(Job, on_delete=models.CASCADE)
 
@@ -52,6 +58,7 @@ class FavoriteJob(models.Model):
 
 
 class hasSkills(models.Model):
+    '''Class that connects a user's application to a skill'''
     application = models.ForeignKey(Application, on_delete=models.CASCADE)
     skill = models.ForeignKey(Skills, on_delete=models.CASCADE)
 
@@ -60,6 +67,7 @@ class hasSkills(models.Model):
 
 
 class hasExperience(models.Model):
+    '''class that connects a user's application to an experience'''
     application = models.ForeignKey(Application, on_delete=models.CASCADE)
     experience = models.ForeignKey(Experience, on_delete=models.CASCADE)
 
@@ -68,6 +76,7 @@ class hasExperience(models.Model):
 
 
 class hasEducation(models.Model):
+    '''Class that connects a user's application to an education'''
     application = models.ForeignKey(Application, on_delete=models.CASCADE)
     education = models.ForeignKey(Education, on_delete=models.CASCADE)
 
@@ -76,6 +85,7 @@ class hasEducation(models.Model):
 
 
 class hasReferences(models.Model):
+    '''class that connects a user's application to a reference'''
     application = models.ForeignKey(Application, on_delete=models.CASCADE)
     reference = models.ForeignKey(References, on_delete=models.CASCADE)
 

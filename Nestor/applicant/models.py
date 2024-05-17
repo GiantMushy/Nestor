@@ -4,6 +4,7 @@ from common.models import Skills, ZipCode
 
 
 class Applicant(models.Model):
+    '''Class conatining all data for all users'''
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=70)
     profile_image = models.CharField(max_length=9999)
@@ -18,6 +19,8 @@ class Applicant(models.Model):
 
 
 class CVSkills(models.Model):
+    '''Class that connects a user's profile to a specific Skill in our
+    skill list'''
     applicant = models.ForeignKey(Applicant, on_delete=models.CASCADE)
     skill = models.ForeignKey(Skills, on_delete=models.CASCADE)
 
@@ -26,6 +29,7 @@ class CVSkills(models.Model):
     
 
 class Experience(models.Model):
+    '''Class that contains all data for an input instance of "Experience"'''
     workplace_name = models.CharField(max_length=255)
     role = models.CharField(max_length=255)
     start_date = models.DateField()
@@ -37,6 +41,7 @@ class Experience(models.Model):
 
 
 class CVExperience(models.Model):
+    '''Class that connects a specific Experience to a specific applicant'''
     experience = models.ForeignKey(Experience, on_delete=models.CASCADE)
     applicant = models.ForeignKey(Applicant, on_delete=models.CASCADE)
 
@@ -45,6 +50,7 @@ class CVExperience(models.Model):
 
 
 class EducationLevel(models.Model):
+    '''CLass that contains a list of all education levels'''
     level = models.CharField(max_length=255)
 
     def __str__(self):
@@ -52,6 +58,7 @@ class EducationLevel(models.Model):
 
 
 class Education(models.Model):
+    '''Class that contains all data for an input instance of "Education"'''
     school_name = models.CharField(max_length=255)
     degree = models.CharField(max_length=255)
     level = models.ForeignKey(EducationLevel, on_delete=models.SET_NULL, null=True)
@@ -64,6 +71,7 @@ class Education(models.Model):
 
 
 class CVEducation(models.Model):
+    '''Class that connects a specific instance of Education to a specific applicant'''
     education = models.ForeignKey(Education, on_delete=models.CASCADE)
     applicant = models.ForeignKey(Applicant, on_delete=models.CASCADE)
 
@@ -71,6 +79,7 @@ class CVEducation(models.Model):
         return str(self.applicant.full_name) + ' - ' + str(self.education.degree) + ' - ' + str(self.education.level)
 
 class References(models.Model):
+    '''Class that contains all data for an input instance of "Reference"'''
     name = models.CharField(max_length=255)
     email = models.EmailField(max_length=255)
     phone = models.CharField(max_length=20)
@@ -83,6 +92,7 @@ class References(models.Model):
 
 
 class CVReferences(models.Model):
+    '''Class that coonnects a specific reference to a specific applicant'''
     reference = models.ForeignKey(References, on_delete=models.CASCADE)
     applicant = models.ForeignKey(Applicant, on_delete=models.CASCADE)
 
