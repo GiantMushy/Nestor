@@ -249,6 +249,7 @@ def index(request):
     return render(request, 'applicant/index.html', {'applicant': applicant})
 
 
+@login_required(redirect_field_name="/login")
 def apply_init(request, id, page):
     '''Displays all application data
     if application does not already exist, then it copies all
