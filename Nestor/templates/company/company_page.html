@@ -28,7 +28,7 @@
                     <h2 class="company-title">{{ company.name }}</h2>
                 </div>
                 <h5>About us</h5>
-                <p>{{ company.description }}</p>
+                <p>{% autoescape off %}{{ company.description }}{% endautoescape %}</p>
                 <h5>Employees</h5>
                 <p>{{ company.number_of_employees }}</p>
             </div>
