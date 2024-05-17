@@ -4,34 +4,36 @@
         {% csrf_token %}
         <input type="hidden" name="education_id" value="{{ education.education_id }}">
         <input type="submit" class="edit-button" value="Add" />
-        <br>
-        <div class="profile-data-block" style="margin-right: 5%; width: 25%">
-            <p class="profile-data-label">School</p>
-            <input type="text" name="school_name" value="{{ education.education.school_name }}" class="profile-data-input form-control" required id="id_school_name">
-        </div>
-        <div class="profile-data-block" style="margin-right: 5%; width: 25%">
-            <p class="profile-data-label">Degree</p>
-            <input type="text" name="degree" value="{{ education.education.degree }}" class="profile-data-input form-control" required id="id_degree">
-        </div>
-        <div class="profile-data-block" style="width: 25%">
-            <p class="profile-data-label">Level</p>
-            <select name="level" class="profile-data-select" required id="id_level">
-                {% for option in education_levels %}
+        <div class="horizontal-input margin-top">
+            <div class="profile-data-block-three">
+                <p class="profile-data-label">School</p>
+                <input type="text" name="school_name" value="{{ education.education.school_name }}" class="profile-data-input form-control" required id="id_school_name">
+            </div>
+            <div class="profile-data-block-three">
+                <p class="profile-data-label">Degree</p>
+                <input type="text" name="degree" value="{{ education.education.degree }}" class="profile-data-input form-control" required id="id_degree">
+            </div>
+            <div class="profile-data-block-three">
+                <p class="profile-data-label">Level</p>
+                <select name="level" class="profile-data-select" required id="id_level">
+                    {% for option in education_levels %}
                     <option value="{{ option.id }}">{{ option }}</option>
-                {% endfor %}
-            </select>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="horizontal-input">
+            <div class="profile-data-block">
+                <p class="profile-data-label">Start Date</p>
+                <input type="date" name="start_date" value="{{ education.education.start_date }}" class="profile-data-input form-control" required id="id_start_date">
+            </div>
+            <div class="profile-data-block">
+                <p class="profile-data-label">End Date</p>
+                <input type="date" name="end_date" value="{{ education.education.end_date }}" class="profile-data-input form-control" id="id_end_date">
+            </div>
         </div>
 
-        <div class="profile-data-block" style="margin-right: 5%; width: 15%">
-            <p class="profile-data-label">Start Date</p>
-            <input type="date" name="start_date" value="{{ education.education.start_date }}" class="profile-data-input form-control" required id="id_start_date">
-        </div>
-        <div class="profile-data-block" style="width: 15%">
-            <p class="profile-data-label">End Date</p>
-            <input type="date" name="end_date" value="{{ education.education.end_date }}" class="profile-data-input form-control" id="id_end_date">
-        </div>
-
-        <div style="overflow: hidden">
+        <div class="hide-overflow">
             <p class="profile-data-label">Degree Description</p>
             <textarea name="description" id="id_description" class="profile-data-input bio-input form-control">{{ education.education.description |safe }}</textarea>
         </div>

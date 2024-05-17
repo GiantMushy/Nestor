@@ -5,29 +5,34 @@
         <input type="hidden" name="reference_id" value="{{ reference.reference_id }}">
         <button type="submit" class="remove-button">X</button>
     </form>
-    <button onclick="toggleEditReference({{ reference.reference_id }})" class="edit-button">edit</button><br>
-    <div class="profile-data-block" style="margin-right: 5%; width: 25%">
+    <button onclick="toggleEditReference({{ reference.reference_id }})" class="edit-button">edit</button>
+    <div class="horizontal-input">
+    <div class="profile-data-block-three">
         <p class="profile-data-label">Full name</p>
         <p class="profile-data">{{ reference.reference.name }}</p>
     </div>
-    <div class="profile-data-block" style="margin-right: 5%; width: 25%">
+    <div class="profile-data-block-three">
         <p class="profile-data-label">Company</p>
         <p class="profile-data">{{ reference.reference.workplace_name }}</p>
     </div>
-    <div class="profile-data-block" style="width: 25%">
+    <div class="profile-data-block-three">
         <p class="profile-data-label">Role</p>
         <p class="profile-data">{{ reference.reference.role }}</p>
     </div>
-    <div class="profile-data-block" style="margin-right: 5%; width: 25%">
+    </div>
+        <div class="horizontal-input">
+
+    <div class="profile-data-block-three">
         <p class="profile-data-label">Email</p>
         <p class="profile-data">{{ reference.reference.email }}</p>
     </div>
-    <div class="profile-data-block" style="margin-right: 2%; width: 20%">
+    <div class="profile-data-block-three">
         <p class="profile-data-label">Phone</p>
         <p class="profile-data">{{ reference.reference.phone }}</p>
     </div>
-    <div class="profile-data-block">
-        <input type="checkbox" class="profile-data" id="contactable" {% if reference.reference.is_contactable %}checked{% endif %}>
-        <p style="display: inline-block">Ask me before contacting</p>
+    <div class="profile-data-block-three flex-bottom flex">
+        <input type="checkbox" class="profile-data" id="contactable" disabled {% if reference.reference.is_contactable %}checked{% endif %}>
+        <p>Ask me before contacting</p>
+    </div>
     </div>
 </div>

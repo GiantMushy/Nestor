@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 # from django.contrib.auth.forms import UserCreationForm
 from applicant.models import *
 from applicant.forms.applicant_form import *
-from common.models import ZipCode, Skills, SkillGenre
+from common.models import ZipCode, Skills, SkillGenre, City, Country
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from job.models import Job, Application, hasSkills, hasEducation, hasExperience, hasReferences
@@ -206,6 +206,9 @@ def applicant(request):
     app_skills = CVSkills.objects.filter(applicant=applicant).all()
     genres = SkillGenre.objects.all()
     skills = Skills.objects.all()
+   
+    
+
 
     if not applicant:
         applicant = {
@@ -237,7 +240,9 @@ def applicant(request):
         'educations': educations,
         'references': references,
         'applicant_skills': applicant_skills,
-        'all_skills': all_skills
+        'all_skills': all_skills,
+        'countries': Country.objects.all(),
+        'cities': City.objects.all()
     }
     return render(request, 'applicant/applicant.html', context)
 
@@ -319,7 +324,8 @@ def apply_init(request, id, page):
         'applicant_skills': applicant_skills,
         'all_skills': all_skills,
         'application': application,
-        'page': str(page)
+        'page': str(page),
+        'countries': Country.objects.all(),
     }
     return render(request, 'applicant/application/__init__.html', context)
 
